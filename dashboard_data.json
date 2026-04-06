@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-06 17:16:25",
+  "last_updated": "2026-04-06 13:14:51",
   "kpis": {
     "total_calls": 21542543,
     "connected_calls": 5652687,
@@ -1843,6 +1843,48 @@
     }
   ],
   "hour": [
+    {
+      "h": "12:00 AM",
+      "total": 14,
+      "connected": 9,
+      "success": 44.44
+    },
+    {
+      "h": "1:00 AM",
+      "total": 57,
+      "connected": 39,
+      "success": 41.03
+    },
+    {
+      "h": "2:00 AM",
+      "total": 2930,
+      "connected": 3,
+      "success": 0.0
+    },
+    {
+      "h": "3:00 AM",
+      "total": 604,
+      "connected": 1,
+      "success": 100.0
+    },
+    {
+      "h": "4:00 AM",
+      "total": 2625,
+      "connected": 1,
+      "success": 100.0
+    },
+    {
+      "h": "5:00 AM",
+      "total": 3718,
+      "connected": 3,
+      "success": 100.0
+    },
+    {
+      "h": "6:00 AM",
+      "total": 9496,
+      "connected": 2,
+      "success": 100.0
+    },
     {
       "h": "7:00 AM",
       "total": 85378,
