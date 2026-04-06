@@ -17,7 +17,7 @@ import json
 import os
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 from pymongo import MongoClient
 
@@ -940,7 +940,9 @@ def write_dashboard_json(csv_file: str, json_file: str):
 
     # ── Write JSON ───────────────────────────────────────────────
     dashboard = {
-        "last_updated":  datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "last_updated":  datetime.now(timezone.utc).astimezone(
+            timezone(timedelta(hours=5, minutes=30))
+        ).strftime("%Y-%m-%d %H:%M:%S IST"),
         "kpis":          kpis,
         "company":       company_data,
         "region":        region_data,
