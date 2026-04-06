@@ -1,0 +1,7342 @@
+{
+  "last_updated": "2026-04-06 17:16:25",
+  "kpis": {
+    "total_calls": 21542543,
+    "connected_calls": 5652687,
+    "connect_rate": 26.24,
+    "total_hours": 71696.4,
+    "positive": 1912863,
+    "negative": 549905,
+    "listen_count": 1912863,
+    "companies_count": 19
+  },
+  "company": [
+    {
+      "name": "agrim",
+      "total": 30461,
+      "connected": 9349,
+      "positive": 1222,
+      "negative": 148,
+      "success": 13.07,
+      "mht": 31.7,
+      "listen": 1222,
+      "connPct": 30.69,
+      "durationH": 82.2
+    },
+    {
+      "name": "bajaj",
+      "total": 419144,
+      "connected": 155566,
+      "positive": 6764,
+      "negative": 2334,
+      "success": 4.35,
+      "mht": 42.3,
+      "listen": 6764,
+      "connPct": 37.12,
+      "durationH": 1829.45
+    },
+    {
+      "name": "dbs_mintek",
+      "total": 92138,
+      "connected": 19923,
+      "positive": 3864,
+      "negative": 4186,
+      "success": 19.39,
+      "mht": 52.8,
+      "listen": 3864,
+      "connPct": 21.62,
+      "durationH": 292.3
+    },
+    {
+      "name": "dubai_expats",
+      "total": 16726,
+      "connected": 3838,
+      "positive": 71,
+      "negative": 49,
+      "success": 1.85,
+      "mht": 32.0,
+      "listen": 71,
+      "connPct": 22.95,
+      "durationH": 34.09
+    },
+    {
+      "name": "ecofy",
+      "total": 58839,
+      "connected": 15682,
+      "positive": 4529,
+      "negative": 310,
+      "success": 28.88,
+      "mht": 41.1,
+      "listen": 4529,
+      "connPct": 26.65,
+      "durationH": 178.88
+    },
+    {
+      "name": "hdfc",
+      "total": 203,
+      "connected": 61,
+      "positive": 31,
+      "negative": 5,
+      "success": 50.82,
+      "mht": 67.1,
+      "listen": 31,
+      "connPct": 30.05,
+      "durationH": 1.14
+    },
+    {
+      "name": "housing",
+      "total": 171407,
+      "connected": 49559,
+      "positive": 15652,
+      "negative": 704,
+      "success": 31.58,
+      "mht": 34.6,
+      "listen": 15652,
+      "connPct": 28.91,
+      "durationH": 476.45
+    },
+    {
+      "name": "inprime",
+      "total": 650,
+      "connected": 197,
+      "positive": 0,
+      "negative": 0,
+      "success": 0.0,
+      "mht": 46.2,
+      "listen": 0,
+      "connPct": 30.31,
+      "durationH": 2.53
+    },
+    {
+      "name": "it_cart",
+      "total": 55954,
+      "connected": 21359,
+      "positive": 3079,
+      "negative": 112,
+      "success": 14.42,
+      "mht": 47.3,
+      "listen": 3079,
+      "connPct": 38.17,
+      "durationH": 280.48
+    },
+    {
+      "name": "kissht",
+      "total": 44929,
+      "connected": 5589,
+      "positive": 3290,
+      "negative": 2284,
+      "success": 58.87,
+      "mht": 60.5,
+      "listen": 3290,
+      "connPct": 12.44,
+      "durationH": 93.97
+    },
+    {
+      "name": "micro_fi",
+      "total": 4225593,
+      "connected": 1285690,
+      "positive": 489590,
+      "negative": 389596,
+      "success": 38.08,
+      "mht": 51.6,
+      "listen": 489590,
+      "connPct": 30.43,
+      "durationH": 18442.46
+    },
+    {
+      "name": "mktg_micro_fi",
+      "total": 508773,
+      "connected": 221435,
+      "positive": 21813,
+      "negative": 44612,
+      "success": 9.85,
+      "mht": 46.8,
+      "listen": 21813,
+      "connPct": 43.52,
+      "durationH": 2876.39
+    },
+    {
+      "name": "multify",
+      "total": 3947,
+      "connected": 1275,
+      "positive": 3,
+      "negative": 0,
+      "success": 0.24,
+      "mht": 34.1,
+      "listen": 3,
+      "connPct": 32.3,
+      "durationH": 12.07
+    },
+    {
+      "name": "opus",
+      "total": 219184,
+      "connected": 33796,
+      "positive": 2852,
+      "negative": 32404,
+      "success": 8.44,
+      "mht": 42.6,
+      "listen": 2852,
+      "connPct": 15.42,
+      "durationH": 399.53
+    },
+    {
+      "name": "salesbot_datasheets",
+      "total": 21358,
+      "connected": 7848,
+      "positive": 0,
+      "negative": 0,
+      "success": 0.0,
+      "mht": 45.2,
+      "listen": 0,
+      "connPct": 36.75,
+      "durationH": 98.49
+    },
+    {
+      "name": "shubham_housing",
+      "total": 7057,
+      "connected": 2099,
+      "positive": 261,
+      "negative": 39,
+      "success": 12.43,
+      "mht": 34.7,
+      "listen": 261,
+      "connPct": 29.74,
+      "durationH": 20.22
+    },
+    {
+      "name": "smart_dial",
+      "total": 14188,
+      "connected": 6157,
+      "positive": 2408,
+      "negative": 143,
+      "success": 39.11,
+      "mht": 38.6,
+      "listen": 2408,
+      "connPct": 43.4,
+      "durationH": 66.07
+    },
+    {
+      "name": "tatacapital",
+      "total": 15508913,
+      "connected": 3776531,
+      "positive": 1351984,
+      "negative": 72599,
+      "success": 35.8,
+      "mht": 43.9,
+      "listen": 1351984,
+      "connPct": 24.35,
+      "durationH": 46097.27
+    },
+    {
+      "name": "ugro",
+      "total": 143079,
+      "connected": 36733,
+      "positive": 5450,
+      "negative": 380,
+      "success": 14.84,
+      "mht": 40.4,
+      "listen": 5450,
+      "connPct": 25.67,
+      "durationH": 412.37
+    }
+  ],
+  "region": [
+    {
+      "name": "EAST",
+      "total": 4455083,
+      "connected": 1135941,
+      "success": 38.9,
+      "connPct": 25.5
+    },
+    {
+      "name": "NORTH",
+      "total": 5173234,
+      "connected": 1943719,
+      "success": 37.96,
+      "connPct": 37.57
+    },
+    {
+      "name": "SOUTH",
+      "total": 3899504,
+      "connected": 1234921,
+      "success": 27.49,
+      "connPct": 31.67
+    },
+    {
+      "name": "WEST",
+      "total": 3049841,
+      "connected": 704706,
+      "success": 38.76,
+      "connPct": 23.11
+    }
+  ],
+  "usecase": [
+    {
+      "name": "1-30 DPD",
+      "total": 35678,
+      "connected": 11101,
+      "success": 33.36
+    },
+    {
+      "name": "31-60 DPD",
+      "total": 7428,
+      "connected": 1659,
+      "success": 24.05
+    },
+    {
+      "name": "61-90 DPD",
+      "total": 4177,
+      "connected": 831,
+      "success": 19.86
+    },
+    {
+      "name": "90+ DPD",
+      "total": 11556,
+      "connected": 2091,
+      "success": 12.53
+    },
+    {
+      "name": "BKT X",
+      "total": 3083764,
+      "connected": 790709,
+      "success": 32.76
+    },
+    {
+      "name": "BKT X CHARGES",
+      "total": 122587,
+      "connected": 48112,
+      "success": 22.54
+    },
+    {
+      "name": "BKT X GEN AI BOT",
+      "total": 9080781,
+      "connected": 2260951,
+      "success": 39.53
+    },
+    {
+      "name": "BKT X MATURED CHARGES",
+      "total": 41888,
+      "connected": 10711,
+      "success": 13.58
+    },
+    {
+      "name": "BUCKET_1",
+      "total": 292695,
+      "connected": 65115,
+      "success": 27.65
+    },
+    {
+      "name": "BUCKET_1&2_HL",
+      "total": 492991,
+      "connected": 96691,
+      "success": 31.95
+    },
+    {
+      "name": "BUCKET_2",
+      "total": 165202,
+      "connected": 35375,
+      "success": 25.46
+    },
+    {
+      "name": "BUCKET_3",
+      "total": 53897,
+      "connected": 10676,
+      "success": 28.1
+    },
+    {
+      "name": "BUCKET_X",
+      "total": 55929,
+      "connected": 12700,
+      "success": 22.73
+    },
+    {
+      "name": "GEN AI BOT",
+      "total": 1642157,
+      "connected": 396691,
+      "success": 24.56
+    },
+    {
+      "name": "Lead for meeting",
+      "total": 16726,
+      "connected": 3838,
+      "success": 1.85
+    },
+    {
+      "name": "PD GEN AI BOT",
+      "total": 626693,
+      "connected": 119732,
+      "success": 38.08
+    },
+    {
+      "name": "PNPA",
+      "total": 102996,
+      "connected": 18981,
+      "success": 19.55
+    },
+    {
+      "name": "POS < 1000 GEN AI BOT",
+      "total": 28485,
+      "connected": 6902,
+      "success": 21.39
+    },
+    {
+      "name": "SMS_BUCKET_3_HL",
+      "total": 53076,
+      "connected": 9289,
+      "success": 29.57
+    },
+    {
+      "name": "SMS_BUCKET_3_PLUS_HL",
+      "total": 2510,
+      "connected": 458,
+      "success": 45.41
+    }
+  ],
+  "language": [
+    {
+      "name": "Assamese",
+      "total": 13,
+      "connected": 13,
+      "success": 0.0
+    },
+    {
+      "name": "Bengali",
+      "total": 114,
+      "connected": 114,
+      "success": 15.79
+    },
+    {
+      "name": "English",
+      "total": 525840,
+      "connected": 433216,
+      "success": 33.51
+    },
+    {
+      "name": "Gujarati",
+      "total": 13880,
+      "connected": 13726,
+      "success": 70.45
+    },
+    {
+      "name": "Hindi",
+      "total": 4346328,
+      "connected": 3821612,
+      "success": 40.08
+    },
+    {
+      "name": "Kannada",
+      "total": 117275,
+      "connected": 108518,
+      "success": 48.95
+    },
+    {
+      "name": "Malayalam",
+      "total": 146,
+      "connected": 146,
+      "success": 2.05
+    },
+    {
+      "name": "Marathi",
+      "total": 10124,
+      "connected": 10124,
+      "success": 96.91
+    },
+    {
+      "name": "Odia",
+      "total": 4713,
+      "connected": 4551,
+      "success": 28.68
+    },
+    {
+      "name": "Punjabi",
+      "total": 1,
+      "connected": 1,
+      "success": 0.0
+    },
+    {
+      "name": "Tamil",
+      "total": 104734,
+      "connected": 99163,
+      "success": 44.98
+    },
+    {
+      "name": "Telugu",
+      "total": 292976,
+      "connected": 266634,
+      "success": 43.66
+    },
+    {
+      "name": "Urdu",
+      "total": 1,
+      "connected": 1,
+      "success": 0.0
+    },
+    {
+      "name": "हिंदी",
+      "total": 162,
+      "connected": 162,
+      "success": 75.31
+    },
+    {
+      "name": "हिन्दी",
+      "total": 305,
+      "connected": 305,
+      "success": 91.15
+    },
+    {
+      "name": "తెలుగు",
+      "total": 2,
+      "connected": 2,
+      "success": 0.0
+    },
+    {
+      "name": "తెలుగులో",
+      "total": 1,
+      "connected": 1,
+      "success": 0.0
+    },
+    {
+      "name": "ಕನ್ನಡ",
+      "total": 1,
+      "connected": 1,
+      "success": 0.0
+    }
+  ],
+  "date": [
+    {
+      "d": "04 Jul 2025",
+      "total": 1932,
+      "connected": 846,
+      "success": 9.1
+    },
+    {
+      "d": "05 Jul 2025",
+      "total": 12814,
+      "connected": 5591,
+      "success": 23.75
+    },
+    {
+      "d": "06 Jul 2025",
+      "total": 32194,
+      "connected": 12756,
+      "success": 28.09
+    },
+    {
+      "d": "07 Jul 2025",
+      "total": 8190,
+      "connected": 2899,
+      "success": 22.08
+    },
+    {
+      "d": "09 Jul 2025",
+      "total": 17397,
+      "connected": 7119,
+      "success": 15.18
+    },
+    {
+      "d": "10 Jul 2025",
+      "total": 21129,
+      "connected": 11222,
+      "success": 15.41
+    },
+    {
+      "d": "15 Jul 2025",
+      "total": 36,
+      "connected": 12,
+      "success": 0.0
+    },
+    {
+      "d": "16 Jul 2025",
+      "total": 3107,
+      "connected": 960,
+      "success": 0.0
+    },
+    {
+      "d": "17 Jul 2025",
+      "total": 2111,
+      "connected": 984,
+      "success": 0.0
+    },
+    {
+      "d": "18 Jul 2025",
+      "total": 484,
+      "connected": 347,
+      "success": 0.0
+    },
+    {
+      "d": "19 Jul 2025",
+      "total": 2515,
+      "connected": 919,
+      "success": 0.0
+    },
+    {
+      "d": "21 Jul 2025",
+      "total": 3221,
+      "connected": 1473,
+      "success": 0.0
+    },
+    {
+      "d": "22 Jul 2025",
+      "total": 158,
+      "connected": 127,
+      "success": 0.0
+    },
+    {
+      "d": "23 Jul 2025",
+      "total": 745,
+      "connected": 368,
+      "success": 0.0
+    },
+    {
+      "d": "24 Jul 2025",
+      "total": 271,
+      "connected": 221,
+      "success": 0.0
+    },
+    {
+      "d": "25 Jul 2025",
+      "total": 104,
+      "connected": 91,
+      "success": 0.0
+    },
+    {
+      "d": "02 Aug 2025",
+      "total": 2,
+      "connected": 0,
+      "success": 0.0
+    },
+    {
+      "d": "03 Aug 2025",
+      "total": 3,
+      "connected": 2,
+      "success": 100.0
+    },
+    {
+      "d": "04 Aug 2025",
+      "total": 48,
+      "connected": 46,
+      "success": 47.83
+    },
+    {
+      "d": "06 Aug 2025",
+      "total": 36081,
+      "connected": 12214,
+      "success": 30.47
+    },
+    {
+      "d": "07 Aug 2025",
+      "total": 28956,
+      "connected": 9202,
+      "success": 30.96
+    },
+    {
+      "d": "08 Aug 2025",
+      "total": 28679,
+      "connected": 8300,
+      "success": 32.61
+    },
+    {
+      "d": "09 Aug 2025",
+      "total": 33715,
+      "connected": 8179,
+      "success": 35.97
+    },
+    {
+      "d": "10 Aug 2025",
+      "total": 34239,
+      "connected": 6773,
+      "success": 32.66
+    },
+    {
+      "d": "12 Aug 2025",
+      "total": 9505,
+      "connected": 4748,
+      "success": 23.78
+    },
+    {
+      "d": "18 Aug 2025",
+      "total": 7,
+      "connected": 5,
+      "success": 80.0
+    },
+    {
+      "d": "19 Aug 2025",
+      "total": 52,
+      "connected": 20,
+      "success": 60.0
+    },
+    {
+      "d": "21 Aug 2025",
+      "total": 18,
+      "connected": 9,
+      "success": 100.0
+    },
+    {
+      "d": "22 Aug 2025",
+      "total": 2,
+      "connected": 1,
+      "success": 0.0
+    },
+    {
+      "d": "23 Aug 2025",
+      "total": 3,
+      "connected": 1,
+      "success": 0.0
+    },
+    {
+      "d": "25 Aug 2025",
+      "total": 130,
+      "connected": 57,
+      "success": 47.37
+    },
+    {
+      "d": "26 Aug 2025",
+      "total": 56,
+      "connected": 28,
+      "success": 57.14
+    },
+    {
+      "d": "27 Aug 2025",
+      "total": 36,
+      "connected": 29,
+      "success": 68.97
+    },
+    {
+      "d": "28 Aug 2025",
+      "total": 59,
+      "connected": 33,
+      "success": 66.67
+    },
+    {
+      "d": "29 Aug 2025",
+      "total": 427,
+      "connected": 247,
+      "success": 0.4
+    },
+    {
+      "d": "02 Sep 2025",
+      "total": 8,
+      "connected": 5,
+      "success": 100.0
+    },
+    {
+      "d": "03 Sep 2025",
+      "total": 4,
+      "connected": 3,
+      "success": 33.33
+    },
+    {
+      "d": "05 Sep 2025",
+      "total": 4,
+      "connected": 4,
+      "success": 75.0
+    },
+    {
+      "d": "08 Sep 2025",
+      "total": 5317,
+      "connected": 2263,
+      "success": 35.17
+    },
+    {
+      "d": "09 Sep 2025",
+      "total": 25944,
+      "connected": 7547,
+      "success": 24.78
+    },
+    {
+      "d": "10 Sep 2025",
+      "total": 7066,
+      "connected": 1500,
+      "success": 26.2
+    },
+    {
+      "d": "11 Sep 2025",
+      "total": 8745,
+      "connected": 1977,
+      "success": 34.04
+    },
+    {
+      "d": "12 Sep 2025",
+      "total": 4967,
+      "connected": 1023,
+      "success": 33.63
+    },
+    {
+      "d": "13 Sep 2025",
+      "total": 6981,
+      "connected": 1402,
+      "success": 31.67
+    },
+    {
+      "d": "14 Sep 2025",
+      "total": 26,
+      "connected": 19,
+      "success": 21.05
+    },
+    {
+      "d": "15 Sep 2025",
+      "total": 1797,
+      "connected": 811,
+      "success": 0.0
+    },
+    {
+      "d": "16 Sep 2025",
+      "total": 3317,
+      "connected": 998,
+      "success": 0.2
+    },
+    {
+      "d": "17 Sep 2025",
+      "total": 124,
+      "connected": 52,
+      "success": 1.92
+    },
+    {
+      "d": "18 Sep 2025",
+      "total": 1,
+      "connected": 0,
+      "success": 0.0
+    },
+    {
+      "d": "19 Sep 2025",
+      "total": 2,
+      "connected": 1,
+      "success": 100.0
+    },
+    {
+      "d": "20 Sep 2025",
+      "total": 1248,
+      "connected": 192,
+      "success": 0.0
+    },
+    {
+      "d": "21 Sep 2025",
+      "total": 2,
+      "connected": 2,
+      "success": 0.0
+    },
+    {
+      "d": "22 Sep 2025",
+      "total": 22,
+      "connected": 10,
+      "success": 0.0
+    },
+    {
+      "d": "23 Sep 2025",
+      "total": 20,
+      "connected": 5,
+      "success": 0.0
+    },
+    {
+      "d": "24 Sep 2025",
+      "total": 17,
+      "connected": 8,
+      "success": 0.0
+    },
+    {
+      "d": "25 Sep 2025",
+      "total": 138,
+      "connected": 58,
+      "success": 1.72
+    },
+    {
+      "d": "26 Sep 2025",
+      "total": 1030,
+      "connected": 95,
+      "success": 0.0
+    },
+    {
+      "d": "27 Sep 2025",
+      "total": 2,
+      "connected": 1,
+      "success": 0.0
+    },
+    {
+      "d": "28 Sep 2025",
+      "total": 4,
+      "connected": 2,
+      "success": 0.0
+    },
+    {
+      "d": "29 Sep 2025",
+      "total": 11621,
+      "connected": 2827,
+      "success": 15.78
+    },
+    {
+      "d": "30 Sep 2025",
+      "total": 26106,
+      "connected": 4129,
+      "success": 19.54
+    },
+    {
+      "d": "01 Oct 2025",
+      "total": 3,
+      "connected": 3,
+      "success": 33.33
+    },
+    {
+      "d": "02 Oct 2025",
+      "total": 1,
+      "connected": 1,
+      "success": 0.0
+    },
+    {
+      "d": "03 Oct 2025",
+      "total": 32,
+      "connected": 20,
+      "success": 55.0
+    },
+    {
+      "d": "04 Oct 2025",
+      "total": 4806,
+      "connected": 1246,
+      "success": 36.04
+    },
+    {
+      "d": "05 Oct 2025",
+      "total": 54229,
+      "connected": 20203,
+      "success": 37.12
+    },
+    {
+      "d": "06 Oct 2025",
+      "total": 81167,
+      "connected": 24583,
+      "success": 33.62
+    },
+    {
+      "d": "07 Oct 2025",
+      "total": 77500,
+      "connected": 20846,
+      "success": 35.43
+    },
+    {
+      "d": "08 Oct 2025",
+      "total": 76435,
+      "connected": 16099,
+      "success": 35.24
+    },
+    {
+      "d": "09 Oct 2025",
+      "total": 545,
+      "connected": 176,
+      "success": 31.25
+    },
+    {
+      "d": "14 Oct 2025",
+      "total": 5,
+      "connected": 2,
+      "success": 0.0
+    },
+    {
+      "d": "15 Oct 2025",
+      "total": 54,
+      "connected": 21,
+      "success": 47.62
+    },
+    {
+      "d": "16 Oct 2025",
+      "total": 11098,
+      "connected": 4910,
+      "success": 22.36
+    },
+    {
+      "d": "17 Oct 2025",
+      "total": 454,
+      "connected": 146,
+      "success": 11.64
+    },
+    {
+      "d": "18 Oct 2025",
+      "total": 2208,
+      "connected": 654,
+      "success": 3.52
+    },
+    {
+      "d": "21 Oct 2025",
+      "total": 2075,
+      "connected": 499,
+      "success": 15.43
+    },
+    {
+      "d": "22 Oct 2025",
+      "total": 640,
+      "connected": 146,
+      "success": 5.48
+    },
+    {
+      "d": "25 Oct 2025",
+      "total": 2,
+      "connected": 2,
+      "success": 50.0
+    },
+    {
+      "d": "26 Oct 2025",
+      "total": 1,
+      "connected": 1,
+      "success": 0.0
+    },
+    {
+      "d": "27 Oct 2025",
+      "total": 13,
+      "connected": 11,
+      "success": 9.09
+    },
+    {
+      "d": "28 Oct 2025",
+      "total": 5,
+      "connected": 5,
+      "success": 80.0
+    },
+    {
+      "d": "29 Oct 2025",
+      "total": 16495,
+      "connected": 3606,
+      "success": 19.66
+    },
+    {
+      "d": "30 Oct 2025",
+      "total": 43,
+      "connected": 21,
+      "success": 19.05
+    },
+    {
+      "d": "31 Oct 2025",
+      "total": 15298,
+      "connected": 3264,
+      "success": 20.5
+    },
+    {
+      "d": "03 Nov 2025",
+      "total": 517,
+      "connected": 183,
+      "success": 12.57
+    },
+    {
+      "d": "04 Nov 2025",
+      "total": 16559,
+      "connected": 5507,
+      "success": 30.09
+    },
+    {
+      "d": "05 Nov 2025",
+      "total": 115289,
+      "connected": 29117,
+      "success": 34.47
+    },
+    {
+      "d": "06 Nov 2025",
+      "total": 247413,
+      "connected": 67293,
+      "success": 27.18
+    },
+    {
+      "d": "07 Nov 2025",
+      "total": 213217,
+      "connected": 40739,
+      "success": 21.25
+    },
+    {
+      "d": "08 Nov 2025",
+      "total": 7287,
+      "connected": 2270,
+      "success": 12.6
+    },
+    {
+      "d": "09 Nov 2025",
+      "total": 6749,
+      "connected": 1719,
+      "success": 8.14
+    },
+    {
+      "d": "11 Nov 2025",
+      "total": 170354,
+      "connected": 32411,
+      "success": 7.13
+    },
+    {
+      "d": "12 Nov 2025",
+      "total": 100941,
+      "connected": 19698,
+      "success": 22.74
+    },
+    {
+      "d": "15 Nov 2025",
+      "total": 4,
+      "connected": 1,
+      "success": 0.0
+    },
+    {
+      "d": "16 Nov 2025",
+      "total": 4,
+      "connected": 0,
+      "success": 0.0
+    },
+    {
+      "d": "18 Nov 2025",
+      "total": 8458,
+      "connected": 1086,
+      "success": 10.59
+    },
+    {
+      "d": "19 Nov 2025",
+      "total": 2320,
+      "connected": 108,
+      "success": 14.81
+    },
+    {
+      "d": "21 Nov 2025",
+      "total": 8,
+      "connected": 0,
+      "success": 0.0
+    },
+    {
+      "d": "22 Nov 2025",
+      "total": 88,
+      "connected": 33,
+      "success": 69.7
+    },
+    {
+      "d": "24 Nov 2025",
+      "total": 17010,
+      "connected": 5597,
+      "success": 23.17
+    },
+    {
+      "d": "25 Nov 2025",
+      "total": 203036,
+      "connected": 52944,
+      "success": 22.5
+    },
+    {
+      "d": "26 Nov 2025",
+      "total": 179489,
+      "connected": 39973,
+      "success": 23.8
+    },
+    {
+      "d": "27 Nov 2025",
+      "total": 165777,
+      "connected": 27738,
+      "success": 25.14
+    },
+    {
+      "d": "28 Nov 2025",
+      "total": 162924,
+      "connected": 36605,
+      "success": 20.09
+    },
+    {
+      "d": "29 Nov 2025",
+      "total": 159226,
+      "connected": 32271,
+      "success": 16.95
+    },
+    {
+      "d": "01 Dec 2025",
+      "total": 34,
+      "connected": 4,
+      "success": 50.0
+    },
+    {
+      "d": "02 Dec 2025",
+      "total": 12621,
+      "connected": 6637,
+      "success": 8.74
+    },
+    {
+      "d": "03 Dec 2025",
+      "total": 54990,
+      "connected": 20919,
+      "success": 14.51
+    },
+    {
+      "d": "04 Dec 2025",
+      "total": 53358,
+      "connected": 22496,
+      "success": 18.01
+    },
+    {
+      "d": "05 Dec 2025",
+      "total": 360585,
+      "connected": 127063,
+      "success": 28.05
+    },
+    {
+      "d": "06 Dec 2025",
+      "total": 110615,
+      "connected": 40593,
+      "success": 23.48
+    },
+    {
+      "d": "07 Dec 2025",
+      "total": 192639,
+      "connected": 58393,
+      "success": 42.71
+    },
+    {
+      "d": "08 Dec 2025",
+      "total": 42447,
+      "connected": 11443,
+      "success": 38.07
+    },
+    {
+      "d": "09 Dec 2025",
+      "total": 340293,
+      "connected": 101830,
+      "success": 32.52
+    },
+    {
+      "d": "10 Dec 2025",
+      "total": 159416,
+      "connected": 41294,
+      "success": 25.77
+    },
+    {
+      "d": "11 Dec 2025",
+      "total": 151578,
+      "connected": 45212,
+      "success": 40.96
+    },
+    {
+      "d": "12 Dec 2025",
+      "total": 152952,
+      "connected": 44636,
+      "success": 36.2
+    },
+    {
+      "d": "13 Dec 2025",
+      "total": 24876,
+      "connected": 6625,
+      "success": 19.49
+    },
+    {
+      "d": "15 Dec 2025",
+      "total": 22813,
+      "connected": 6970,
+      "success": 14.55
+    },
+    {
+      "d": "16 Dec 2025",
+      "total": 241676,
+      "connected": 61188,
+      "success": 36.9
+    },
+    {
+      "d": "17 Dec 2025",
+      "total": 5685,
+      "connected": 1310,
+      "success": 0.0
+    },
+    {
+      "d": "18 Dec 2025",
+      "total": 64089,
+      "connected": 18851,
+      "success": 34.73
+    },
+    {
+      "d": "19 Dec 2025",
+      "total": 49908,
+      "connected": 10312,
+      "success": 32.53
+    },
+    {
+      "d": "20 Dec 2025",
+      "total": 330510,
+      "connected": 71588,
+      "success": 28.63
+    },
+    {
+      "d": "22 Dec 2025",
+      "total": 120293,
+      "connected": 23621,
+      "success": 34.42
+    },
+    {
+      "d": "23 Dec 2025",
+      "total": 129695,
+      "connected": 23933,
+      "success": 25.9
+    },
+    {
+      "d": "24 Dec 2025",
+      "total": 9247,
+      "connected": 1987,
+      "success": 11.93
+    },
+    {
+      "d": "25 Dec 2025",
+      "total": 30266,
+      "connected": 3390,
+      "success": 9.53
+    },
+    {
+      "d": "27 Dec 2025",
+      "total": 113590,
+      "connected": 33411,
+      "success": 26.79
+    },
+    {
+      "d": "28 Dec 2025",
+      "total": 146393,
+      "connected": 31452,
+      "success": 29.11
+    },
+    {
+      "d": "29 Dec 2025",
+      "total": 6727,
+      "connected": 2965,
+      "success": 92.18
+    },
+    {
+      "d": "30 Dec 2025",
+      "total": 150962,
+      "connected": 53709,
+      "success": 84.71
+    },
+    {
+      "d": "31 Dec 2025",
+      "total": 120148,
+      "connected": 25924,
+      "success": 30.84
+    },
+    {
+      "d": "01 Jan 2026",
+      "total": 32797,
+      "connected": 13875,
+      "success": 28.97
+    },
+    {
+      "d": "02 Jan 2026",
+      "total": 145781,
+      "connected": 77487,
+      "success": 19.1
+    },
+    {
+      "d": "03 Jan 2026",
+      "total": 83533,
+      "connected": 29451,
+      "success": 19.39
+    },
+    {
+      "d": "04 Jan 2026",
+      "total": 12936,
+      "connected": 4965,
+      "success": 44.59
+    },
+    {
+      "d": "05 Jan 2026",
+      "total": 125518,
+      "connected": 54637,
+      "success": 44.97
+    },
+    {
+      "d": "06 Jan 2026",
+      "total": 239387,
+      "connected": 89092,
+      "success": 37.6
+    },
+    {
+      "d": "07 Jan 2026",
+      "total": 461032,
+      "connected": 137430,
+      "success": 30.18
+    },
+    {
+      "d": "08 Jan 2026",
+      "total": 196694,
+      "connected": 62259,
+      "success": 43.07
+    },
+    {
+      "d": "09 Jan 2026",
+      "total": 178339,
+      "connected": 52338,
+      "success": 45.96
+    },
+    {
+      "d": "10 Jan 2026",
+      "total": 416147,
+      "connected": 105538,
+      "success": 28.91
+    },
+    {
+      "d": "11 Jan 2026",
+      "total": 267928,
+      "connected": 53137,
+      "success": 27.96
+    },
+    {
+      "d": "12 Jan 2026",
+      "total": 12905,
+      "connected": 4160,
+      "success": 99.5
+    },
+    {
+      "d": "13 Jan 2026",
+      "total": 11767,
+      "connected": 2654,
+      "success": 100.0
+    },
+    {
+      "d": "14 Jan 2026",
+      "total": 208338,
+      "connected": 50708,
+      "success": 29.77
+    },
+    {
+      "d": "15 Jan 2026",
+      "total": 123993,
+      "connected": 30504,
+      "success": 22.16
+    },
+    {
+      "d": "16 Jan 2026",
+      "total": 325499,
+      "connected": 72759,
+      "success": 34.94
+    },
+    {
+      "d": "17 Jan 2026",
+      "total": 27435,
+      "connected": 9996,
+      "success": 78.0
+    },
+    {
+      "d": "19 Jan 2026",
+      "total": 23185,
+      "connected": 9663,
+      "success": 41.61
+    },
+    {
+      "d": "20 Jan 2026",
+      "total": 41664,
+      "connected": 10669,
+      "success": 22.87
+    },
+    {
+      "d": "21 Jan 2026",
+      "total": 130429,
+      "connected": 29766,
+      "success": 26.97
+    },
+    {
+      "d": "22 Jan 2026",
+      "total": 1741,
+      "connected": 608,
+      "success": 0.33
+    },
+    {
+      "d": "23 Jan 2026",
+      "total": 56556,
+      "connected": 12922,
+      "success": 22.35
+    },
+    {
+      "d": "24 Jan 2026",
+      "total": 475,
+      "connected": 142,
+      "success": 0.0
+    },
+    {
+      "d": "27 Jan 2026",
+      "total": 3342,
+      "connected": 892,
+      "success": 4.93
+    },
+    {
+      "d": "28 Jan 2026",
+      "total": 6438,
+      "connected": 2766,
+      "success": 100.0
+    },
+    {
+      "d": "29 Jan 2026",
+      "total": 32668,
+      "connected": 6714,
+      "success": 61.68
+    },
+    {
+      "d": "30 Jan 2026",
+      "total": 234273,
+      "connected": 63275,
+      "success": 37.36
+    },
+    {
+      "d": "31 Jan 2026",
+      "total": 129607,
+      "connected": 52927,
+      "success": 28.46
+    },
+    {
+      "d": "01 Feb 2026",
+      "total": 70072,
+      "connected": 25285,
+      "success": 25.89
+    },
+    {
+      "d": "02 Feb 2026",
+      "total": 25579,
+      "connected": 5274,
+      "success": 87.68
+    },
+    {
+      "d": "03 Feb 2026",
+      "total": 11961,
+      "connected": 1363,
+      "success": 92.81
+    },
+    {
+      "d": "04 Feb 2026",
+      "total": 107609,
+      "connected": 25200,
+      "success": 26.64
+    },
+    {
+      "d": "05 Feb 2026",
+      "total": 138016,
+      "connected": 50626,
+      "success": 41.64
+    },
+    {
+      "d": "06 Feb 2026",
+      "total": 242385,
+      "connected": 79131,
+      "success": 51.51
+    },
+    {
+      "d": "07 Feb 2026",
+      "total": 404099,
+      "connected": 118673,
+      "success": 37.96
+    },
+    {
+      "d": "08 Feb 2026",
+      "total": 248183,
+      "connected": 67900,
+      "success": 37.86
+    },
+    {
+      "d": "09 Feb 2026",
+      "total": 499972,
+      "connected": 100347,
+      "success": 32.58
+    },
+    {
+      "d": "10 Feb 2026",
+      "total": 598081,
+      "connected": 92706,
+      "success": 38.54
+    },
+    {
+      "d": "11 Feb 2026",
+      "total": 236326,
+      "connected": 42833,
+      "success": 32.19
+    },
+    {
+      "d": "12 Feb 2026",
+      "total": 63859,
+      "connected": 12962,
+      "success": 60.58
+    },
+    {
+      "d": "13 Feb 2026",
+      "total": 466466,
+      "connected": 96524,
+      "success": 14.12
+    },
+    {
+      "d": "14 Feb 2026",
+      "total": 38445,
+      "connected": 6100,
+      "success": 41.59
+    },
+    {
+      "d": "15 Feb 2026",
+      "total": 376414,
+      "connected": 58906,
+      "success": 20.34
+    },
+    {
+      "d": "16 Feb 2026",
+      "total": 33757,
+      "connected": 7248,
+      "success": 28.63
+    },
+    {
+      "d": "17 Feb 2026",
+      "total": 51315,
+      "connected": 10623,
+      "success": 67.9
+    },
+    {
+      "d": "18 Feb 2026",
+      "total": 31286,
+      "connected": 4601,
+      "success": 78.96
+    },
+    {
+      "d": "19 Feb 2026",
+      "total": 131527,
+      "connected": 24008,
+      "success": 12.9
+    },
+    {
+      "d": "20 Feb 2026",
+      "total": 320563,
+      "connected": 50696,
+      "success": 20.94
+    },
+    {
+      "d": "21 Feb 2026",
+      "total": 23502,
+      "connected": 3926,
+      "success": 18.98
+    },
+    {
+      "d": "23 Feb 2026",
+      "total": 184662,
+      "connected": 54999,
+      "success": 5.07
+    },
+    {
+      "d": "24 Feb 2026",
+      "total": 151541,
+      "connected": 48020,
+      "success": 15.38
+    },
+    {
+      "d": "25 Feb 2026",
+      "total": 270731,
+      "connected": 63856,
+      "success": 18.91
+    },
+    {
+      "d": "26 Feb 2026",
+      "total": 124232,
+      "connected": 30659,
+      "success": 24.65
+    },
+    {
+      "d": "27 Feb 2026",
+      "total": 158498,
+      "connected": 51351,
+      "success": 18.72
+    },
+    {
+      "d": "28 Feb 2026",
+      "total": 452624,
+      "connected": 130292,
+      "success": 13.96
+    },
+    {
+      "d": "01 Mar 2026",
+      "total": 51690,
+      "connected": 7084,
+      "success": 78.32
+    },
+    {
+      "d": "02 Mar 2026",
+      "total": 152009,
+      "connected": 58113,
+      "success": 17.64
+    },
+    {
+      "d": "03 Mar 2026",
+      "total": 57327,
+      "connected": 13226,
+      "success": 51.93
+    },
+    {
+      "d": "04 Mar 2026",
+      "total": 146655,
+      "connected": 39049,
+      "success": 37.78
+    },
+    {
+      "d": "05 Mar 2026",
+      "total": 242859,
+      "connected": 80786,
+      "success": 50.23
+    },
+    {
+      "d": "06 Mar 2026",
+      "total": 357527,
+      "connected": 115882,
+      "success": 54.89
+    },
+    {
+      "d": "07 Mar 2026",
+      "total": 330755,
+      "connected": 97158,
+      "success": 56.27
+    },
+    {
+      "d": "08 Mar 2026",
+      "total": 296301,
+      "connected": 79763,
+      "success": 58.75
+    },
+    {
+      "d": "09 Mar 2026",
+      "total": 397485,
+      "connected": 108294,
+      "success": 55.35
+    },
+    {
+      "d": "10 Mar 2026",
+      "total": 607300,
+      "connected": 152009,
+      "success": 45.7
+    },
+    {
+      "d": "11 Mar 2026",
+      "total": 204370,
+      "connected": 46560,
+      "success": 32.19
+    },
+    {
+      "d": "12 Mar 2026",
+      "total": 256251,
+      "connected": 86600,
+      "success": 25.58
+    },
+    {
+      "d": "13 Mar 2026",
+      "total": 545730,
+      "connected": 120589,
+      "success": 32.42
+    },
+    {
+      "d": "14 Mar 2026",
+      "total": 54011,
+      "connected": 13699,
+      "success": 17.96
+    },
+    {
+      "d": "15 Mar 2026",
+      "total": 216102,
+      "connected": 42188,
+      "success": 48.58
+    },
+    {
+      "d": "16 Mar 2026",
+      "total": 360648,
+      "connected": 81861,
+      "success": 29.89
+    },
+    {
+      "d": "17 Mar 2026",
+      "total": 45829,
+      "connected": 8206,
+      "success": 14.34
+    },
+    {
+      "d": "18 Mar 2026",
+      "total": 4642,
+      "connected": 1147,
+      "success": 8.72
+    },
+    {
+      "d": "20 Mar 2026",
+      "total": 291302,
+      "connected": 59431,
+      "success": 42.45
+    },
+    {
+      "d": "21 Mar 2026",
+      "total": 30580,
+      "connected": 6049,
+      "success": 13.97
+    },
+    {
+      "d": "22 Mar 2026",
+      "total": 96117,
+      "connected": 17415,
+      "success": 50.0
+    },
+    {
+      "d": "23 Mar 2026",
+      "total": 66202,
+      "connected": 13718,
+      "success": 42.32
+    },
+    {
+      "d": "24 Mar 2026",
+      "total": 157228,
+      "connected": 31189,
+      "success": 32.37
+    },
+    {
+      "d": "25 Mar 2026",
+      "total": 141843,
+      "connected": 29193,
+      "success": 58.11
+    },
+    {
+      "d": "26 Mar 2026",
+      "total": 156942,
+      "connected": 36627,
+      "success": 56.63
+    },
+    {
+      "d": "27 Mar 2026",
+      "total": 289143,
+      "connected": 120025,
+      "success": 16.7
+    },
+    {
+      "d": "28 Mar 2026",
+      "total": 422732,
+      "connected": 131078,
+      "success": 14.82
+    },
+    {
+      "d": "29 Mar 2026",
+      "total": 34753,
+      "connected": 9481,
+      "success": 9.65
+    },
+    {
+      "d": "30 Mar 2026",
+      "total": 159334,
+      "connected": 33432,
+      "success": 47.74
+    },
+    {
+      "d": "31 Mar 2026",
+      "total": 190932,
+      "connected": 45870,
+      "success": 44.44
+    },
+    {
+      "d": "01 Apr 2026",
+      "total": 50460,
+      "connected": 7508,
+      "success": 100.0
+    },
+    {
+      "d": "02 Apr 2026",
+      "total": 38204,
+      "connected": 3863,
+      "success": 100.0
+    },
+    {
+      "d": "03 Apr 2026",
+      "total": 74602,
+      "connected": 19857,
+      "success": 22.17
+    },
+    {
+      "d": "04 Apr 2026",
+      "total": 74711,
+      "connected": 19983,
+      "success": 39.95
+    },
+    {
+      "d": "05 Apr 2026",
+      "total": 246731,
+      "connected": 100034,
+      "success": 67.91
+    }
+  ],
+  "hour": [
+    {
+      "h": "7:00 AM",
+      "total": 85378,
+      "connected": 23125,
+      "success": 27.64
+    },
+    {
+      "h": "8:00 AM",
+      "total": 155986,
+      "connected": 45159,
+      "success": 38.56
+    },
+    {
+      "h": "9:00 AM",
+      "total": 180325,
+      "connected": 58904,
+      "success": 44.54
+    },
+    {
+      "h": "10:00 AM",
+      "total": 268174,
+      "connected": 93794,
+      "success": 26.62
+    },
+    {
+      "h": "11:00 AM",
+      "total": 618817,
+      "connected": 199008,
+      "success": 38.89
+    },
+    {
+      "h": "12:00 PM",
+      "total": 1662707,
+      "connected": 485893,
+      "success": 34.43
+    },
+    {
+      "h": "1:00 PM",
+      "total": 2007225,
+      "connected": 557732,
+      "success": 37.72
+    },
+    {
+      "h": "2:00 PM",
+      "total": 2516293,
+      "connected": 667935,
+      "success": 36.06
+    },
+    {
+      "h": "3:00 PM",
+      "total": 2858382,
+      "connected": 718182,
+      "success": 35.2
+    },
+    {
+      "h": "4:00 PM",
+      "total": 3459346,
+      "connected": 846028,
+      "success": 34.19
+    },
+    {
+      "h": "5:00 PM",
+      "total": 3589998,
+      "connected": 811172,
+      "success": 34.22
+    },
+    {
+      "h": "6:00 PM",
+      "total": 2855163,
+      "connected": 700686,
+      "success": 31.78
+    },
+    {
+      "h": "7:00 PM",
+      "total": 819332,
+      "connected": 267291,
+      "success": 24.81
+    },
+    {
+      "h": "8:00 PM",
+      "total": 357681,
+      "connected": 143100,
+      "success": 17.76
+    },
+    {
+      "h": "9:00 PM",
+      "total": 72309,
+      "connected": 29513,
+      "success": 22.97
+    },
+    {
+      "h": "10:00 PM",
+      "total": 15926,
+      "connected": 5075,
+      "success": 17.99
+    },
+    {
+      "h": "11:00 PM",
+      "total": 57,
+      "connected": 32,
+      "success": 15.62
+    }
+  ],
+  "compDateData": {
+    "agrim": [
+      {
+        "d": "08 Oct 2025",
+        "total": 587,
+        "connected": 223,
+        "positive": 85,
+        "durationH": 2.66
+      },
+      {
+        "d": "09 Oct 2025",
+        "total": 489,
+        "connected": 159,
+        "positive": 50,
+        "durationH": 1.76
+      },
+      {
+        "d": "04 Nov 2025",
+        "total": 2401,
+        "connected": 1087,
+        "positive": 179,
+        "durationH": 9.26
+      },
+      {
+        "d": "06 Nov 2025",
+        "total": 7077,
+        "connected": 2570,
+        "positive": 304,
+        "durationH": 20.37
+      },
+      {
+        "d": "07 Nov 2025",
+        "total": 1618,
+        "connected": 420,
+        "positive": 39,
+        "durationH": 3.12
+      },
+      {
+        "d": "08 Nov 2025",
+        "total": 7287,
+        "connected": 2270,
+        "positive": 286,
+        "durationH": 19.23
+      },
+      {
+        "d": "09 Nov 2025",
+        "total": 6749,
+        "connected": 1719,
+        "positive": 140,
+        "durationH": 14.71
+      },
+      {
+        "d": "27 Nov 2025",
+        "total": 1200,
+        "connected": 315,
+        "positive": 47,
+        "durationH": 3.49
+      },
+      {
+        "d": "28 Nov 2025",
+        "total": 1613,
+        "connected": 321,
+        "positive": 60,
+        "durationH": 4.48
+      },
+      {
+        "d": "29 Nov 2025",
+        "total": 1440,
+        "connected": 265,
+        "positive": 32,
+        "durationH": 3.11
+      }
+    ],
+    "bajaj": [
+      {
+        "d": "04 Feb 2026",
+        "total": 13798,
+        "connected": 4064,
+        "positive": 630,
+        "durationH": 52.61
+      },
+      {
+        "d": "05 Feb 2026",
+        "total": 5388,
+        "connected": 1917,
+        "positive": 899,
+        "durationH": 34.61
+      },
+      {
+        "d": "06 Feb 2026",
+        "total": 6477,
+        "connected": 2037,
+        "positive": 428,
+        "durationH": 26.18
+      },
+      {
+        "d": "07 Feb 2026",
+        "total": 8102,
+        "connected": 2384,
+        "positive": 833,
+        "durationH": 32.31
+      },
+      {
+        "d": "08 Feb 2026",
+        "total": 1431,
+        "connected": 433,
+        "positive": 124,
+        "durationH": 7.8
+      },
+      {
+        "d": "23 Feb 2026",
+        "total": 20433,
+        "connected": 10343,
+        "positive": 104,
+        "durationH": 124.48
+      },
+      {
+        "d": "24 Feb 2026",
+        "total": 47796,
+        "connected": 22824,
+        "positive": 321,
+        "durationH": 275.13
+      },
+      {
+        "d": "25 Feb 2026",
+        "total": 52708,
+        "connected": 20921,
+        "positive": 414,
+        "durationH": 238.8
+      },
+      {
+        "d": "26 Feb 2026",
+        "total": 53345,
+        "connected": 14703,
+        "positive": 247,
+        "durationH": 163.43
+      },
+      {
+        "d": "27 Feb 2026",
+        "total": 35652,
+        "connected": 9830,
+        "positive": 115,
+        "durationH": 105.1
+      },
+      {
+        "d": "28 Feb 2026",
+        "total": 47786,
+        "connected": 10645,
+        "positive": 157,
+        "durationH": 111.27
+      },
+      {
+        "d": "02 Mar 2026",
+        "total": 82348,
+        "connected": 39918,
+        "positive": 814,
+        "durationH": 475.25
+      },
+      {
+        "d": "05 Mar 2026",
+        "total": 4529,
+        "connected": 1327,
+        "positive": 580,
+        "durationH": 20.3
+      },
+      {
+        "d": "06 Mar 2026",
+        "total": 6600,
+        "connected": 2020,
+        "positive": 356,
+        "durationH": 24.66
+      },
+      {
+        "d": "07 Mar 2026",
+        "total": 4535,
+        "connected": 998,
+        "positive": 298,
+        "durationH": 14.15
+      },
+      {
+        "d": "08 Mar 2026",
+        "total": 2915,
+        "connected": 732,
+        "positive": 234,
+        "durationH": 10.46
+      },
+      {
+        "d": "09 Mar 2026",
+        "total": 3886,
+        "connected": 777,
+        "positive": 210,
+        "durationH": 10.37
+      },
+      {
+        "d": "31 Mar 2026",
+        "total": 21415,
+        "connected": 9693,
+        "positive": 0,
+        "durationH": 102.55
+      }
+    ],
+    "dbs_mintek": [
+      {
+        "d": "05 Sep 2025",
+        "total": 4,
+        "connected": 4,
+        "positive": 3,
+        "durationH": 0.05
+      },
+      {
+        "d": "08 Oct 2025",
+        "total": 4,
+        "connected": 4,
+        "positive": 4,
+        "durationH": 0.04
+      },
+      {
+        "d": "09 Oct 2025",
+        "total": 44,
+        "connected": 12,
+        "positive": 3,
+        "durationH": 0.18
+      },
+      {
+        "d": "16 Oct 2025",
+        "total": 17,
+        "connected": 8,
+        "positive": 3,
+        "durationH": 0.15
+      },
+      {
+        "d": "25 Oct 2025",
+        "total": 2,
+        "connected": 2,
+        "positive": 1,
+        "durationH": 0.02
+      },
+      {
+        "d": "30 Oct 2025",
+        "total": 1,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.06
+      },
+      {
+        "d": "25 Nov 2025",
+        "total": 8003,
+        "connected": 4368,
+        "positive": 1804,
+        "durationH": 97.17
+      },
+      {
+        "d": "29 Nov 2025",
+        "total": 4997,
+        "connected": 1684,
+        "positive": 153,
+        "durationH": 24.68
+      },
+      {
+        "d": "02 Dec 2025",
+        "total": 3,
+        "connected": 3,
+        "positive": 2,
+        "durationH": 0.07
+      },
+      {
+        "d": "03 Dec 2025",
+        "total": 4881,
+        "connected": 434,
+        "positive": 155,
+        "durationH": 6.33
+      },
+      {
+        "d": "05 Dec 2025",
+        "total": 36179,
+        "connected": 7595,
+        "positive": 899,
+        "durationH": 85.36
+      },
+      {
+        "d": "08 Dec 2025",
+        "total": 1,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.03
+      },
+      {
+        "d": "07 Jan 2026",
+        "total": 21328,
+        "connected": 3216,
+        "positive": 471,
+        "durationH": 43.87
+      },
+      {
+        "d": "08 Jan 2026",
+        "total": 9724,
+        "connected": 1030,
+        "positive": 139,
+        "durationH": 13.26
+      },
+      {
+        "d": "16 Jan 2026",
+        "total": 5190,
+        "connected": 991,
+        "positive": 167,
+        "durationH": 14.21
+      },
+      {
+        "d": "17 Jan 2026",
+        "total": 1760,
+        "connected": 570,
+        "positive": 60,
+        "durationH": 6.83
+      }
+    ],
+    "dubai_expats": [
+      {
+        "d": "20 Jan 2026",
+        "total": 341,
+        "connected": 111,
+        "positive": 0,
+        "durationH": 1.04
+      },
+      {
+        "d": "21 Jan 2026",
+        "total": 1227,
+        "connected": 422,
+        "positive": 1,
+        "durationH": 2.64
+      },
+      {
+        "d": "22 Jan 2026",
+        "total": 1465,
+        "connected": 508,
+        "positive": 2,
+        "durationH": 3.28
+      },
+      {
+        "d": "23 Jan 2026",
+        "total": 510,
+        "connected": 190,
+        "positive": 1,
+        "durationH": 1.5
+      },
+      {
+        "d": "24 Jan 2026",
+        "total": 100,
+        "connected": 38,
+        "positive": 0,
+        "durationH": 0.27
+      },
+      {
+        "d": "27 Jan 2026",
+        "total": 1936,
+        "connected": 599,
+        "positive": 0,
+        "durationH": 6.64
+      },
+      {
+        "d": "28 Jan 2026",
+        "total": 441,
+        "connected": 142,
+        "positive": 0,
+        "durationH": 1.53
+      },
+      {
+        "d": "29 Jan 2026",
+        "total": 270,
+        "connected": 92,
+        "positive": 0,
+        "durationH": 1.14
+      },
+      {
+        "d": "05 Feb 2026",
+        "total": 20,
+        "connected": 12,
+        "positive": 0,
+        "durationH": 0.11
+      },
+      {
+        "d": "06 Feb 2026",
+        "total": 1510,
+        "connected": 546,
+        "positive": 1,
+        "durationH": 3.39
+      },
+      {
+        "d": "09 Feb 2026",
+        "total": 2,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "10 Feb 2026",
+        "total": 3849,
+        "connected": 430,
+        "positive": 4,
+        "durationH": 4.21
+      },
+      {
+        "d": "12 Feb 2026",
+        "total": 485,
+        "connected": 137,
+        "positive": 1,
+        "durationH": 1.54
+      },
+      {
+        "d": "16 Feb 2026",
+        "total": 13,
+        "connected": 12,
+        "positive": 1,
+        "durationH": 0.34
+      },
+      {
+        "d": "20 Feb 2026",
+        "total": 4368,
+        "connected": 422,
+        "positive": 1,
+        "durationH": 4.08
+      },
+      {
+        "d": "21 Feb 2026",
+        "total": 36,
+        "connected": 36,
+        "positive": 16,
+        "durationH": 0.59
+      },
+      {
+        "d": "25 Feb 2026",
+        "total": 74,
+        "connected": 68,
+        "positive": 15,
+        "durationH": 0.83
+      },
+      {
+        "d": "26 Feb 2026",
+        "total": 68,
+        "connected": 62,
+        "positive": 22,
+        "durationH": 0.81
+      },
+      {
+        "d": "28 Feb 2026",
+        "total": 7,
+        "connected": 7,
+        "positive": 2,
+        "durationH": 0.1
+      },
+      {
+        "d": "02 Mar 2026",
+        "total": 4,
+        "connected": 4,
+        "positive": 4,
+        "durationH": 0.04
+      }
+    ],
+    "ecofy": [
+      {
+        "d": "08 Sep 2025",
+        "total": 5316,
+        "connected": 2262,
+        "positive": 795,
+        "durationH": 26.41
+      },
+      {
+        "d": "09 Sep 2025",
+        "total": 25916,
+        "connected": 7539,
+        "positive": 1870,
+        "durationH": 83.56
+      },
+      {
+        "d": "10 Sep 2025",
+        "total": 6851,
+        "connected": 1440,
+        "positive": 393,
+        "durationH": 15.54
+      },
+      {
+        "d": "11 Sep 2025",
+        "total": 8743,
+        "connected": 1975,
+        "positive": 673,
+        "durationH": 22.97
+      },
+      {
+        "d": "12 Sep 2025",
+        "total": 4967,
+        "connected": 1023,
+        "positive": 344,
+        "durationH": 12.0
+      },
+      {
+        "d": "13 Sep 2025",
+        "total": 6981,
+        "connected": 1402,
+        "positive": 444,
+        "durationH": 17.57
+      },
+      {
+        "d": "14 Sep 2025",
+        "total": 26,
+        "connected": 19,
+        "positive": 4,
+        "durationH": 0.62
+      },
+      {
+        "d": "15 Sep 2025",
+        "total": 5,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.01
+      },
+      {
+        "d": "16 Sep 2025",
+        "total": 5,
+        "connected": 3,
+        "positive": 2,
+        "durationH": 0.03
+      },
+      {
+        "d": "17 Sep 2025",
+        "total": 1,
+        "connected": 1,
+        "positive": 1,
+        "durationH": 0.01
+      },
+      {
+        "d": "18 Sep 2025",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "19 Sep 2025",
+        "total": 2,
+        "connected": 1,
+        "positive": 1,
+        "durationH": 0.01
+      },
+      {
+        "d": "20 Sep 2025",
+        "total": 1,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.01
+      },
+      {
+        "d": "21 Sep 2025",
+        "total": 2,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.02
+      },
+      {
+        "d": "22 Sep 2025",
+        "total": 2,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.02
+      },
+      {
+        "d": "23 Sep 2025",
+        "total": 2,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "24 Sep 2025",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "25 Sep 2025",
+        "total": 2,
+        "connected": 2,
+        "positive": 1,
+        "durationH": 0.01
+      },
+      {
+        "d": "27 Sep 2025",
+        "total": 2,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.01
+      },
+      {
+        "d": "28 Sep 2025",
+        "total": 4,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.01
+      },
+      {
+        "d": "30 Sep 2025",
+        "total": 2,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.01
+      },
+      {
+        "d": "01 Oct 2025",
+        "total": 3,
+        "connected": 3,
+        "positive": 1,
+        "durationH": 0.05
+      },
+      {
+        "d": "02 Oct 2025",
+        "total": 1,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "07 Oct 2025",
+        "total": 3,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.01
+      }
+    ],
+    "hdfc": [
+      {
+        "d": "21 Nov 2025",
+        "total": 8,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "22 Nov 2025",
+        "total": 88,
+        "connected": 33,
+        "positive": 23,
+        "durationH": 0.71
+      },
+      {
+        "d": "24 Nov 2025",
+        "total": 9,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "25 Nov 2025",
+        "total": 5,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "26 Nov 2025",
+        "total": 9,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "28 Nov 2025",
+        "total": 13,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "01 Dec 2025",
+        "total": 6,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "03 Dec 2025",
+        "total": 61,
+        "connected": 28,
+        "positive": 8,
+        "durationH": 0.43
+      },
+      {
+        "d": "04 Dec 2025",
+        "total": 4,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      }
+    ],
+    "housing": [
+      {
+        "d": "04 Aug 2025",
+        "total": 48,
+        "connected": 46,
+        "positive": 22,
+        "durationH": 0.43
+      },
+      {
+        "d": "06 Aug 2025",
+        "total": 36078,
+        "connected": 12213,
+        "positive": 3722,
+        "durationH": 118.11
+      },
+      {
+        "d": "07 Aug 2025",
+        "total": 28956,
+        "connected": 9202,
+        "positive": 2849,
+        "durationH": 86.92
+      },
+      {
+        "d": "08 Aug 2025",
+        "total": 28679,
+        "connected": 8300,
+        "positive": 2707,
+        "durationH": 81.56
+      },
+      {
+        "d": "09 Aug 2025",
+        "total": 33715,
+        "connected": 8179,
+        "positive": 2942,
+        "durationH": 77.67
+      },
+      {
+        "d": "10 Aug 2025",
+        "total": 34239,
+        "connected": 6773,
+        "positive": 2212,
+        "durationH": 62.76
+      },
+      {
+        "d": "12 Aug 2025",
+        "total": 9505,
+        "connected": 4748,
+        "positive": 1129,
+        "durationH": 47.05
+      },
+      {
+        "d": "18 Aug 2025",
+        "total": 7,
+        "connected": 5,
+        "positive": 4,
+        "durationH": 0.09
+      },
+      {
+        "d": "19 Aug 2025",
+        "total": 52,
+        "connected": 20,
+        "positive": 12,
+        "durationH": 0.28
+      },
+      {
+        "d": "21 Aug 2025",
+        "total": 18,
+        "connected": 9,
+        "positive": 9,
+        "durationH": 0.11
+      },
+      {
+        "d": "25 Aug 2025",
+        "total": 46,
+        "connected": 30,
+        "positive": 23,
+        "durationH": 0.75
+      },
+      {
+        "d": "26 Aug 2025",
+        "total": 15,
+        "connected": 7,
+        "positive": 5,
+        "durationH": 0.15
+      },
+      {
+        "d": "28 Aug 2025",
+        "total": 48,
+        "connected": 26,
+        "positive": 15,
+        "durationH": 0.55
+      },
+      {
+        "d": "08 Sep 2025",
+        "total": 1,
+        "connected": 1,
+        "positive": 1,
+        "durationH": 0.02
+      }
+    ],
+    "inprime": [
+      {
+        "d": "09 Sep 2025",
+        "total": 28,
+        "connected": 8,
+        "positive": 0,
+        "durationH": 0.11
+      },
+      {
+        "d": "10 Sep 2025",
+        "total": 215,
+        "connected": 60,
+        "positive": 0,
+        "durationH": 0.65
+      },
+      {
+        "d": "11 Sep 2025",
+        "total": 2,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.03
+      },
+      {
+        "d": "16 Sep 2025",
+        "total": 191,
+        "connected": 53,
+        "positive": 0,
+        "durationH": 0.62
+      },
+      {
+        "d": "17 Sep 2025",
+        "total": 87,
+        "connected": 26,
+        "positive": 0,
+        "durationH": 0.42
+      },
+      {
+        "d": "23 Sep 2025",
+        "total": 18,
+        "connected": 5,
+        "positive": 0,
+        "durationH": 0.06
+      },
+      {
+        "d": "25 Sep 2025",
+        "total": 108,
+        "connected": 43,
+        "positive": 0,
+        "durationH": 0.64
+      },
+      {
+        "d": "26 Sep 2025",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      }
+    ],
+    "it_cart": [
+      {
+        "d": "27 Nov 2025",
+        "total": 10,
+        "connected": 5,
+        "positive": 0,
+        "durationH": 0.03
+      },
+      {
+        "d": "28 Nov 2025",
+        "total": 19,
+        "connected": 9,
+        "positive": 6,
+        "durationH": 0.12
+      },
+      {
+        "d": "01 Dec 2025",
+        "total": 28,
+        "connected": 4,
+        "positive": 2,
+        "durationH": 0.07
+      },
+      {
+        "d": "04 Dec 2025",
+        "total": 9,
+        "connected": 1,
+        "positive": 1,
+        "durationH": 0.02
+      },
+      {
+        "d": "05 Dec 2025",
+        "total": 8,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "04 Feb 2026",
+        "total": 13848,
+        "connected": 4099,
+        "positive": 655,
+        "durationH": 53.22
+      },
+      {
+        "d": "05 Feb 2026",
+        "total": 5436,
+        "connected": 1942,
+        "positive": 912,
+        "durationH": 34.96
+      },
+      {
+        "d": "06 Feb 2026",
+        "total": 6513,
+        "connected": 2054,
+        "positive": 431,
+        "durationH": 26.39
+      },
+      {
+        "d": "07 Feb 2026",
+        "total": 8156,
+        "connected": 2416,
+        "positive": 835,
+        "durationH": 32.68
+      },
+      {
+        "d": "08 Feb 2026",
+        "total": 1444,
+        "connected": 444,
+        "positive": 127,
+        "durationH": 7.94
+      },
+      {
+        "d": "09 Feb 2026",
+        "total": 2,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.02
+      },
+      {
+        "d": "23 Feb 2026",
+        "total": 20481,
+        "connected": 10384,
+        "positive": 110,
+        "durationH": 125.01
+      }
+    ],
+    "kissht": [
+      {
+        "d": "10 Feb 2026",
+        "total": 3628,
+        "connected": 920,
+        "positive": 571,
+        "durationH": 15.26
+      },
+      {
+        "d": "11 Feb 2026",
+        "total": 2759,
+        "connected": 645,
+        "positive": 695,
+        "durationH": 10.5
+      },
+      {
+        "d": "13 Feb 2026",
+        "total": 2379,
+        "connected": 506,
+        "positive": 534,
+        "durationH": 8.53
+      },
+      {
+        "d": "14 Feb 2026",
+        "total": 2560,
+        "connected": 577,
+        "positive": 600,
+        "durationH": 9.67
+      },
+      {
+        "d": "25 Mar 2026",
+        "total": 47,
+        "connected": 33,
+        "positive": 15,
+        "durationH": 0.79
+      },
+      {
+        "d": "27 Mar 2026",
+        "total": 4578,
+        "connected": 615,
+        "positive": 132,
+        "durationH": 9.17
+      },
+      {
+        "d": "28 Mar 2026",
+        "total": 7952,
+        "connected": 764,
+        "positive": 152,
+        "durationH": 12.74
+      },
+      {
+        "d": "29 Mar 2026",
+        "total": 8634,
+        "connected": 682,
+        "positive": 145,
+        "durationH": 11.61
+      },
+      {
+        "d": "30 Mar 2026",
+        "total": 8269,
+        "connected": 608,
+        "positive": 153,
+        "durationH": 10.55
+      },
+      {
+        "d": "31 Mar 2026",
+        "total": 4123,
+        "connected": 239,
+        "positive": 293,
+        "durationH": 5.16
+      }
+    ],
+    "micro_fi": [
+      {
+        "d": "03 Oct 2025",
+        "total": 6,
+        "connected": 4,
+        "positive": 2,
+        "durationH": 0.05
+      },
+      {
+        "d": "30 Oct 2025",
+        "total": 21,
+        "connected": 10,
+        "positive": 2,
+        "durationH": 0.06
+      },
+      {
+        "d": "31 Oct 2025",
+        "total": 72,
+        "connected": 31,
+        "positive": 7,
+        "durationH": 0.36
+      },
+      {
+        "d": "02 Dec 2025",
+        "total": 12526,
+        "connected": 6570,
+        "positive": 571,
+        "durationH": 88.8
+      },
+      {
+        "d": "03 Dec 2025",
+        "total": 50048,
+        "connected": 20457,
+        "positive": 2872,
+        "durationH": 309.16
+      },
+      {
+        "d": "04 Dec 2025",
+        "total": 40024,
+        "connected": 18393,
+        "positive": 2474,
+        "durationH": 251.53
+      },
+      {
+        "d": "05 Dec 2025",
+        "total": 108389,
+        "connected": 38395,
+        "positive": 7286,
+        "durationH": 568.61
+      },
+      {
+        "d": "06 Dec 2025",
+        "total": 107378,
+        "connected": 39827,
+        "positive": 9243,
+        "durationH": 623.03
+      },
+      {
+        "d": "09 Dec 2025",
+        "total": 36275,
+        "connected": 14187,
+        "positive": 2780,
+        "durationH": 238.61
+      },
+      {
+        "d": "10 Dec 2025",
+        "total": 30824,
+        "connected": 11278,
+        "positive": 2219,
+        "durationH": 178.98
+      },
+      {
+        "d": "11 Dec 2025",
+        "total": 17982,
+        "connected": 6727,
+        "positive": 1465,
+        "durationH": 108.0
+      },
+      {
+        "d": "12 Dec 2025",
+        "total": 26344,
+        "connected": 9449,
+        "positive": 2185,
+        "durationH": 145.73
+      },
+      {
+        "d": "13 Dec 2025",
+        "total": 24876,
+        "connected": 6625,
+        "positive": 1291,
+        "durationH": 92.82
+      },
+      {
+        "d": "15 Dec 2025",
+        "total": 22813,
+        "connected": 6970,
+        "positive": 1014,
+        "durationH": 91.64
+      },
+      {
+        "d": "16 Dec 2025",
+        "total": 7140,
+        "connected": 2226,
+        "positive": 325,
+        "durationH": 31.02
+      },
+      {
+        "d": "18 Dec 2025",
+        "total": 5778,
+        "connected": 1999,
+        "positive": 429,
+        "durationH": 28.54
+      },
+      {
+        "d": "19 Dec 2025",
+        "total": 14826,
+        "connected": 3152,
+        "positive": 585,
+        "durationH": 43.68
+      },
+      {
+        "d": "22 Dec 2025",
+        "total": 8130,
+        "connected": 2341,
+        "positive": 458,
+        "durationH": 31.37
+      },
+      {
+        "d": "23 Dec 2025",
+        "total": 11912,
+        "connected": 2773,
+        "positive": 553,
+        "durationH": 37.22
+      },
+      {
+        "d": "24 Dec 2025",
+        "total": 9247,
+        "connected": 1987,
+        "positive": 237,
+        "durationH": 25.83
+      },
+      {
+        "d": "27 Dec 2025",
+        "total": 28662,
+        "connected": 13875,
+        "positive": 3393,
+        "durationH": 270.96
+      },
+      {
+        "d": "29 Dec 2025",
+        "total": 6727,
+        "connected": 2965,
+        "positive": 2733,
+        "durationH": 51.29
+      },
+      {
+        "d": "30 Dec 2025",
+        "total": 83206,
+        "connected": 40895,
+        "positive": 40232,
+        "durationH": 765.72
+      },
+      {
+        "d": "31 Dec 2025",
+        "total": 19314,
+        "connected": 9190,
+        "positive": 2588,
+        "durationH": 149.77
+      },
+      {
+        "d": "01 Jan 2026",
+        "total": 32797,
+        "connected": 13875,
+        "positive": 4019,
+        "durationH": 218.28
+      },
+      {
+        "d": "02 Jan 2026",
+        "total": 145781,
+        "connected": 77487,
+        "positive": 14797,
+        "durationH": 1222.41
+      },
+      {
+        "d": "03 Jan 2026",
+        "total": 83533,
+        "connected": 29451,
+        "positive": 5712,
+        "durationH": 457.62
+      },
+      {
+        "d": "05 Jan 2026",
+        "total": 8007,
+        "connected": 3523,
+        "positive": 3606,
+        "durationH": 55.93
+      },
+      {
+        "d": "06 Jan 2026",
+        "total": 7477,
+        "connected": 3123,
+        "positive": 3154,
+        "durationH": 50.08
+      },
+      {
+        "d": "07 Jan 2026",
+        "total": 2692,
+        "connected": 1078,
+        "positive": 1095,
+        "durationH": 17.96
+      },
+      {
+        "d": "08 Jan 2026",
+        "total": 4505,
+        "connected": 1577,
+        "positive": 1136,
+        "durationH": 26.42
+      },
+      {
+        "d": "09 Jan 2026",
+        "total": 4734,
+        "connected": 1620,
+        "positive": 1516,
+        "durationH": 26.83
+      },
+      {
+        "d": "10 Jan 2026",
+        "total": 25812,
+        "connected": 8286,
+        "positive": 4265,
+        "durationH": 112.18
+      },
+      {
+        "d": "12 Jan 2026",
+        "total": 12905,
+        "connected": 4160,
+        "positive": 4139,
+        "durationH": 48.12
+      },
+      {
+        "d": "13 Jan 2026",
+        "total": 11767,
+        "connected": 2654,
+        "positive": 2699,
+        "durationH": 32.65
+      },
+      {
+        "d": "14 Jan 2026",
+        "total": 10820,
+        "connected": 3312,
+        "positive": 3307,
+        "durationH": 36.24
+      },
+      {
+        "d": "16 Jan 2026",
+        "total": 31199,
+        "connected": 13238,
+        "positive": 7926,
+        "durationH": 195.05
+      },
+      {
+        "d": "17 Jan 2026",
+        "total": 25675,
+        "connected": 9426,
+        "positive": 7737,
+        "durationH": 130.44
+      },
+      {
+        "d": "19 Jan 2026",
+        "total": 23185,
+        "connected": 9663,
+        "positive": 4021,
+        "durationH": 134.46
+      },
+      {
+        "d": "20 Jan 2026",
+        "total": 40858,
+        "connected": 10417,
+        "positive": 2439,
+        "durationH": 74.94
+      },
+      {
+        "d": "28 Jan 2026",
+        "total": 5997,
+        "connected": 2624,
+        "positive": 3069,
+        "durationH": 44.5
+      },
+      {
+        "d": "29 Jan 2026",
+        "total": 9104,
+        "connected": 3685,
+        "positive": 3625,
+        "durationH": 60.9
+      },
+      {
+        "d": "30 Jan 2026",
+        "total": 75639,
+        "connected": 29655,
+        "positive": 14553,
+        "durationH": 432.2
+      },
+      {
+        "d": "31 Jan 2026",
+        "total": 117474,
+        "connected": 50299,
+        "positive": 14433,
+        "durationH": 715.08
+      },
+      {
+        "d": "01 Feb 2026",
+        "total": 70072,
+        "connected": 25285,
+        "positive": 6547,
+        "durationH": 345.9
+      },
+      {
+        "d": "02 Feb 2026",
+        "total": 25579,
+        "connected": 5274,
+        "positive": 4624,
+        "durationH": 80.29
+      },
+      {
+        "d": "03 Feb 2026",
+        "total": 11961,
+        "connected": 1363,
+        "positive": 1265,
+        "durationH": 20.53
+      },
+      {
+        "d": "04 Feb 2026",
+        "total": 14358,
+        "connected": 2083,
+        "positive": 1573,
+        "durationH": 30.38
+      },
+      {
+        "d": "05 Feb 2026",
+        "total": 12274,
+        "connected": 2046,
+        "positive": 1948,
+        "durationH": 34.7
+      },
+      {
+        "d": "06 Feb 2026",
+        "total": 71364,
+        "connected": 23553,
+        "positive": 19212,
+        "durationH": 348.12
+      },
+      {
+        "d": "07 Feb 2026",
+        "total": 60075,
+        "connected": 17901,
+        "positive": 11963,
+        "durationH": 251.5
+      },
+      {
+        "d": "09 Feb 2026",
+        "total": 64223,
+        "connected": 17972,
+        "positive": 14958,
+        "durationH": 237.94
+      },
+      {
+        "d": "10 Feb 2026",
+        "total": 63009,
+        "connected": 13580,
+        "positive": 8203,
+        "durationH": 189.62
+      },
+      {
+        "d": "11 Feb 2026",
+        "total": 47774,
+        "connected": 10660,
+        "positive": 4143,
+        "durationH": 132.98
+      },
+      {
+        "d": "12 Feb 2026",
+        "total": 45535,
+        "connected": 7538,
+        "positive": 6770,
+        "durationH": 96.94
+      },
+      {
+        "d": "13 Feb 2026",
+        "total": 1858,
+        "connected": 192,
+        "positive": 88,
+        "durationH": 2.89
+      },
+      {
+        "d": "14 Feb 2026",
+        "total": 35885,
+        "connected": 5523,
+        "positive": 1937,
+        "durationH": 69.57
+      },
+      {
+        "d": "16 Feb 2026",
+        "total": 29208,
+        "connected": 6377,
+        "positive": 1913,
+        "durationH": 75.03
+      },
+      {
+        "d": "17 Feb 2026",
+        "total": 28850,
+        "connected": 4635,
+        "positive": 4046,
+        "durationH": 57.65
+      },
+      {
+        "d": "18 Feb 2026",
+        "total": 26581,
+        "connected": 3867,
+        "positive": 3491,
+        "durationH": 46.12
+      },
+      {
+        "d": "19 Feb 2026",
+        "total": 22035,
+        "connected": 4271,
+        "positive": 830,
+        "durationH": 50.4
+      },
+      {
+        "d": "20 Feb 2026",
+        "total": 19852,
+        "connected": 3929,
+        "positive": 761,
+        "durationH": 46.06
+      },
+      {
+        "d": "21 Feb 2026",
+        "total": 18763,
+        "connected": 3124,
+        "positive": 616,
+        "durationH": 37.33
+      },
+      {
+        "d": "23 Feb 2026",
+        "total": 24511,
+        "connected": 7013,
+        "positive": 477,
+        "durationH": 93.97
+      },
+      {
+        "d": "24 Feb 2026",
+        "total": 47436,
+        "connected": 10578,
+        "positive": 5207,
+        "durationH": 162.47
+      },
+      {
+        "d": "25 Feb 2026",
+        "total": 49357,
+        "connected": 9152,
+        "positive": 5038,
+        "durationH": 136.2
+      },
+      {
+        "d": "26 Feb 2026",
+        "total": 55325,
+        "connected": 12383,
+        "positive": 6827,
+        "durationH": 185.48
+      },
+      {
+        "d": "27 Feb 2026",
+        "total": 116959,
+        "connected": 40017,
+        "positive": 9266,
+        "durationH": 598.05
+      },
+      {
+        "d": "28 Feb 2026",
+        "total": 220938,
+        "connected": 82205,
+        "positive": 10641,
+        "durationH": 1191.86
+      },
+      {
+        "d": "01 Mar 2026",
+        "total": 51690,
+        "connected": 7084,
+        "positive": 5548,
+        "durationH": 108.64
+      },
+      {
+        "d": "02 Mar 2026",
+        "total": 68686,
+        "connected": 17840,
+        "positive": 9345,
+        "durationH": 280.54
+      },
+      {
+        "d": "03 Mar 2026",
+        "total": 56285,
+        "connected": 12958,
+        "positive": 6815,
+        "durationH": 204.19
+      },
+      {
+        "d": "04 Mar 2026",
+        "total": 119212,
+        "connected": 30076,
+        "positive": 9867,
+        "durationH": 442.19
+      },
+      {
+        "d": "05 Mar 2026",
+        "total": 93517,
+        "connected": 22895,
+        "positive": 7974,
+        "durationH": 319.62
+      },
+      {
+        "d": "06 Mar 2026",
+        "total": 84327,
+        "connected": 20939,
+        "positive": 9007,
+        "durationH": 291.37
+      },
+      {
+        "d": "07 Mar 2026",
+        "total": 73252,
+        "connected": 15703,
+        "positive": 7362,
+        "durationH": 221.98
+      },
+      {
+        "d": "09 Mar 2026",
+        "total": 98636,
+        "connected": 28351,
+        "positive": 12831,
+        "durationH": 391.46
+      },
+      {
+        "d": "10 Mar 2026",
+        "total": 85872,
+        "connected": 21393,
+        "positive": 6373,
+        "durationH": 270.41
+      },
+      {
+        "d": "11 Mar 2026",
+        "total": 73511,
+        "connected": 18459,
+        "positive": 3933,
+        "durationH": 225.38
+      },
+      {
+        "d": "12 Mar 2026",
+        "total": 61541,
+        "connected": 41402,
+        "positive": 2148,
+        "durationH": 373.17
+      },
+      {
+        "d": "13 Mar 2026",
+        "total": 53391,
+        "connected": 12433,
+        "positive": 2112,
+        "durationH": 152.99
+      },
+      {
+        "d": "14 Mar 2026",
+        "total": 54011,
+        "connected": 13699,
+        "positive": 2461,
+        "durationH": 181.07
+      },
+      {
+        "d": "16 Mar 2026",
+        "total": 51655,
+        "connected": 12331,
+        "positive": 2077,
+        "durationH": 159.52
+      },
+      {
+        "d": "17 Mar 2026",
+        "total": 45829,
+        "connected": 8206,
+        "positive": 1177,
+        "durationH": 117.27
+      },
+      {
+        "d": "20 Mar 2026",
+        "total": 33652,
+        "connected": 8146,
+        "positive": 1138,
+        "durationH": 97.9
+      },
+      {
+        "d": "21 Mar 2026",
+        "total": 30580,
+        "connected": 6049,
+        "positive": 845,
+        "durationH": 74.42
+      },
+      {
+        "d": "23 Mar 2026",
+        "total": 34534,
+        "connected": 7652,
+        "positive": 2966,
+        "durationH": 95.72
+      },
+      {
+        "d": "24 Mar 2026",
+        "total": 23876,
+        "connected": 4726,
+        "positive": 686,
+        "durationH": 57.79
+      },
+      {
+        "d": "25 Mar 2026",
+        "total": 45504,
+        "connected": 12646,
+        "positive": 9258,
+        "durationH": 185.36
+      },
+      {
+        "d": "26 Mar 2026",
+        "total": 52698,
+        "connected": 18088,
+        "positive": 14465,
+        "durationH": 256.9
+      },
+      {
+        "d": "27 Mar 2026",
+        "total": 56070,
+        "connected": 13080,
+        "positive": 9132,
+        "durationH": 182.73
+      },
+      {
+        "d": "28 Mar 2026",
+        "total": 34098,
+        "connected": 3750,
+        "positive": 1886,
+        "durationH": 50.63
+      },
+      {
+        "d": "30 Mar 2026",
+        "total": 52132,
+        "connected": 13779,
+        "positive": 9485,
+        "durationH": 196.9
+      },
+      {
+        "d": "31 Mar 2026",
+        "total": 40120,
+        "connected": 11280,
+        "positive": 7301,
+        "durationH": 163.31
+      },
+      {
+        "d": "01 Apr 2026",
+        "total": 50460,
+        "connected": 7508,
+        "positive": 7665,
+        "durationH": 113.88
+      },
+      {
+        "d": "02 Apr 2026",
+        "total": 38204,
+        "connected": 3863,
+        "positive": 4084,
+        "durationH": 56.92
+      },
+      {
+        "d": "03 Apr 2026",
+        "total": 74602,
+        "connected": 19857,
+        "positive": 4402,
+        "durationH": 269.79
+      },
+      {
+        "d": "04 Apr 2026",
+        "total": 51385,
+        "connected": 11497,
+        "positive": 2711,
+        "durationH": 153.36
+      }
+    ],
+    "mktg_micro_fi": [
+      {
+        "d": "03 Oct 2025",
+        "total": 6,
+        "connected": 4,
+        "positive": 2,
+        "durationH": 0.05
+      },
+      {
+        "d": "30 Oct 2025",
+        "total": 21,
+        "connected": 10,
+        "positive": 2,
+        "durationH": 0.06
+      },
+      {
+        "d": "31 Oct 2025",
+        "total": 72,
+        "connected": 31,
+        "positive": 7,
+        "durationH": 0.36
+      },
+      {
+        "d": "02 Dec 2025",
+        "total": 92,
+        "connected": 64,
+        "positive": 7,
+        "durationH": 1.02
+      },
+      {
+        "d": "27 Mar 2026",
+        "total": 222745,
+        "connected": 105131,
+        "positive": 10660,
+        "durationH": 1372.46
+      },
+      {
+        "d": "28 Mar 2026",
+        "total": 265515,
+        "connected": 108680,
+        "positive": 10464,
+        "durationH": 1404.72
+      },
+      {
+        "d": "29 Mar 2026",
+        "total": 20322,
+        "connected": 7515,
+        "positive": 671,
+        "durationH": 97.72
+      }
+    ],
+    "multify": [
+      {
+        "d": "05 Jan 2026",
+        "total": 4,
+        "connected": 3,
+        "positive": 0,
+        "durationH": 0.02
+      },
+      {
+        "d": "06 Jan 2026",
+        "total": 5,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.04
+      },
+      {
+        "d": "15 Jan 2026",
+        "total": 616,
+        "connected": 143,
+        "positive": 0,
+        "durationH": 1.32
+      },
+      {
+        "d": "20 Jan 2026",
+        "total": 465,
+        "connected": 141,
+        "positive": 1,
+        "durationH": 1.35
+      },
+      {
+        "d": "21 Jan 2026",
+        "total": 1687,
+        "connected": 641,
+        "positive": 2,
+        "durationH": 5.55
+      },
+      {
+        "d": "22 Jan 2026",
+        "total": 276,
+        "connected": 100,
+        "positive": 0,
+        "durationH": 1.08
+      },
+      {
+        "d": "23 Jan 2026",
+        "total": 117,
+        "connected": 32,
+        "positive": 0,
+        "durationH": 0.3
+      },
+      {
+        "d": "24 Jan 2026",
+        "total": 375,
+        "connected": 104,
+        "positive": 0,
+        "durationH": 1.04
+      },
+      {
+        "d": "27 Jan 2026",
+        "total": 402,
+        "connected": 110,
+        "positive": 0,
+        "durationH": 1.39
+      }
+    ],
+    "opus": [
+      {
+        "d": "18 Nov 2025",
+        "total": 8458,
+        "connected": 1086,
+        "positive": 115,
+        "durationH": 8.69
+      },
+      {
+        "d": "19 Nov 2025",
+        "total": 2320,
+        "connected": 108,
+        "positive": 16,
+        "durationH": 0.95
+      },
+      {
+        "d": "11 Dec 2025",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "12 Dec 2025",
+        "total": 112,
+        "connected": 79,
+        "positive": 18,
+        "durationH": 1.23
+      },
+      {
+        "d": "16 Dec 2025",
+        "total": 30070,
+        "connected": 3810,
+        "positive": 543,
+        "durationH": 44.0
+      },
+      {
+        "d": "20 Dec 2025",
+        "total": 81656,
+        "connected": 15181,
+        "positive": 1051,
+        "durationH": 194.53
+      },
+      {
+        "d": "22 Dec 2025",
+        "total": 24559,
+        "connected": 3113,
+        "positive": 347,
+        "durationH": 33.61
+      },
+      {
+        "d": "23 Dec 2025",
+        "total": 38207,
+        "connected": 6384,
+        "positive": 364,
+        "durationH": 73.18
+      },
+      {
+        "d": "25 Dec 2025",
+        "total": 30266,
+        "connected": 3390,
+        "positive": 323,
+        "durationH": 36.41
+      },
+      {
+        "d": "06 Jan 2026",
+        "total": 2531,
+        "connected": 462,
+        "positive": 31,
+        "durationH": 4.44
+      },
+      {
+        "d": "27 Jan 2026",
+        "total": 1004,
+        "connected": 183,
+        "positive": 44,
+        "durationH": 2.49
+      }
+    ],
+    "salesbot_datasheets": [
+      {
+        "d": "15 Jul 2025",
+        "total": 36,
+        "connected": 12,
+        "positive": 0,
+        "durationH": 0.28
+      },
+      {
+        "d": "16 Jul 2025",
+        "total": 3107,
+        "connected": 960,
+        "positive": 0,
+        "durationH": 12.24
+      },
+      {
+        "d": "17 Jul 2025",
+        "total": 2111,
+        "connected": 984,
+        "positive": 0,
+        "durationH": 13.91
+      },
+      {
+        "d": "18 Jul 2025",
+        "total": 484,
+        "connected": 347,
+        "positive": 0,
+        "durationH": 6.73
+      },
+      {
+        "d": "19 Jul 2025",
+        "total": 2515,
+        "connected": 919,
+        "positive": 0,
+        "durationH": 9.57
+      },
+      {
+        "d": "21 Jul 2025",
+        "total": 3221,
+        "connected": 1473,
+        "positive": 0,
+        "durationH": 19.58
+      },
+      {
+        "d": "22 Jul 2025",
+        "total": 158,
+        "connected": 127,
+        "positive": 0,
+        "durationH": 2.72
+      },
+      {
+        "d": "23 Jul 2025",
+        "total": 745,
+        "connected": 368,
+        "positive": 0,
+        "durationH": 5.95
+      },
+      {
+        "d": "24 Jul 2025",
+        "total": 271,
+        "connected": 221,
+        "positive": 0,
+        "durationH": 5.07
+      },
+      {
+        "d": "25 Jul 2025",
+        "total": 104,
+        "connected": 91,
+        "positive": 0,
+        "durationH": 2.0
+      },
+      {
+        "d": "22 Aug 2025",
+        "total": 2,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.02
+      },
+      {
+        "d": "23 Aug 2025",
+        "total": 3,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.01
+      },
+      {
+        "d": "25 Aug 2025",
+        "total": 71,
+        "connected": 23,
+        "positive": 0,
+        "durationH": 0.14
+      },
+      {
+        "d": "29 Aug 2025",
+        "total": 424,
+        "connected": 246,
+        "positive": 0,
+        "durationH": 2.13
+      },
+      {
+        "d": "15 Sep 2025",
+        "total": 1792,
+        "connected": 810,
+        "positive": 0,
+        "durationH": 7.26
+      },
+      {
+        "d": "16 Sep 2025",
+        "total": 3121,
+        "connected": 942,
+        "positive": 0,
+        "durationH": 8.02
+      },
+      {
+        "d": "20 Sep 2025",
+        "total": 1235,
+        "connected": 183,
+        "positive": 0,
+        "durationH": 1.61
+      },
+      {
+        "d": "26 Sep 2025",
+        "total": 1029,
+        "connected": 95,
+        "positive": 0,
+        "durationH": 0.85
+      },
+      {
+        "d": "30 Sep 2025",
+        "total": 922,
+        "connected": 41,
+        "positive": 0,
+        "durationH": 0.34
+      },
+      {
+        "d": "14 Oct 2025",
+        "total": 5,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.02
+      },
+      {
+        "d": "15 Oct 2025",
+        "total": 2,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.03
+      }
+    ],
+    "shubham_housing": [
+      {
+        "d": "25 Aug 2025",
+        "total": 13,
+        "connected": 4,
+        "positive": 4,
+        "durationH": 0.07
+      },
+      {
+        "d": "26 Aug 2025",
+        "total": 41,
+        "connected": 21,
+        "positive": 11,
+        "durationH": 0.3
+      },
+      {
+        "d": "27 Aug 2025",
+        "total": 36,
+        "connected": 29,
+        "positive": 20,
+        "durationH": 0.45
+      },
+      {
+        "d": "28 Aug 2025",
+        "total": 11,
+        "connected": 7,
+        "positive": 7,
+        "durationH": 0.07
+      },
+      {
+        "d": "29 Aug 2025",
+        "total": 3,
+        "connected": 1,
+        "positive": 1,
+        "durationH": 0.02
+      },
+      {
+        "d": "02 Sep 2025",
+        "total": 8,
+        "connected": 5,
+        "positive": 5,
+        "durationH": 0.06
+      },
+      {
+        "d": "03 Sep 2025",
+        "total": 4,
+        "connected": 3,
+        "positive": 1,
+        "durationH": 0.03
+      },
+      {
+        "d": "17 Sep 2025",
+        "total": 36,
+        "connected": 25,
+        "positive": 0,
+        "durationH": 0.42
+      },
+      {
+        "d": "20 Sep 2025",
+        "total": 12,
+        "connected": 8,
+        "positive": 0,
+        "durationH": 0.12
+      },
+      {
+        "d": "22 Sep 2025",
+        "total": 20,
+        "connected": 9,
+        "positive": 0,
+        "durationH": 0.18
+      },
+      {
+        "d": "24 Sep 2025",
+        "total": 16,
+        "connected": 8,
+        "positive": 0,
+        "durationH": 0.11
+      },
+      {
+        "d": "25 Sep 2025",
+        "total": 28,
+        "connected": 13,
+        "positive": 0,
+        "durationH": 0.27
+      },
+      {
+        "d": "03 Oct 2025",
+        "total": 20,
+        "connected": 12,
+        "positive": 7,
+        "durationH": 0.15
+      },
+      {
+        "d": "08 Oct 2025",
+        "total": 4,
+        "connected": 2,
+        "positive": 1,
+        "durationH": 0.02
+      },
+      {
+        "d": "09 Oct 2025",
+        "total": 12,
+        "connected": 5,
+        "positive": 2,
+        "durationH": 0.04
+      },
+      {
+        "d": "16 Oct 2025",
+        "total": 12,
+        "connected": 9,
+        "positive": 1,
+        "durationH": 0.13
+      },
+      {
+        "d": "17 Oct 2025",
+        "total": 454,
+        "connected": 146,
+        "positive": 17,
+        "durationH": 1.24
+      },
+      {
+        "d": "18 Oct 2025",
+        "total": 2208,
+        "connected": 654,
+        "positive": 23,
+        "durationH": 6.03
+      },
+      {
+        "d": "21 Oct 2025",
+        "total": 2075,
+        "connected": 499,
+        "positive": 77,
+        "durationH": 4.73
+      },
+      {
+        "d": "22 Oct 2025",
+        "total": 640,
+        "connected": 146,
+        "positive": 8,
+        "durationH": 1.09
+      },
+      {
+        "d": "26 Oct 2025",
+        "total": 1,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.01
+      },
+      {
+        "d": "28 Oct 2025",
+        "total": 3,
+        "connected": 3,
+        "positive": 2,
+        "durationH": 0.06
+      },
+      {
+        "d": "29 Oct 2025",
+        "total": 883,
+        "connected": 306,
+        "positive": 51,
+        "durationH": 2.97
+      },
+      {
+        "d": "03 Nov 2025",
+        "total": 517,
+        "connected": 183,
+        "positive": 23,
+        "durationH": 1.65
+      }
+    ],
+    "smart_dial": [
+      {
+        "d": "05 Oct 2025",
+        "total": 14060,
+        "connected": 6058,
+        "positive": 2387,
+        "durationH": 65.18
+      },
+      {
+        "d": "25 Nov 2025",
+        "total": 25,
+        "connected": 21,
+        "positive": 2,
+        "durationH": 0.15
+      },
+      {
+        "d": "26 Nov 2025",
+        "total": 93,
+        "connected": 68,
+        "positive": 17,
+        "durationH": 0.6
+      },
+      {
+        "d": "27 Nov 2025",
+        "total": 2,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.04
+      },
+      {
+        "d": "28 Nov 2025",
+        "total": 3,
+        "connected": 3,
+        "positive": 0,
+        "durationH": 0.02
+      },
+      {
+        "d": "29 Nov 2025",
+        "total": 1,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "04 Dec 2025",
+        "total": 1,
+        "connected": 1,
+        "positive": 1,
+        "durationH": 0.02
+      },
+      {
+        "d": "06 Dec 2025",
+        "total": 1,
+        "connected": 1,
+        "positive": 1,
+        "durationH": 0.03
+      },
+      {
+        "d": "10 Dec 2025",
+        "total": 2,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.02
+      }
+    ],
+    "tatacapital": [
+      {
+        "d": "04 Jul 2025",
+        "total": 1932,
+        "connected": 846,
+        "positive": 77,
+        "durationH": 7.81
+      },
+      {
+        "d": "05 Jul 2025",
+        "total": 12814,
+        "connected": 5591,
+        "positive": 1328,
+        "durationH": 68.74
+      },
+      {
+        "d": "06 Jul 2025",
+        "total": 32194,
+        "connected": 12756,
+        "positive": 3583,
+        "durationH": 126.2
+      },
+      {
+        "d": "07 Jul 2025",
+        "total": 8190,
+        "connected": 2899,
+        "positive": 640,
+        "durationH": 26.9
+      },
+      {
+        "d": "09 Jul 2025",
+        "total": 17397,
+        "connected": 7119,
+        "positive": 1081,
+        "durationH": 65.45
+      },
+      {
+        "d": "10 Jul 2025",
+        "total": 21129,
+        "connected": 11222,
+        "positive": 1729,
+        "durationH": 99.27
+      },
+      {
+        "d": "02 Aug 2025",
+        "total": 2,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "03 Aug 2025",
+        "total": 3,
+        "connected": 2,
+        "positive": 2,
+        "durationH": 0.02
+      },
+      {
+        "d": "06 Aug 2025",
+        "total": 3,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "29 Sep 2025",
+        "total": 11621,
+        "connected": 2827,
+        "positive": 446,
+        "durationH": 26.61
+      },
+      {
+        "d": "30 Sep 2025",
+        "total": 25182,
+        "connected": 4087,
+        "positive": 807,
+        "durationH": 38.53
+      },
+      {
+        "d": "04 Oct 2025",
+        "total": 4806,
+        "connected": 1246,
+        "positive": 449,
+        "durationH": 11.99
+      },
+      {
+        "d": "05 Oct 2025",
+        "total": 40169,
+        "connected": 14145,
+        "positive": 5113,
+        "durationH": 143.95
+      },
+      {
+        "d": "06 Oct 2025",
+        "total": 81167,
+        "connected": 24583,
+        "positive": 8265,
+        "durationH": 235.07
+      },
+      {
+        "d": "07 Oct 2025",
+        "total": 77497,
+        "connected": 20844,
+        "positive": 7386,
+        "durationH": 190.98
+      },
+      {
+        "d": "08 Oct 2025",
+        "total": 75840,
+        "connected": 15870,
+        "positive": 5584,
+        "durationH": 151.37
+      },
+      {
+        "d": "15 Oct 2025",
+        "total": 52,
+        "connected": 19,
+        "positive": 10,
+        "durationH": 0.16
+      },
+      {
+        "d": "16 Oct 2025",
+        "total": 11069,
+        "connected": 4893,
+        "positive": 1094,
+        "durationH": 43.33
+      },
+      {
+        "d": "27 Oct 2025",
+        "total": 13,
+        "connected": 11,
+        "positive": 1,
+        "durationH": 0.06
+      },
+      {
+        "d": "28 Oct 2025",
+        "total": 2,
+        "connected": 2,
+        "positive": 2,
+        "durationH": 0.07
+      },
+      {
+        "d": "29 Oct 2025",
+        "total": 15612,
+        "connected": 3300,
+        "positive": 658,
+        "durationH": 32.62
+      },
+      {
+        "d": "31 Oct 2025",
+        "total": 15154,
+        "connected": 3202,
+        "positive": 655,
+        "durationH": 29.78
+      },
+      {
+        "d": "04 Nov 2025",
+        "total": 14158,
+        "connected": 4420,
+        "positive": 1478,
+        "durationH": 39.38
+      },
+      {
+        "d": "05 Nov 2025",
+        "total": 115289,
+        "connected": 29117,
+        "positive": 10038,
+        "durationH": 280.58
+      },
+      {
+        "d": "06 Nov 2025",
+        "total": 240336,
+        "connected": 64723,
+        "positive": 17988,
+        "durationH": 605.47
+      },
+      {
+        "d": "07 Nov 2025",
+        "total": 211599,
+        "connected": 40319,
+        "positive": 8620,
+        "durationH": 367.34
+      },
+      {
+        "d": "11 Nov 2025",
+        "total": 170354,
+        "connected": 32411,
+        "positive": 2311,
+        "durationH": 281.63
+      },
+      {
+        "d": "12 Nov 2025",
+        "total": 100941,
+        "connected": 19698,
+        "positive": 4479,
+        "durationH": 211.1
+      },
+      {
+        "d": "15 Nov 2025",
+        "total": 4,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "16 Nov 2025",
+        "total": 4,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "d": "24 Nov 2025",
+        "total": 17001,
+        "connected": 5597,
+        "positive": 1297,
+        "durationH": 62.92
+      },
+      {
+        "d": "25 Nov 2025",
+        "total": 195003,
+        "connected": 48555,
+        "positive": 10105,
+        "durationH": 490.61
+      },
+      {
+        "d": "26 Nov 2025",
+        "total": 179387,
+        "connected": 39905,
+        "positive": 9496,
+        "durationH": 436.15
+      },
+      {
+        "d": "27 Nov 2025",
+        "total": 164565,
+        "connected": 27416,
+        "positive": 6926,
+        "durationH": 318.28
+      },
+      {
+        "d": "28 Nov 2025",
+        "total": 161276,
+        "connected": 36272,
+        "positive": 7289,
+        "durationH": 375.03
+      },
+      {
+        "d": "29 Nov 2025",
+        "total": 152788,
+        "connected": 30321,
+        "positive": 5284,
+        "durationH": 295.06
+      },
+      {
+        "d": "04 Dec 2025",
+        "total": 13320,
+        "connected": 4101,
+        "positive": 1575,
+        "durationH": 56.74
+      },
+      {
+        "d": "05 Dec 2025",
+        "total": 212181,
+        "connected": 80118,
+        "positive": 27030,
+        "durationH": 1148.87
+      },
+      {
+        "d": "06 Dec 2025",
+        "total": 8,
+        "connected": 7,
+        "positive": 6,
+        "durationH": 0.05
+      },
+      {
+        "d": "07 Dec 2025",
+        "total": 190724,
+        "connected": 58008,
+        "positive": 24754,
+        "durationH": 785.58
+      },
+      {
+        "d": "08 Dec 2025",
+        "total": 42446,
+        "connected": 11442,
+        "positive": 4356,
+        "durationH": 158.87
+      },
+      {
+        "d": "09 Dec 2025",
+        "total": 304018,
+        "connected": 87643,
+        "positive": 30333,
+        "durationH": 1209.05
+      },
+      {
+        "d": "10 Dec 2025",
+        "total": 128590,
+        "connected": 30014,
+        "positive": 8422,
+        "durationH": 371.8
+      },
+      {
+        "d": "11 Dec 2025",
+        "total": 133595,
+        "connected": 38485,
+        "positive": 17055,
+        "durationH": 514.64
+      },
+      {
+        "d": "12 Dec 2025",
+        "total": 126496,
+        "connected": 35108,
+        "positive": 13954,
+        "durationH": 446.05
+      },
+      {
+        "d": "16 Dec 2025",
+        "total": 204466,
+        "connected": 55152,
+        "positive": 21708,
+        "durationH": 660.21
+      },
+      {
+        "d": "17 Dec 2025",
+        "total": 5685,
+        "connected": 1310,
+        "positive": 0,
+        "durationH": 15.21
+      },
+      {
+        "d": "18 Dec 2025",
+        "total": 58311,
+        "connected": 16852,
+        "positive": 6118,
+        "durationH": 204.89
+      },
+      {
+        "d": "19 Dec 2025",
+        "total": 35082,
+        "connected": 7160,
+        "positive": 2770,
+        "durationH": 106.13
+      },
+      {
+        "d": "20 Dec 2025",
+        "total": 248854,
+        "connected": 56407,
+        "positive": 19444,
+        "durationH": 680.65
+      },
+      {
+        "d": "22 Dec 2025",
+        "total": 87604,
+        "connected": 18167,
+        "positive": 7325,
+        "durationH": 229.71
+      },
+      {
+        "d": "23 Dec 2025",
+        "total": 79576,
+        "connected": 14776,
+        "positive": 5282,
+        "durationH": 202.48
+      },
+      {
+        "d": "27 Dec 2025",
+        "total": 84928,
+        "connected": 19536,
+        "positive": 5557,
+        "durationH": 302.12
+      },
+      {
+        "d": "28 Dec 2025",
+        "total": 146393,
+        "connected": 31452,
+        "positive": 9155,
+        "durationH": 374.74
+      },
+      {
+        "d": "30 Dec 2025",
+        "total": 67756,
+        "connected": 12814,
+        "positive": 5264,
+        "durationH": 160.25
+      },
+      {
+        "d": "31 Dec 2025",
+        "total": 100834,
+        "connected": 16734,
+        "positive": 5407,
+        "durationH": 250.08
+      },
+      {
+        "d": "04 Jan 2026",
+        "total": 12936,
+        "connected": 4965,
+        "positive": 2214,
+        "durationH": 77.36
+      },
+      {
+        "d": "05 Jan 2026",
+        "total": 117507,
+        "connected": 51111,
+        "positive": 20966,
+        "durationH": 771.37
+      },
+      {
+        "d": "06 Jan 2026",
+        "total": 229374,
+        "connected": 85506,
+        "positive": 30315,
+        "durationH": 1235.02
+      },
+      {
+        "d": "07 Jan 2026",
+        "total": 437012,
+        "connected": 133136,
+        "positive": 39916,
+        "durationH": 1723.9
+      },
+      {
+        "d": "08 Jan 2026",
+        "total": 182465,
+        "connected": 59652,
+        "positive": 25542,
+        "durationH": 837.4
+      },
+      {
+        "d": "09 Jan 2026",
+        "total": 173605,
+        "connected": 50718,
+        "positive": 22538,
+        "durationH": 673.82
+      },
+      {
+        "d": "10 Jan 2026",
+        "total": 390335,
+        "connected": 97252,
+        "positive": 26245,
+        "durationH": 1196.38
+      },
+      {
+        "d": "11 Jan 2026",
+        "total": 267928,
+        "connected": 53137,
+        "positive": 14855,
+        "durationH": 671.29
+      },
+      {
+        "d": "14 Jan 2026",
+        "total": 197518,
+        "connected": 47396,
+        "positive": 11790,
+        "durationH": 578.2
+      },
+      {
+        "d": "15 Jan 2026",
+        "total": 123377,
+        "connected": 30361,
+        "positive": 6759,
+        "durationH": 364.01
+      },
+      {
+        "d": "16 Jan 2026",
+        "total": 289110,
+        "connected": 58530,
+        "positive": 17326,
+        "durationH": 688.23
+      },
+      {
+        "d": "21 Jan 2026",
+        "total": 127515,
+        "connected": 28703,
+        "positive": 8024,
+        "durationH": 374.82
+      },
+      {
+        "d": "23 Jan 2026",
+        "total": 55929,
+        "connected": 12700,
+        "positive": 2887,
+        "durationH": 141.69
+      },
+      {
+        "d": "29 Jan 2026",
+        "total": 23294,
+        "connected": 2937,
+        "positive": 516,
+        "durationH": 37.66
+      },
+      {
+        "d": "30 Jan 2026",
+        "total": 158634,
+        "connected": 33620,
+        "positive": 9085,
+        "durationH": 395.11
+      },
+      {
+        "d": "31 Jan 2026",
+        "total": 12133,
+        "connected": 2628,
+        "positive": 628,
+        "durationH": 32.2
+      },
+      {
+        "d": "04 Feb 2026",
+        "total": 65605,
+        "connected": 14954,
+        "positive": 3856,
+        "durationH": 175.7
+      },
+      {
+        "d": "05 Feb 2026",
+        "total": 114898,
+        "connected": 44709,
+        "positive": 17324,
+        "durationH": 601.71
+      },
+      {
+        "d": "06 Feb 2026",
+        "total": 156521,
+        "connected": 50941,
+        "positive": 20685,
+        "durationH": 675.5
+      },
+      {
+        "d": "07 Feb 2026",
+        "total": 327766,
+        "connected": 95972,
+        "positive": 31417,
+        "durationH": 1228.01
+      },
+      {
+        "d": "08 Feb 2026",
+        "total": 245308,
+        "connected": 67023,
+        "positive": 25456,
+        "durationH": 926.59
+      },
+      {
+        "d": "09 Feb 2026",
+        "total": 435745,
+        "connected": 82374,
+        "positive": 17737,
+        "durationH": 1135.2
+      },
+      {
+        "d": "10 Feb 2026",
+        "total": 527595,
+        "connected": 77776,
+        "positive": 26948,
+        "durationH": 861.88
+      },
+      {
+        "d": "11 Feb 2026",
+        "total": 182666,
+        "connected": 30544,
+        "positive": 8804,
+        "durationH": 330.26
+      },
+      {
+        "d": "12 Feb 2026",
+        "total": 13904,
+        "connected": 4596,
+        "positive": 953,
+        "durationH": 57.02
+      },
+      {
+        "d": "13 Feb 2026",
+        "total": 459287,
+        "connected": 95123,
+        "positive": 12915,
+        "durationH": 1121.61
+      },
+      {
+        "d": "15 Feb 2026",
+        "total": 376414,
+        "connected": 58906,
+        "positive": 11984,
+        "durationH": 673.16
+      },
+      {
+        "d": "17 Feb 2026",
+        "total": 22465,
+        "connected": 5988,
+        "positive": 3167,
+        "durationH": 78.56
+      },
+      {
+        "d": "19 Feb 2026",
+        "total": 105109,
+        "connected": 18700,
+        "positive": 2171,
+        "durationH": 204.76
+      },
+      {
+        "d": "20 Feb 2026",
+        "total": 296343,
+        "connected": 46345,
+        "positive": 9854,
+        "durationH": 475.18
+      },
+      {
+        "d": "23 Feb 2026",
+        "total": 114328,
+        "connected": 26502,
+        "positive": 2051,
+        "durationH": 307.26
+      },
+      {
+        "d": "24 Feb 2026",
+        "total": 52129,
+        "connected": 13582,
+        "positive": 1796,
+        "durationH": 170.39
+      },
+      {
+        "d": "25 Feb 2026",
+        "total": 168592,
+        "connected": 33715,
+        "positive": 6605,
+        "durationH": 381.19
+      },
+      {
+        "d": "26 Feb 2026",
+        "total": 9941,
+        "connected": 2007,
+        "positive": 281,
+        "durationH": 26.27
+      },
+      {
+        "d": "28 Feb 2026",
+        "total": 168984,
+        "connected": 32044,
+        "positive": 6793,
+        "durationH": 358.67
+      },
+      {
+        "d": "04 Mar 2026",
+        "total": 20789,
+        "connected": 6857,
+        "positive": 4477,
+        "durationH": 97.38
+      },
+      {
+        "d": "05 Mar 2026",
+        "total": 140721,
+        "connected": 55446,
+        "positive": 31825,
+        "durationH": 724.44
+      },
+      {
+        "d": "06 Mar 2026",
+        "total": 262011,
+        "connected": 91433,
+        "positive": 53924,
+        "durationH": 1122.34
+      },
+      {
+        "d": "07 Mar 2026",
+        "total": 248367,
+        "connected": 79066,
+        "positive": 46719,
+        "durationH": 985.14
+      },
+      {
+        "d": "08 Mar 2026",
+        "total": 293386,
+        "connected": 79031,
+        "positive": 46628,
+        "durationH": 997.93
+      },
+      {
+        "d": "09 Mar 2026",
+        "total": 294963,
+        "connected": 79166,
+        "positive": 46898,
+        "durationH": 993.12
+      },
+      {
+        "d": "10 Mar 2026",
+        "total": 521428,
+        "connected": 130616,
+        "positive": 63089,
+        "durationH": 1526.22
+      },
+      {
+        "d": "11 Mar 2026",
+        "total": 124777,
+        "connected": 26211,
+        "positive": 10848,
+        "durationH": 332.27
+      },
+      {
+        "d": "12 Mar 2026",
+        "total": 194710,
+        "connected": 45198,
+        "positive": 20002,
+        "durationH": 521.59
+      },
+      {
+        "d": "13 Mar 2026",
+        "total": 487234,
+        "connected": 106735,
+        "positive": 36831,
+        "durationH": 1244.05
+      },
+      {
+        "d": "15 Mar 2026",
+        "total": 216102,
+        "connected": 42188,
+        "positive": 20493,
+        "durationH": 522.91
+      },
+      {
+        "d": "16 Mar 2026",
+        "total": 305123,
+        "connected": 68585,
+        "positive": 22302,
+        "durationH": 712.98
+      },
+      {
+        "d": "20 Mar 2026",
+        "total": 257650,
+        "connected": 51285,
+        "positive": 24089,
+        "durationH": 596.64
+      },
+      {
+        "d": "22 Mar 2026",
+        "total": 96117,
+        "connected": 17415,
+        "positive": 8707,
+        "durationH": 214.33
+      },
+      {
+        "d": "23 Mar 2026",
+        "total": 31668,
+        "connected": 6066,
+        "positive": 2839,
+        "durationH": 76.09
+      },
+      {
+        "d": "24 Mar 2026",
+        "total": 121964,
+        "connected": 23736,
+        "positive": 9092,
+        "durationH": 287.53
+      },
+      {
+        "d": "25 Mar 2026",
+        "total": 96292,
+        "connected": 16514,
+        "positive": 7691,
+        "durationH": 204.81
+      },
+      {
+        "d": "26 Mar 2026",
+        "total": 98488,
+        "connected": 17217,
+        "positive": 6147,
+        "durationH": 203.33
+      },
+      {
+        "d": "28 Mar 2026",
+        "total": 115167,
+        "connected": 17884,
+        "positive": 6925,
+        "durationH": 209.96
+      },
+      {
+        "d": "30 Mar 2026",
+        "total": 98933,
+        "connected": 19045,
+        "positive": 6322,
+        "durationH": 228.67
+      },
+      {
+        "d": "31 Mar 2026",
+        "total": 125274,
+        "connected": 24658,
+        "positive": 12789,
+        "durationH": 276.76
+      },
+      {
+        "d": "04 Apr 2026",
+        "total": 23326,
+        "connected": 8486,
+        "positive": 5273,
+        "durationH": 119.58
+      },
+      {
+        "d": "05 Apr 2026",
+        "total": 246731,
+        "connected": 100034,
+        "positive": 67935,
+        "durationH": 1371.24
+      }
+    ],
+    "ugro": [
+      {
+        "d": "05 Dec 2025",
+        "total": 3828,
+        "connected": 955,
+        "positive": 431,
+        "durationH": 14.9
+      },
+      {
+        "d": "06 Dec 2025",
+        "total": 3228,
+        "connected": 758,
+        "positive": 281,
+        "durationH": 11.89
+      },
+      {
+        "d": "07 Dec 2025",
+        "total": 1915,
+        "connected": 385,
+        "positive": 184,
+        "durationH": 5.86
+      },
+      {
+        "d": "11 Feb 2026",
+        "total": 3127,
+        "connected": 984,
+        "positive": 147,
+        "durationH": 12.28
+      },
+      {
+        "d": "12 Feb 2026",
+        "total": 3935,
+        "connected": 691,
+        "positive": 129,
+        "durationH": 8.56
+      },
+      {
+        "d": "13 Feb 2026",
+        "total": 2942,
+        "connected": 703,
+        "positive": 92,
+        "durationH": 8.81
+      },
+      {
+        "d": "16 Feb 2026",
+        "total": 4536,
+        "connected": 859,
+        "positive": 161,
+        "durationH": 10.77
+      },
+      {
+        "d": "18 Feb 2026",
+        "total": 4705,
+        "connected": 734,
+        "positive": 142,
+        "durationH": 9.24
+      },
+      {
+        "d": "19 Feb 2026",
+        "total": 4383,
+        "connected": 1037,
+        "positive": 96,
+        "durationH": 11.66
+      },
+      {
+        "d": "21 Feb 2026",
+        "total": 4703,
+        "connected": 766,
+        "positive": 113,
+        "durationH": 9.57
+      },
+      {
+        "d": "23 Feb 2026",
+        "total": 4909,
+        "connected": 757,
+        "positive": 46,
+        "durationH": 9.15
+      },
+      {
+        "d": "24 Feb 2026",
+        "total": 4180,
+        "connected": 1036,
+        "positive": 63,
+        "durationH": 11.22
+      },
+      {
+        "d": "26 Feb 2026",
+        "total": 5553,
+        "connected": 1504,
+        "positive": 179,
+        "durationH": 17.17
+      },
+      {
+        "d": "27 Feb 2026",
+        "total": 5887,
+        "connected": 1504,
+        "positive": 234,
+        "durationH": 17.91
+      },
+      {
+        "d": "28 Feb 2026",
+        "total": 14909,
+        "connected": 5391,
+        "positive": 593,
+        "durationH": 70.73
+      },
+      {
+        "d": "02 Mar 2026",
+        "total": 971,
+        "connected": 351,
+        "positive": 88,
+        "durationH": 3.63
+      },
+      {
+        "d": "03 Mar 2026",
+        "total": 1042,
+        "connected": 268,
+        "positive": 53,
+        "durationH": 2.62
+      },
+      {
+        "d": "04 Mar 2026",
+        "total": 6654,
+        "connected": 2116,
+        "positive": 408,
+        "durationH": 22.5
+      },
+      {
+        "d": "05 Mar 2026",
+        "total": 4092,
+        "connected": 1118,
+        "positive": 198,
+        "durationH": 10.96
+      },
+      {
+        "d": "06 Mar 2026",
+        "total": 4589,
+        "connected": 1490,
+        "positive": 317,
+        "durationH": 14.31
+      },
+      {
+        "d": "07 Mar 2026",
+        "total": 4601,
+        "connected": 1391,
+        "positive": 288,
+        "durationH": 13.23
+      },
+      {
+        "d": "11 Mar 2026",
+        "total": 6082,
+        "connected": 1890,
+        "positive": 205,
+        "durationH": 17.53
+      },
+      {
+        "d": "13 Mar 2026",
+        "total": 5105,
+        "connected": 1421,
+        "positive": 151,
+        "durationH": 14.16
+      },
+      {
+        "d": "16 Mar 2026",
+        "total": 3870,
+        "connected": 945,
+        "positive": 86,
+        "durationH": 9.55
+      },
+      {
+        "d": "18 Mar 2026",
+        "total": 4642,
+        "connected": 1147,
+        "positive": 100,
+        "durationH": 10.33
+      },
+      {
+        "d": "24 Mar 2026",
+        "total": 11388,
+        "connected": 2727,
+        "positive": 319,
+        "durationH": 26.28
+      },
+      {
+        "d": "26 Mar 2026",
+        "total": 5756,
+        "connected": 1322,
+        "positive": 130,
+        "durationH": 13.84
+      },
+      {
+        "d": "27 Mar 2026",
+        "total": 5750,
+        "connected": 1199,
+        "positive": 117,
+        "durationH": 11.81
+      },
+      {
+        "d": "29 Mar 2026",
+        "total": 5797,
+        "connected": 1284,
+        "positive": 99,
+        "durationH": 11.88
+      }
+    ]
+  },
+  "compHourData": {
+    "agrim": [
+      {
+        "h": "3:00 AM",
+        "total": 18,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "4:00 AM",
+        "total": 6,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "8:00 AM",
+        "total": 625,
+        "connected": 270,
+        "positive": 34,
+        "durationH": 2.09
+      },
+      {
+        "h": "9:00 AM",
+        "total": 2029,
+        "connected": 746,
+        "positive": 104,
+        "durationH": 6.47
+      },
+      {
+        "h": "10:00 AM",
+        "total": 566,
+        "connected": 124,
+        "positive": 35,
+        "durationH": 1.86
+      },
+      {
+        "h": "11:00 AM",
+        "total": 4060,
+        "connected": 1235,
+        "positive": 129,
+        "durationH": 10.51
+      },
+      {
+        "h": "12:00 PM",
+        "total": 1611,
+        "connected": 560,
+        "positive": 64,
+        "durationH": 4.65
+      },
+      {
+        "h": "1:00 PM",
+        "total": 1499,
+        "connected": 512,
+        "positive": 64,
+        "durationH": 4.09
+      },
+      {
+        "h": "2:00 PM",
+        "total": 3636,
+        "connected": 931,
+        "positive": 120,
+        "durationH": 8.36
+      },
+      {
+        "h": "3:00 PM",
+        "total": 2739,
+        "connected": 731,
+        "positive": 78,
+        "durationH": 6.46
+      },
+      {
+        "h": "4:00 PM",
+        "total": 806,
+        "connected": 242,
+        "positive": 57,
+        "durationH": 2.67
+      },
+      {
+        "h": "5:00 PM",
+        "total": 6795,
+        "connected": 1845,
+        "positive": 231,
+        "durationH": 16.28
+      },
+      {
+        "h": "6:00 PM",
+        "total": 3578,
+        "connected": 1483,
+        "positive": 232,
+        "durationH": 13.09
+      },
+      {
+        "h": "7:00 PM",
+        "total": 2493,
+        "connected": 670,
+        "positive": 74,
+        "durationH": 5.67
+      }
+    ],
+    "bajaj": [
+      {
+        "h": "6:00 AM",
+        "total": 121,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "7:00 AM",
+        "total": 55,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "8:00 AM",
+        "total": 4,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "9:00 AM",
+        "total": 137,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "10:00 AM",
+        "total": 9,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "11:00 AM",
+        "total": 15467,
+        "connected": 7669,
+        "positive": 127,
+        "durationH": 91.45
+      },
+      {
+        "h": "12:00 PM",
+        "total": 91296,
+        "connected": 37064,
+        "positive": 1289,
+        "durationH": 430.2
+      },
+      {
+        "h": "1:00 PM",
+        "total": 51807,
+        "connected": 21176,
+        "positive": 1482,
+        "durationH": 256.83
+      },
+      {
+        "h": "2:00 PM",
+        "total": 55619,
+        "connected": 22496,
+        "positive": 1040,
+        "durationH": 271.3
+      },
+      {
+        "h": "3:00 PM",
+        "total": 41875,
+        "connected": 11457,
+        "positive": 516,
+        "durationH": 130.47
+      },
+      {
+        "h": "4:00 PM",
+        "total": 77732,
+        "connected": 27155,
+        "positive": 1499,
+        "durationH": 322.54
+      },
+      {
+        "h": "5:00 PM",
+        "total": 63099,
+        "connected": 20143,
+        "positive": 492,
+        "durationH": 228.04
+      },
+      {
+        "h": "6:00 PM",
+        "total": 21923,
+        "connected": 8406,
+        "positive": 319,
+        "durationH": 98.63
+      }
+    ],
+    "dbs_mintek": [
+      {
+        "h": "7:00 AM",
+        "total": 887,
+        "connected": 137,
+        "positive": 25,
+        "durationH": 1.79
+      },
+      {
+        "h": "8:00 AM",
+        "total": 3198,
+        "connected": 549,
+        "positive": 118,
+        "durationH": 8.76
+      },
+      {
+        "h": "9:00 AM",
+        "total": 7263,
+        "connected": 993,
+        "positive": 168,
+        "durationH": 14.57
+      },
+      {
+        "h": "10:00 AM",
+        "total": 10438,
+        "connected": 1335,
+        "positive": 162,
+        "durationH": 16.93
+      },
+      {
+        "h": "11:00 AM",
+        "total": 9970,
+        "connected": 1461,
+        "positive": 427,
+        "durationH": 26.59
+      },
+      {
+        "h": "12:00 PM",
+        "total": 576,
+        "connected": 304,
+        "positive": 124,
+        "durationH": 7.85
+      },
+      {
+        "h": "1:00 PM",
+        "total": 7152,
+        "connected": 2193,
+        "positive": 601,
+        "durationH": 34.56
+      },
+      {
+        "h": "2:00 PM",
+        "total": 6156,
+        "connected": 1507,
+        "positive": 190,
+        "durationH": 18.49
+      },
+      {
+        "h": "3:00 PM",
+        "total": 7875,
+        "connected": 2188,
+        "positive": 483,
+        "durationH": 34.13
+      },
+      {
+        "h": "4:00 PM",
+        "total": 7800,
+        "connected": 2450,
+        "positive": 682,
+        "durationH": 41.41
+      },
+      {
+        "h": "5:00 PM",
+        "total": 8670,
+        "connected": 1943,
+        "positive": 344,
+        "durationH": 28.11
+      },
+      {
+        "h": "6:00 PM",
+        "total": 11779,
+        "connected": 3019,
+        "positive": 304,
+        "durationH": 35.51
+      },
+      {
+        "h": "7:00 PM",
+        "total": 7727,
+        "connected": 1405,
+        "positive": 181,
+        "durationH": 17.88
+      },
+      {
+        "h": "8:00 PM",
+        "total": 2461,
+        "connected": 414,
+        "positive": 53,
+        "durationH": 5.47
+      },
+      {
+        "h": "9:00 PM",
+        "total": 186,
+        "connected": 25,
+        "positive": 2,
+        "durationH": 0.25
+      }
+    ],
+    "dubai_expats": [
+      {
+        "h": "6:00 AM",
+        "total": 2,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "7:00 AM",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "8:00 AM",
+        "total": 2653,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "10:00 AM",
+        "total": 150,
+        "connected": 46,
+        "positive": 0,
+        "durationH": 0.42
+      },
+      {
+        "h": "11:00 AM",
+        "total": 746,
+        "connected": 241,
+        "positive": 3,
+        "durationH": 2.27
+      },
+      {
+        "h": "12:00 PM",
+        "total": 1966,
+        "connected": 505,
+        "positive": 9,
+        "durationH": 5.22
+      },
+      {
+        "h": "1:00 PM",
+        "total": 3462,
+        "connected": 388,
+        "positive": 8,
+        "durationH": 4.13
+      },
+      {
+        "h": "2:00 PM",
+        "total": 1309,
+        "connected": 347,
+        "positive": 13,
+        "durationH": 3.54
+      },
+      {
+        "h": "3:00 PM",
+        "total": 1123,
+        "connected": 391,
+        "positive": 8,
+        "durationH": 3.41
+      },
+      {
+        "h": "4:00 PM",
+        "total": 970,
+        "connected": 337,
+        "positive": 11,
+        "durationH": 2.82
+      },
+      {
+        "h": "5:00 PM",
+        "total": 2872,
+        "connected": 1053,
+        "positive": 12,
+        "durationH": 8.47
+      },
+      {
+        "h": "6:00 PM",
+        "total": 1300,
+        "connected": 457,
+        "positive": 4,
+        "durationH": 3.26
+      },
+      {
+        "h": "7:00 PM",
+        "total": 134,
+        "connected": 47,
+        "positive": 0,
+        "durationH": 0.27
+      },
+      {
+        "h": "8:00 PM",
+        "total": 38,
+        "connected": 26,
+        "positive": 3,
+        "durationH": 0.26
+      }
+    ],
+    "ecofy": [
+      {
+        "h": "3:00 AM",
+        "total": 1,
+        "connected": 1,
+        "positive": 1,
+        "durationH": 0.01
+      },
+      {
+        "h": "4:00 AM",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "5:00 AM",
+        "total": 4,
+        "connected": 3,
+        "positive": 0,
+        "durationH": 0.07
+      },
+      {
+        "h": "6:00 AM",
+        "total": 3,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.05
+      },
+      {
+        "h": "7:00 AM",
+        "total": 11,
+        "connected": 5,
+        "positive": 0,
+        "durationH": 0.21
+      },
+      {
+        "h": "8:00 AM",
+        "total": 16,
+        "connected": 12,
+        "positive": 2,
+        "durationH": 0.15
+      },
+      {
+        "h": "9:00 AM",
+        "total": 25,
+        "connected": 18,
+        "positive": 2,
+        "durationH": 0.18
+      },
+      {
+        "h": "10:00 AM",
+        "total": 3489,
+        "connected": 1110,
+        "positive": 217,
+        "durationH": 12.01
+      },
+      {
+        "h": "11:00 AM",
+        "total": 44,
+        "connected": 32,
+        "positive": 1,
+        "durationH": 0.73
+      },
+      {
+        "h": "12:00 PM",
+        "total": 5235,
+        "connected": 1185,
+        "positive": 444,
+        "durationH": 14.58
+      },
+      {
+        "h": "1:00 PM",
+        "total": 8517,
+        "connected": 1724,
+        "positive": 543,
+        "durationH": 20.24
+      },
+      {
+        "h": "2:00 PM",
+        "total": 10978,
+        "connected": 2779,
+        "positive": 782,
+        "durationH": 32.36
+      },
+      {
+        "h": "3:00 PM",
+        "total": 9748,
+        "connected": 2231,
+        "positive": 664,
+        "durationH": 24.88
+      },
+      {
+        "h": "4:00 PM",
+        "total": 7873,
+        "connected": 2239,
+        "positive": 620,
+        "durationH": 24.39
+      },
+      {
+        "h": "5:00 PM",
+        "total": 2474,
+        "connected": 760,
+        "positive": 126,
+        "durationH": 7.92
+      },
+      {
+        "h": "6:00 PM",
+        "total": 10275,
+        "connected": 3482,
+        "positive": 1103,
+        "durationH": 38.94
+      },
+      {
+        "h": "7:00 PM",
+        "total": 80,
+        "connected": 55,
+        "positive": 10,
+        "durationH": 0.51
+      },
+      {
+        "h": "8:00 PM",
+        "total": 32,
+        "connected": 21,
+        "positive": 7,
+        "durationH": 0.21
+      },
+      {
+        "h": "9:00 PM",
+        "total": 19,
+        "connected": 13,
+        "positive": 3,
+        "durationH": 0.58
+      },
+      {
+        "h": "10:00 PM",
+        "total": 9,
+        "connected": 7,
+        "positive": 3,
+        "durationH": 0.1
+      },
+      {
+        "h": "11:00 PM",
+        "total": 5,
+        "connected": 3,
+        "positive": 1,
+        "durationH": 0.76
+      }
+    ],
+    "hdfc": [
+      {
+        "h": "12:00 AM",
+        "total": 2,
+        "connected": 2,
+        "positive": 2,
+        "durationH": 0.02
+      },
+      {
+        "h": "3:00 AM",
+        "total": 2,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "4:00 AM",
+        "total": 12,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "5:00 AM",
+        "total": 7,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "7:00 AM",
+        "total": 15,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "8:00 AM",
+        "total": 34,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "9:00 AM",
+        "total": 11,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "10:00 AM",
+        "total": 38,
+        "connected": 16,
+        "positive": 3,
+        "durationH": 0.22
+      },
+      {
+        "h": "11:00 AM",
+        "total": 36,
+        "connected": 19,
+        "positive": 7,
+        "durationH": 0.33
+      },
+      {
+        "h": "12:00 PM",
+        "total": 15,
+        "connected": 8,
+        "positive": 8,
+        "durationH": 0.21
+      },
+      {
+        "h": "1:00 PM",
+        "total": 10,
+        "connected": 9,
+        "positive": 9,
+        "durationH": 0.23
+      },
+      {
+        "h": "2:00 PM",
+        "total": 13,
+        "connected": 7,
+        "positive": 2,
+        "durationH": 0.14
+      },
+      {
+        "h": "6:00 PM",
+        "total": 3,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "7:00 PM",
+        "total": 5,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      }
+    ],
+    "housing": [
+      {
+        "h": "12:00 AM",
+        "total": 3,
+        "connected": 2,
+        "positive": 2,
+        "durationH": 0.03
+      },
+      {
+        "h": "1:00 AM",
+        "total": 24,
+        "connected": 23,
+        "positive": 16,
+        "durationH": 0.3
+      },
+      {
+        "h": "6:00 AM",
+        "total": 11,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "7:00 AM",
+        "total": 15,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "8:00 AM",
+        "total": 6,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "9:00 AM",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "10:00 AM",
+        "total": 7,
+        "connected": 6,
+        "positive": 6,
+        "durationH": 0.06
+      },
+      {
+        "h": "11:00 AM",
+        "total": 6845,
+        "connected": 1507,
+        "positive": 412,
+        "durationH": 14.62
+      },
+      {
+        "h": "12:00 PM",
+        "total": 29243,
+        "connected": 8633,
+        "positive": 3002,
+        "durationH": 85.38
+      },
+      {
+        "h": "1:00 PM",
+        "total": 9646,
+        "connected": 2697,
+        "positive": 1018,
+        "durationH": 26.33
+      },
+      {
+        "h": "2:00 PM",
+        "total": 33967,
+        "connected": 10609,
+        "positive": 3376,
+        "durationH": 100.98
+      },
+      {
+        "h": "3:00 PM",
+        "total": 20199,
+        "connected": 5370,
+        "positive": 2210,
+        "durationH": 52.33
+      },
+      {
+        "h": "4:00 PM",
+        "total": 10327,
+        "connected": 2622,
+        "positive": 727,
+        "durationH": 23.86
+      },
+      {
+        "h": "5:00 PM",
+        "total": 27808,
+        "connected": 7636,
+        "positive": 2292,
+        "durationH": 73.62
+      },
+      {
+        "h": "6:00 PM",
+        "total": 30293,
+        "connected": 8974,
+        "positive": 2255,
+        "durationH": 85.02
+      },
+      {
+        "h": "7:00 PM",
+        "total": 3003,
+        "connected": 1471,
+        "positive": 334,
+        "durationH": 13.8
+      },
+      {
+        "h": "8:00 PM",
+        "total": 3,
+        "connected": 3,
+        "positive": 2,
+        "durationH": 0.07
+      },
+      {
+        "h": "11:00 PM",
+        "total": 6,
+        "connected": 6,
+        "positive": 0,
+        "durationH": 0.03
+      }
+    ],
+    "inprime": [
+      {
+        "h": "7:00 AM",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "12:00 PM",
+        "total": 161,
+        "connected": 53,
+        "positive": 0,
+        "durationH": 0.56
+      },
+      {
+        "h": "2:00 PM",
+        "total": 76,
+        "connected": 25,
+        "positive": 0,
+        "durationH": 0.31
+      },
+      {
+        "h": "3:00 PM",
+        "total": 35,
+        "connected": 11,
+        "positive": 0,
+        "durationH": 0.16
+      },
+      {
+        "h": "4:00 PM",
+        "total": 31,
+        "connected": 6,
+        "positive": 0,
+        "durationH": 0.04
+      },
+      {
+        "h": "5:00 PM",
+        "total": 91,
+        "connected": 23,
+        "positive": 0,
+        "durationH": 0.28
+      },
+      {
+        "h": "6:00 PM",
+        "total": 251,
+        "connected": 75,
+        "positive": 0,
+        "durationH": 1.16
+      },
+      {
+        "h": "7:00 PM",
+        "total": 2,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.01
+      },
+      {
+        "h": "11:00 PM",
+        "total": 2,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.01
+      }
+    ],
+    "it_cart": [
+      {
+        "h": "4:00 AM",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "5:00 AM",
+        "total": 2,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "6:00 AM",
+        "total": 11,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "7:00 AM",
+        "total": 14,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "8:00 AM",
+        "total": 9,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "9:00 AM",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "10:00 AM",
+        "total": 5,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "11:00 AM",
+        "total": 15,
+        "connected": 10,
+        "positive": 7,
+        "durationH": 0.15
+      },
+      {
+        "h": "12:00 PM",
+        "total": 351,
+        "connected": 141,
+        "positive": 62,
+        "durationH": 2.82
+      },
+      {
+        "h": "1:00 PM",
+        "total": 9667,
+        "connected": 3682,
+        "positive": 936,
+        "durationH": 53.1
+      },
+      {
+        "h": "2:00 PM",
+        "total": 5678,
+        "connected": 2002,
+        "positive": 620,
+        "durationH": 28.28
+      },
+      {
+        "h": "3:00 PM",
+        "total": 890,
+        "connected": 364,
+        "positive": 172,
+        "durationH": 6.33
+      },
+      {
+        "h": "4:00 PM",
+        "total": 16290,
+        "connected": 5116,
+        "positive": 900,
+        "durationH": 69.64
+      },
+      {
+        "h": "5:00 PM",
+        "total": 8174,
+        "connected": 4142,
+        "positive": 71,
+        "durationH": 47.47
+      },
+      {
+        "h": "6:00 PM",
+        "total": 14842,
+        "connected": 5899,
+        "positive": 311,
+        "durationH": 72.67
+      },
+      {
+        "h": "7:00 PM",
+        "total": 4,
+        "connected": 3,
+        "positive": 0,
+        "durationH": 0.01
+      }
+    ],
+    "kissht": [
+      {
+        "h": "8:00 AM",
+        "total": 7698,
+        "connected": 1728,
+        "positive": 1829,
+        "durationH": 28.69
+      },
+      {
+        "h": "9:00 AM",
+        "total": 7206,
+        "connected": 1308,
+        "positive": 694,
+        "durationH": 21.96
+      },
+      {
+        "h": "10:00 AM",
+        "total": 2905,
+        "connected": 335,
+        "positive": 89,
+        "durationH": 5.46
+      },
+      {
+        "h": "11:00 AM",
+        "total": 3535,
+        "connected": 348,
+        "positive": 114,
+        "durationH": 5.97
+      },
+      {
+        "h": "12:00 PM",
+        "total": 3283,
+        "connected": 246,
+        "positive": 77,
+        "durationH": 4.4
+      },
+      {
+        "h": "1:00 PM",
+        "total": 2983,
+        "connected": 250,
+        "positive": 74,
+        "durationH": 4.36
+      },
+      {
+        "h": "2:00 PM",
+        "total": 3250,
+        "connected": 263,
+        "positive": 73,
+        "durationH": 4.31
+      },
+      {
+        "h": "3:00 PM",
+        "total": 4327,
+        "connected": 338,
+        "positive": 89,
+        "durationH": 5.68
+      },
+      {
+        "h": "4:00 PM",
+        "total": 3938,
+        "connected": 316,
+        "positive": 102,
+        "durationH": 5.4
+      },
+      {
+        "h": "5:00 PM",
+        "total": 3954,
+        "connected": 281,
+        "positive": 92,
+        "durationH": 5.01
+      },
+      {
+        "h": "6:00 PM",
+        "total": 1850,
+        "connected": 176,
+        "positive": 57,
+        "durationH": 2.73
+      }
+    ],
+    "micro_fi": [
+      {
+        "h": "12:00 AM",
+        "total": 4,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.01
+      },
+      {
+        "h": "1:00 AM",
+        "total": 16,
+        "connected": 8,
+        "positive": 0,
+        "durationH": 0.13
+      },
+      {
+        "h": "2:00 AM",
+        "total": 2903,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "3:00 AM",
+        "total": 64,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "4:00 AM",
+        "total": 1648,
+        "connected": 0,
+        "positive": 2,
+        "durationH": 0.0
+      },
+      {
+        "h": "5:00 AM",
+        "total": 2459,
+        "connected": 0,
+        "positive": 89,
+        "durationH": 0.0
+      },
+      {
+        "h": "6:00 AM",
+        "total": 1532,
+        "connected": 0,
+        "positive": 75,
+        "durationH": 0.0
+      },
+      {
+        "h": "7:00 AM",
+        "total": 25191,
+        "connected": 9301,
+        "positive": 1210,
+        "durationH": 136.21
+      },
+      {
+        "h": "8:00 AM",
+        "total": 31228,
+        "connected": 13149,
+        "positive": 2088,
+        "durationH": 200.52
+      },
+      {
+        "h": "9:00 AM",
+        "total": 55195,
+        "connected": 24355,
+        "positive": 8068,
+        "durationH": 394.2
+      },
+      {
+        "h": "10:00 AM",
+        "total": 70598,
+        "connected": 34796,
+        "positive": 10827,
+        "durationH": 485.09
+      },
+      {
+        "h": "11:00 AM",
+        "total": 99191,
+        "connected": 39754,
+        "positive": 12127,
+        "durationH": 549.92
+      },
+      {
+        "h": "12:00 PM",
+        "total": 210941,
+        "connected": 74290,
+        "positive": 25890,
+        "durationH": 1010.37
+      },
+      {
+        "h": "1:00 PM",
+        "total": 374701,
+        "connected": 126807,
+        "positive": 51221,
+        "durationH": 1852.1
+      },
+      {
+        "h": "2:00 PM",
+        "total": 511782,
+        "connected": 149310,
+        "positive": 63525,
+        "durationH": 2163.29
+      },
+      {
+        "h": "3:00 PM",
+        "total": 619654,
+        "connected": 167101,
+        "positive": 74939,
+        "durationH": 2333.05
+      },
+      {
+        "h": "4:00 PM",
+        "total": 597910,
+        "connected": 154933,
+        "positive": 70583,
+        "durationH": 2199.96
+      },
+      {
+        "h": "5:00 PM",
+        "total": 693842,
+        "connected": 161242,
+        "positive": 72430,
+        "durationH": 2286.83
+      },
+      {
+        "h": "6:00 PM",
+        "total": 547031,
+        "connected": 153302,
+        "positive": 60543,
+        "durationH": 2212.73
+      },
+      {
+        "h": "7:00 PM",
+        "total": 205880,
+        "connected": 93596,
+        "positive": 19335,
+        "durationH": 1392.99
+      },
+      {
+        "h": "8:00 PM",
+        "total": 130982,
+        "connected": 62807,
+        "positive": 12281,
+        "durationH": 909.62
+      },
+      {
+        "h": "9:00 PM",
+        "total": 40052,
+        "connected": 19740,
+        "positive": 4200,
+        "durationH": 296.83
+      },
+      {
+        "h": "10:00 PM",
+        "total": 2768,
+        "connected": 1187,
+        "positive": 155,
+        "durationH": 18.57
+      },
+      {
+        "h": "11:00 PM",
+        "total": 21,
+        "connected": 10,
+        "positive": 2,
+        "durationH": 0.06
+      }
+    ],
+    "mktg_micro_fi": [
+      {
+        "h": "12:00 AM",
+        "total": 4,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.01
+      },
+      {
+        "h": "1:00 AM",
+        "total": 16,
+        "connected": 8,
+        "positive": 0,
+        "durationH": 0.13
+      },
+      {
+        "h": "4:00 AM",
+        "total": 705,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "5:00 AM",
+        "total": 233,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "6:00 AM",
+        "total": 552,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "7:00 AM",
+        "total": 275,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "8:00 AM",
+        "total": 707,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "9:00 AM",
+        "total": 714,
+        "connected": 2,
+        "positive": 0,
+        "durationH": 0.02
+      },
+      {
+        "h": "10:00 AM",
+        "total": 60912,
+        "connected": 26781,
+        "positive": 3044,
+        "durationH": 360.17
+      },
+      {
+        "h": "11:00 AM",
+        "total": 53391,
+        "connected": 22815,
+        "positive": 2057,
+        "durationH": 298.12
+      },
+      {
+        "h": "12:00 PM",
+        "total": 62934,
+        "connected": 26054,
+        "positive": 2448,
+        "durationH": 339.57
+      },
+      {
+        "h": "1:00 PM",
+        "total": 25744,
+        "connected": 10228,
+        "positive": 981,
+        "durationH": 133.73
+      },
+      {
+        "h": "2:00 PM",
+        "total": 40001,
+        "connected": 17003,
+        "positive": 1956,
+        "durationH": 219.28
+      },
+      {
+        "h": "3:00 PM",
+        "total": 41270,
+        "connected": 15542,
+        "positive": 1362,
+        "durationH": 197.86
+      },
+      {
+        "h": "4:00 PM",
+        "total": 57336,
+        "connected": 23978,
+        "positive": 2382,
+        "durationH": 300.54
+      },
+      {
+        "h": "5:00 PM",
+        "total": 37126,
+        "connected": 16695,
+        "positive": 1756,
+        "durationH": 211.53
+      },
+      {
+        "h": "6:00 PM",
+        "total": 24383,
+        "connected": 11040,
+        "positive": 1094,
+        "durationH": 137.33
+      },
+      {
+        "h": "7:00 PM",
+        "total": 30291,
+        "connected": 14117,
+        "positive": 1703,
+        "durationH": 184.4
+      },
+      {
+        "h": "8:00 PM",
+        "total": 72158,
+        "connected": 37160,
+        "positive": 3028,
+        "durationH": 493.61
+      },
+      {
+        "h": "11:00 PM",
+        "total": 21,
+        "connected": 10,
+        "positive": 2,
+        "durationH": 0.06
+      }
+    ],
+    "multify": [
+      {
+        "h": "10:00 AM",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "11:00 AM",
+        "total": 444,
+        "connected": 108,
+        "positive": 0,
+        "durationH": 1.32
+      },
+      {
+        "h": "12:00 PM",
+        "total": 93,
+        "connected": 25,
+        "positive": 0,
+        "durationH": 0.22
+      },
+      {
+        "h": "1:00 PM",
+        "total": 259,
+        "connected": 74,
+        "positive": 0,
+        "durationH": 0.77
+      },
+      {
+        "h": "4:00 PM",
+        "total": 597,
+        "connected": 153,
+        "positive": 0,
+        "durationH": 1.45
+      },
+      {
+        "h": "5:00 PM",
+        "total": 138,
+        "connected": 53,
+        "positive": 0,
+        "durationH": 0.6
+      },
+      {
+        "h": "6:00 PM",
+        "total": 947,
+        "connected": 284,
+        "positive": 2,
+        "durationH": 2.67
+      },
+      {
+        "h": "7:00 PM",
+        "total": 1463,
+        "connected": 577,
+        "positive": 1,
+        "durationH": 5.0
+      },
+      {
+        "h": "9:00 PM",
+        "total": 5,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.04
+      }
+    ],
+    "opus": [
+      {
+        "h": "12:00 AM",
+        "total": 1,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "4:00 AM",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "5:00 AM",
+        "total": 31,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "8:00 AM",
+        "total": 12844,
+        "connected": 2152,
+        "positive": 179,
+        "durationH": 31.51
+      },
+      {
+        "h": "9:00 AM",
+        "total": 25102,
+        "connected": 4844,
+        "positive": 345,
+        "durationH": 60.44
+      },
+      {
+        "h": "10:00 AM",
+        "total": 26404,
+        "connected": 4925,
+        "positive": 306,
+        "durationH": 61.03
+      },
+      {
+        "h": "11:00 AM",
+        "total": 23099,
+        "connected": 3670,
+        "positive": 260,
+        "durationH": 46.23
+      },
+      {
+        "h": "12:00 PM",
+        "total": 11582,
+        "connected": 2320,
+        "positive": 141,
+        "durationH": 25.27
+      },
+      {
+        "h": "1:00 PM",
+        "total": 15826,
+        "connected": 2489,
+        "positive": 170,
+        "durationH": 27.41
+      },
+      {
+        "h": "2:00 PM",
+        "total": 605,
+        "connected": 97,
+        "positive": 6,
+        "durationH": 0.74
+      },
+      {
+        "h": "3:00 PM",
+        "total": 17676,
+        "connected": 2615,
+        "positive": 399,
+        "durationH": 29.83
+      },
+      {
+        "h": "4:00 PM",
+        "total": 20307,
+        "connected": 2317,
+        "positive": 265,
+        "durationH": 25.75
+      },
+      {
+        "h": "5:00 PM",
+        "total": 30412,
+        "connected": 4239,
+        "positive": 334,
+        "durationH": 46.21
+      },
+      {
+        "h": "6:00 PM",
+        "total": 28495,
+        "connected": 3238,
+        "positive": 317,
+        "durationH": 34.79
+      },
+      {
+        "h": "7:00 PM",
+        "total": 5795,
+        "connected": 706,
+        "positive": 86,
+        "durationH": 7.82
+      },
+      {
+        "h": "8:00 PM",
+        "total": 356,
+        "connected": 53,
+        "positive": 9,
+        "durationH": 0.52
+      },
+      {
+        "h": "9:00 PM",
+        "total": 648,
+        "connected": 130,
+        "positive": 35,
+        "durationH": 1.98
+      }
+    ],
+    "salesbot_datasheets": [
+      {
+        "h": "2:00 AM",
+        "total": 3,
+        "connected": 3,
+        "positive": 0,
+        "durationH": 0.04
+      },
+      {
+        "h": "8:00 AM",
+        "total": 6,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "9:00 AM",
+        "total": 423,
+        "connected": 153,
+        "positive": 0,
+        "durationH": 1.28
+      },
+      {
+        "h": "10:00 AM",
+        "total": 993,
+        "connected": 384,
+        "positive": 0,
+        "durationH": 3.41
+      },
+      {
+        "h": "11:00 AM",
+        "total": 508,
+        "connected": 168,
+        "positive": 0,
+        "durationH": 1.84
+      },
+      {
+        "h": "12:00 PM",
+        "total": 1019,
+        "connected": 426,
+        "positive": 0,
+        "durationH": 4.31
+      },
+      {
+        "h": "1:00 PM",
+        "total": 2382,
+        "connected": 439,
+        "positive": 0,
+        "durationH": 4.83
+      },
+      {
+        "h": "2:00 PM",
+        "total": 2221,
+        "connected": 389,
+        "positive": 0,
+        "durationH": 3.92
+      },
+      {
+        "h": "3:00 PM",
+        "total": 3544,
+        "connected": 1037,
+        "positive": 0,
+        "durationH": 10.8
+      },
+      {
+        "h": "4:00 PM",
+        "total": 3061,
+        "connected": 1010,
+        "positive": 0,
+        "durationH": 11.46
+      },
+      {
+        "h": "5:00 PM",
+        "total": 2804,
+        "connected": 1285,
+        "positive": 0,
+        "durationH": 11.56
+      },
+      {
+        "h": "6:00 PM",
+        "total": 2332,
+        "connected": 1102,
+        "positive": 0,
+        "durationH": 13.8
+      },
+      {
+        "h": "7:00 PM",
+        "total": 371,
+        "connected": 136,
+        "positive": 0,
+        "durationH": 2.24
+      },
+      {
+        "h": "8:00 PM",
+        "total": 643,
+        "connected": 474,
+        "positive": 0,
+        "durationH": 10.23
+      },
+      {
+        "h": "9:00 PM",
+        "total": 720,
+        "connected": 568,
+        "positive": 0,
+        "durationH": 12.66
+      },
+      {
+        "h": "10:00 PM",
+        "total": 326,
+        "connected": 273,
+        "positive": 0,
+        "durationH": 6.09
+      },
+      {
+        "h": "11:00 PM",
+        "total": 2,
+        "connected": 1,
+        "positive": 0,
+        "durationH": 0.01
+      }
+    ],
+    "shubham_housing": [
+      {
+        "h": "4:00 AM",
+        "total": 1,
+        "connected": 1,
+        "positive": 1,
+        "durationH": 0.02
+      },
+      {
+        "h": "6:00 AM",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "7:00 AM",
+        "total": 8,
+        "connected": 2,
+        "positive": 1,
+        "durationH": 0.02
+      },
+      {
+        "h": "8:00 AM",
+        "total": 751,
+        "connected": 260,
+        "positive": 11,
+        "durationH": 2.4
+      },
+      {
+        "h": "9:00 AM",
+        "total": 681,
+        "connected": 150,
+        "positive": 10,
+        "durationH": 1.14
+      },
+      {
+        "h": "10:00 AM",
+        "total": 59,
+        "connected": 29,
+        "positive": 7,
+        "durationH": 0.47
+      },
+      {
+        "h": "11:00 AM",
+        "total": 8,
+        "connected": 4,
+        "positive": 2,
+        "durationH": 0.07
+      },
+      {
+        "h": "12:00 PM",
+        "total": 592,
+        "connected": 217,
+        "positive": 28,
+        "durationH": 2.14
+      },
+      {
+        "h": "1:00 PM",
+        "total": 1233,
+        "connected": 360,
+        "positive": 47,
+        "durationH": 3.03
+      },
+      {
+        "h": "2:00 PM",
+        "total": 265,
+        "connected": 102,
+        "positive": 17,
+        "durationH": 0.91
+      },
+      {
+        "h": "3:00 PM",
+        "total": 776,
+        "connected": 196,
+        "positive": 4,
+        "durationH": 2.07
+      },
+      {
+        "h": "4:00 PM",
+        "total": 1000,
+        "connected": 295,
+        "positive": 62,
+        "durationH": 3.2
+      },
+      {
+        "h": "5:00 PM",
+        "total": 593,
+        "connected": 185,
+        "positive": 25,
+        "durationH": 1.79
+      },
+      {
+        "h": "6:00 PM",
+        "total": 1054,
+        "connected": 272,
+        "positive": 31,
+        "durationH": 2.6
+      },
+      {
+        "h": "7:00 PM",
+        "total": 26,
+        "connected": 17,
+        "positive": 10,
+        "durationH": 0.22
+      },
+      {
+        "h": "8:00 PM",
+        "total": 9,
+        "connected": 9,
+        "positive": 5,
+        "durationH": 0.13
+      }
+    ],
+    "smart_dial": [
+      {
+        "h": "9:00 AM",
+        "total": 4,
+        "connected": 3,
+        "positive": 1,
+        "durationH": 0.03
+      },
+      {
+        "h": "10:00 AM",
+        "total": 5,
+        "connected": 5,
+        "positive": 1,
+        "durationH": 0.05
+      },
+      {
+        "h": "11:00 AM",
+        "total": 18,
+        "connected": 6,
+        "positive": 4,
+        "durationH": 0.13
+      },
+      {
+        "h": "12:00 PM",
+        "total": 8,
+        "connected": 7,
+        "positive": 2,
+        "durationH": 0.06
+      },
+      {
+        "h": "1:00 PM",
+        "total": 5,
+        "connected": 5,
+        "positive": 0,
+        "durationH": 0.06
+      },
+      {
+        "h": "2:00 PM",
+        "total": 19,
+        "connected": 15,
+        "positive": 2,
+        "durationH": 0.1
+      },
+      {
+        "h": "3:00 PM",
+        "total": 1677,
+        "connected": 706,
+        "positive": 257,
+        "durationH": 7.2
+      },
+      {
+        "h": "4:00 PM",
+        "total": 10683,
+        "connected": 4588,
+        "positive": 1803,
+        "durationH": 48.8
+      },
+      {
+        "h": "5:00 PM",
+        "total": 1758,
+        "connected": 815,
+        "positive": 334,
+        "durationH": 9.53
+      },
+      {
+        "h": "7:00 PM",
+        "total": 7,
+        "connected": 4,
+        "positive": 2,
+        "durationH": 0.05
+      },
+      {
+        "h": "8:00 PM",
+        "total": 3,
+        "connected": 2,
+        "positive": 1,
+        "durationH": 0.04
+      },
+      {
+        "h": "10:00 PM",
+        "total": 1,
+        "connected": 1,
+        "positive": 1,
+        "durationH": 0.02
+      }
+    ],
+    "tatacapital": [
+      {
+        "h": "1:00 AM",
+        "total": 1,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "2:00 AM",
+        "total": 24,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "3:00 AM",
+        "total": 519,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "4:00 AM",
+        "total": 250,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "5:00 AM",
+        "total": 982,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "6:00 AM",
+        "total": 7261,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "7:00 AM",
+        "total": 58901,
+        "connected": 13680,
+        "positive": 5156,
+        "durationH": 194.34
+      },
+      {
+        "h": "8:00 AM",
+        "total": 96195,
+        "connected": 27039,
+        "positive": 13153,
+        "durationH": 376.73
+      },
+      {
+        "h": "9:00 AM",
+        "total": 81515,
+        "connected": 26332,
+        "positive": 16843,
+        "durationH": 347.52
+      },
+      {
+        "h": "10:00 AM",
+        "total": 91274,
+        "connected": 23813,
+        "positive": 10268,
+        "durationH": 326.8
+      },
+      {
+        "h": "11:00 AM",
+        "total": 397767,
+        "connected": 118674,
+        "positive": 61364,
+        "durationH": 1537.91
+      },
+      {
+        "h": "12:00 PM",
+        "total": 1237900,
+        "connected": 332955,
+        "positive": 133648,
+        "durationH": 4029.19
+      },
+      {
+        "h": "1:00 PM",
+        "total": 1482149,
+        "connected": 381944,
+        "positive": 152698,
+        "durationH": 4630.67
+      },
+      {
+        "h": "2:00 PM",
+        "total": 1829745,
+        "connected": 457288,
+        "positive": 168503,
+        "durationH": 5659.2
+      },
+      {
+        "h": "3:00 PM",
+        "total": 2067329,
+        "connected": 502960,
+        "positive": 170941,
+        "durationH": 6187.8
+      },
+      {
+        "h": "4:00 PM",
+        "total": 2602216,
+        "connected": 607512,
+        "positive": 207959,
+        "durationH": 7295.82
+      },
+      {
+        "h": "5:00 PM",
+        "total": 2670115,
+        "connected": 581506,
+        "positive": 198152,
+        "durationH": 7071.03
+      },
+      {
+        "h": "6:00 PM",
+        "total": 2131569,
+        "connected": 494284,
+        "positive": 155490,
+        "durationH": 5948.88
+      },
+      {
+        "h": "7:00 PM",
+        "total": 558704,
+        "connected": 153770,
+        "positive": 44495,
+        "durationH": 1841.51
+      },
+      {
+        "h": "8:00 PM",
+        "total": 150996,
+        "connected": 42131,
+        "positive": 10020,
+        "durationH": 495.13
+      },
+      {
+        "h": "9:00 PM",
+        "total": 30679,
+        "connected": 9036,
+        "positive": 2540,
+        "durationH": 111.32
+      },
+      {
+        "h": "10:00 PM",
+        "total": 12822,
+        "connected": 3607,
+        "positive": 754,
+        "durationH": 43.41
+      }
+    ],
+    "ugro": [
+      {
+        "h": "6:00 AM",
+        "total": 2,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "7:00 AM",
+        "total": 4,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "8:00 AM",
+        "total": 12,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "9:00 AM",
+        "total": 18,
+        "connected": 0,
+        "positive": 0,
+        "durationH": 0.0
+      },
+      {
+        "h": "10:00 AM",
+        "total": 321,
+        "connected": 89,
+        "positive": 4,
+        "durationH": 0.91
+      },
+      {
+        "h": "11:00 AM",
+        "total": 3673,
+        "connected": 1287,
+        "positive": 353,
+        "durationH": 13.17
+      },
+      {
+        "h": "12:00 PM",
+        "total": 3901,
+        "connected": 900,
+        "positive": 67,
+        "durationH": 8.48
+      },
+      {
+        "h": "1:00 PM",
+        "total": 10183,
+        "connected": 2755,
+        "positive": 533,
+        "durationH": 31.7
+      },
+      {
+        "h": "2:00 PM",
+        "total": 10973,
+        "connected": 2765,
+        "positive": 635,
+        "durationH": 35.03
+      },
+      {
+        "h": "3:00 PM",
+        "total": 17645,
+        "connected": 4944,
+        "positive": 672,
+        "durationH": 55.82
+      },
+      {
+        "h": "4:00 PM",
+        "total": 40469,
+        "connected": 10759,
+        "positive": 1580,
+        "durationH": 121.09
+      },
+      {
+        "h": "5:00 PM",
+        "total": 29273,
+        "connected": 7326,
+        "positive": 898,
+        "durationH": 79.88
+      },
+      {
+        "h": "6:00 PM",
+        "total": 23258,
+        "connected": 5193,
+        "positive": 632,
+        "durationH": 57.71
+      },
+      {
+        "h": "7:00 PM",
+        "total": 3347,
+        "connected": 715,
+        "positive": 76,
+        "durationH": 8.59
+      }
+    ]
+  }
+}

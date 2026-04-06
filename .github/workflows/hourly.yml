@@ -1,0 +1,35 @@
+name: Hourly Pipeline
+
+on:
+  schedule:
+    - cron: '0 * * * *'    # runs every hour at :00 UTC
+  workflow_dispatch:         # allows manual run from GitHub UI
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pymongo pandas
+
+      - name: Run pipeline
+        run: python pipeline_v2.py
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+
+      - name: Commit updated data files
+        run: |
+          git config user.email "pipeline-bot@github.com"
+          git config user.name "Pipeline Bot"
+          git add dashboard_data.json session_analytics_realtime.csv checkpoint.json
+          git commit -m "chore: hourly data update $(date '+%Y-%m-%d %H:%M UTC')" || echo "No changes to commit"
+          git push

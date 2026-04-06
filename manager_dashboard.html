@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>📊 Call Analytics Dashboard — Manager View</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #F0F4F8;
+  --surface: #FFFFFF;
+  --surface2: #EEF2F6;
+  --border: #E2E8F0;
+  --accent: #FF6B35;
+  --accent2: #00B896;
+  --accent3: #2563EB;
+  --accent4: #D97706;
+  --text: #0D1B35;
+  --text-dim: #64748B;
+  --text-muted: #94A3B8;
+  --positive: #00B896;
+  --negative: #FF4D6D;
+  --neutral: #2563EB;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  background-image: radial-gradient(ellipse at 20% 20%, rgba(37,99,235,0.04) 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 80%, rgba(255,107,53,0.03) 0%, transparent 60%);
+}
+.header {
+  background: linear-gradient(135deg, #0D1B35 0%, #0A1628 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+.header-left { display: flex; align-items: center; gap: 14px; }
+.logo {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--accent), #FF9E5E);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.logo-img {
+  height: 36px; width: auto;
+  object-fit: contain;
+}
+.header-title { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 0.5px; color: #E8EDF5; }
+.header-sub { font-size: 12px; color: #7A8BA8; margin-top: 2px; }
+.header-sub strong { color: #FFFFFF; font-weight: 700; background: rgba(79,142,247,0.25); padding: 1px 7px; border-radius: 4px; }
+.header-badge {
+  background: rgba(0,201,167,0.15); border: 1px solid rgba(0,201,167,0.3);
+  color: var(--accent2); font-size: 11px; font-weight: 600;
+  padding: 4px 12px; border-radius: 20px; letter-spacing: 0.5px;
+}
+.main { padding: 24px 32px 40px; max-width: 1600px; margin: 0 auto; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+.kpi-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+  position: relative; overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.kpi-card:hover { transform: translateY(-2px); border-color: var(--accent3); }
+.kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.kpi-card.c1::before { background: linear-gradient(90deg, var(--accent3), #80BAFF); }
+.kpi-card.c2::before { background: linear-gradient(90deg, var(--accent2), #7FFFED); }
+.kpi-card.c3::before { background: linear-gradient(90deg, var(--accent), #FFB38E); }
+.kpi-card.c4::before { background: linear-gradient(90deg, var(--accent4), #FFE88E); }
+.kpi-card.c5::before { background: linear-gradient(90deg, #FF4D6D, #FF8FAB); }
+.kpi-card.c6::before { background: linear-gradient(90deg, #A855F7, #D8B4FE); }
+.kpi-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+.kpi-label { font-size: 11px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.kpi-value { font-family: 'Rajdhani', sans-serif; font-size: 30px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 4px; }
+.kpi-sub { font-size: 11px; color: var(--text-dim); }
+.kpi-badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-top: 6px; }
+.kpi-badge.up { background: rgba(0,201,167,0.15); color: var(--accent2); }
+.kpi-badge.down { background: rgba(255,77,109,0.15); color: var(--negative); }
+.tabs-bar {
+  display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 4px; margin-bottom: 20px;
+  overflow-x: auto; flex-wrap: nowrap;
+}
+.tab-btn {
+  flex: 1; min-width: 120px; padding: 10px 16px; background: transparent;
+  border: none; color: var(--text-dim); font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  border-radius: var(--radius-sm); transition: all 0.2s;
+  white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.tab-btn:hover { background: var(--surface2); color: var(--text); }
+.tab-btn.active { background: var(--accent3); color: #fff; font-weight: 600; box-shadow: 0 2px 12px rgba(79,142,247,0.35); }
+.panel { display: none; }
+.panel.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.charts-grid.single { grid-template-columns: 1fr; }
+.chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; position: relative; }
+.chart-card.full { grid-column: 1 / -1; }
+.chart-title { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; letter-spacing: 0.3px; }
+.chart-sub { font-size: 11px; color: var(--text-dim); margin-bottom: 20px; }
+.chart-wrap { position: relative; height: 280px; }
+.chart-wrap.tall { height: 340px; }
+.chart-wrap.xlarge { height: 420px; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+.data-table th { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+.data-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: rgba(79,142,247,0.05); }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.pill.green { background: rgba(0,201,167,0.15); color: var(--accent2); }
+.pill.red { background: rgba(255,77,109,0.15); color: var(--negative); }
+.pill.blue { background: rgba(79,142,247,0.15); color: var(--accent3); }
+.pill.orange { background: rgba(255,107,53,0.15); color: var(--accent); }
+.pill.yellow { background: rgba(247,201,72,0.15); color: var(--accent4); }
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.bar-label { font-size: 12px; color: var(--text-dim); width: 90px; flex-shrink: 0; text-align: right; }
+.bar-track { flex: 1; height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+.bar-val { font-size: 12px; font-weight: 600; width: 70px; flex-shrink: 0; color: var(--text); }
+/* Company selector */
+.comp-selector {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center;
+}
+.comp-selector label { font-size: 12px; color: var(--text-dim); font-weight: 600; }
+.comp-select {
+  background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+  padding: 6px 12px; border-radius: 6px; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; cursor: pointer; outline: none;
+}
+.comp-select:focus { border-color: var(--accent3); }
+/* Counts badge */
+.count-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(79,142,247,0.12); border: 1px solid rgba(79,142,247,0.25);
+  border-radius: 8px; padding: 6px 14px; font-size: 13px; font-weight: 600; color: var(--accent3);
+  margin: 4px;
+}
+.count-badge .dot { width: 10px; height: 10px; border-radius: 50%; }
+@media (max-width: 900px) {
+  .main { padding: 16px; }
+  .charts-grid { grid-template-columns: 1fr; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .header { padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <img src="download.png" alt="Wordworksai" class="logo-img"/>
+    <div>
+      <div class="header-title">AI-Call Analytics Dashboard</div>
+      <div class="header-sub"><strong>Wordworksai</strong></div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+    <div class="header-badge" id="compBadge">Loading...</div>
+    <div style="font-size:11px;color:var(--text-muted);" id="lastUpdated">Fetching data...</div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- KPI STRIP — built dynamically by JS -->
+<div class="kpi-grid" id="kpiGrid">
+  <div class="kpi-card c1" style="grid-column:1/-1;text-align:center;padding:40px;">
+    <div style="font-size:14px;color:var(--text-dim);">Loading dashboard data...</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="switchTab('company',this)">🏢 Company Wise</button>
+  <button class="tab-btn" onclick="switchTab('region',this)">🗺️ Region Wise</button>
+  <button class="tab-btn" onclick="switchTab('usecase',this)">⚙️ Use Case Wise</button>
+  <button class="tab-btn" onclick="switchTab('language',this)">🗣️ Language Wise</button>
+  <button class="tab-btn" onclick="switchTab('date',this)">📅 Date Wise</button>
+  <button class="tab-btn" onclick="switchTab('hour',this)">🕐 Hour Wise</button>
+</div>
+
+<!-- ===== PANEL: COMPANY ===== -->
+<div id="panel-company" class="panel active">
+  <!-- Company count row -->
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;align-items:center;">
+    <span style="font-size:12px;color:var(--text-dim);font-weight:600;margin-right:4px;" id="compPanelLabel">ALL 20 COMPANIES:</span>
+    <span id="compCountBadges"></span>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Total Calls by Company</div>
+      <div class="chart-sub" id="compTotalSub">Volume distribution across all 20 client companies</div>
+      <div class="chart-wrap"><canvas id="compTotalChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Success Rate by Company (%)</div>
+      <div class="chart-sub">Positive dispositions as % of connected calls</div>
+      <div class="chart-wrap"><canvas id="compSuccessChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Connection Rate by Company (%)</div>
+      <div class="chart-sub">Calls answered as % of total dials</div>
+      <div class="chart-wrap"><canvas id="compConnectChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Total Hours Invested by Company</div>
+      <div class="chart-sub">Cumulative call duration (hours) per company</div>
+      <div class="chart-wrap"><canvas id="compDurationChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Mean Handle Time (seconds)</div>
+      <div class="chart-sub">Average call duration per connected call</div>
+      <div class="chart-wrap"><canvas id="compMHTChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Positive vs Negative Dispositions</div>
+      <div class="chart-sub">Outcome breakdown by company</div>
+      <div class="chart-wrap"><canvas id="compDispChart"></canvas></div>
+    </div>
+
+    <div class="chart-card full">
+      <div class="chart-title">Company Performance Summary</div>
+      <div class="chart-sub">Comprehensive metrics — calls, connection, success, hours, listen count</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>#</th><th>Company</th><th>Total Calls</th><th>Connected</th>
+            <th>Connect %</th><th>Positive</th><th>Negative</th>
+            <th>Success Rate</th><th>Duration (hrs)</th><th>MHT (s)</th><th>Listen Count</th>
+          </tr>
+        </thead>
+        <tbody id="companyTableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Per-company date trend -->
+    <div class="chart-card full">
+      <div class="chart-title">Date-Wise Call Volume — Per Company</div>
+      <div class="chart-sub">Select a company to see its daily call volume and success trend</div>
+      <div class="comp-selector">
+        <label>SELECT COMPANY:</label>
+        <select class="comp-select" id="compDateSelect" onchange="updateCompDateChart()"></select>
+      </div>
+      <div class="chart-wrap xlarge"><canvas id="compDateChart"></canvas></div>
+    </div>
+
+    <!-- Per-company hour breakdown -->
+    <div class="chart-card full">
+      <div class="chart-title">Hour-Wise Call Distribution — Per Company</div>
+      <div class="chart-sub">Select a company to see calls and success rate across hours of day (AM/PM)</div>
+      <div class="comp-selector">
+        <label>SELECT COMPANY:</label>
+        <select class="comp-select" id="compHourSelect" onchange="updateCompHourChart()"></select>
+      </div>
+      <div class="chart-wrap tall"><canvas id="compHourChart"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PANEL: REGION ===== -->
+<div id="panel-region" class="panel">
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Total Calls by Region</div>
+      <div class="chart-sub">North, South, East, West distribution</div>
+      <div class="chart-wrap"><canvas id="regionPieChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Connected Calls by Region</div>
+      <div class="chart-sub">Connected volume per region</div>
+      <div class="chart-wrap"><canvas id="regionConnChart"></canvas></div>
+    </div>
+    <div class="chart-card full">
+      <div class="chart-title">Region Performance Comparison</div>
+      <div class="chart-sub">Success rate and connection metrics</div>
+      <div class="chart-wrap tall"><canvas id="regionBarChart"></canvas></div>
+    </div>
+  </div>
+  <div class="chart-card" style="margin-top:20px;">
+    <div class="chart-title">Connection Rate by Region</div>
+    <div class="chart-sub">Connected calls as % of total</div>
+    <div style="margin-top:16px;" id="regionMeters"></div>
+  </div>
+</div>
+
+<!-- ===== PANEL: USE CASE ===== -->
+<div id="panel-usecase" class="panel">
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Volume by Use Case</div>
+      <div class="chart-sub">Total calls per campaign type</div>
+      <div class="chart-wrap"><canvas id="ucTotalChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Success Rate by Use Case (%)</div>
+      <div class="chart-sub">Campaign effectiveness comparison</div>
+      <div class="chart-wrap"><canvas id="ucSuccessChart"></canvas></div>
+    </div>
+    <div class="chart-card full">
+      <div class="chart-title">Use Case Detail Table</div>
+      <div class="chart-sub">Full breakdown per use case</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Use Case</th><th>Total Calls</th><th>Connected</th><th>Connect %</th><th>Success Rate</th></tr>
+        </thead>
+        <tbody id="usecaseTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PANEL: LANGUAGE ===== -->
+<div id="panel-language" class="panel">
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Total Calls by Language</div>
+      <div class="chart-sub">Call volume distribution across 7 languages</div>
+      <div class="chart-wrap"><canvas id="langPieChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Success Rate by Language (%)</div>
+      <div class="chart-sub">Campaign effectiveness per language</div>
+      <div class="chart-wrap"><canvas id="langSuccessChart"></canvas></div>
+    </div>
+    <div class="chart-card full">
+      <div class="chart-title">Language Performance Table</div>
+      <div class="chart-sub">Full breakdown per language</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Language</th><th>Total Calls</th><th>Connected</th><th>Connect %</th><th>Success Rate</th></tr>
+        </thead>
+        <tbody id="languageTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PANEL: DATE ===== -->
+<div id="panel-date" class="panel">
+  <div class="charts-grid single">
+    <div class="chart-card">
+      <div class="chart-title">Daily Call Volume — Total vs Connected</div>
+      <div class="chart-sub">All campaign days from CSV (Jul 2025 – Apr 2026) — full date labels</div>
+      <div class="chart-wrap xlarge"><canvas id="dateLineChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Daily Success Rate Trend (%)</div>
+      <div class="chart-sub">Day-wise success rate for all campaign dates</div>
+      <div class="chart-wrap tall"><canvas id="dateSuccessChart"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PANEL: HOUR ===== -->
+<div id="panel-hour" class="panel">
+  <div class="charts-grid">
+    <div class="chart-card full">
+      <div class="chart-title">Call Volume by Hour (AM/PM)</div>
+      <div class="chart-sub">Total dials and connected calls across all hours — AM/PM format from actual data</div>
+      <div class="chart-wrap tall"><canvas id="hourBarChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Success Rate by Hour (%)</div>
+      <div class="chart-sub">Campaign success rate distribution by hour of day</div>
+      <div class="chart-wrap"><canvas id="hourSuccessChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Best Calling Hours</div>
+      <div class="chart-sub">Top performing hours by success rate (filtered: significant volume)</div>
+      <div style="margin-top:12px;" id="bestHoursMeters"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+// ===================== LIVE DATA (fetched from dashboard_data.json) =====================
+// All static arrays removed — data is loaded from pipeline_v2.py output every hour.
+let companyData  = [];
+let regionData   = [];
+let usecaseData  = [];
+let languageData = [];
+let dateData     = [];
+let hourData     = [];
+let compDateData = {};
+let compHourData = {};
+
+// ===================== LOAD DASHBOARD =====================
+async function loadDashboard() {
+  try {
+    const res = await fetch('dashboard_data.json?t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status + ' — run pipeline_v2.py first');
+    const data = await res.json();
+
+    // Assign global arrays (used by all chart builders below)
+    companyData  = data.company       || [];
+    regionData   = data.region        || [];
+    usecaseData  = data.usecase       || [];
+    languageData = data.language      || [];
+    dateData     = data.date          || [];
+    hourData     = data.hour          || [];
+    compDateData = data.compDateData  || {};
+    compHourData = data.compHourData  || {};
+
+    // Header + panel labels (dynamic company count)
+    const n = companyData.length;
+    document.getElementById('compBadge').textContent     = n + ' Companies';
+    document.getElementById('lastUpdated').textContent   = 'Last updated: ' + data.last_updated;
+    document.getElementById('compPanelLabel').textContent = 'ALL ' + n + ' COMPANIES:';
+    document.getElementById('compTotalSub').textContent  = 'Volume distribution across all ' + n + ' client companies';
+
+    // KPI grid
+    const k = data.kpis || {};
+    const posOfConn = k.connected_calls ? (k.positive / k.connected_calls * 100).toFixed(1) : 0;
+    const negOfConn = k.connected_calls ? (k.negative / k.connected_calls * 100).toFixed(1) : 0;
+    const compNames = companyData.map(d => d.name).join(', ');
+    document.getElementById('kpiGrid').innerHTML = `
+      <div class="kpi-card c1">
+        <span class="kpi-icon">📞</span>
+        <div class="kpi-label">Total Calls Placed</div>
+        <div class="kpi-value">${fmtNum(k.total_calls)}</div>
+        <div class="kpi-sub">${(k.total_calls||0).toLocaleString('en-IN')} total dials</div>
+      </div>
+      <div class="kpi-card c2">
+        <span class="kpi-icon">✅</span>
+        <div class="kpi-label">Connected Calls</div>
+        <div class="kpi-value">${fmtNum(k.connected_calls)}</div>
+        <div class="kpi-sub">${(k.connected_calls||0).toLocaleString('en-IN')} answered</div>
+        <span class="kpi-badge up">${k.connect_rate}% Connect Rate</span>
+      </div>
+      <div class="kpi-card c3">
+        <span class="kpi-icon">🎯</span>
+        <div class="kpi-label">Avg Success Rate</div>
+        <div class="kpi-value">${posOfConn}%</div>
+        <div class="kpi-sub">Positive / Connected</div>
+      </div>
+      <div class="kpi-card c4">
+        <span class="kpi-icon">⏱️</span>
+        <div class="kpi-label">Total Duration</div>
+        <div class="kpi-value">${(k.total_hours||0).toLocaleString('en-IN')} hrs</div>
+        <div class="kpi-sub">Total call duration hours</div>
+      </div>
+      <div class="kpi-card c2">
+        <span class="kpi-icon">👍</span>
+        <div class="kpi-label">Positive Dispositions</div>
+        <div class="kpi-value">${fmtNum(k.positive)}</div>
+        <div class="kpi-sub">${(k.positive||0).toLocaleString('en-IN')} positive outcomes</div>
+        <span class="kpi-badge up">${posOfConn}% of connected</span>
+      </div>
+      <div class="kpi-card c5">
+        <span class="kpi-icon">👎</span>
+        <div class="kpi-label">Negative Dispositions</div>
+        <div class="kpi-value">${fmtNum(k.negative)}</div>
+        <div class="kpi-sub">${(k.negative||0).toLocaleString('en-IN')} negative outcomes</div>
+        <span class="kpi-badge down">${negOfConn}% of connected</span>
+      </div>
+      <div class="kpi-card c1">
+        <span class="kpi-icon">👂</span>
+        <div class="kpi-label">Listen Count</div>
+        <div class="kpi-value">${fmtNum(k.listen_count)}</div>
+        <div class="kpi-sub">${(k.listen_count||0).toLocaleString('en-IN')} bot engagements</div>
+      </div>`;
+
+    // Populate per-company dropdowns from live data
+    const companies = Object.keys(compDateData);
+    populateSelect('compDateSelect', companies);
+    populateSelect('compHourSelect', companies);
+
+    // Destroy existing Chart.js instances before rebuilding
+    Object.values(Chart.instances).forEach(c => c.destroy());
+
+    // Clear DOM-appended elements
+    ['compCountBadges','regionMeters','bestHoursMeters',
+     'companyTableBody','usecaseTableBody','languageTableBody'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = '';
+    });
+
+    // Rebuild all charts from fresh data
+    buildCompany();
+    buildRegion();
+    buildUseCase();
+    buildLanguage();
+    buildDate();
+    buildHour();
+
+  } catch (err) {
+    document.getElementById('kpiGrid').innerHTML =
+      `<div class="kpi-card c5" style="grid-column:1/-1;text-align:center;padding:40px;">
+        <div style="font-size:14px;color:var(--negative);">⚠️ ${err.message}</div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:8px;">
+          Run <code>python pipeline_v2.py</code> then serve via
+          <code>python -m http.server 8080</code> and open
+          <code>http://localhost:8080/manager_dashboard.html</code>
+        </div>
+      </div>`;
+    document.getElementById('lastUpdated').textContent = 'Error: ' + err.message;
+    console.error(err);
+  }
+}
+
+function populateSelect(id, options) {
+  const sel = document.getElementById(id);
+  if (!sel) return;
+  const current = sel.value;
+  sel.innerHTML = options.map(o =>
+    `<option value="${o}"${o === current ? ' selected' : ''}>${o}</option>`
+  ).join('');
+  if (!options.includes(current) && options.length) sel.value = options[0];
+}
+
+// ===================== COLOR PALETTES =====================
+const COLORS = {
+  blue:'#4F8EF7', teal:'#00C9A7', orange:'#FF6B35', yellow:'#F7C948',
+  red:'#FF4D6D', purple:'#A855F7', cyan:'#22D3EE', lime:'#84CC16',
+  pink:'#F472B6', indigo:'#818CF8',
+};
+const MULTI = [COLORS.blue,COLORS.teal,COLORS.orange,COLORS.yellow,COLORS.purple,COLORS.red,COLORS.cyan,COLORS.lime,COLORS.pink,COLORS.indigo];
+
+const chartDefaults = {
+  plugins:{
+    legend:{labels:{color:'#64748B',font:{family:'DM Sans',size:11}}},
+    tooltip:{
+      backgroundColor:'#FFFFFF', borderColor:'#E2E8F0', borderWidth:1,
+      titleColor:'#0D1B35', bodyColor:'#64748B',
+      titleFont:{family:'Rajdhani',size:14,weight:'bold'}, padding:12,
+    }
+  },
+  scales:{
+    x:{grid:{color:'rgba(226,232,240,0.8)'},ticks:{color:'#64748B',font:{family:'DM Sans',size:11}}},
+    y:{grid:{color:'rgba(226,232,240,0.8)'},ticks:{color:'#64748B',font:{family:'DM Sans',size:11}}}
+  },
+  animation:{duration:800,easing:'easeInOutQuart'},
+};
+Chart.defaults.color='#64748B';
+
+function fmtNum(n){
+  if(n>=10000000) return (n/10000000).toFixed(1)+' Cr';
+  if(n>=100000) return (n/100000).toFixed(1)+' L';
+  if(n>=1000) return (n/1000).toFixed(1)+'K';
+  return n.toLocaleString('en-IN');
+}
+function fmtTime(s){
+  const m=Math.floor(s/60),sec=Math.round(s%60);
+  return m>0?`${m}m ${sec}s`:`${sec}s`;
+}
+
+// ===================== DYNAMIC CHARTS (per-company) =====================
+let compDateChartInst = null;
+let compHourChartInst = null;
+
+function updateCompDateChart(){
+  const company = document.getElementById('compDateSelect').value;
+  const data = compDateData[company] || [];
+  const labels = data.map(d=>d.d);
+  const totals = data.map(d=>d.total);
+  const connected = data.map(d=>d.connected);
+  const success = data.map(d=>d.connected>0?+(d.positive/d.connected*100).toFixed(1):0);
+
+  if(compDateChartInst) compDateChartInst.destroy();
+  const ctx = document.getElementById('compDateChart').getContext('2d');
+  compDateChartInst = new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {label:'Total Calls',data:totals,backgroundColor:COLORS.blue+'77',borderColor:COLORS.blue,borderWidth:1.5,borderRadius:4,yAxisID:'y'},
+        {label:'Connected',data:connected,backgroundColor:COLORS.teal+'99',borderColor:COLORS.teal,borderWidth:1.5,borderRadius:4,yAxisID:'y'},
+        {label:'Success %',data:success,type:'line',borderColor:COLORS.orange,backgroundColor:COLORS.orange+'22',fill:true,tension:0.3,pointRadius:3,borderWidth:2,yAxisID:'y2'},
+      ]
+    },
+    options:{
+      ...chartDefaults,
+      scales:{
+        x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,maxRotation:45,maxTicksLimit:20}},
+        y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#7A8BA8'},position:'left'},
+        y2:{ticks:{callback:v=>v+'%',color:COLORS.orange},grid:{display:false},position:'right'},
+      }
+    }
+  });
+}
+
+function updateCompHourChart(){
+  const company = document.getElementById('compHourSelect').value;
+  const data = compHourData[company] || [];
+  const labels = data.map(d=>d.h);
+  const totals = data.map(d=>d.total);
+  const connected = data.map(d=>d.connected);
+  const success = data.map(d=>d.connected>0?+(d.positive/d.connected*100).toFixed(1):0);
+
+  if(compHourChartInst) compHourChartInst.destroy();
+  const ctx = document.getElementById('compHourChart').getContext('2d');
+  compHourChartInst = new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {label:'Total Calls',data:totals,backgroundColor:COLORS.purple+'77',borderColor:COLORS.purple,borderWidth:1.5,borderRadius:4,yAxisID:'y'},
+        {label:'Connected',data:connected,backgroundColor:COLORS.cyan+'99',borderColor:COLORS.cyan,borderWidth:1.5,borderRadius:4,yAxisID:'y'},
+        {label:'Success %',data:success,type:'line',borderColor:COLORS.yellow,backgroundColor:COLORS.yellow+'22',fill:true,tension:0.3,pointRadius:4,pointBackgroundColor:COLORS.yellow,borderWidth:2,yAxisID:'y2'},
+      ]
+    },
+    options:{
+      ...chartDefaults,
+      scales:{
+        x:{...chartDefaults.scales.x},
+        y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#7A8BA8'},position:'left'},
+        y2:{ticks:{callback:v=>v+'%',color:COLORS.yellow},grid:{display:false},position:'right'},
+      }
+    }
+  });
+}
+
+// ===================== BUILD CHARTS =====================
+function buildCompany(){
+  const labels = companyData.map(d=>d.name);
+
+  // Company count badges
+  const badgesDiv = document.getElementById('compCountBadges');
+  companyData.forEach((d,i)=>{
+    const span = document.createElement('span');
+    span.className = 'count-badge';
+    span.innerHTML = `<span class="dot" style="background:${MULTI[i]}"></span>${d.name}: ${fmtNum(d.total)}`;
+    badgesDiv.appendChild(span);
+  });
+
+  // Total calls
+  new Chart(document.getElementById('compTotalChart'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[{label:'Total Calls',data:companyData.map(d=>d.total),
+        backgroundColor:MULTI.map(c=>c+'99'),borderColor:MULTI,borderWidth:2,borderRadius:6}]
+    },
+    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
+      scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{...chartDefaults.scales.y.ticks,callback:v=>fmtNum(v)}}}}
+  });
+
+  // Success rate
+  new Chart(document.getElementById('compSuccessChart'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[{label:'Success Rate %',data:companyData.map(d=>d.success),
+        backgroundColor:companyData.map(d=>d.success>40?COLORS.teal+'BB':d.success>20?COLORS.blue+'BB':COLORS.orange+'BB'),
+        borderColor:companyData.map(d=>d.success>40?COLORS.teal:d.success>20?COLORS.blue:COLORS.orange),
+        borderWidth:2,borderRadius:6}]
+    },
+    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
+      scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{...chartDefaults.scales.y.ticks,callback:v=>v+'%'}}}}
+  });
+
+  // Connection rate
+  new Chart(document.getElementById('compConnectChart'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[{label:'Connect Rate %',data:companyData.map(d=>d.connPct),
+        backgroundColor:COLORS.cyan+'99',borderColor:COLORS.cyan,borderWidth:2,borderRadius:6}]
+    },
+    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
+      scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{...chartDefaults.scales.y.ticks,callback:v=>v+'%'}}}}
+  });
+
+  // Total Hours
+  new Chart(document.getElementById('compDurationChart'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[{label:'Total Hours',data:companyData.map(d=>d.durationH),
+        backgroundColor:MULTI.map(c=>c+'88'),borderColor:MULTI,borderWidth:2,borderRadius:6}]
+    },
+    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
+      scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{...chartDefaults.scales.y.ticks,callback:v=>v.toLocaleString()+' hr'}}}}
+  });
+
+  // MHT
+  new Chart(document.getElementById('compMHTChart'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[{label:'Mean Handle Time (s)',data:companyData.map(d=>d.mht),
+        backgroundColor:COLORS.yellow+'99',borderColor:COLORS.yellow,borderWidth:2,borderRadius:6}]
+    },
+    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
+      scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{...chartDefaults.scales.y.ticks,callback:v=>v+'s'}}}}
+  });
+
+  // Positive vs Negative
+  new Chart(document.getElementById('compDispChart'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {label:'Positive',data:companyData.map(d=>d.positive),backgroundColor:COLORS.teal+'99',borderColor:COLORS.teal,borderWidth:2,borderRadius:4},
+        {label:'Negative',data:companyData.map(d=>d.negative),backgroundColor:COLORS.red+'99',borderColor:COLORS.red,borderWidth:2,borderRadius:4},
+      ]
+    },
+    options:{...chartDefaults,scales:{
+      x:{...chartDefaults.scales.x},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#7A8BA8'}},
+    }}
+  });
+
+  // Table
+  const tbody = document.getElementById('companyTableBody');
+  companyData.forEach((d,i)=>{
+    const s = d.success>40?'green':d.success>20?'blue':'red';
+    tbody.innerHTML += `<tr>
+      <td><span style="color:${MULTI[i]};font-weight:700;">${i+1}</span></td>
+      <td><b style="color:${MULTI[i]}">${d.name}</b></td>
+      <td>${fmtNum(d.total)}</td>
+      <td>${fmtNum(d.connected)}</td>
+      <td><span class="pill blue">${d.connPct}%</span></td>
+      <td><span class="pill green">${fmtNum(d.positive)}</span></td>
+      <td><span class="pill red">${fmtNum(d.negative)}</span></td>
+      <td><span class="pill ${s}">${d.success.toFixed(1)}%</span></td>
+      <td><span class="pill yellow">${d.durationH.toLocaleString()} h</span></td>
+      <td>${fmtTime(d.mht)}</td>
+      <td>${fmtNum(d.listen)}</td>
+    </tr>`;
+  });
+
+  // Init company date+hour charts
+  updateCompDateChart();
+  updateCompHourChart();
+}
+
+function buildRegion(){
+  const labels = regionData.map(d=>d.name);
+  const rColors = [COLORS.blue,COLORS.teal,COLORS.orange,COLORS.yellow];
+
+  new Chart(document.getElementById('regionPieChart'),{
+    type:'doughnut',
+    data:{labels,datasets:[{data:regionData.map(d=>d.total),backgroundColor:rColors.map(c=>c+'CC'),borderColor:rColors,borderWidth:2,hoverOffset:8}]},
+    options:{...chartDefaults,cutout:'60%',plugins:{...chartDefaults.plugins,legend:{position:'bottom',labels:{color:'#7A8BA8',padding:16}}}}
+  });
+  new Chart(document.getElementById('regionConnChart'),{
+    type:'doughnut',
+    data:{labels,datasets:[{data:regionData.map(d=>d.connected),backgroundColor:rColors.map(c=>c+'AA'),borderColor:rColors,borderWidth:2,hoverOffset:8}]},
+    options:{...chartDefaults,cutout:'60%',plugins:{...chartDefaults.plugins,legend:{position:'bottom',labels:{color:'#7A8BA8',padding:16}}}}
+  });
+  new Chart(document.getElementById('regionBarChart'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {label:'Total Calls',data:regionData.map(d=>d.total),backgroundColor:COLORS.blue+'88',borderColor:COLORS.blue,borderWidth:2,borderRadius:6,yAxisID:'y'},
+        {label:'Connected Calls',data:regionData.map(d=>d.connected),backgroundColor:COLORS.teal+'88',borderColor:COLORS.teal,borderWidth:2,borderRadius:6,yAxisID:'y'},
+        {label:'Success Rate %',data:regionData.map(d=>d.success),backgroundColor:COLORS.orange+'BB',borderColor:COLORS.orange,borderWidth:2,borderRadius:6,type:'line',yAxisID:'y2',tension:0.3,fill:false,pointRadius:6,pointBackgroundColor:COLORS.orange},
+      ]
+    },
+    options:{...chartDefaults,scales:{
+      x:{...chartDefaults.scales.x},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#7A8BA8'},position:'left'},
+      y2:{ticks:{callback:v=>v+'%',color:COLORS.orange},grid:{display:false},position:'right'},
+    }}
+  });
+
+  const maxTotal = Math.max(...regionData.map(d=>d.total));
+  const mDiv = document.getElementById('regionMeters');
+  regionData.forEach((d,i)=>{
+    const pct = d.connPct;
+    mDiv.innerHTML += `<div class="bar-row">
+      <div class="bar-label">${d.name}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(d.total/maxTotal*100).toFixed(0)}%;background:${MULTI[i]}"></div></div>
+      <div class="bar-val">${pct}% conn</div>
+    </div>`;
+  });
+}
+
+function buildUseCase(){
+  const labels = usecaseData.map(d=>d.name);
+  new Chart(document.getElementById('ucTotalChart'),{
+    type:'bar',
+    data:{labels,datasets:[{label:'Total Calls',data:usecaseData.map(d=>d.total),backgroundColor:MULTI.map(c=>c+'99'),borderColor:MULTI,borderWidth:2,borderRadius:6}]},
+    options:{...chartDefaults,indexAxis:'y',plugins:{...chartDefaults.plugins,legend:{display:false}},
+      scales:{x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,callback:v=>fmtNum(v)}},y:{...chartDefaults.scales.y}}}
+  });
+  new Chart(document.getElementById('ucSuccessChart'),{
+    type:'bar',
+    data:{labels,datasets:[{label:'Success Rate %',data:usecaseData.map(d=>d.success),
+      backgroundColor:usecaseData.map(d=>d.success>35?COLORS.teal+'BB':COLORS.blue+'BB'),
+      borderColor:usecaseData.map(d=>d.success>35?COLORS.teal:COLORS.blue),
+      borderWidth:2,borderRadius:6}]},
+    options:{...chartDefaults,indexAxis:'y',plugins:{...chartDefaults.plugins,legend:{display:false}},
+      scales:{x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,callback:v=>v+'%'}},y:{...chartDefaults.scales.y}}}
+  });
+  const tbody = document.getElementById('usecaseTableBody');
+  usecaseData.forEach(d=>{
+    const pct = (d.connected/d.total*100).toFixed(1);
+    const s = d.success>35?'green':d.success>20?'blue':'red';
+    tbody.innerHTML += `<tr>
+      <td><b>${d.name}</b></td><td>${fmtNum(d.total)}</td><td>${fmtNum(d.connected)}</td>
+      <td><span class="pill blue">${pct}%</span></td>
+      <td><span class="pill ${s}">${d.success.toFixed(1)}%</span></td>
+    </tr>`;
+  });
+}
+
+function buildLanguage(){
+  const labels = languageData.map(d=>d.name);
+  new Chart(document.getElementById('langPieChart'),{
+    type:'doughnut',
+    data:{labels,datasets:[{data:languageData.map(d=>d.total),backgroundColor:MULTI.map(c=>c+'CC'),borderColor:MULTI,borderWidth:2,hoverOffset:8}]},
+    options:{...chartDefaults,cutout:'55%',plugins:{...chartDefaults.plugins,legend:{position:'bottom',labels:{color:'#7A8BA8',padding:12}}}}
+  });
+  new Chart(document.getElementById('langSuccessChart'),{
+    type:'bar',
+    data:{labels,datasets:[{label:'Success Rate %',data:languageData.map(d=>d.success),
+      backgroundColor:MULTI.map(c=>c+'99'),borderColor:MULTI,borderWidth:2,borderRadius:6}]},
+    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
+      scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{...chartDefaults.scales.y.ticks,callback:v=>v+'%'}}}}
+  });
+  const tbody = document.getElementById('languageTableBody');
+  languageData.forEach((d,i)=>{
+    const pct = (d.connected/d.total*100).toFixed(1);
+    const s = d.success>30?'green':d.success>10?'blue':'red';
+    tbody.innerHTML += `<tr>
+      <td><b style="color:${MULTI[i]}">${d.name}</b></td>
+      <td>${fmtNum(d.total)}</td><td>${fmtNum(d.connected)}</td>
+      <td><span class="pill blue">${pct}%</span></td>
+      <td><span class="pill ${s}">${d.success.toFixed(1)}%</span></td>
+    </tr>`;
+  });
+}
+
+function buildDate(){
+  const labels = dateData.map(d=>d.d);
+  new Chart(document.getElementById('dateLineChart'),{
+    type:'line',
+    data:{
+      labels,
+      datasets:[
+        {label:'Total Calls',data:dateData.map(d=>d.total),borderColor:COLORS.blue,backgroundColor:COLORS.blue+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2},
+        {label:'Connected Calls',data:dateData.map(d=>d.connected),borderColor:COLORS.teal,backgroundColor:COLORS.teal+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2},
+      ]
+    },
+    options:{...chartDefaults,scales:{
+      x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,maxTicksLimit:25,maxRotation:60,font:{size:9}}},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#7A8BA8'}},
+    }}
+  });
+  new Chart(document.getElementById('dateSuccessChart'),{
+    type:'line',
+    data:{
+      labels,
+      datasets:[{label:'Success Rate %',data:dateData.map(d=>d.success),borderColor:COLORS.orange,backgroundColor:COLORS.orange+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2}]
+    },
+    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},scales:{
+      x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,maxTicksLimit:25,maxRotation:60,font:{size:9}}},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#7A8BA8'}},
+    }}
+  });
+}
+
+function buildHour(){
+  // Filter: only hours with total > 100 for main chart visibility
+  const labels = hourData.map(d=>d.h);
+
+  new Chart(document.getElementById('hourBarChart'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {label:'Total Calls',data:hourData.map(d=>d.total),backgroundColor:COLORS.blue+'88',borderColor:COLORS.blue,borderWidth:2,borderRadius:6},
+        {label:'Connected Calls',data:hourData.map(d=>d.connected),backgroundColor:COLORS.teal+'BB',borderColor:COLORS.teal,borderWidth:2,borderRadius:6},
+      ]
+    },
+    options:{...chartDefaults,scales:{
+      x:{...chartDefaults.scales.x},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#7A8BA8'}},
+    }}
+  });
+
+  new Chart(document.getElementById('hourSuccessChart'),{
+    type:'line',
+    data:{
+      labels,
+      datasets:[{label:'Success Rate %',data:hourData.map(d=>d.success),
+        borderColor:COLORS.yellow,backgroundColor:COLORS.yellow+'22',fill:true,tension:0.4,
+        pointRadius:4,pointBackgroundColor:COLORS.yellow,borderWidth:2}]
+    },
+    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},scales:{
+      x:{...chartDefaults.scales.x},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#7A8BA8'}},
+    }}
+  });
+
+  // Best hours — filter significant volume
+  const significant = hourData.filter(d=>d.total>10000);
+  const sorted = [...significant].sort((a,b)=>b.success-a.success).slice(0,8);
+  const maxS = sorted[0]?.success || 1;
+  const div = document.getElementById('bestHoursMeters');
+  sorted.forEach((d,i)=>{
+    div.innerHTML += `<div class="bar-row">
+      <div class="bar-label" style="width:90px">${d.h}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(d.success/maxS*100).toFixed(0)}%;background:${MULTI[i]}"></div></div>
+      <div class="bar-val">${d.success.toFixed(1)}%</div>
+    </div>`;
+  });
+}
+
+// ===================== TABS =====================
+function switchTab(name, btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+
+// ===================== INIT — load live data, then auto-refresh every hour =====================
+window.onload = function(){
+  loadDashboard();
+  setInterval(loadDashboard, 60 * 60 * 1000);  // re-fetch every 60 minutes
+};
+</script>
+</body>
+</html>
