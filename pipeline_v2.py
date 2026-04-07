@@ -490,11 +490,11 @@ def process_db(db_name: str, db, last_time: datetime, is_first_run: bool) -> dic
     for idx, chunk in enumerate(chunks, 1):
         # Build match filter for this chunk
         if chunk is not None:
-            match_filter = (
-                {"execution_id": {"$in": chunk}}
-                if is_first_run
-                else {"execution_id": {"$in": chunk}, "created_at": {"$gt": last_time}}
-            )
+            # Filter sessions by execution_id only — execution_ids were already
+            # filtered by created_at in get_execution_ids(), so sessions for new
+            # executions must not be further filtered by session.created_at (calls
+            # happened earlier but were uploaded/processed later).
+            match_filter = {"execution_id": {"$in": chunk}}
         else:
             match_filter = {} if is_first_run else None
 
