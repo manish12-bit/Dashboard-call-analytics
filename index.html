@@ -76,18 +76,43 @@ body {
 }
 .nav-icon { font-size: 15px; width: 22px; text-align: center; flex-shrink: 0; }
 .sidebar-divider { border: none; border-top: 1px solid rgba(158,158,158,0.3); margin: 8px 12px; }
-.company-nav-item {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 12px; color: #7B8188;
-  border-radius: 8px; cursor: pointer;
-  font-size: 12px; font-weight: 400;
-  transition: all 0.15s; margin-bottom: 1px;
-  border: none; background: transparent; width: 100%; text-align: left;
-  font-family: 'Inter', sans-serif;
+.sidebar-footer {
+  margin-top: auto; padding: 12px 8px;
+  border-top: 1px solid rgba(158,158,158,0.2);
 }
-.company-nav-item:hover { background: rgba(255,255,255,0.06); color: #E5E5E5; }
-.company-nav-item.active { background: #506078; color: #E5E5E5; font-weight: 500; }
-.company-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.sidebar-toggle {
+  width: 100%; padding: 9px; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+  color: #7B8188; cursor: pointer; font-size: 13px;
+  font-family: 'Inter', sans-serif; transition: all 0.15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.sidebar-toggle:hover { background: rgba(255,255,255,0.1); color: #E5E5E5; }
+
+/* ── Collapsed sidebar ── */
+.sidebar { transition: width 0.22s ease; }
+.page-wrap { transition: margin-left 0.22s ease; }
+.sidebar.collapsed { width: 60px; }
+.page-wrap.collapsed { margin-left: 60px; }
+.sidebar.collapsed .sidebar-brand,
+.sidebar.collapsed .sidebar-brand-sub,
+.sidebar.collapsed .sidebar-section-label,
+.sidebar.collapsed .nav-label { display: none; }
+.sidebar.collapsed .sidebar-logo { justify-content: center; padding: 14px 8px; }
+.sidebar.collapsed .logo-img { height: 28px; }
+.sidebar.collapsed .sidebar-section { padding: 8px 6px 4px; }
+.sidebar.collapsed .nav-item {
+  justify-content: center; padding: 10px 6px;
+  position: relative;
+}
+.sidebar.collapsed .nav-item:hover::after {
+  content: attr(data-label);
+  position: absolute; left: 64px; top: 50%; transform: translateY(-50%);
+  background: #001940; color: #E5E5E5; font-size: 12px; font-weight: 500;
+  padding: 5px 10px; border-radius: 6px; white-space: nowrap;
+  border: 1px solid #9E9E9E; z-index: 300;
+  pointer-events: none;
+}
 
 /* ── Top bar ── */
 .topbar {
@@ -136,7 +161,13 @@ body {
 @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .charts-grid.single { grid-template-columns: 1fr; }
-.chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; position: relative; }
+.chart-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px; position: relative;
+  box-shadow: 0 1px 4px rgba(0,25,64,0.06);
+  transition: box-shadow 0.2s;
+}
+.chart-card:hover { box-shadow: 0 4px 20px rgba(0,25,64,0.1); }
 .chart-card.full { grid-column: 1 / -1; }
 .chart-title { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy2); margin-bottom: 4px; letter-spacing: 0; }
 .chart-sub { font-size: 11px; color: var(--text-dim); margin-bottom: 20px; }
@@ -202,22 +233,19 @@ body {
   <!-- Views -->
   <div class="sidebar-section">
     <div class="sidebar-section-label">Views</div>
-    <button class="nav-item active" onclick="switchTab('company',this)"><span class="nav-icon">🏢</span> Company Wise</button>
-    <button class="nav-item" onclick="switchTab('region',this)"><span class="nav-icon">🗺️</span> Region Wise</button>
-    <button class="nav-item" onclick="switchTab('usecase',this)"><span class="nav-icon">⚙️</span> Use Case Wise</button>
-    <button class="nav-item" onclick="switchTab('language',this)"><span class="nav-icon">🗣️</span> Language Wise</button>
-    <button class="nav-item" onclick="switchTab('date',this)"><span class="nav-icon">📅</span> Date Wise</button>
-    <button class="nav-item" onclick="switchTab('hour',this)"><span class="nav-icon">🕐</span> Hour Wise</button>
+    <button class="nav-item active" data-label="Company Wise" onclick="switchTab('company',this)"><span class="nav-icon">🏢</span><span class="nav-label"> Company Wise</span></button>
+    <button class="nav-item" data-label="Region Wise" onclick="switchTab('region',this)"><span class="nav-icon">🗺️</span><span class="nav-label"> Region Wise</span></button>
+    <button class="nav-item" data-label="Use Case Wise" onclick="switchTab('usecase',this)"><span class="nav-icon">⚙️</span><span class="nav-label"> Use Case Wise</span></button>
+    <button class="nav-item" data-label="Language Wise" onclick="switchTab('language',this)"><span class="nav-icon">🗣️</span><span class="nav-label"> Language Wise</span></button>
+    <button class="nav-item" data-label="Date Wise" onclick="switchTab('date',this)"><span class="nav-icon">📅</span><span class="nav-label"> Date Wise</span></button>
+    <button class="nav-item" data-label="Hour Wise" onclick="switchTab('hour',this)"><span class="nav-icon">🕐</span><span class="nav-label"> Hour Wise</span></button>
   </div>
 
-  <hr class="sidebar-divider"/>
-
-  <!-- Companies -->
-  <div class="sidebar-section">
-    <div class="sidebar-section-label">Companies</div>
-    <div id="sidebarCompanyList">
-      <div style="font-size:11px;color:#4A5B75;padding:6px 12px;">Loading...</div>
-    </div>
+  <!-- Collapse toggle at bottom -->
+  <div class="sidebar-footer">
+    <button class="sidebar-toggle" onclick="toggleSidebar()" id="sidebarToggle" title="Collapse sidebar">
+      <span id="toggleIcon">◀</span>
+    </button>
   </div>
 </nav>
 
@@ -540,7 +568,6 @@ async function loadDashboard() {
     const companies = Object.keys(compDateData);
     populateSelect('compDateSelect', companies);
     populateSelect('compHourSelect', companies);
-    buildSidebarCompanies(companyData.map(d=>d.name));
 
     // Destroy existing Chart.js instances before rebuilding
     Object.values(Chart.instances).forEach(c => c.destroy());
@@ -587,24 +614,28 @@ function populateSelect(id, options) {
 
 // ===================== COLOR PALETTES =====================
 const COLORS = {
-  blue:'#4F8EF7', teal:'#00C9A7', orange:'#FF6B35', yellow:'#F7C948',
-  red:'#FF4D6D', purple:'#A855F7', cyan:'#22D3EE', lime:'#84CC16',
-  pink:'#F472B6', indigo:'#818CF8',
+  blue:'#2563EB', teal:'#059669', orange:'#EA580C', yellow:'#D97706',
+  red:'#DC2626', purple:'#7C3AED', cyan:'#0891B2', lime:'#65A30D',
+  pink:'#DB2777', indigo:'#4F46E5',
 };
-const MULTI = [COLORS.blue,COLORS.teal,COLORS.orange,COLORS.yellow,COLORS.purple,COLORS.red,COLORS.cyan,COLORS.lime,COLORS.pink,COLORS.indigo];
+const MULTI = [
+  '#2563EB','#059669','#EA580C','#7C3AED','#0891B2',
+  '#DC2626','#D97706','#65A30D','#DB2777','#4F46E5'
+];
 
 const chartDefaults = {
   plugins:{
-    legend:{labels:{color:'#5A6A85',font:{family:'Inter',size:11}}},
+    legend:{labels:{color:'#334155',font:{family:'Inter',size:11},boxWidth:12,padding:16}},
     tooltip:{
-      backgroundColor:'#FFFFFF', borderColor:'#E3E8F0', borderWidth:1,
-      titleColor:'#0D1B35', bodyColor:'#5A6A85',
+      backgroundColor:'#001940', borderColor:'rgba(255,255,255,0.1)', borderWidth:1,
+      titleColor:'#FFFFFF', bodyColor:'#94A3B8',
       titleFont:{family:'Inter',size:13,weight:'600'}, padding:12,
+      cornerRadius:8,
     }
   },
   scales:{
-    x:{grid:{color:'rgba(227,232,240,0.7)'},ticks:{color:'#5A6A85',font:{family:'Inter',size:11}}},
-    y:{grid:{color:'rgba(227,232,240,0.7)'},ticks:{color:'#5A6A85',font:{family:'Inter',size:11}}}
+    x:{grid:{color:'rgba(0,25,64,0.05)'},ticks:{color:'#64748B',font:{family:'Inter',size:11}}},
+    y:{grid:{color:'rgba(0,25,64,0.06)'},ticks:{color:'#64748B',font:{family:'Inter',size:11}}}
   },
   animation:{duration:800,easing:'easeInOutQuart'},
 };
@@ -988,32 +1019,14 @@ function switchTab(name, btn){
   document.getElementById('topbarTitle').textContent = (titles[name] || name) + ' — Analytics';
 }
 
-// ===================== SIDEBAR COMPANY LIST =====================
-function buildSidebarCompanies(companies){
-  const container = document.getElementById('sidebarCompanyList');
-  if(!container) return;
-  const colors = ['#4F8EF7','#00C9A7','#FF6B35','#F7C948','#A855F7','#FF4D6D','#22D3EE','#84CC16','#F472B6','#818CF8'];
-  container.innerHTML = companies.map((c,i)=>`
-    <button class="company-nav-item" onclick="filterCompany('${c}',this)" title="${c}">
-      <span class="company-dot" style="background:${colors[i%colors.length]}"></span>
-      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${c}</span>
-    </button>`).join('');
-}
-
-let activeCompanyFilter = null;
-function filterCompany(name, btn){
-  document.querySelectorAll('.company-nav-item').forEach(b=>b.classList.remove('active'));
-  if(activeCompanyFilter === name){
-    // Toggle off — show all
-    activeCompanyFilter = null;
-    document.getElementById('compBadge').textContent = companyData.length + ' Companies';
-  } else {
-    btn.classList.add('active');
-    activeCompanyFilter = name;
-    document.getElementById('compBadge').textContent = name;
-  }
-  // Switch to company tab to show filtered view
-  switchTab('company', document.querySelector('.nav-item'));
+// ===================== SIDEBAR COLLAPSE =====================
+function toggleSidebar(){
+  const sidebar = document.querySelector('.sidebar');
+  const wrap = document.querySelector('.page-wrap');
+  const icon = document.getElementById('toggleIcon');
+  sidebar.classList.toggle('collapsed');
+  wrap.classList.toggle('collapsed');
+  icon.textContent = sidebar.classList.contains('collapsed') ? '▶' : '◀';
 }
 
 // ===================== INIT — load live data, then auto-refresh every hour =====================
