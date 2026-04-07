@@ -648,13 +648,13 @@ const _tooltipCfg = {
   titleFont:{family:'Inter',size:12,weight:'600'}, padding:12,
   cornerRadius:8, displayColors:true, boxWidth:8, boxHeight:8,
 };
-const _legendCfg = {labels:{color:'#1E293B',font:{family:'Inter',size:12},boxWidth:10,padding:16,usePointStyle:true}};
+const _legendCfg = {labels:{color:'#111827',font:{family:'Inter',size:13,weight:'600'},boxWidth:10,padding:16,usePointStyle:true}};
 
 const chartDefaults = {
   plugins:{ legend:_legendCfg, tooltip:_tooltipCfg },
   scales:{
-    x:{grid:{color:'rgba(0,0,0,0.06)',drawBorder:false},ticks:{color:'#374151',font:{family:'Inter',size:11,weight:'500'}},border:{display:false}},
-    y:{grid:{color:'rgba(0,0,0,0.06)',drawBorder:false},ticks:{color:'#374151',font:{family:'Inter',size:11,weight:'500'}},border:{display:false}}
+    x:{grid:{color:'rgba(0,0,0,0.08)',drawBorder:false},ticks:{color:'#111827',font:{family:'Inter',size:12,weight:'600'}},border:{display:false}},
+    y:{grid:{color:'rgba(0,0,0,0.08)',drawBorder:false},ticks:{color:'#111827',font:{family:'Inter',size:12,weight:'600'}},border:{display:false}}
   },
   animation:{duration:700,easing:'easeInOutQuart'},
 };
@@ -668,7 +668,12 @@ const pieDefaults = {
   animation:{duration:700,easing:'easeInOutQuart'},
 };
 
-Chart.defaults.color='#374151';
+Chart.defaults.color='#111827';
+
+// Re-render all charts on browser zoom/resize so canvas text stays sharp
+window.addEventListener('resize', () => {
+  Object.values(Chart.instances).forEach(c => { try{ c.resize(); }catch(e){} });
+});
 
 function fmtNum(n){
   if(n>=10000000) return (n/10000000).toFixed(1)+' Cr';
