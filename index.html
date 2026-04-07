@@ -20,8 +20,8 @@
   --accent3: #6366F1;
   --accent4: #F59E0B;
   --text: #1E293B;
-  --text-dim: #64748B;
-  --text-muted: #94A3B8;
+  --text-dim: #374151;
+  --text-muted: #64748B;
   --positive: #10B981;
   --negative: #F43F5E;
   --neutral: #6366F1;
@@ -179,12 +179,12 @@ body {
 .chart-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-1px); }
 .chart-card.full { grid-column: 1 / -1; }
 .chart-title { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy2); margin-bottom: 4px; letter-spacing: 0; }
-.chart-sub { font-size: 11px; color: var(--text-dim); margin-bottom: 20px; }
+.chart-sub { font-size: 12px; color: #64748B; margin-bottom: 20px; }
 .chart-wrap { position: relative; height: 280px; }
 .chart-wrap.tall { height: 340px; }
 .chart-wrap.xlarge { height: 420px; }
 .data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
-.data-table th { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.7px; color: #475569; background: #F8FAFC; padding: 10px 14px; text-align: left; border-bottom: 1px solid #E8EDF5; }
+.data-table th { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: #1E293B; background: #F8FAFC; padding: 10px 14px; text-align: left; border-bottom: 1px solid #E8EDF5; }
 .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); font-size: 13px; }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table tr:hover td { background: rgba(59,130,246,0.04); }
@@ -630,13 +630,13 @@ const _tooltipCfg = {
   titleFont:{family:'Inter',size:12,weight:'600'}, padding:12,
   cornerRadius:8, displayColors:true, boxWidth:8, boxHeight:8,
 };
-const _legendCfg = {labels:{color:'#475569',font:{family:'Inter',size:11},boxWidth:10,padding:16,usePointStyle:true}};
+const _legendCfg = {labels:{color:'#1E293B',font:{family:'Inter',size:12},boxWidth:10,padding:16,usePointStyle:true}};
 
 const chartDefaults = {
   plugins:{ legend:_legendCfg, tooltip:_tooltipCfg },
   scales:{
-    x:{grid:{color:'rgba(0,0,0,0.04)',drawBorder:false},ticks:{color:'#64748B',font:{family:'Inter',size:11}},border:{display:false}},
-    y:{grid:{color:'rgba(0,0,0,0.05)',drawBorder:false},ticks:{color:'#64748B',font:{family:'Inter',size:11}},border:{display:false}}
+    x:{grid:{color:'rgba(0,0,0,0.06)',drawBorder:false},ticks:{color:'#374151',font:{family:'Inter',size:11,weight:'500'}},border:{display:false}},
+    y:{grid:{color:'rgba(0,0,0,0.06)',drawBorder:false},ticks:{color:'#374151',font:{family:'Inter',size:11,weight:'500'}},border:{display:false}}
   },
   animation:{duration:700,easing:'easeInOutQuart'},
 };
@@ -650,7 +650,7 @@ const pieDefaults = {
   animation:{duration:700,easing:'easeInOutQuart'},
 };
 
-Chart.defaults.color='#64748B';
+Chart.defaults.color='#374151';
 
 function fmtNum(n){
   if(n>=10000000) return (n/10000000).toFixed(1)+' Cr';
@@ -691,7 +691,7 @@ function updateCompDateChart(){
       ...chartDefaults,
       scales:{
         x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,maxRotation:45,maxTicksLimit:20}},
-        y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#7A8BA8'},position:'left'},
+        y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'},position:'left'},
         y2:{ticks:{callback:v=>v+'%',color:COLORS.orange},grid:{display:false},position:'right'},
       }
     }
@@ -722,7 +722,7 @@ function updateCompHourChart(){
       ...chartDefaults,
       scales:{
         x:{...chartDefaults.scales.x},
-        y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#7A8BA8'},position:'left'},
+        y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'},position:'left'},
         y2:{ticks:{callback:v=>v+'%',color:COLORS.yellow},grid:{display:false},position:'right'},
       }
     }
@@ -818,7 +818,7 @@ function buildCompany(){
     },
     options:{...chartDefaults,scales:{
       x:{...chartDefaults.scales.x},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#7A8BA8'}},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'}},
     }}
   });
 
@@ -853,12 +853,12 @@ function buildRegion(){
   new Chart(document.getElementById('regionPieChart'),{
     type:'doughnut',
     data:{labels,datasets:[{data:regionData.map(d=>d.total),backgroundColor:rColors,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
-    options:{...pieDefaults,cutout:'58%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#475569',font:{family:'Inter',size:12},padding:20,usePointStyle:true}}}}
+    options:{...pieDefaults,cutout:'58%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#1E293B',font:{family:'Inter',size:12},padding:20,usePointStyle:true}}}}
   });
   new Chart(document.getElementById('regionConnChart'),{
     type:'doughnut',
     data:{labels,datasets:[{data:regionData.map(d=>d.connected),backgroundColor:rColors,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
-    options:{...pieDefaults,cutout:'58%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#475569',font:{family:'Inter',size:12},padding:20,usePointStyle:true}}}}
+    options:{...pieDefaults,cutout:'58%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#1E293B',font:{family:'Inter',size:12},padding:20,usePointStyle:true}}}}
   });
   new Chart(document.getElementById('regionBarChart'),{
     type:'bar',
@@ -872,7 +872,7 @@ function buildRegion(){
     },
     options:{...chartDefaults,scales:{
       x:{...chartDefaults.scales.x},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#7A8BA8'},position:'left'},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'},position:'left'},
       y2:{ticks:{callback:v=>v+'%',color:COLORS.orange},grid:{display:false},position:'right'},
     }}
   });
@@ -923,7 +923,7 @@ function buildLanguage(){
   new Chart(document.getElementById('langPieChart'),{
     type:'doughnut',
     data:{labels,datasets:[{data:languageData.map(d=>d.total),backgroundColor:MULTI,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
-    options:{...pieDefaults,cutout:'55%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#475569',font:{family:'Inter',size:11},padding:14,usePointStyle:true}}}}
+    options:{...pieDefaults,cutout:'55%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#1E293B',font:{family:'Inter',size:11},padding:14,usePointStyle:true}}}}
   });
   new Chart(document.getElementById('langSuccessChart'),{
     type:'bar',
@@ -958,7 +958,7 @@ function buildDate(){
     },
     options:{...chartDefaults,scales:{
       x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,maxTicksLimit:25,maxRotation:60,font:{size:9}}},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#7A8BA8'}},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'}},
     }}
   });
   new Chart(document.getElementById('dateSuccessChart'),{
@@ -969,7 +969,7 @@ function buildDate(){
     },
     options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},scales:{
       x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,maxTicksLimit:25,maxRotation:60,font:{size:9}}},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#7A8BA8'}},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#374151'}},
     }}
   });
 }
@@ -989,7 +989,7 @@ function buildHour(){
     },
     options:{...chartDefaults,scales:{
       x:{...chartDefaults.scales.x},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#7A8BA8'}},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'}},
     }}
   });
 
@@ -1003,7 +1003,7 @@ function buildHour(){
     },
     options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},scales:{
       x:{...chartDefaults.scales.x},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#7A8BA8'}},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#374151'}},
     }}
   });
 
