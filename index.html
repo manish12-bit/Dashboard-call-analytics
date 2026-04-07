@@ -156,13 +156,6 @@ body {
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 .kpi-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
-.kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
-.kpi-card.c1::before { background: linear-gradient(90deg, #6366F1, #A5B4FC); }
-.kpi-card.c2::before { background: linear-gradient(90deg, #10B981, #34D399); }
-.kpi-card.c3::before { background: linear-gradient(90deg, #F97316, #FDBA74); }
-.kpi-card.c4::before { background: linear-gradient(90deg, #F59E0B, #FCD34D); }
-.kpi-card.c5::before { background: linear-gradient(90deg, #F43F5E, #FDA4AF); }
-.kpi-card.c6::before { background: linear-gradient(90deg, #8B5CF6, #C4B5FD); }
 .kpi-icon { font-size: 20px; margin-bottom: 10px; display: block; }
 .kpi-label { font-size: 11px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
 .kpi-value { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 4px; }
@@ -217,14 +210,13 @@ body {
   font-size: 13px; cursor: pointer; outline: none;
 }
 .comp-select:focus { border-color: var(--accent3); }
-/* Counts badge */
+/* Counts badge — color set per-company via JS */
 .count-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(79,142,247,0.12); border: 1px solid rgba(79,142,247,0.25);
-  border-radius: 8px; padding: 6px 14px; font-size: 13px; font-weight: 600; color: var(--accent3);
-  margin: 4px;
+  border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 600;
+  margin: 3px; border-width: 1px; border-style: solid;
 }
-.count-badge .dot { width: 10px; height: 10px; border-radius: 50%; }
+.count-badge .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 @media (max-width: 900px) {
   .sidebar { width: 0; overflow: hidden; }
   .page-wrap { margin-left: 0; }
@@ -380,7 +372,7 @@ body {
     <div class="chart-card">
       <div class="chart-title">Total Calls by Region</div>
       <div class="chart-sub">North, South, East, West distribution</div>
-      <div class="chart-wrap"><canvas id="regionPieChart"></canvas></div>
+      <div class="chart-wrap" style="height:340px"><canvas id="regionPieChart"></canvas></div>
     </div>
     <div class="chart-card">
       <div class="chart-title">Connected Calls by Region</div>
@@ -432,7 +424,7 @@ body {
     <div class="chart-card">
       <div class="chart-title">Total Calls by Language</div>
       <div class="chart-sub">Call volume distribution across 7 languages</div>
-      <div class="chart-wrap"><canvas id="langPieChart"></canvas></div>
+      <div class="chart-wrap" style="height:340px"><canvas id="langPieChart"></canvas></div>
     </div>
     <div class="chart-card">
       <div class="chart-title">Success Rate by Language (%)</div>
@@ -455,36 +447,36 @@ body {
 <!-- ===== PANEL: DATE ===== -->
 <div id="panel-date" class="panel">
   <div class="charts-grid single">
-    <div class="chart-card">
+    <div class="chart-card full">
       <div class="chart-title">Daily Call Volume — Total vs Connected</div>
       <div class="chart-sub">All campaign days from CSV (Jul 2025 – Apr 2026) — full date labels</div>
-      <div class="chart-wrap xlarge"><canvas id="dateLineChart"></canvas></div>
+      <div class="chart-wrap" style="height:400px"><canvas id="dateLineChart"></canvas></div>
     </div>
-    <div class="chart-card">
+    <div class="chart-card full">
       <div class="chart-title">Daily Success Rate Trend (%)</div>
       <div class="chart-sub">Day-wise success rate for all campaign dates</div>
-      <div class="chart-wrap tall"><canvas id="dateSuccessChart"></canvas></div>
+      <div class="chart-wrap" style="height:360px"><canvas id="dateSuccessChart"></canvas></div>
     </div>
   </div>
 </div>
 
 <!-- ===== PANEL: HOUR ===== -->
 <div id="panel-hour" class="panel">
-  <div class="charts-grid">
+  <div class="charts-grid single">
     <div class="chart-card full">
       <div class="chart-title">Call Volume by Hour (AM/PM)</div>
       <div class="chart-sub">Total dials and connected calls across all hours — AM/PM format from actual data</div>
-      <div class="chart-wrap tall"><canvas id="hourBarChart"></canvas></div>
+      <div class="chart-wrap" style="height:380px"><canvas id="hourBarChart"></canvas></div>
     </div>
-    <div class="chart-card">
+    <div class="chart-card full">
       <div class="chart-title">Success Rate by Hour (%)</div>
       <div class="chart-sub">Campaign success rate distribution by hour of day</div>
-      <div class="chart-wrap"><canvas id="hourSuccessChart"></canvas></div>
+      <div class="chart-wrap" style="height:360px"><canvas id="hourSuccessChart"></canvas></div>
     </div>
-    <div class="chart-card">
+    <div class="chart-card full">
       <div class="chart-title">Best Calling Hours</div>
       <div class="chart-sub">Top performing hours by success rate (filtered: significant volume)</div>
-      <div style="margin-top:12px;" id="bestHoursMeters"></div>
+      <div style="margin-top:16px;max-width:700px;margin-left:auto;margin-right:auto;" id="bestHoursMeters"></div>
     </div>
   </div>
 </div>
@@ -738,12 +730,14 @@ function updateCompHourChart(){
 function buildCompany(){
   const labels = companyData.map(d=>d.name);
 
-  // Company count badges
+  // Company count badges — each company gets its own color
   const badgesDiv = document.getElementById('compCountBadges');
   companyData.forEach((d,i)=>{
+    const c = MULTI[i % MULTI.length];
     const span = document.createElement('span');
     span.className = 'count-badge';
-    span.innerHTML = `<span class="dot" style="background:${MULTI[i]}"></span>${d.name}: ${fmtNum(d.total)}`;
+    span.style.cssText = `background:${c}18;border-color:${c}55;color:${c};`;
+    span.innerHTML = `<span class="dot" style="background:${c}"></span>${d.name}: ${fmtNum(d.total)}`;
     badgesDiv.appendChild(span);
   });
 
