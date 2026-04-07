@@ -425,15 +425,28 @@ body {
 
 <!-- ===== PANEL: DATE ===== -->
 <div id="panel-date" class="panel">
+  <!-- Date range filter -->
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+    <span style="font-size:12px;font-weight:700;color:#1E293B;text-transform:uppercase;letter-spacing:0.6px;">Filter by Date:</span>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <label style="font-size:12px;color:#374151;font-weight:600;">From</label>
+      <input type="date" id="dateFrom" class="comp-select" style="padding:5px 10px;font-size:12px;" onchange="applyDateFilter()">
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <label style="font-size:12px;color:#374151;font-weight:600;">To</label>
+      <input type="date" id="dateTo" class="comp-select" style="padding:5px 10px;font-size:12px;" onchange="applyDateFilter()">
+    </div>
+    <button onclick="clearDateFilter()" style="padding:5px 14px;font-size:12px;font-weight:600;color:#6366F1;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;">Reset</button>
+  </div>
   <div class="charts-grid single">
     <div class="chart-card full">
       <div class="chart-title">Daily Call Volume — Total vs Connected</div>
-      <div class="chart-sub">All campaign days from CSV (Jul 2025 – Apr 2026) — full date labels</div>
+      <div class="chart-sub" id="dateVolSub">All campaign days from CSV (Jul 2025 – Apr 2026)</div>
       <div class="chart-wrap" style="height:400px"><canvas id="dateLineChart"></canvas></div>
     </div>
     <div class="chart-card full">
       <div class="chart-title">Daily Success Rate Trend (%)</div>
-      <div class="chart-sub">Day-wise success rate for all campaign dates</div>
+      <div class="chart-sub" id="dateSuccSub">Day-wise success rate for all campaign dates</div>
       <div class="chart-wrap" style="height:360px"><canvas id="dateSuccessChart"></canvas></div>
     </div>
     <div class="chart-card full">
@@ -450,30 +463,34 @@ body {
 
 <!-- ===== PANEL: HOUR ===== -->
 <div id="panel-hour" class="panel">
-  <div class="charts-grid single">
-    <div class="chart-card full">
+  <!-- Row 1: side by side -->
+  <div class="charts-grid" style="margin-bottom:20px;">
+    <div class="chart-card">
       <div class="chart-title">Call Volume by Hour (AM/PM)</div>
-      <div class="chart-sub">Total dials and connected calls across all hours — AM/PM format from actual data</div>
-      <div class="chart-wrap" style="height:380px"><canvas id="hourBarChart"></canvas></div>
+      <div class="chart-sub">Total dials and connected calls across all hours</div>
+      <div class="chart-wrap" style="height:340px"><canvas id="hourBarChart"></canvas></div>
     </div>
+    <div class="chart-card">
+      <div class="chart-title">Hour-Wise Call Distribution — Per Company</div>
+      <div class="chart-sub">Select a company to see calls and success rate across hours of day</div>
+      <div class="comp-selector">
+        <label>SELECT COMPANY:</label>
+        <select class="comp-select" id="compHourSelect" onchange="updateCompHourChart()"></select>
+      </div>
+      <div class="chart-wrap" style="height:280px"><canvas id="compHourChart"></canvas></div>
+    </div>
+  </div>
+  <!-- Row 2: full width -->
+  <div class="charts-grid single">
     <div class="chart-card full">
       <div class="chart-title">Success Rate by Hour (%)</div>
       <div class="chart-sub">Campaign success rate distribution by hour of day</div>
-      <div class="chart-wrap" style="height:360px"><canvas id="hourSuccessChart"></canvas></div>
+      <div class="chart-wrap" style="height:320px"><canvas id="hourSuccessChart"></canvas></div>
     </div>
     <div class="chart-card full">
       <div class="chart-title">Best Calling Hours</div>
       <div class="chart-sub">Top performing hours by success rate (filtered: significant volume)</div>
       <div style="margin-top:16px;" id="bestHoursMeters"></div>
-    </div>
-    <div class="chart-card full">
-      <div class="chart-title">Hour-Wise Call Distribution — Per Company</div>
-      <div class="chart-sub">Select a company to see calls and success rate across hours of day (AM/PM)</div>
-      <div class="comp-selector">
-        <label>SELECT COMPANY:</label>
-        <select class="comp-select" id="compHourSelect" onchange="updateCompHourChart()"></select>
-      </div>
-      <div class="chart-wrap tall"><canvas id="compHourChart"></canvas></div>
     </div>
   </div>
 </div>
@@ -942,33 +959,61 @@ function buildLanguage(){
   });
 }
 
-function buildDate(){
-  const labels = dateData.map(d=>d.d);
-  new Chart(document.getElementById('dateLineChart'),{
+let dateLineInst = null, dateSuccInst = null;
+
+function buildDate(filtered){
+  const src = filtered || dateData;
+  const labels = src.map(d=>d.d);
+  const xOpts = {ticks:{...chartDefaults.scales.x.ticks,maxTicksLimit:25,maxRotation:60,font:{size:9}},grid:chartDefaults.scales.x.grid,border:{display:false}};
+
+  if(dateLineInst) dateLineInst.destroy();
+  dateLineInst = new Chart(document.getElementById('dateLineChart'),{
     type:'line',
-    data:{
-      labels,
-      datasets:[
-        {label:'Total Calls',data:dateData.map(d=>d.total),borderColor:COLORS.blue,backgroundColor:COLORS.blue+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2},
-        {label:'Connected Calls',data:dateData.map(d=>d.connected),borderColor:COLORS.teal,backgroundColor:COLORS.teal+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2},
-      ]
-    },
-    options:{...chartDefaults,scales:{
-      x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,maxTicksLimit:25,maxRotation:60,font:{size:9}}},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'}},
-    }}
+    data:{labels,datasets:[
+      {label:'Total Calls',data:src.map(d=>d.total),borderColor:COLORS.blue,backgroundColor:COLORS.blue+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2},
+      {label:'Connected Calls',data:src.map(d=>d.connected),borderColor:COLORS.teal,backgroundColor:COLORS.teal+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2},
+    ]},
+    options:{...chartDefaults,scales:{x:xOpts,y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'}}}}
   });
-  new Chart(document.getElementById('dateSuccessChart'),{
+
+  if(dateSuccInst) dateSuccInst.destroy();
+  dateSuccInst = new Chart(document.getElementById('dateSuccessChart'),{
     type:'line',
-    data:{
-      labels,
-      datasets:[{label:'Success Rate %',data:dateData.map(d=>d.success),borderColor:COLORS.orange,backgroundColor:COLORS.orange+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2}]
-    },
-    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},scales:{
-      x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,maxTicksLimit:25,maxRotation:60,font:{size:9}}},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#374151'}},
-    }}
+    data:{labels,datasets:[
+      {label:'Success Rate %',data:src.map(d=>d.success),borderColor:COLORS.orange,backgroundColor:COLORS.orange+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2}
+    ]},
+    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},scales:{x:xOpts,y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#374151'}}}}
   });
+}
+
+function applyDateFilter(){
+  const from = document.getElementById('dateFrom').value;
+  const to   = document.getElementById('dateTo').value;
+  if(!from && !to){ buildDate(); return; }
+
+  const filtered = dateData.filter(d=>{
+    // d.d is "DD-MM-YYYY" — convert to comparable YYYY-MM-DD
+    const parts = d.d.split('-');
+    const iso = parts[2]+'-'+parts[1]+'-'+parts[0];
+    return (!from || iso >= from) && (!to || iso <= to);
+  });
+
+  const sub = from||to ? `Filtered: ${from||'start'} → ${to||'end'} (${filtered.length} days)` : 'All campaign days';
+  const s1 = document.getElementById('dateVolSub');
+  const s2 = document.getElementById('dateSuccSub');
+  if(s1) s1.textContent = sub;
+  if(s2) s2.textContent = sub;
+  buildDate(filtered);
+}
+
+function clearDateFilter(){
+  document.getElementById('dateFrom').value = '';
+  document.getElementById('dateTo').value   = '';
+  const s1 = document.getElementById('dateVolSub');
+  const s2 = document.getElementById('dateSuccSub');
+  if(s1) s1.textContent = 'All campaign days from CSV (Jul 2025 – Apr 2026)';
+  if(s2) s2.textContent = 'Day-wise success rate for all campaign dates';
+  buildDate();
 }
 
 function buildHour(){
