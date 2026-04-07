@@ -194,11 +194,11 @@ body {
 .pill.blue { background: rgba(59,130,246,0.12); color: #2563EB; }
 .pill.orange { background: rgba(245,158,11,0.12); color: #D97706; }
 .pill.yellow { background: rgba(245,158,11,0.12); color: #D97706; }
-.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.bar-label { font-size: 12px; color: var(--text-dim); width: 90px; flex-shrink: 0; text-align: right; }
-.bar-track { flex: 1; height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+.bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.bar-label { font-size: 13px; font-weight: 600; color: #1E293B; width: 80px; flex-shrink: 0; text-align: right; }
+.bar-track { flex: 1; height: 12px; background: #F1F5F9; border-radius: 6px; overflow: hidden; }
 .bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
-.bar-val { font-size: 12px; font-weight: 600; width: 70px; flex-shrink: 0; color: var(--text); }
+.bar-val { font-size: 13px; font-weight: 700; width: 55px; flex-shrink: 0; color: #1E293B; }
 /* Company selector */
 .comp-selector {
   display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center;
@@ -342,27 +342,6 @@ body {
       </table>
     </div>
 
-    <!-- Per-company date trend -->
-    <div class="chart-card full">
-      <div class="chart-title">Date-Wise Call Volume — Per Company</div>
-      <div class="chart-sub">Select a company to see its daily call volume and success trend</div>
-      <div class="comp-selector">
-        <label>SELECT COMPANY:</label>
-        <select class="comp-select" id="compDateSelect" onchange="updateCompDateChart()"></select>
-      </div>
-      <div class="chart-wrap xlarge"><canvas id="compDateChart"></canvas></div>
-    </div>
-
-    <!-- Per-company hour breakdown -->
-    <div class="chart-card full">
-      <div class="chart-title">Hour-Wise Call Distribution — Per Company</div>
-      <div class="chart-sub">Select a company to see calls and success rate across hours of day (AM/PM)</div>
-      <div class="comp-selector">
-        <label>SELECT COMPANY:</label>
-        <select class="comp-select" id="compHourSelect" onchange="updateCompHourChart()"></select>
-      </div>
-      <div class="chart-wrap tall"><canvas id="compHourChart"></canvas></div>
-    </div>
   </div>
 </div>
 
@@ -457,6 +436,15 @@ body {
       <div class="chart-sub">Day-wise success rate for all campaign dates</div>
       <div class="chart-wrap" style="height:360px"><canvas id="dateSuccessChart"></canvas></div>
     </div>
+    <div class="chart-card full">
+      <div class="chart-title">Date-Wise Call Volume — Per Company</div>
+      <div class="chart-sub">Select a company to see its daily call volume and success trend</div>
+      <div class="comp-selector">
+        <label>SELECT COMPANY:</label>
+        <select class="comp-select" id="compDateSelect" onchange="updateCompDateChart()"></select>
+      </div>
+      <div class="chart-wrap xlarge"><canvas id="compDateChart"></canvas></div>
+    </div>
   </div>
 </div>
 
@@ -476,7 +464,16 @@ body {
     <div class="chart-card full">
       <div class="chart-title">Best Calling Hours</div>
       <div class="chart-sub">Top performing hours by success rate (filtered: significant volume)</div>
-      <div style="margin-top:16px;max-width:700px;margin-left:auto;margin-right:auto;" id="bestHoursMeters"></div>
+      <div style="margin-top:16px;" id="bestHoursMeters"></div>
+    </div>
+    <div class="chart-card full">
+      <div class="chart-title">Hour-Wise Call Distribution — Per Company</div>
+      <div class="chart-sub">Select a company to see calls and success rate across hours of day (AM/PM)</div>
+      <div class="comp-selector">
+        <label>SELECT COMPANY:</label>
+        <select class="comp-select" id="compHourSelect" onchange="updateCompHourChart()"></select>
+      </div>
+      <div class="chart-wrap tall"><canvas id="compHourChart"></canvas></div>
     </div>
   </div>
 </div>
