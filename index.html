@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>📊 Call Analytics Dashboard — Manager View</title>
+<title>📊 Call Analytics Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root {
   --navy: #001940;
-  --navy2: #1E293B;
+  --navy2: #11344D;
   --navy3: #506078;
   --bg: #FFFFFF;
   --surface: #FFFFFF;
@@ -19,9 +19,9 @@
   --accent2: #10B981;
   --accent3: #6366F1;
   --accent4: #F59E0B;
-  --text: #1E293B;
-  --text-dim: #374151;
-  --text-muted: #64748B;
+  --text: #11344D;
+  --text-dim: #11344D;
+  --text-muted: #2E5A7A;
   --positive: #10B981;
   --negative: #F43F5E;
   --neutral: #6366F1;
@@ -122,7 +122,7 @@ body {
   position: sticky; top: 0; z-index: 100;
   box-shadow: 0 1px 0 #E8EDF5;
 }
-.topbar-title { font-size: 16px; font-weight: 700; color: #1E293B; letter-spacing: -0.2px; }
+.topbar-title { font-size: 16px; font-weight: 700; color: #11344D; letter-spacing: -0.2px; }
 .topbar-right { display: flex; align-items: center; gap: 16px; }
 .header-badge {
   display: inline-flex; align-items: center; gap: 6px;
@@ -136,7 +136,7 @@ body {
 }
 .topbar-updated {
   display: inline-flex; align-items: center; gap: 6px;
-  font-size: 11px; color: #64748B; font-weight: 500;
+  font-size: 11px; color: #2E5A7A; font-weight: 500;
   background: #F8FAFC; border: 1px solid #E8EDF5;
   padding: 5px 12px; border-radius: 20px;
 }
@@ -157,9 +157,9 @@ body {
 }
 .kpi-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
 .kpi-icon { font-size: 20px; margin-bottom: 10px; display: block; }
-.kpi-label { font-size: 11px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+.kpi-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
 .kpi-value { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 4px; }
-.kpi-sub { font-size: 11px; color: var(--text-dim); }
+.kpi-sub { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text-dim); }
 .kpi-badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-top: 6px; }
 .kpi-badge.up { background: rgba(16,185,129,0.12); color: var(--accent2); }
 .kpi-badge.down { background: rgba(239,68,68,0.12); color: var(--negative); }
@@ -179,13 +179,13 @@ body {
 .chart-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-1px); }
 .chart-card.full { grid-column: 1 / -1; }
 .chart-title { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy2); margin-bottom: 4px; letter-spacing: 0; }
-.chart-sub { font-size: 12px; color: #64748B; margin-bottom: 20px; }
+.chart-sub { font-family: 'Inter', sans-serif; font-size: 12px; color: #2E5A7A; margin-bottom: 20px; }
 .chart-wrap { position: relative; height: 280px; }
 .chart-wrap.tall { height: 340px; }
 .chart-wrap.xlarge { height: 420px; }
 .data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
-.data-table th { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: #1E293B; background: #F8FAFC; padding: 10px 14px; text-align: left; border-bottom: 1px solid #E8EDF5; }
-.data-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); font-size: 13px; }
+.data-table th { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: #11344D; background: #F8FAFC; padding: 10px 14px; text-align: left; border-bottom: 1px solid #E8EDF5; }
+.data-table td { font-family: 'Inter', sans-serif; padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); font-size: 13px; }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table tr:hover td { background: rgba(59,130,246,0.04); }
 .pill { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
@@ -195,15 +195,15 @@ body {
 .pill.orange { background: rgba(245,158,11,0.12); color: #D97706; }
 .pill.yellow { background: rgba(245,158,11,0.12); color: #D97706; }
 .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.bar-label { font-size: 13px; font-weight: 600; color: #1E293B; width: 80px; flex-shrink: 0; text-align: right; }
+.bar-label { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #11344D; width: 80px; flex-shrink: 0; text-align: right; }
 .bar-track { flex: 1; height: 12px; background: #F1F5F9; border-radius: 6px; overflow: hidden; }
 .bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
-.bar-val { font-size: 13px; font-weight: 700; width: 55px; flex-shrink: 0; color: #1E293B; }
+.bar-val { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; width: 55px; flex-shrink: 0; color: #11344D; }
 /* Company selector */
 .comp-selector {
   display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center;
 }
-.comp-selector label { font-size: 12px; color: var(--text-dim); font-weight: 600; }
+.comp-selector label { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-dim); font-weight: 600; }
 .comp-select {
   background: var(--surface2); border: 1px solid var(--border); color: var(--text);
   padding: 6px 12px; border-radius: 6px; font-family: 'Inter', sans-serif;
@@ -427,13 +427,13 @@ body {
 <div id="panel-date" class="panel">
   <!-- Date range filter -->
   <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
-    <span style="font-size:12px;font-weight:700;color:#1E293B;text-transform:uppercase;letter-spacing:0.6px;">Filter by Date:</span>
+    <span style="font-size:12px;font-weight:700;color:#11344D;text-transform:uppercase;letter-spacing:0.6px;">Filter by Date:</span>
     <div style="display:flex;align-items:center;gap:8px;">
-      <label style="font-size:12px;color:#374151;font-weight:600;">From</label>
+      <label style="font-size:12px;color:#11344D;font-weight:600;">From</label>
       <input type="date" id="dateFrom" class="comp-select" style="padding:5px 10px;font-size:12px;" onchange="applyDateFilter()">
     </div>
     <div style="display:flex;align-items:center;gap:8px;">
-      <label style="font-size:12px;color:#374151;font-weight:600;">To</label>
+      <label style="font-size:12px;color:#11344D;font-weight:600;">To</label>
       <input type="date" id="dateTo" class="comp-select" style="padding:5px 10px;font-size:12px;" onchange="applyDateFilter()">
     </div>
     <button onclick="clearDateFilter()" style="padding:5px 14px;font-size:12px;font-weight:600;color:#6366F1;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;">Reset</button>
@@ -613,7 +613,7 @@ async function loadDashboard() {
         <div style="font-size:12px;color:var(--text-dim);margin-top:8px;">
           Run <code>python pipeline_v2.py</code> then serve via
           <code>python -m http.server 8080</code> and open
-          <code>http://localhost:8080/manager_dashboard.html</code>
+          <code>http://localhost:8080/index.html</code>
         </div>
       </div>`;
     document.getElementById('lastUpdated').textContent = 'Error: ' + err.message;
@@ -648,13 +648,13 @@ const _tooltipCfg = {
   titleFont:{family:'Inter',size:12,weight:'600'}, padding:12,
   cornerRadius:8, displayColors:true, boxWidth:8, boxHeight:8,
 };
-const _legendCfg = {labels:{color:'#111827',font:{family:'Inter',size:13,weight:'600'},boxWidth:10,padding:16,usePointStyle:true}};
+const _legendCfg = {labels:{color:'#11344D',font:{family:'Inter',size:13,weight:'600'},boxWidth:10,padding:16,usePointStyle:true}};
 
 const chartDefaults = {
   plugins:{ legend:_legendCfg, tooltip:_tooltipCfg },
   scales:{
-    x:{grid:{color:'rgba(0,0,0,0.08)',drawBorder:false},ticks:{color:'#111827',font:{family:'Inter',size:12,weight:'600'}},border:{display:false}},
-    y:{grid:{color:'rgba(0,0,0,0.08)',drawBorder:false},ticks:{color:'#111827',font:{family:'Inter',size:12,weight:'600'}},border:{display:false}}
+    x:{grid:{color:'rgba(0,0,0,0.08)',drawBorder:false},ticks:{color:'#11344D',font:{family:'Inter',size:12,weight:'600'}},border:{display:false}},
+    y:{grid:{color:'rgba(0,0,0,0.08)',drawBorder:false},ticks:{color:'#11344D',font:{family:'Inter',size:12,weight:'600'}},border:{display:false}}
   },
   animation:{duration:700,easing:'easeInOutQuart'},
 };
@@ -668,7 +668,7 @@ const pieDefaults = {
   animation:{duration:700,easing:'easeInOutQuart'},
 };
 
-Chart.defaults.color='#111827';
+Chart.defaults.color='#11344D';
 
 // Re-render all charts on browser zoom/resize so canvas text stays sharp
 window.addEventListener('resize', () => {
@@ -714,7 +714,7 @@ function updateCompDateChart(){
       ...chartDefaults,
       scales:{
         x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,maxRotation:45,maxTicksLimit:20}},
-        y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'},position:'left'},
+        y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#11344D'},position:'left'},
         y2:{ticks:{callback:v=>v+'%',color:COLORS.orange},grid:{display:false},position:'right'},
       }
     }
@@ -745,7 +745,7 @@ function updateCompHourChart(){
       ...chartDefaults,
       scales:{
         x:{...chartDefaults.scales.x},
-        y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'},position:'left'},
+        y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#11344D'},position:'left'},
         y2:{ticks:{callback:v=>v+'%',color:COLORS.yellow},grid:{display:false},position:'right'},
       }
     }
@@ -841,17 +841,18 @@ function buildCompany(){
     },
     options:{...chartDefaults,scales:{
       x:{...chartDefaults.scales.x},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'}},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#11344D'}},
     }}
   });
 
   // Table
   const tbody = document.getElementById('companyTableBody');
   companyData.forEach((d,i)=>{
+    const c = MULTI[i % MULTI.length];
     const s = d.success>40?'green':d.success>20?'blue':'red';
     tbody.innerHTML += `<tr>
-      <td><span style="color:${MULTI[i]};font-weight:700;">${i+1}</span></td>
-      <td><b style="color:${MULTI[i]}">${d.name}</b></td>
+      <td><span style="color:${c};font-weight:700;">${i+1}</span></td>
+      <td><b style="color:${c}">${d.name}</b></td>
       <td>${fmtNum(d.total)}</td>
       <td>${fmtNum(d.connected)}</td>
       <td><span class="pill blue">${d.connPct}%</span></td>
@@ -876,12 +877,12 @@ function buildRegion(){
   new Chart(document.getElementById('regionPieChart'),{
     type:'doughnut',
     data:{labels,datasets:[{data:regionData.map(d=>d.total),backgroundColor:rColors,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
-    options:{...pieDefaults,cutout:'58%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#1E293B',font:{family:'Inter',size:12},padding:20,usePointStyle:true}}}}
+    options:{...pieDefaults,cutout:'58%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#11344D',font:{family:'Inter',size:12,weight:'600'},padding:20,usePointStyle:true}}}}
   });
   new Chart(document.getElementById('regionConnChart'),{
     type:'doughnut',
     data:{labels,datasets:[{data:regionData.map(d=>d.connected),backgroundColor:rColors,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
-    options:{...pieDefaults,cutout:'58%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#1E293B',font:{family:'Inter',size:12},padding:20,usePointStyle:true}}}}
+    options:{...pieDefaults,cutout:'58%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#11344D',font:{family:'Inter',size:12,weight:'600'},padding:20,usePointStyle:true}}}}
   });
   new Chart(document.getElementById('regionBarChart'),{
     type:'bar',
@@ -895,7 +896,7 @@ function buildRegion(){
     },
     options:{...chartDefaults,scales:{
       x:{...chartDefaults.scales.x},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'},position:'left'},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#11344D'},position:'left'},
       y2:{ticks:{callback:v=>v+'%',color:COLORS.orange},grid:{display:false},position:'right'},
     }}
   });
@@ -930,11 +931,14 @@ function buildUseCase(){
       scales:{x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,callback:v=>v+'%'}},y:{...chartDefaults.scales.y}}}
   });
   const tbody = document.getElementById('usecaseTableBody');
-  usecaseData.forEach(d=>{
-    const pct = (d.connected/d.total*100).toFixed(1);
+  usecaseData.forEach((d,i)=>{
+    const c = MULTI[i % MULTI.length];
+    const pct = d.total>0?(d.connected/d.total*100).toFixed(1):'0.0';
     const s = d.success>35?'green':d.success>20?'blue':'red';
     tbody.innerHTML += `<tr>
-      <td><b>${d.name}</b></td><td>${fmtNum(d.total)}</td><td>${fmtNum(d.connected)}</td>
+      <td><b style="color:${c}">${d.name}</b></td>
+      <td><span class="pill blue">${fmtNum(d.total)}</span></td>
+      <td><span class="pill blue">${fmtNum(d.connected)}</span></td>
       <td><span class="pill blue">${pct}%</span></td>
       <td><span class="pill ${s}">${d.success.toFixed(1)}%</span></td>
     </tr>`;
@@ -946,7 +950,7 @@ function buildLanguage(){
   new Chart(document.getElementById('langPieChart'),{
     type:'doughnut',
     data:{labels,datasets:[{data:languageData.map(d=>d.total),backgroundColor:MULTI,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
-    options:{...pieDefaults,cutout:'55%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#1E293B',font:{family:'Inter',size:11},padding:14,usePointStyle:true}}}}
+    options:{...pieDefaults,cutout:'55%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#11344D',font:{family:'Inter',size:11,weight:'600'},padding:14,usePointStyle:true}}}}
   });
   new Chart(document.getElementById('langSuccessChart'),{
     type:'bar',
@@ -957,11 +961,13 @@ function buildLanguage(){
   });
   const tbody = document.getElementById('languageTableBody');
   languageData.forEach((d,i)=>{
-    const pct = (d.connected/d.total*100).toFixed(1);
+    const c = MULTI[i % MULTI.length];
+    const pct = d.total>0?(d.connected/d.total*100).toFixed(1):'0.0';
     const s = d.success>30?'green':d.success>10?'blue':'red';
     tbody.innerHTML += `<tr>
-      <td><b style="color:${MULTI[i]}">${d.name}</b></td>
-      <td>${fmtNum(d.total)}</td><td>${fmtNum(d.connected)}</td>
+      <td><b style="color:${c}">${d.name}</b></td>
+      <td><span class="pill blue">${fmtNum(d.total)}</span></td>
+      <td><span class="pill blue">${fmtNum(d.connected)}</span></td>
       <td><span class="pill blue">${pct}%</span></td>
       <td><span class="pill ${s}">${d.success.toFixed(1)}%</span></td>
     </tr>`;
@@ -973,7 +979,7 @@ let dateLineInst = null, dateSuccInst = null;
 function buildDate(filtered){
   const src = filtered || dateData;
   const labels = src.map(d=>d.d);
-  const xOpts = {ticks:{...chartDefaults.scales.x.ticks,maxTicksLimit:25,maxRotation:60,font:{size:9}},grid:chartDefaults.scales.x.grid,border:{display:false}};
+  const xOpts = {ticks:{...chartDefaults.scales.x.ticks,maxTicksLimit:25,maxRotation:60,font:{...chartDefaults.scales.x.ticks.font,size:9}},grid:chartDefaults.scales.x.grid,border:{display:false}};
 
   if(dateLineInst) dateLineInst.destroy();
   dateLineInst = new Chart(document.getElementById('dateLineChart'),{
@@ -982,7 +988,7 @@ function buildDate(filtered){
       {label:'Total Calls',data:src.map(d=>d.total),borderColor:COLORS.blue,backgroundColor:COLORS.blue+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2},
       {label:'Connected Calls',data:src.map(d=>d.connected),borderColor:COLORS.teal,backgroundColor:COLORS.teal+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2},
     ]},
-    options:{...chartDefaults,scales:{x:xOpts,y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'}}}}
+    options:{...chartDefaults,scales:{x:xOpts,y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#11344D'}}}}
   });
 
   if(dateSuccInst) dateSuccInst.destroy();
@@ -991,7 +997,7 @@ function buildDate(filtered){
     data:{labels,datasets:[
       {label:'Success Rate %',data:src.map(d=>d.success),borderColor:COLORS.orange,backgroundColor:COLORS.orange+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2}
     ]},
-    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},scales:{x:xOpts,y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#374151'}}}}
+    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},scales:{x:xOpts,y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#11344D'}}}}
   });
 }
 
@@ -1000,10 +1006,12 @@ function applyDateFilter(){
   const to   = document.getElementById('dateTo').value;
   if(!from && !to){ buildDate(); return; }
 
+  const MON = {Jan:'01',Feb:'02',Mar:'03',Apr:'04',May:'05',Jun:'06',
+               Jul:'07',Aug:'08',Sep:'09',Oct:'10',Nov:'11',Dec:'12'};
   const filtered = dateData.filter(d=>{
-    // d.d is "DD-MM-YYYY" — convert to comparable YYYY-MM-DD
-    const parts = d.d.split('-');
-    const iso = parts[2]+'-'+parts[1]+'-'+parts[0];
+    // d.d is "DD Mon YYYY" e.g. "15 Jul 2025" — convert to YYYY-MM-DD for comparison
+    const parts = d.d.split(' ');
+    const iso = parts[2]+'-'+(MON[parts[1]]||'01')+'-'+parts[0].padStart(2,'0');
     return (!from || iso >= from) && (!to || iso <= to);
   });
 
@@ -1040,7 +1048,7 @@ function buildHour(){
     },
     options:{...chartDefaults,scales:{
       x:{...chartDefaults.scales.x},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#374151'}},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#11344D'}},
     }}
   });
 
@@ -1054,7 +1062,7 @@ function buildHour(){
     },
     options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},scales:{
       x:{...chartDefaults.scales.x},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#374151'}},
+      y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#11344D'}},
     }}
   });
 
