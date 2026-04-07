@@ -527,46 +527,39 @@ async function loadDashboard() {
     const compNames = companyData.map(d => d.name).join(', ');
     document.getElementById('kpiGrid').innerHTML = `
       <div class="kpi-card c1">
-        <span class="kpi-icon">📞</span>
         <div class="kpi-label">Total Calls Placed</div>
         <div class="kpi-value">${fmtNum(k.total_calls)}</div>
         <div class="kpi-sub">${(k.total_calls||0).toLocaleString('en-IN')} total dials</div>
       </div>
       <div class="kpi-card c2">
-        <span class="kpi-icon">✅</span>
         <div class="kpi-label">Connected Calls</div>
         <div class="kpi-value">${fmtNum(k.connected_calls)}</div>
         <div class="kpi-sub">${(k.connected_calls||0).toLocaleString('en-IN')} answered</div>
         <span class="kpi-badge up">${k.connect_rate}% Connect Rate</span>
       </div>
       <div class="kpi-card c3">
-        <span class="kpi-icon">🎯</span>
         <div class="kpi-label">Avg Success Rate</div>
         <div class="kpi-value">${posOfConn}%</div>
         <div class="kpi-sub">Positive / Connected</div>
       </div>
       <div class="kpi-card c4">
-        <span class="kpi-icon">⏱️</span>
         <div class="kpi-label">Total Duration</div>
         <div class="kpi-value">${(k.total_hours||0).toLocaleString('en-IN')} hrs</div>
         <div class="kpi-sub">Total call duration hours</div>
       </div>
       <div class="kpi-card c2">
-        <span class="kpi-icon">👍</span>
         <div class="kpi-label">Positive Dispositions</div>
         <div class="kpi-value">${fmtNum(k.positive)}</div>
         <div class="kpi-sub">${(k.positive||0).toLocaleString('en-IN')} positive outcomes</div>
         <span class="kpi-badge up">${posOfConn}% of connected</span>
       </div>
       <div class="kpi-card c5">
-        <span class="kpi-icon">👎</span>
         <div class="kpi-label">Negative Dispositions</div>
         <div class="kpi-value">${fmtNum(k.negative)}</div>
         <div class="kpi-sub">${(k.negative||0).toLocaleString('en-IN')} negative outcomes</div>
         <span class="kpi-badge down">${negOfConn}% of connected</span>
       </div>
       <div class="kpi-card c1">
-        <span class="kpi-icon">👂</span>
         <div class="kpi-label">Listen Count</div>
         <div class="kpi-value">${fmtNum(k.listen_count)}</div>
         <div class="kpi-sub">${(k.listen_count||0).toLocaleString('en-IN')} bot engagements</div>
@@ -631,22 +624,32 @@ const MULTI = [
   '#8B5CF6','#F59E0B','#84CC16','#EC4899','#3B82F6'
 ];
 
-const chartDefaults = {
-  plugins:{
-    legend:{labels:{color:'#475569',font:{family:'Inter',size:11},boxWidth:10,padding:18,usePointStyle:true}},
-    tooltip:{
-      backgroundColor:'#1E293B', borderColor:'#334155', borderWidth:1,
-      titleColor:'#F1F5F9', bodyColor:'#94A3B8',
-      titleFont:{family:'Inter',size:12,weight:'600'}, padding:12,
-      cornerRadius:8, displayColors:true, boxWidth:8, boxHeight:8,
-    }
-  },
-  scales:{
-    x:{grid:{color:'rgba(0,0,0,0.04)', drawBorder:false},ticks:{color:'#64748B',font:{family:'Inter',size:11}},border:{display:false}},
-    y:{grid:{color:'rgba(0,0,0,0.05)', drawBorder:false},ticks:{color:'#64748B',font:{family:'Inter',size:11}},border:{display:false}}
-  },
-  animation:{duration:800,easing:'easeInOutQuart'},
+const _tooltipCfg = {
+  backgroundColor:'#1E293B', borderColor:'#334155', borderWidth:1,
+  titleColor:'#F1F5F9', bodyColor:'#CBD5E1',
+  titleFont:{family:'Inter',size:12,weight:'600'}, padding:12,
+  cornerRadius:8, displayColors:true, boxWidth:8, boxHeight:8,
 };
+const _legendCfg = {labels:{color:'#475569',font:{family:'Inter',size:11},boxWidth:10,padding:16,usePointStyle:true}};
+
+const chartDefaults = {
+  plugins:{ legend:_legendCfg, tooltip:_tooltipCfg },
+  scales:{
+    x:{grid:{color:'rgba(0,0,0,0.04)',drawBorder:false},ticks:{color:'#64748B',font:{family:'Inter',size:11}},border:{display:false}},
+    y:{grid:{color:'rgba(0,0,0,0.05)',drawBorder:false},ticks:{color:'#64748B',font:{family:'Inter',size:11}},border:{display:false}}
+  },
+  animation:{duration:700,easing:'easeInOutQuart'},
+};
+
+// Pie/doughnut charts must NOT have scales
+const pieDefaults = {
+  plugins:{
+    legend:{...(_legendCfg),labels:{..._legendCfg.labels,boxWidth:12,padding:20}},
+    tooltip:_tooltipCfg,
+  },
+  animation:{duration:700,easing:'easeInOutQuart'},
+};
+
 Chart.defaults.color='#64748B';
 
 function fmtNum(n){
@@ -845,17 +848,17 @@ function buildCompany(){
 
 function buildRegion(){
   const labels = regionData.map(d=>d.name);
-  const rColors = [COLORS.blue,COLORS.teal,COLORS.orange,COLORS.yellow];
+  const rColors = ['#6366F1','#10B981','#F97316','#06B6D4'];
 
   new Chart(document.getElementById('regionPieChart'),{
     type:'doughnut',
-    data:{labels,datasets:[{data:regionData.map(d=>d.total),backgroundColor:rColors.map(c=>c+'CC'),borderColor:rColors,borderWidth:2,hoverOffset:8}]},
-    options:{...chartDefaults,cutout:'60%',plugins:{...chartDefaults.plugins,legend:{position:'bottom',labels:{color:'#7A8BA8',padding:16}}}}
+    data:{labels,datasets:[{data:regionData.map(d=>d.total),backgroundColor:rColors,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
+    options:{...pieDefaults,cutout:'58%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#475569',font:{family:'Inter',size:12},padding:20,usePointStyle:true}}}}
   });
   new Chart(document.getElementById('regionConnChart'),{
     type:'doughnut',
-    data:{labels,datasets:[{data:regionData.map(d=>d.connected),backgroundColor:rColors.map(c=>c+'AA'),borderColor:rColors,borderWidth:2,hoverOffset:8}]},
-    options:{...chartDefaults,cutout:'60%',plugins:{...chartDefaults.plugins,legend:{position:'bottom',labels:{color:'#7A8BA8',padding:16}}}}
+    data:{labels,datasets:[{data:regionData.map(d=>d.connected),backgroundColor:rColors,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
+    options:{...pieDefaults,cutout:'58%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#475569',font:{family:'Inter',size:12},padding:20,usePointStyle:true}}}}
   });
   new Chart(document.getElementById('regionBarChart'),{
     type:'bar',
@@ -919,8 +922,8 @@ function buildLanguage(){
   const labels = languageData.map(d=>d.name);
   new Chart(document.getElementById('langPieChart'),{
     type:'doughnut',
-    data:{labels,datasets:[{data:languageData.map(d=>d.total),backgroundColor:MULTI.map(c=>c+'CC'),borderColor:MULTI,borderWidth:2,hoverOffset:8}]},
-    options:{...chartDefaults,cutout:'55%',plugins:{...chartDefaults.plugins,legend:{position:'bottom',labels:{color:'#7A8BA8',padding:12}}}}
+    data:{labels,datasets:[{data:languageData.map(d=>d.total),backgroundColor:MULTI,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
+    options:{...pieDefaults,cutout:'55%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#475569',font:{family:'Inter',size:11},padding:14,usePointStyle:true}}}}
   });
   new Chart(document.getElementById('langSuccessChart'),{
     type:'bar',
