@@ -438,25 +438,29 @@ body {
     </div>
     <button onclick="clearDateFilter()" style="padding:5px 14px;font-size:12px;font-weight:600;color:#6366F1;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;">Reset</button>
   </div>
-  <div class="charts-grid single">
-    <div class="chart-card full">
+  <!-- Row 1: side by side -->
+  <div class="charts-grid" style="margin-bottom:20px;">
+    <div class="chart-card">
       <div class="chart-title">Daily Call Volume — Total vs Connected</div>
       <div class="chart-sub" id="dateVolSub">All campaign days from CSV (Jul 2025 – Apr 2026)</div>
-      <div class="chart-wrap" style="height:400px"><canvas id="dateLineChart"></canvas></div>
+      <div class="chart-wrap" style="height:340px"><canvas id="dateLineChart"></canvas></div>
     </div>
-    <div class="chart-card full">
-      <div class="chart-title">Daily Success Rate Trend (%)</div>
-      <div class="chart-sub" id="dateSuccSub">Day-wise success rate for all campaign dates</div>
-      <div class="chart-wrap" style="height:360px"><canvas id="dateSuccessChart"></canvas></div>
-    </div>
-    <div class="chart-card full">
+    <div class="chart-card">
       <div class="chart-title">Date-Wise Call Volume — Per Company</div>
       <div class="chart-sub">Select a company to see its daily call volume and success trend</div>
       <div class="comp-selector">
         <label>SELECT COMPANY:</label>
         <select class="comp-select" id="compDateSelect" onchange="updateCompDateChart()"></select>
       </div>
-      <div class="chart-wrap xlarge"><canvas id="compDateChart"></canvas></div>
+      <div class="chart-wrap" style="height:280px"><canvas id="compDateChart"></canvas></div>
+    </div>
+  </div>
+  <!-- Row 2: full width -->
+  <div class="charts-grid single">
+    <div class="chart-card full">
+      <div class="chart-title">Daily Success Rate Trend (%)</div>
+      <div class="chart-sub" id="dateSuccSub">Day-wise success rate for all campaign dates</div>
+      <div class="chart-wrap" style="height:360px"><canvas id="dateSuccessChart"></canvas></div>
     </div>
   </div>
 </div>
