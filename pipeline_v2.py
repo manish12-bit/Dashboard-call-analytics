@@ -683,6 +683,9 @@ def write_to_csv(all_rows: dict, output_file: str):
     Campaign name is intentionally excluded — it is not a CSV column.
     """
     # ── 1. Load existing CSV ──────────────────────────────────────
+    # IMPORTANT: the old append-based pipeline could write multiple rows for
+    # the same key across different runs.  We must SUM duplicate keys here,
+    # not overwrite them, otherwise we lose data when consolidating the CSV.
     existing: dict = {}          # csv_key -> agg dict
     if os.path.exists(output_file):
         with open(output_file, "r", newline="", encoding="utf-8") as f:
@@ -697,15 +700,28 @@ def write_to_csv(all_rows: dict, output_file: str):
                     row.get("Date", ""),
                     row.get("Hour", ""),
                 )
-                existing[k] = {
-                    "total":        int(float(row.get("Total_calls",           0) or 0)),
-                    "connected":    int(float(row.get("Connected_calls",       0) or 0)),
-                    "duration_sec": float(row.get("Total_duration_seconds",    0) or 0),
-                    "success":      int(float(row.get("Positive disposition",  0) or 0)),
-                    "failure":      int(float(row.get("Negative disposition",  0) or 0)),
-                    "other":        int(float(row.get("Other disposition",     0) or 0)),
-                    "listen":       int(float(row.get("Listen Count",          0) or 0)),
-                }
+                t = int(float(row.get("Total_calls",           0) or 0))
+                c = int(float(row.get("Connected_calls",       0) or 0))
+                d = float(row.get("Total_duration_seconds",    0) or 0)
+                s = int(float(row.get("Positive disposition",  0) or 0))
+                f = int(float(row.get("Negative disposition",  0) or 0))
+                o = int(float(row.get("Other disposition",     0) or 0))
+                l = int(float(row.get("Listen Count",          0) or 0))
+                if k in existing:
+                    # Sum duplicate rows (legacy artefact of old append mode)
+                    ex = existing[k]
+                    ex["total"]        += t
+                    ex["connected"]    += c
+                    ex["duration_sec"] += d
+                    ex["success"]      += s
+                    ex["failure"]      += f
+                    ex["other"]        += o
+                    ex["listen"]       += l
+                else:
+                    existing[k] = {
+                        "total": t, "connected": c, "duration_sec": d,
+                        "success": s, "failure": f, "other": o, "listen": l,
+                    }
 
     # ── 2. Merge new rows (upsert) ────────────────────────────────
     for key, agg in all_rows.items():
