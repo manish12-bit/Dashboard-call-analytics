@@ -79,6 +79,11 @@ CONNECTED_THRESHOLD_SEC = 5
 CHECKPOINT_FILE = "checkpoint.json"
 OUTPUT_FILE     = "session_analytics_realtime.csv"
 
+# How many hours to look back for executions on every incremental run.
+# Catches executions that were missed due to transient errors or that were
+# created just before/after a checkpoint boundary.
+LOOKBACK_HOURS = 48
+
 CSV_HEADER = [
     "Company name", "State", "Use case wise", "Language", "Region",
     "Date", "Hour",
@@ -310,16 +315,42 @@ def format_date(dt: datetime) -> str:
 
 
 # ================================================================
-# STEP 4 — Checkpoint (tracks last processed created_at per DB)
+# STEP 4 — Checkpoint (tracks last_time + already-processed exec IDs)
 # ================================================================
-def load_checkpoint() -> dict:
-    if os.path.exists(CHECKPOINT_FILE):
-        with open(CHECKPOINT_FILE, "r") as f:
-            return json.load(f)
-    return {}
+# New checkpoint format per DB:
+#   { "last_time": "<ISO>", "done_ids": ["id1", "id2", ...] }
+#
+# Old format was just a plain ISO string.  load_checkpoint() migrates
+# automatically: old string → new dict with done_ids = [] (empty).
+# The first run after migration will use the 48h lookback and may find
+# some executions that were already processed; those will be re-added to
+# done_ids so subsequent runs skip them cleanly.
+# ================================================================
 
+def load_checkpoint() -> dict:
+    if not os.path.exists(CHECKPOINT_FILE):
+        return {}
+    with open(CHECKPOINT_FILE, "r") as f:
+        raw = json.load(f)
+    # Migrate old format: string → new dict
+    result = {}
+    for db, val in raw.items():
+        if isinstance(val, str):
+            result[db] = {"last_time": val, "done_ids": []}
+        else:
+            result[db] = val
+    return result
+
+
+MAX_DONE_IDS = 5_000  # per DB — ~200 days @ 25 exec/day; keeps file small
 
 def save_checkpoint(data: dict):
+    # Trim done_ids lists to prevent unbounded growth
+    for entry in data.values():
+        if isinstance(entry, dict) and "done_ids" in entry:
+            ids = entry["done_ids"]
+            if len(ids) > MAX_DONE_IDS:
+                entry["done_ids"] = ids[-MAX_DONE_IDS:]   # keep newest
     with open(CHECKPOINT_FILE, "w") as f:
         json.dump(data, f, default=str, indent=2)
 
@@ -348,18 +379,27 @@ PROJECTION = {
 # ================================================================
 # STEP 6 — Process a single DB incrementally
 # ================================================================
-def get_execution_ids(db, last_time: datetime, is_first_run: bool) -> list:
+def get_execution_ids(db, done_ids: set, is_first_run: bool) -> list:
     """
-    First run  -> fetch ALL execution_ids (no time filter) — covers full history.
-    Subsequent -> fetch only execution_ids created after last_time (incremental).
-    Falls back to empty list if executions collection is missing.
+    First run  → fetch ALL execution_ids (full history).
+    Subsequent → fetch executions from the last LOOKBACK_HOURS window
+                 (catches missed/late executions), then remove any IDs
+                 already in done_ids so they are not double-counted.
+
+    Why lookback instead of strict > last_time?
+      An execution may have been created just before a checkpoint boundary
+      or during a transient DB error — strict filtering would miss it forever.
+      The done_ids set ensures previously processed IDs are skipped.
     """
     try:
         exec_col = db[EXECUTIONS_COLL]
         if is_first_run:
-            ids = exec_col.distinct("_id")                              # ALL history
+            ids = exec_col.distinct("_id")      # ALL history on first run
         else:
-            ids = exec_col.distinct("_id", {"created_at": {"$gt": last_time}})  # new only
+            lookback_time = datetime.utcnow() - timedelta(hours=LOOKBACK_HOURS)
+            ids = exec_col.distinct("_id", {"created_at": {"$gt": lookback_time}})
+            # Filter out IDs we've already processed (prevents double-counting)
+            ids = [i for i in ids if str(i) not in done_ids]
         return [str(i) for i in ids]
     except Exception as e:
         print(f"    [warn] Could not fetch execution_ids: {e} — falling back to sessions query")
@@ -464,14 +504,16 @@ def _merge_agg_result(rows: dict, results: list, db_name: str):
             }
 
 
-def process_db(db_name: str, db, last_time: datetime, is_first_run: bool) -> dict:
+def process_db(db_name: str, db, done_ids: set, last_time: datetime, is_first_run: bool) -> tuple:
     """
     Server-side aggregation in chunks of EXEC_CHUNK_SIZE execution_ids.
     Each chunk runs a separate $group so no single query times out on CosmosDB.
     Falls back to cursor scan only if aggregation fails on a chunk.
+
+    Returns (rows_dict, processed_exec_ids) so the caller can update done_ids.
     """
     collection = db[COLLECTION_NAME]
-    exec_ids = get_execution_ids(db, last_time, is_first_run)
+    exec_ids = get_execution_ids(db, done_ids, is_first_run)
 
     if exec_ids:
         n_chunks = (len(exec_ids) + EXEC_CHUNK_SIZE - 1) // EXEC_CHUNK_SIZE
@@ -481,11 +523,9 @@ def process_db(db_name: str, db, last_time: datetime, is_first_run: bool) -> dic
         print(f"  [{db_name}] No executions — full collection scan server-side ...")
         chunks = [None]   # single pass, no exec_id filter
     else:
-        # No new execution_ids found — but sessions may still have been
-        # uploaded or finalized after the last run (e.g. sessions in old
-        # executions whose created_at is newer than the checkpoint).
-        # Fall back to a direct session-level created_at query so we never
-        # miss late-arriving sessions.
+        # No new execution_ids in the lookback window — but late-arriving
+        # sessions (uploaded after the last run) may still exist in old
+        # executions.  Fall back to a direct session-level created_at query.
         print(f"  [{db_name}] No new executions — querying sessions by created_at > {last_time.strftime('%Y-%m-%d %H:%M')} ...")
         direct_filter = {"created_at": {"$gt": last_time}}
         rows: dict = {}
@@ -497,7 +537,7 @@ def process_db(db_name: str, db, last_time: datetime, is_first_run: bool) -> dic
         except Exception as e:
             print(f"  [{db_name}] Direct agg failed ({type(e).__name__}) — cursor fallback ...")
             rows = _process_db_cursor(db_name, collection, direct_filter)
-        return rows
+        return rows, []   # no new exec_ids to mark as done
 
     rows: dict = {}
     total_sessions = 0
@@ -536,7 +576,9 @@ def process_db(db_name: str, db, last_time: datetime, is_first_run: bool) -> dic
             total_sessions += sum(v["total"] for v in chunk_rows.values())
 
     print(f"  [{db_name}] Done — {total_sessions:,} sessions -> {len(rows):,} aggregated rows")
-    return rows
+    # Return the rows AND the list of exec_ids that were just processed,
+    # so run_pipeline() can add them to done_ids in the checkpoint.
+    return rows, exec_ids if exec_ids else []
 
 
 def _process_db_cursor(db_name: str, collection, match_filter: dict) -> dict:
@@ -748,27 +790,29 @@ def run_pipeline():
         ]
         print(f"  Auto-discovered {len(db_names)} DBs: {db_names}")
 
-    checkpoints = load_checkpoint()
-    new_checkpoints = dict(checkpoints)
+    checkpoints    = load_checkpoint()         # {db: {"last_time": ISO, "done_ids": [...]}}
+    new_checkpoints = {db: dict(entry) for db, entry in checkpoints.items()}
     all_rows = {}
-    now_utc = datetime.now(timezone.utc).replace(tzinfo=None)   # single timestamp for this run
+    now_utc  = datetime.now(timezone.utc).replace(tzinfo=None)   # single timestamp for this run
 
     # ── Worker: process one DB (each thread gets its own MongoClient) ──
     def process_one(db_name: str):
-        last_iso     = checkpoints.get(db_name)
-        is_first_run = last_iso is None
+        entry        = checkpoints.get(db_name)          # None on first run
+        is_first_run = entry is None
         if is_first_run:
             last_time = datetime.min
+            done_ids  = set()
             print(f"  [{db_name}] First run — fetching ALL historical data")
         else:
-            last_time = datetime.fromisoformat(last_iso)
-            print(f"  [{db_name}] Incremental — since {last_time.strftime('%Y-%m-%d %H:%M')}")
+            last_time = datetime.fromisoformat(entry["last_time"])
+            done_ids  = set(entry.get("done_ids") or [])
+            print(f"  [{db_name}] Incremental — lookback {LOOKBACK_HOURS}h | {len(done_ids)} IDs already processed")
         _client = MongoClient(MONGO_URI)
         try:
-            rows = process_db(db_name, _client[db_name], last_time, is_first_run)
-            return db_name, rows, is_first_run, None
+            rows, new_exec_ids = process_db(db_name, _client[db_name], done_ids, last_time, is_first_run)
+            return db_name, rows, new_exec_ids, is_first_run, None
         except Exception as e:
-            return db_name, {}, is_first_run, str(e)
+            return db_name, {}, [], is_first_run, str(e)
         finally:
             _client.close()
 
@@ -777,13 +821,22 @@ def run_pipeline():
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(process_one, name): name for name in db_names}
         for future in as_completed(futures):
-            db_name, rows, is_first_run, err = future.result()
+            db_name, rows, new_exec_ids, is_first_run, err = future.result()
             if err:
                 print(f"  [{db_name}] ERROR: {err}")
                 continue
             all_rows.update(rows)
+
+            # ── Update checkpoint entry for this DB ──────────────────
+            prev_entry  = new_checkpoints.get(db_name) or {"last_time": now_utc.isoformat(), "done_ids": []}
+            prev_done   = set(prev_entry.get("done_ids") or [])
+            prev_done.update(str(i) for i in new_exec_ids)   # mark newly processed IDs
+
             if rows or not is_first_run:
-                new_checkpoints[db_name] = now_utc.isoformat()
+                new_checkpoints[db_name] = {
+                    "last_time": now_utc.isoformat(),
+                    "done_ids":  list(prev_done),
+                }
             else:
                 print(f"  [{db_name}] First run returned 0 sessions — will retry on next run")
 
