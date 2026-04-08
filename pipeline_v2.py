@@ -481,8 +481,23 @@ def process_db(db_name: str, db, last_time: datetime, is_first_run: bool) -> dic
         print(f"  [{db_name}] No executions — full collection scan server-side ...")
         chunks = [None]   # single pass, no exec_id filter
     else:
-        print(f"  [{db_name}] No new executions since last run.")
-        return {}
+        # No new execution_ids found — but sessions may still have been
+        # uploaded or finalized after the last run (e.g. sessions in old
+        # executions whose created_at is newer than the checkpoint).
+        # Fall back to a direct session-level created_at query so we never
+        # miss late-arriving sessions.
+        print(f"  [{db_name}] No new executions — querying sessions by created_at > {last_time.strftime('%Y-%m-%d %H:%M')} ...")
+        direct_filter = {"created_at": {"$gt": last_time}}
+        rows: dict = {}
+        try:
+            results = _run_agg_chunk(collection, direct_filter)
+            _merge_agg_result(rows, results, db_name)
+            n_sess = sum(v["total"] for v in rows.values())
+            print(f"  [{db_name}] Direct session query -> {n_sess:,} new sessions -> {len(rows):,} rows")
+        except Exception as e:
+            print(f"  [{db_name}] Direct agg failed ({type(e).__name__}) — cursor fallback ...")
+            rows = _process_db_cursor(db_name, collection, direct_filter)
+        return rows
 
     rows: dict = {}
     total_sessions = 0
@@ -606,28 +621,86 @@ def _process_db_cursor(db_name: str, collection, match_filter: dict) -> dict:
 
 
 # ================================================================
-# STEP 7 — Write aggregated rows to CSV
+# STEP 7 — Write aggregated rows to CSV  (merge / upsert mode)
 # ================================================================
 def write_to_csv(all_rows: dict, output_file: str):
-    """Append new aggregated rows. Write header only if file is new."""
-    write_header = not os.path.exists(output_file)
+    """
+    Merge new rows into the CSV instead of blindly appending.
 
-    with open(output_file, "a", newline="", encoding="utf-8") as f:
+    Every run:
+      1. Read the existing CSV into a keyed dict.
+      2. For each new row: if the key already exists → sum the counts;
+         otherwise → insert as a new row.
+      3. Re-write the whole CSV from the merged dict.
+
+    This means every day's totals are always up-to-date: a new execution
+    whose sessions belong to yesterday automatically increments yesterday's
+    row rather than creating a duplicate.
+
+    Merge key: (Company name, State, Use case wise, Language, Region, Date, Hour)
+    Campaign name is intentionally excluded — it is not a CSV column.
+    """
+    # ── 1. Load existing CSV ──────────────────────────────────────
+    existing: dict = {}          # csv_key -> agg dict
+    if os.path.exists(output_file):
+        with open(output_file, "r", newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                k = (
+                    row.get("Company name", ""),
+                    row.get("State", ""),
+                    row.get("Use case wise", ""),
+                    row.get("Language", ""),
+                    row.get("Region", ""),
+                    row.get("Date", ""),
+                    row.get("Hour", ""),
+                )
+                existing[k] = {
+                    "total":        int(float(row.get("Total_calls",           0) or 0)),
+                    "connected":    int(float(row.get("Connected_calls",       0) or 0)),
+                    "duration_sec": float(row.get("Total_duration_seconds",    0) or 0),
+                    "success":      int(float(row.get("Positive disposition",  0) or 0)),
+                    "failure":      int(float(row.get("Negative disposition",  0) or 0)),
+                    "other":        int(float(row.get("Other disposition",     0) or 0)),
+                    "listen":       int(float(row.get("Listen Count",          0) or 0)),
+                }
+
+    # ── 2. Merge new rows (upsert) ────────────────────────────────
+    for key, agg in all_rows.items():
+        db_name, date_label, hour_label, state, region, language, use_case, _campaign = key
+        csv_key = (db_name, state, use_case, language, region, date_label, hour_label)
+        if csv_key in existing:
+            ex = existing[csv_key]
+            ex["total"]        += agg["total"]
+            ex["connected"]    += agg["connected"]
+            ex["duration_sec"] += agg["duration_sec"]
+            ex["success"]      += agg["success"]
+            ex["failure"]      += agg["failure"]
+            ex["other"]        += agg["other"]
+            ex["listen"]       += agg["listen"]
+        else:
+            existing[csv_key] = {
+                "total":        agg["total"],
+                "connected":    agg["connected"],
+                "duration_sec": agg["duration_sec"],
+                "success":      agg["success"],
+                "failure":      agg["failure"],
+                "other":        agg["other"],
+                "listen":       agg["listen"],
+            }
+
+    # ── 3. Re-write the full merged CSV ──────────────────────────
+    with open(output_file, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
-
-        if write_header:
-            writer.writerow(CSV_HEADER)
-
-        for key, agg in all_rows.items():
-            db_name, date_label, hour_label, state, region, language, use_case, campaign_name = key
-
-            total    = agg["total"]
+        writer.writerow(CSV_HEADER)
+        for (db_name, state, use_case, language, region, date_label, hour_label), agg in existing.items():
+            total     = agg["total"]
             connected = agg["connected"]
-            dur_sec  = agg["duration_sec"]
-            success  = agg["success"]
-            failure  = agg["failure"]
-            other    = agg["other"]
-            listen   = agg["listen"]
+            dur_sec   = agg["duration_sec"]
+            success   = agg["success"]
+            failure   = agg["failure"]
+            other     = agg["other"]
+            listen    = agg["listen"]
 
             connected_rate = round(connected / total * 100, 2) if total else 0
             dur_min        = round(dur_sec / 60, 4)
