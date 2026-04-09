@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-04-09 07:30:53 IST",
+  "last_updated": "2026-04-09 10:39:01 IST",
   "kpis": {
-    "total_calls": 22905537,
-    "connected_calls": 6121884,
+    "total_calls": 23309849,
+    "connected_calls": 6231132,
     "connect_rate": 26.73,
-    "total_hours": 77927.0,
-    "positive": 2182897,
-    "negative": 576240,
-    "listen_count": 2182897,
+    "total_hours": 79371.1,
+    "positive": 2244898,
+    "negative": 586909,
+    "listen_count": 2244898,
     "companies_count": 19
   },
   "company": [
@@ -133,15 +133,15 @@
     },
     {
       "name": "micro_fi",
-      "total": 4341123,
-      "connected": 1312084,
-      "positive": 499428,
-      "negative": 407606,
-      "success": 38.06,
-      "mht": 51.6,
-      "listen": 499428,
-      "connPct": 30.22,
-      "durationH": 18795.17
+      "total": 4386511,
+      "connected": 1321932,
+      "positive": 501739,
+      "negative": 416639,
+      "success": 37.95,
+      "mht": 51.5,
+      "listen": 501739,
+      "connPct": 30.14,
+      "durationH": 18924.49
     },
     {
       "name": "mktg_micro_fi",
@@ -217,15 +217,15 @@
     },
     {
       "name": "tatacapital",
-      "total": 16756377,
-      "connected": 4219334,
-      "positive": 1612180,
-      "negative": 80924,
-      "success": 38.21,
-      "mht": 44.3,
-      "listen": 1612180,
-      "connPct": 25.18,
-      "durationH": 51975.18
+      "total": 17115301,
+      "connected": 4318734,
+      "positive": 1671870,
+      "negative": 82560,
+      "success": 38.71,
+      "mht": 44.4,
+      "listen": 1671870,
+      "connPct": 25.23,
+      "durationH": 53290.0
     },
     {
       "name": "ugro",
@@ -243,31 +243,31 @@
   "region": [
     {
       "name": "EAST",
-      "total": 4780702,
-      "connected": 1257794,
-      "success": 41.09,
-      "connPct": 26.31
+      "total": 4878167,
+      "connected": 1286798,
+      "success": 41.6,
+      "connPct": 26.38
     },
     {
       "name": "NORTH",
-      "total": 5537646,
-      "connected": 2084090,
-      "success": 39.59,
-      "connPct": 37.63
+      "total": 5642335,
+      "connected": 2116942,
+      "success": 39.93,
+      "connPct": 37.52
     },
     {
       "name": "SOUTH",
-      "total": 4198387,
-      "connected": 1339623,
-      "success": 29.04,
-      "connPct": 31.91
+      "total": 4284569,
+      "connected": 1364188,
+      "success": 29.27,
+      "connPct": 31.84
     },
     {
       "name": "WEST",
-      "total": 3325499,
-      "connected": 795915,
-      "success": 41.11,
-      "connPct": 23.93
+      "total": 3404456,
+      "connected": 816002,
+      "success": 41.6,
+      "connPct": 23.97
     }
   ],
   "usecase": [
@@ -309,9 +309,9 @@
     },
     {
       "name": "BKT X GEN AI BOT",
-      "total": 10328245,
-      "connected": 2703754,
-      "success": 42.68
+      "total": 10687169,
+      "connected": 2803154,
+      "success": 43.3
     },
     {
       "name": "BKT X MATURED CHARGES",
@@ -407,27 +407,27 @@
     },
     {
       "name": "English",
-      "total": 560923,
-      "connected": 466524,
-      "success": 36.98
+      "total": 566702,
+      "connected": 471312,
+      "success": 37.34
     },
     {
       "name": "Gujarati",
-      "total": 20568,
-      "connected": 20414,
-      "success": 78.97
+      "total": 22052,
+      "connected": 21898,
+      "success": 80.21
     },
     {
       "name": "Hindi",
-      "total": 4624470,
-      "connected": 4081833,
-      "success": 42.27
+      "total": 4700093,
+      "connected": 4148589,
+      "success": 42.75
     },
     {
       "name": "Kannada",
-      "total": 134394,
-      "connected": 125419,
-      "success": 54.45
+      "total": 138139,
+      "connected": 129000,
+      "success": 55.25
     },
     {
       "name": "Malayalam",
@@ -437,9 +437,9 @@
     },
     {
       "name": "Marathi",
-      "total": 15765,
-      "connected": 15765,
-      "success": 96.96
+      "total": 16881,
+      "connected": 16881,
+      "success": 97.0
     },
     {
       "name": "Odia",
@@ -455,15 +455,15 @@
     },
     {
       "name": "Tamil",
-      "total": 118612,
-      "connected": 112871,
-      "success": 50.45
+      "total": 121509,
+      "connected": 115663,
+      "success": 51.25
     },
     {
       "name": "Telugu",
-      "total": 309863,
-      "connected": 282440,
-      "success": 44.69
+      "total": 315536,
+      "connected": 287376,
+      "success": 44.7
     },
     {
       "name": "Urdu",
@@ -1852,6 +1852,12 @@
       "total": 398591,
       "connected": 121390,
       "success": 51.43
+    },
+    {
+      "d": "08 Apr 2026",
+      "total": 404312,
+      "connected": 109248,
+      "success": 56.75
     }
   ],
   "hour": [
@@ -1887,13 +1893,13 @@
     },
     {
       "h": "3:00 AM",
-      "total": 759,
+      "total": 839,
       "connected": 0,
       "success": 0.0
     },
     {
       "h": "4:00 AM",
-      "total": 733,
+      "total": 879,
       "connected": 0,
       "success": 0.0
     },
@@ -1911,7 +1917,7 @@
     },
     {
       "h": "5:00 AM",
-      "total": 455,
+      "total": 563,
       "connected": 0,
       "success": 0.0
     },
@@ -1947,15 +1953,15 @@
     },
     {
       "h": "8:00 AM",
-      "total": 48005,
-      "connected": 18844,
-      "success": 61.29
+      "total": 64055,
+      "connected": 23772,
+      "success": 59.75
     },
     {
       "h": "9:00 AM",
-      "total": 144327,
-      "connected": 57024,
-      "success": 64.56
+      "total": 193123,
+      "connected": 71923,
+      "success": 64.3
     },
     {
       "h": "9:00 AM",
@@ -1965,27 +1971,27 @@
     },
     {
       "h": "10:00 AM",
-      "total": 386015,
-      "connected": 137202,
-      "success": 30.43
+      "total": 421773,
+      "connected": 147740,
+      "success": 33.0
     },
     {
       "h": "11:00 AM",
-      "total": 731926,
-      "connected": 242444,
-      "success": 42.93
+      "total": 783486,
+      "connected": 257266,
+      "success": 44.05
     },
     {
       "h": "12:00 PM",
-      "total": 1788286,
-      "connected": 531961,
-      "success": 37.09
+      "total": 1810310,
+      "connected": 538220,
+      "success": 37.38
     },
     {
       "h": "1:00 PM",
-      "total": 117337,
-      "connected": 40598,
-      "success": 61.09
+      "total": 177525,
+      "connected": 56151,
+      "success": 58.17
     },
     {
       "h": "1:00 PM",
@@ -2001,15 +2007,15 @@
     },
     {
       "h": "2:00 PM",
-      "total": 147116,
-      "connected": 50991,
-      "success": 59.21
+      "total": 171184,
+      "connected": 56354,
+      "success": 58.39
     },
     {
       "h": "3:00 PM",
-      "total": 167683,
-      "connected": 57265,
-      "success": 58.38
+      "total": 219408,
+      "connected": 70436,
+      "success": 56.82
     },
     {
       "h": "3:00 PM",
@@ -2025,15 +2031,15 @@
     },
     {
       "h": "4:00 PM",
-      "total": 145915,
-      "connected": 46399,
-      "success": 58.64
+      "total": 167902,
+      "connected": 51334,
+      "success": 57.88
     },
     {
       "h": "5:00 PM",
-      "total": 166163,
-      "connected": 48080,
-      "success": 52.99
+      "total": 184161,
+      "connected": 52548,
+      "success": 51.85
     },
     {
       "h": "5:00 PM",
@@ -2049,9 +2055,9 @@
     },
     {
       "h": "6:00 PM",
-      "total": 64960,
-      "connected": 17084,
-      "success": 41.51
+      "total": 118784,
+      "connected": 31396,
+      "success": 49.07
     },
     {
       "h": "7:00 PM",
@@ -3792,6 +3798,13 @@
         "connected": 11978,
         "positive": 4219,
         "durationH": 150.7
+      },
+      {
+        "d": "08 Apr 2026",
+        "total": 45388,
+        "connected": 9848,
+        "positive": 2311,
+        "durationH": 129.32
       }
     ],
     "mktg_micro_fi": [
@@ -5185,6 +5198,13 @@
         "connected": 109412,
         "positive": 58217,
         "durationH": 1406.35
+      },
+      {
+        "d": "08 Apr 2026",
+        "total": 358924,
+        "connected": 99400,
+        "positive": 59690,
+        "durationH": 1314.82
       }
     ],
     "ugro": [
@@ -6529,6 +6549,13 @@
         "durationH": 1852.1
       },
       {
+        "h": "1:00 PM",
+        "total": 15490,
+        "connected": 3875,
+        "positive": 997,
+        "durationH": 51.14
+      },
+      {
         "h": "2:00 PM",
         "total": 511782,
         "connected": 149310,
@@ -6536,11 +6563,18 @@
         "durationH": 2163.29
       },
       {
+        "h": "2:00 PM",
+        "total": 8044,
+        "connected": 1364,
+        "positive": 649,
+        "durationH": 18.36
+      },
+      {
         "h": "3:00 PM",
-        "total": 14875,
-        "connected": 5081,
-        "positive": 2596,
-        "durationH": 72.36
+        "total": 22398,
+        "connected": 7081,
+        "positive": 2834,
+        "durationH": 97.76
       },
       {
         "h": "3:00 PM",
@@ -6551,24 +6585,17 @@
       },
       {
         "h": "4:00 PM",
-        "total": 33659,
-        "connected": 7569,
-        "positive": 4152,
-        "durationH": 108.15
-      },
-      {
-        "h": "4:00 PM",
         "total": 597910,
         "connected": 154933,
         "positive": 70583,
         "durationH": 2199.96
       },
       {
-        "h": "5:00 PM",
-        "total": 39759,
-        "connected": 8152,
-        "positive": 2191,
-        "durationH": 104.48
+        "h": "4:00 PM",
+        "total": 40648,
+        "connected": 8463,
+        "positive": 4382,
+        "durationH": 120.16
       },
       {
         "h": "5:00 PM",
@@ -6578,11 +6605,11 @@
         "durationH": 2286.83
       },
       {
-        "h": "6:00 PM",
-        "total": 547031,
-        "connected": 153302,
-        "positive": 60543,
-        "durationH": 2212.73
+        "h": "5:00 PM",
+        "total": 47101,
+        "connected": 9867,
+        "positive": 2388,
+        "durationH": 126.89
       },
       {
         "h": "6:00 PM",
@@ -6590,6 +6617,13 @@
         "connected": 5592,
         "positive": 899,
         "durationH": 67.72
+      },
+      {
+        "h": "6:00 PM",
+        "total": 547031,
+        "connected": 153302,
+        "positive": 60543,
+        "durationH": 2212.73
       },
       {
         "h": "7:00 PM",
@@ -7300,7 +7334,7 @@
       },
       {
         "h": "3:00 AM",
-        "total": 759,
+        "total": 839,
         "connected": 0,
         "positive": 0,
         "durationH": 0.0
@@ -7321,14 +7355,14 @@
       },
       {
         "h": "4:00 AM",
-        "total": 733,
+        "total": 879,
         "connected": 0,
         "positive": 0,
         "durationH": 0.0
       },
       {
         "h": "5:00 AM",
-        "total": 455,
+        "total": 563,
         "connected": 0,
         "positive": 0,
         "durationH": 0.0
@@ -7370,10 +7404,10 @@
       },
       {
         "h": "8:00 AM",
-        "total": 48005,
-        "connected": 18844,
-        "positive": 11549,
-        "durationH": 256.19
+        "total": 64055,
+        "connected": 23772,
+        "positive": 14204,
+        "durationH": 320.62
       },
       {
         "h": "8:00 AM",
@@ -7384,10 +7418,10 @@
       },
       {
         "h": "9:00 AM",
-        "total": 144327,
-        "connected": 57024,
-        "positive": 36817,
-        "durationH": 773.12
+        "total": 193123,
+        "connected": 71923,
+        "positive": 46245,
+        "durationH": 972.48
       },
       {
         "h": "9:00 AM",
@@ -7398,31 +7432,31 @@
       },
       {
         "h": "10:00 AM",
-        "total": 208963,
-        "connected": 67221,
-        "positive": 27054,
-        "durationH": 833.6
+        "total": 244721,
+        "connected": 77759,
+        "positive": 34053,
+        "durationH": 975.22
       },
       {
         "h": "11:00 AM",
-        "total": 510876,
-        "connected": 162110,
-        "positive": 88047,
-        "durationH": 2110.84
+        "total": 562436,
+        "connected": 176932,
+        "positive": 97308,
+        "durationH": 2303.94
       },
       {
         "h": "12:00 PM",
-        "total": 1363479,
-        "connected": 379023,
-        "positive": 163639,
-        "durationH": 4663.77
+        "total": 1385503,
+        "connected": 385282,
+        "positive": 167550,
+        "durationH": 4743.38
       },
       {
         "h": "1:00 PM",
-        "total": 117337,
-        "connected": 40598,
-        "positive": 24803,
-        "durationH": 552.65
+        "total": 162035,
+        "connected": 52276,
+        "positive": 31664,
+        "durationH": 711.12
       },
       {
         "h": "1:00 PM",
@@ -7440,17 +7474,17 @@
       },
       {
         "h": "2:00 PM",
-        "total": 147116,
-        "connected": 50991,
-        "positive": 30194,
-        "durationH": 663.68
+        "total": 163140,
+        "connected": 54990,
+        "positive": 32254,
+        "durationH": 716.98
       },
       {
         "h": "3:00 PM",
-        "total": 152808,
-        "connected": 52184,
-        "positive": 30837,
-        "durationH": 712.47
+        "total": 197010,
+        "connected": 63355,
+        "positive": 37191,
+        "durationH": 860.8
       },
       {
         "h": "3:00 PM",
@@ -7468,17 +7502,17 @@
       },
       {
         "h": "4:00 PM",
-        "total": 112256,
-        "connected": 38830,
-        "positive": 23055,
-        "durationH": 528.44
+        "total": 127254,
+        "connected": 42871,
+        "positive": 25328,
+        "durationH": 583.33
       },
       {
         "h": "5:00 PM",
-        "total": 126404,
-        "connected": 39928,
-        "positive": 23288,
-        "durationH": 530.92
+        "total": 137060,
+        "connected": 42681,
+        "positive": 24860,
+        "durationH": 565.29
       },
       {
         "h": "5:00 PM",
@@ -7496,10 +7530,10 @@
       },
       {
         "h": "6:00 PM",
-        "total": 37875,
-        "connected": 11492,
-        "positive": 6192,
-        "durationH": 146.15
+        "total": 91699,
+        "connected": 25804,
+        "positive": 14508,
+        "durationH": 333.48
       },
       {
         "h": "7:00 PM",
