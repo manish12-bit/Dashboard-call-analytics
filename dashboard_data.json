@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-04-09 18:53:12 IST",
+  "last_updated": "2026-04-09 19:42:30 IST",
   "kpis": {
-    "total_calls": 23317831,
-    "connected_calls": 6233384,
+    "total_calls": 23321569,
+    "connected_calls": 6234230,
     "connect_rate": 26.73,
-    "total_hours": 79399.8,
-    "positive": 2245410,
+    "total_hours": 79412.1,
+    "positive": 2245654,
     "negative": 586991,
-    "listen_count": 2245410,
+    "listen_count": 2245654,
     "companies_count": 19
   },
   "company": [
@@ -25,15 +25,15 @@
     },
     {
       "name": "bajaj",
-      "total": 422400,
-      "connected": 156473,
-      "positive": 7018,
+      "total": 426138,
+      "connected": 157319,
+      "positive": 7262,
       "negative": 2334,
-      "success": 4.49,
+      "success": 4.62,
       "mht": 42.4,
-      "listen": 7018,
-      "connPct": 37.04,
-      "durationH": 1841.37
+      "listen": 7262,
+      "connPct": 36.92,
+      "durationH": 1853.67
     },
     {
       "name": "dbs_mintek",
@@ -250,10 +250,10 @@
     },
     {
       "name": "NORTH",
-      "total": 5644921,
-      "connected": 2119121,
+      "total": 5645841,
+      "connected": 2119952,
       "success": 39.91,
-      "connPct": 37.54
+      "connPct": 37.55
     },
     {
       "name": "SOUTH",
@@ -318,6 +318,12 @@
       "total": 41888,
       "connected": 10711,
       "success": 13.58
+    },
+    {
+      "name": "BKTX",
+      "total": 3738,
+      "connected": 846,
+      "success": 28.84
     },
     {
       "name": "BUCKET_1",
@@ -419,8 +425,8 @@
     },
     {
       "name": "Hindi",
-      "total": 4702679,
-      "connected": 4150768,
+      "total": 4703599,
+      "connected": 4151599,
       "success": 42.74
     },
     {
@@ -1858,6 +1864,12 @@
       "total": 412294,
       "connected": 111500,
       "success": 56.07
+    },
+    {
+      "d": "09 Apr 2026",
+      "total": 3738,
+      "connected": 846,
+      "success": 28.84
     }
   ],
   "hour": [
@@ -2031,15 +2043,15 @@
     },
     {
       "h": "4:00 PM",
-      "total": 172625,
-      "connected": 52679,
-      "success": 56.89
+      "total": 174112,
+      "connected": 53198,
+      "success": 56.62
     },
     {
       "h": "5:00 PM",
-      "total": 184161,
-      "connected": 52548,
-      "success": 51.85
+      "total": 185367,
+      "connected": 52751,
+      "success": 51.75
     },
     {
       "h": "5:00 PM",
@@ -2055,9 +2067,9 @@
     },
     {
       "h": "6:00 PM",
-      "total": 118784,
-      "connected": 31396,
-      "success": 49.07
+      "total": 119829,
+      "connected": 31520,
+      "success": 49.0
     },
     {
       "h": "7:00 PM",
@@ -2296,6 +2308,13 @@
         "connected": 907,
         "positive": 254,
         "durationH": 11.92
+      },
+      {
+        "d": "09 Apr 2026",
+        "total": 3738,
+        "connected": 846,
+        "positive": 244,
+        "durationH": 12.3
       }
     ],
     "dbs_mintek": [
@@ -5594,17 +5613,24 @@
       },
       {
         "h": "2:00 PM",
+        "total": 55619,
+        "connected": 22496,
+        "positive": 1040,
+        "durationH": 271.3
+      },
+      {
+        "h": "2:00 PM",
         "total": 1302,
         "connected": 478,
         "positive": 135,
         "durationH": 6.55
       },
       {
-        "h": "2:00 PM",
-        "total": 55619,
-        "connected": 22496,
-        "positive": 1040,
-        "durationH": 271.3
+        "h": "3:00 PM",
+        "total": 41875,
+        "connected": 11457,
+        "positive": 516,
+        "durationH": 130.47
       },
       {
         "h": "3:00 PM",
@@ -5614,11 +5640,11 @@
         "durationH": 3.28
       },
       {
-        "h": "3:00 PM",
-        "total": 41875,
-        "connected": 11457,
-        "positive": 516,
-        "durationH": 130.47
+        "h": "4:00 PM",
+        "total": 1487,
+        "connected": 519,
+        "positive": 152,
+        "durationH": 7.71
       },
       {
         "h": "4:00 PM",
@@ -5633,6 +5659,20 @@
         "connected": 20143,
         "positive": 492,
         "durationH": 228.04
+      },
+      {
+        "h": "5:00 PM",
+        "total": 1206,
+        "connected": 203,
+        "positive": 53,
+        "durationH": 2.47
+      },
+      {
+        "h": "6:00 PM",
+        "total": 1045,
+        "connected": 124,
+        "positive": 39,
+        "durationH": 2.11
       },
       {
         "h": "6:00 PM",
