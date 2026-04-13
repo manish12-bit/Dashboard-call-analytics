@@ -371,6 +371,8 @@ PROJECTION = {
     # Time from actual call
     "call_info.StartTime":              1,
     "call_info.Duration":               1,
+    "call_info.AnswerTime":             1,
+    "call_info.CallStatus":             1,
     # Disposition & language
     "model_data.disposition_code":      1,
     "model_data.language_detected":     1,
@@ -430,6 +432,10 @@ _AGG_STAGES = [
             "else": {"$ifNull": ["$created_at", datetime(2020, 1, 1)]},
         }},
         "_dur":    {"$convert": {"input": "$call_info.Duration", "to": "int", "onError": 0, "onNull": 0}},
+        "_answered": {"$and": [
+            {"$ne": [{"$ifNull": ["$call_info.AnswerTime", ""]}, ""]},
+            {"$eq": [{"$toLower": {"$ifNull": ["$call_info.CallStatus", ""]}}, "completed"]},
+        ]},
         "_disp":   {"$toUpper": {"$ifNull": ["$model_data.disposition_code", ""]}},
         "_lang":   {"$toLower": {"$ifNull": ["$model_data.language_detected", "unknown"]}},
         "_state":  {"$ifNull":  ["$user_info.row.STATE",         ""]},
@@ -453,7 +459,7 @@ _AGG_STAGES = [
         },
         "total":     {"$sum": 1},
         "dur_sec":   {"$sum": "$_dur"},
-        "connected": {"$sum": {"$cond": [{"$gt": ["$_dur", 0]}, 1, 0]}},
+        "connected": {"$sum": {"$cond": ["$_answered", 1, 0]}},
         "success":   {"$sum": {"$cond": [{"$in": ["$_disp", list(SUCCESS_DISPOSITIONS)]}, 1, 0]}},
         "failure":   {"$sum": {"$cond": [{"$in": ["$_disp", list(FAILURE_DISPOSITIONS)]}, 1, 0]}},
     }},
@@ -624,6 +630,10 @@ def _process_db_cursor(db_name: str, collection, match_filter: dict) -> dict:
         except (ValueError, TypeError):
             duration = 0
 
+        answer_time = str(call_info.get("AnswerTime") or "").strip()
+        call_status = str(call_info.get("CallStatus") or "").strip().lower()
+        is_connected = bool(answer_time) and call_status == "completed"
+
         start_dt = parse_start_time(call_info.get("StartTime", ""))
         if start_dt:
             hour_label = to_indian_ampm_hour(start_dt)
@@ -654,7 +664,7 @@ def _process_db_cursor(db_name: str, collection, match_filter: dict) -> dict:
         agg = rows[key]
         agg["total"]        += 1
         agg["duration_sec"] += duration
-        if duration > 0:
+        if is_connected:
             agg["connected"] += 1
         if disp_type == "success":
             agg["success"] += 1
