@@ -35,4 +35,5 @@ jobs:
           git config user.name "Pipeline Bot"
           git add dashboard_data.json session_analytics_realtime.csv checkpoint.json
           git commit -m "chore: hourly update $(date '+%Y-%m-%d %H:%M UTC')" || echo "No changes to commit"
+          git pull --rebase origin main
           git push
