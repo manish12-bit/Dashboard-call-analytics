@@ -3885,18 +3885,7 @@
       "efficiencyRate": 1290.0,
       "connPct": 0.21
     },
-    {
-      "h": "6:00 AM",
-      "total": 11532,
-      "connected": 14,
-      "positive": 76,
-      "negative": 1,
-      "other": 11455,
-      "disposed": 106,
-      "success": 100.0,
-      "efficiencyRate": 757.14,
-      "connPct": 0.12
-    },
+    
     {
       "h": "7:00 AM",
       "total": 87305,
