@@ -68,14 +68,13 @@ EXECUTIONS_COLL   = "executions"  # same across all 20 DBs — used to fetch val
 
 SUCCESS_DISPOSITIONS = {
     "PTP", "PAID", "FPTP", "CLAIM_PAID",
-    "ALREADY_PAID", "CLBK", "CB", "LM",
+    "ALREADY_PAID", "CLBK", "CB", "LM","FIELD_PTP","CP","INTERESTED"
 }
 FAILURE_DISPOSITIONS = {
     "RTP", "RTPF", "NC", "NR", "GREETING ONLY",
-    "HANG_UP", "DISPUTE", "JOBLESS", "DEATH", "DIF", "ME", "LB",
+    "HANG_UP", "DISPUTE", "JOBLESS", "DEATH", "DIF", "ME", "LB","SH","FI","FH"
 }
 
-CONNECTED_THRESHOLD_SEC = 5
 CHECKPOINT_FILE = "checkpoint.json"
 OUTPUT_FILE     = "session_analytics_realtime.csv"
 
@@ -131,16 +130,23 @@ LANG_TO_STATE = {
 
 # Language: normalise spelling variants -> canonical key used in LANG_TO_REGION/STATE
 LANG_NORMALIZE = {
-    # Telugu variants
+    # Telugu variants (ASCII)
     "telegu": "telugu", "telulu": "telugu", "te": "telugu",
+    # Telugu script variants
+    "తెలుగు": "telugu", "తెలుగులో": "telugu",
     # Tamil variants
     "tamizh": "tamil", "tamilmad": "tamil",
     # Odia variants
     "odiya": "odia", "oriya": "odia", "odisha": "odia", "or": "odia",
-    # Kannada variants
+    # Kannada variants (ASCII)
     "kannda": "kannada", "kn": "kannada",
-    # Hindi variants
+    # Kannada script variants
+    "ಕನ್ನಡ": "kannada",
+    # Hindi variants (ASCII)
     "hi": "hindi", "hinglish": "hindi",
+    # Hindi Devanagari script variants
+    "हिंदी": "hindi",   # anusvara form
+    "हिन्दी": "hindi",  # halant form
     # Mixed / junk -> unknown
     "bilingual": "unknown", "both": "unknown", "mixed": "unknown",
     "multi": "unknown", "multi_language": "unknown", "multilingual": "unknown",
@@ -447,7 +453,7 @@ _AGG_STAGES = [
         },
         "total":     {"$sum": 1},
         "dur_sec":   {"$sum": "$_dur"},
-        "connected": {"$sum": {"$cond": [{"$gt": ["$_dur", CONNECTED_THRESHOLD_SEC]}, 1, 0]}},
+        "connected": {"$sum": {"$cond": [{"$gt": ["$_dur", 0]}, 1, 0]}},
         "success":   {"$sum": {"$cond": [{"$in": ["$_disp", list(SUCCESS_DISPOSITIONS)]}, 1, 0]}},
         "failure":   {"$sum": {"$cond": [{"$in": ["$_disp", list(FAILURE_DISPOSITIONS)]}, 1, 0]}},
     }},
@@ -648,7 +654,7 @@ def _process_db_cursor(db_name: str, collection, match_filter: dict) -> dict:
         agg = rows[key]
         agg["total"]        += 1
         agg["duration_sec"] += duration
-        if duration > CONNECTED_THRESHOLD_SEC:
+        if duration > 0:
             agg["connected"] += 1
         if disp_type == "success":
             agg["success"] += 1
@@ -763,7 +769,7 @@ def write_to_csv(all_rows: dict, output_file: str):
             connected_rate = round(connected / total * 100, 2) if total else 0
             dur_min        = round(dur_sec / 60, 4)
             dur_hr         = round(dur_sec / 3600, 4)
-            success_rate   = round(success / total * 100, 2) if total else 0
+            success_rate   = round((success + failure) / connected * 100, 2) if connected else 0
             listen_rate    = round(listen / total * 100, 6) if total else 0
 
             writer.writerow([
@@ -907,13 +913,11 @@ def write_dashboard_json(csv_file: str, json_file: str):
                 pass
         return None
 
-    def cap100(pos, conn):
-        """Success rate = positive/connected capped at 100. Some calls (LM/CB)
-        have a success disposition but duration <= threshold, so positive can
-        slightly exceed connected — cap prevents >100% in the dashboard."""
+    def cap100(pos, neg, conn):
+        """Success rate = (positive + negative) / connected, capped at 100."""
         if not conn:
             return 0.0
-        return min(100.0, round(pos / conn * 100, 2))
+        return min(100.0, round((pos + neg) / conn * 100, 2))
 
     # ── Normalise Language column case before groupby ─────────────
     # Ensures 'english' and 'English' merge into one bucket
@@ -957,7 +961,7 @@ def write_dashboard_json(csv_file: str, json_file: str):
     company_data = []
     for _, r in cg.iterrows():
         cp  = round(r.connected / r.total * 100, 2) if r.total else 0
-        suc = cap100(r.positive, r.connected)
+        suc = cap100(r.positive, r.negative, r.connected)
         mht = round(r.dur_sec / r.connected, 1) if r.connected else 0
         company_data.append({
             "name": r["Company name"], "total": int(r.total),
@@ -972,11 +976,12 @@ def write_dashboard_json(csv_file: str, json_file: str):
         total    =("Total_calls",         "sum"),
         connected=("Connected_calls",      "sum"),
         positive =("Positive disposition", "sum"),
+        negative =("Negative disposition", "sum"),
     ).reset_index()
     region_data = []
     for _, r in rg.iterrows():
         cp  = round(r.connected / r.total * 100, 2) if r.total else 0
-        suc = cap100(r.positive, r.connected)
+        suc = cap100(r.positive, r.negative, r.connected)
         region_data.append({"name": r["Region"], "total": int(r.total),
                              "connected": int(r.connected), "success": suc, "connPct": cp})
 
@@ -985,10 +990,11 @@ def write_dashboard_json(csv_file: str, json_file: str):
         total    =("Total_calls",         "sum"),
         connected=("Connected_calls",      "sum"),
         positive =("Positive disposition", "sum"),
+        negative =("Negative disposition", "sum"),
     ).reset_index()
     usecase_data = []
     for _, r in ug.iterrows():
-        suc = cap100(r.positive, r.connected)
+        suc = cap100(r.positive, r.negative, r.connected)
         usecase_data.append({"name": r["Use case wise"], "total": int(r.total),
                               "connected": int(r.connected), "success": suc})
 
@@ -997,10 +1003,11 @@ def write_dashboard_json(csv_file: str, json_file: str):
         total    =("Total_calls",         "sum"),
         connected=("Connected_calls",      "sum"),
         positive =("Positive disposition", "sum"),
+        negative =("Negative disposition", "sum"),
     ).reset_index()
     language_data = []
     for _, r in lg.iterrows():
-        suc = cap100(r.positive, r.connected)
+        suc = cap100(r.positive, r.negative, r.connected)
         language_data.append({"name": r["Language"].title(), "total": int(r.total),
                                "connected": int(r.connected), "success": suc})
 
@@ -1011,11 +1018,12 @@ def write_dashboard_json(csv_file: str, json_file: str):
         total    =("Total_calls",         "sum"),
         connected=("Connected_calls",      "sum"),
         positive =("Positive disposition", "sum"),
+        negative =("Negative disposition", "sum"),
         _dt      =("_dt",                  "first"),
     ).reset_index().sort_values("_dt")
     date_data = []
     for _, r in dg.iterrows():
-        suc = cap100(r.positive, r.connected)
+        suc = cap100(r.positive, r.negative, r.connected)
         date_data.append({"d": r["_dt"].strftime("%d %b %Y"),
                           "total": int(r.total), "connected": int(r.connected), "success": suc})
 
@@ -1026,6 +1034,7 @@ def write_dashboard_json(csv_file: str, json_file: str):
         total    =("Total_calls",         "sum"),
         connected=("Connected_calls",      "sum"),
         positive =("Positive disposition", "sum"),
+        negative =("Negative disposition", "sum"),
     ).reset_index()
     hg["_sort"] = hg["Hour"].apply(hour_sort_key)
     hg = hg.sort_values("_sort")
@@ -1036,7 +1045,7 @@ def write_dashboard_json(csv_file: str, json_file: str):
             h_label = dt.strftime("%I:%M %p").lstrip("0") or "12:00 AM"
         except Exception:
             h_label = str(r["Hour"])
-        suc = cap100(r.positive, r.connected)
+        suc = cap100(r.positive, r.negative, r.connected)
         hour_data.append({"h": h_label, "total": int(r.total),
                           "connected": int(r.connected), "success": suc})
 
