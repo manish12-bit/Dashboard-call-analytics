@@ -68,11 +68,11 @@ EXECUTIONS_COLL   = "executions"  # same across all 20 DBs — used to fetch val
 
 SUCCESS_DISPOSITIONS = {
     "PTP", "PAID", "FPTP", "CLAIM_PAID",
-    "ALREADY_PAID", "CLBK", "CB", "LM","FIELD_PTP","CP","INTERESTED"
+    "ALREADY_PAID", "CLBK", "CB", "LM","FIELD_PTP","CP","INTERESTED","BALANCE_CONFIRMED",
 }
 FAILURE_DISPOSITIONS = {
     "RTP", "RTPF", "NC", "NR", "GREETING ONLY",
-    "HANG_UP", "DISPUTE", "JOBLESS", "DEATH", "DIF", "ME", "LB","SH","FI","FH"
+    "HANG_UP", "DISPUTE", "JOBLESS", "DEATH", "DIF", "ME", "LB","SH","FI","FH","INFO_GIVEN_NO_RESPONSE","MINIMAL_ENGAGEMENT","EARLY_DISCONNECT"
 }
 
 CHECKPOINT_FILE = "checkpoint.json"
@@ -89,7 +89,8 @@ CSV_HEADER = [
     "Total_calls", "Connected_calls", "Connected rate",
     "Total_duration_seconds", "Total_duration_minutes", "Total_duration_hours",
     "Positive disposition", "Negative disposition", "Other disposition",
-    "Success rate", "Listen Count", "Listen rate",
+    "Disposed calls",
+    "Success rate", "Efficiency rate", "Listen Count", "Listen rate",
 ]
 
 # ================================================================
@@ -210,9 +211,20 @@ def normalize_region(raw: str) -> str:
 
 # Use-case: merge near-duplicates and strip junk
 USECASE_NORMALIZE = {
-    "gen-ai-bot":    "GEN AI BOT",
-    "bkt x bot":     "BKT X",
-    "bucket_x":      "BUCKET_X",
+    "gen-ai-bot":       "GEN AI BOT",
+    "bkt x bot":        "BKT X",
+    "bucket_x":         "BUCKET_X",
+    # PDM variants
+    "pdm":              "PDM",
+    "pd":               "PDM",
+    "pdm gen ai bot":   "PDM",
+    "pd gen ai bot":    "PDM",
+    # Pre-due variants
+    "predue":           "PRE DUE",
+    "pre-due":          "PRE DUE",
+    "pre_due":          "PRE DUE",
+    "pre due":          "PRE DUE",
+    "pnpa":             "PRE DUE",
 }
 USECASE_JUNK = {"**", "***", "2", "abc", ""}
 
@@ -414,9 +426,9 @@ def get_execution_ids(db, done_ids: set, is_first_run: bool) -> list:
         return []
 
 
-# Max execution_ids per aggregation batch — keeps each query fast on CosmosDB
-# micro_fi/tatacapital have ~5700 sessions per exec_id, so 10×5700 ≈ 57k per chunk
-EXEC_CHUNK_SIZE = 10
+# Max execution_ids per aggregation batch (incremental runs only).
+# First run always uses a single full-collection scan (no chunking).
+EXEC_CHUNK_SIZE = 50
 
 # Aggregation pipeline template (match stage is injected per chunk)
 _AGG_STAGES = [
@@ -436,7 +448,7 @@ _AGG_STAGES = [
             {"$ne": [{"$ifNull": ["$call_info.AnswerTime", ""]}, ""]},
             {"$eq": [{"$toLower": {"$ifNull": ["$call_info.CallStatus", ""]}}, "completed"]},
         ]},
-        "_disp":   {"$toUpper": {"$ifNull": ["$model_data.disposition_code", ""]}},
+        "_disp":     {"$toUpper": {"$ifNull": ["$model_data.disposition_code", ""]}},
         "_lang":   {"$toLower": {"$ifNull": ["$model_data.language_detected", "unknown"]}},
         "_state":  {"$ifNull":  ["$user_info.row.STATE",         ""]},
         "_region": {"$ifNull":  ["$user_info.row.REGION",        ""]},
@@ -460,6 +472,7 @@ _AGG_STAGES = [
         "total":     {"$sum": 1},
         "dur_sec":   {"$sum": "$_dur"},
         "connected": {"$sum": {"$cond": ["$_answered", 1, 0]}},
+        "disposed":  {"$sum": {"$cond": [{"$ne": ["$_disp", ""]}, 1, 0]}},
         "success":   {"$sum": {"$cond": [{"$in": ["$_disp", list(SUCCESS_DISPOSITIONS)]}, 1, 0]}},
         "failure":   {"$sum": {"$cond": [{"$in": ["$_disp", list(FAILURE_DISPOSITIONS)]}, 1, 0]}},
     }},
@@ -499,6 +512,7 @@ def _merge_agg_result(rows: dict, results: list, db_name: str):
             r = rows[key]
             r["total"]        += tot
             r["connected"]    += doc["connected"]
+            r["disposed"]     += doc.get("disposed", 0)
             r["duration_sec"] += doc["dur_sec"]
             r["success"]      += doc["success"]
             r["failure"]      += doc["failure"]
@@ -508,6 +522,7 @@ def _merge_agg_result(rows: dict, results: list, db_name: str):
             rows[key] = {
                 "total":        tot,
                 "connected":    doc["connected"],
+                "disposed":     doc.get("disposed", 0),
                 "duration_sec": doc["dur_sec"],
                 "success":      doc["success"],
                 "failure":      doc["failure"],
@@ -527,13 +542,15 @@ def process_db(db_name: str, db, done_ids: set, last_time: datetime, is_first_ru
     collection = db[COLLECTION_NAME]
     exec_ids = get_execution_ids(db, done_ids, is_first_run)
 
-    if exec_ids:
+    if is_first_run:
+        # First run: single full-collection scan — far faster than hundreds of
+        # per-execution-id chunks (tatacapital alone has 1000+ exec IDs).
+        print(f"  [{db_name}] First run — full collection scan (1 aggregation) ...")
+        chunks = [None]
+    elif exec_ids:
         n_chunks = (len(exec_ids) + EXEC_CHUNK_SIZE - 1) // EXEC_CHUNK_SIZE
         print(f"  [{db_name}] {len(exec_ids)} execution_ids -> {n_chunks} chunk(s) | server-side aggregation ...")
         chunks = [exec_ids[i:i + EXEC_CHUNK_SIZE] for i in range(0, len(exec_ids), EXEC_CHUNK_SIZE)]
-    elif is_first_run:
-        print(f"  [{db_name}] No executions — full collection scan server-side ...")
-        chunks = [None]   # single pass, no exec_id filter
     else:
         # No new execution_ids in the lookback window — but late-arriving
         # sessions (uploaded after the last run) may still exist in old
@@ -597,7 +614,7 @@ def _process_db_cursor(db_name: str, collection, match_filter: dict) -> dict:
     """Fallback: fetch raw docs and aggregate in Python (used if $group fails)."""
     cursor = collection.find(match_filter, PROJECTION).batch_size(2000)
     rows = defaultdict(lambda: {
-        "total": 0, "connected": 0, "duration_sec": 0,
+        "total": 0, "connected": 0, "disposed": 0, "duration_sec": 0,
         "success": 0, "failure": 0, "other": 0, "listen": 0,
     })
     count = 0
@@ -666,6 +683,8 @@ def _process_db_cursor(db_name: str, collection, match_filter: dict) -> dict:
         agg["duration_sec"] += duration
         if is_connected:
             agg["connected"] += 1
+        if disposition:
+            agg["disposed"] += 1
         if disp_type == "success":
             agg["success"] += 1
             agg["listen"]  += 1
@@ -716,18 +735,20 @@ def write_to_csv(all_rows: dict, output_file: str):
                     row.get("Date", ""),
                     row.get("Hour", ""),
                 )
-                t = int(float(row.get("Total_calls",           0) or 0))
-                c = int(float(row.get("Connected_calls",       0) or 0))
-                d = float(row.get("Total_duration_seconds",    0) or 0)
-                s = int(float(row.get("Positive disposition",  0) or 0))
-                f = int(float(row.get("Negative disposition",  0) or 0))
-                o = int(float(row.get("Other disposition",     0) or 0))
-                l = int(float(row.get("Listen Count",          0) or 0))
+                t  = int(float(row.get("Total_calls",           0) or 0))
+                c  = int(float(row.get("Connected_calls",       0) or 0))
+                d  = float(row.get("Total_duration_seconds",    0) or 0)
+                s  = int(float(row.get("Positive disposition",  0) or 0))
+                f  = int(float(row.get("Negative disposition",  0) or 0))
+                o  = int(float(row.get("Other disposition",     0) or 0))
+                dp = int(float(row.get("Disposed calls",        0) or 0))
+                l  = int(float(row.get("Listen Count",          0) or 0))
                 if k in existing:
                     # Sum duplicate rows (legacy artefact of old append mode)
                     ex = existing[k]
                     ex["total"]        += t
                     ex["connected"]    += c
+                    ex["disposed"]     += dp
                     ex["duration_sec"] += d
                     ex["success"]      += s
                     ex["failure"]      += f
@@ -735,7 +756,7 @@ def write_to_csv(all_rows: dict, output_file: str):
                     ex["listen"]       += l
                 else:
                     existing[k] = {
-                        "total": t, "connected": c, "duration_sec": d,
+                        "total": t, "connected": c, "disposed": dp, "duration_sec": d,
                         "success": s, "failure": f, "other": o, "listen": l,
                     }
 
@@ -747,6 +768,7 @@ def write_to_csv(all_rows: dict, output_file: str):
             ex = existing[csv_key]
             ex["total"]        += agg["total"]
             ex["connected"]    += agg["connected"]
+            ex["disposed"]     += agg.get("disposed", 0)
             ex["duration_sec"] += agg["duration_sec"]
             ex["success"]      += agg["success"]
             ex["failure"]      += agg["failure"]
@@ -756,6 +778,7 @@ def write_to_csv(all_rows: dict, output_file: str):
             existing[csv_key] = {
                 "total":        agg["total"],
                 "connected":    agg["connected"],
+                "disposed":     agg.get("disposed", 0),
                 "duration_sec": agg["duration_sec"],
                 "success":      agg["success"],
                 "failure":      agg["failure"],
@@ -770,17 +793,19 @@ def write_to_csv(all_rows: dict, output_file: str):
         for (db_name, state, use_case, language, region, date_label, hour_label), agg in existing.items():
             total     = agg["total"]
             connected = agg["connected"]
+            disposed  = agg.get("disposed", 0)
             dur_sec   = agg["duration_sec"]
             success   = agg["success"]
             failure   = agg["failure"]
             other     = agg["other"]
             listen    = agg["listen"]
 
-            connected_rate = round(connected / total * 100, 2) if total else 0
-            dur_min        = round(dur_sec / 60, 4)
-            dur_hr         = round(dur_sec / 3600, 4)
-            success_rate   = round((success + failure) / connected * 100, 2) if connected else 0
-            listen_rate    = round(listen / total * 100, 6) if total else 0
+            connected_rate  = round(connected / total * 100, 2) if total else 0
+            dur_min         = round(dur_sec / 60, 4)
+            dur_hr          = round(dur_sec / 3600, 4)
+            success_rate    = round((success + failure) / connected * 100, 2) if connected else 0
+            efficiency_rate = round(disposed / connected * 100, 2) if connected else 0
+            listen_rate     = round((success + failure) / connected * 100, 6) if connected else 0
 
             writer.writerow([
                 db_name, state, use_case, language, region,
@@ -788,7 +813,8 @@ def write_to_csv(all_rows: dict, output_file: str):
                 total, connected, connected_rate,
                 dur_sec, dur_min, dur_hr,
                 success, failure, other,
-                success_rate, listen, listen_rate,
+                disposed,
+                success_rate, efficiency_rate, listen, listen_rate,
             ])
 
 
@@ -848,8 +874,8 @@ def run_pipeline():
         finally:
             _client.close()
 
-    # ── Run all DBs in parallel (max 5 concurrent connections) ────────
-    MAX_WORKERS = 5
+    # ── Run all DBs in parallel ────────────────────────────────────────
+    MAX_WORKERS = 10
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(process_one, name): name for name in db_names}
         for future in as_completed(futures):
@@ -929,21 +955,29 @@ def write_dashboard_json(csv_file: str, json_file: str):
             return 0.0
         return min(100.0, round((pos + neg) / conn * 100, 2))
 
-    # ── Normalise Language column case before groupby ─────────────
-    # Ensures 'english' and 'English' merge into one bucket
+    # ── Normalise columns before groupby ─────────────────────────
     df["Language"] = df["Language"].fillna("unknown").astype(str).str.lower().str.strip()
+    df["Use case wise"] = df["Use case wise"].fillna("UNKNOWN").astype(str).apply(normalize_usecase)
+    df["Language"] = df["Language"].apply(normalize_language)
+    # Disposed calls column may not exist in older CSVs — backfill from pos+neg
+    if "Disposed calls" not in df.columns:
+        df["Disposed calls"] = df["Positive disposition"] + df["Negative disposition"]
 
     # ── KPIs ─────────────────────────────────────────────────────
     total_calls = int(df["Total_calls"].sum())
     connected   = int(df["Connected_calls"].sum())
     positive    = int(df["Positive disposition"].sum())
     negative    = int(df["Negative disposition"].sum())
+    disposed    = int(df["Disposed calls"].sum()) if "Disposed calls" in df.columns else positive + negative
     listen      = int(df["Listen Count"].sum())
     dur_sec_all = float(df["Total_duration_seconds"].sum())
     dur_hrs     = round(dur_sec_all / 3600, 2)
     conn_rate   = round(connected / total_calls * 100, 2) if total_calls else 0
     # Only count companies that actually have calls
     companies   = int((df.groupby("Company name")["Total_calls"].sum() > 0).sum())
+
+    listen_rate     = round((positive + negative) / connected * 100, 2) if connected else 0
+    efficiency_rate = round(disposed / connected * 100, 2) if connected else 0
 
     kpis = {
         "total_calls":     total_calls,
@@ -952,7 +986,10 @@ def write_dashboard_json(csv_file: str, json_file: str):
         "total_hours":     round(dur_hrs, 1),
         "positive":        positive,
         "negative":        negative,
-        "listen_count":    listen,
+        "disposed":        disposed,
+        "efficiency_rate": efficiency_rate,
+        "listen_count":    positive + negative,
+        "listen_rate":     listen_rate,
         "companies_count": companies,
     }
 
@@ -962,6 +999,8 @@ def write_dashboard_json(csv_file: str, json_file: str):
         connected=("Connected_calls",        "sum"),
         positive =("Positive disposition",   "sum"),
         negative =("Negative disposition",   "sum"),
+        other    =("Other disposition",      "sum"),
+        disposed =("Disposed calls",         "sum"),
         listen   =("Listen Count",           "sum"),
         dur_sec  =("Total_duration_seconds", "sum"),
     ).reset_index()
@@ -972,11 +1011,14 @@ def write_dashboard_json(csv_file: str, json_file: str):
     for _, r in cg.iterrows():
         cp  = round(r.connected / r.total * 100, 2) if r.total else 0
         suc = cap100(r.positive, r.negative, r.connected)
+        eff = round(r.disposed / r.connected * 100, 2) if r.connected else 0
         mht = round(r.dur_sec / r.connected, 1) if r.connected else 0
         company_data.append({
             "name": r["Company name"], "total": int(r.total),
             "connected": int(r.connected), "positive": int(r.positive),
-            "negative": int(r.negative), "success": suc, "mht": mht,
+            "negative": int(r.negative), "other": int(r.other),
+            "disposed": int(r.disposed), "success": suc,
+            "efficiencyRate": eff, "mht": mht,
             "listen": int(r.listen), "connPct": cp,
             "durationH": round(r.dur_sec / 3600, 2),
         })
@@ -987,13 +1029,19 @@ def write_dashboard_json(csv_file: str, json_file: str):
         connected=("Connected_calls",      "sum"),
         positive =("Positive disposition", "sum"),
         negative =("Negative disposition", "sum"),
+        other    =("Other disposition",    "sum"),
+        disposed =("Disposed calls",       "sum"),
     ).reset_index()
     region_data = []
     for _, r in rg.iterrows():
         cp  = round(r.connected / r.total * 100, 2) if r.total else 0
         suc = cap100(r.positive, r.negative, r.connected)
+        eff = round(r.disposed / r.connected * 100, 2) if r.connected else 0
         region_data.append({"name": r["Region"], "total": int(r.total),
-                             "connected": int(r.connected), "success": suc, "connPct": cp})
+                             "connected": int(r.connected), "positive": int(r.positive),
+                             "negative": int(r.negative), "other": int(r.other),
+                             "disposed": int(r.disposed), "success": suc,
+                             "efficiencyRate": eff, "connPct": cp})
 
     # ── Use-case aggregation ─────────────────────────────────────
     ug = df[df["Use case wise"].notna() & (df["Use case wise"] != "UNKNOWN")].groupby("Use case wise").agg(
@@ -1001,12 +1049,19 @@ def write_dashboard_json(csv_file: str, json_file: str):
         connected=("Connected_calls",      "sum"),
         positive =("Positive disposition", "sum"),
         negative =("Negative disposition", "sum"),
+        other    =("Other disposition",    "sum"),
+        disposed =("Disposed calls",       "sum"),
     ).reset_index()
     usecase_data = []
     for _, r in ug.iterrows():
+        cp  = round(r.connected / r.total * 100, 2) if r.total else 0
         suc = cap100(r.positive, r.negative, r.connected)
+        eff = round(r.disposed / r.connected * 100, 2) if r.connected else 0
         usecase_data.append({"name": r["Use case wise"], "total": int(r.total),
-                              "connected": int(r.connected), "success": suc})
+                              "connected": int(r.connected), "positive": int(r.positive),
+                              "negative": int(r.negative), "other": int(r.other),
+                              "disposed": int(r.disposed), "success": suc,
+                              "efficiencyRate": eff, "connPct": cp})
 
     # ── Language aggregation (grouped on lowercased column) ───────
     lg = df[df["Language"].notna() & (df["Language"] != "unknown")].groupby("Language").agg(
@@ -1014,12 +1069,19 @@ def write_dashboard_json(csv_file: str, json_file: str):
         connected=("Connected_calls",      "sum"),
         positive =("Positive disposition", "sum"),
         negative =("Negative disposition", "sum"),
+        other    =("Other disposition",    "sum"),
+        disposed =("Disposed calls",       "sum"),
     ).reset_index()
     language_data = []
     for _, r in lg.iterrows():
+        cp  = round(r.connected / r.total * 100, 2) if r.total else 0
         suc = cap100(r.positive, r.negative, r.connected)
+        eff = round(r.disposed / r.connected * 100, 2) if r.connected else 0
         language_data.append({"name": r["Language"].title(), "total": int(r.total),
-                               "connected": int(r.connected), "success": suc})
+                               "connected": int(r.connected), "positive": int(r.positive),
+                               "negative": int(r.negative), "other": int(r.other),
+                               "disposed": int(r.disposed), "success": suc,
+                               "efficiencyRate": eff, "connPct": cp})
 
     # ── Date aggregation (sorted chronologically) ────────────────
     df["_dt"] = df["Date"].apply(parse_date)
@@ -1029,13 +1091,20 @@ def write_dashboard_json(csv_file: str, json_file: str):
         connected=("Connected_calls",      "sum"),
         positive =("Positive disposition", "sum"),
         negative =("Negative disposition", "sum"),
+        other    =("Other disposition",    "sum"),
+        disposed =("Disposed calls",       "sum"),
         _dt      =("_dt",                  "first"),
     ).reset_index().sort_values("_dt")
     date_data = []
     for _, r in dg.iterrows():
+        cp  = round(r.connected / r.total * 100, 2) if r.total else 0
         suc = cap100(r.positive, r.negative, r.connected)
+        eff = round(r.disposed / r.connected * 100, 2) if r.connected else 0
         date_data.append({"d": r["_dt"].strftime("%d %b %Y"),
-                          "total": int(r.total), "connected": int(r.connected), "success": suc})
+                          "total": int(r.total), "connected": int(r.connected),
+                          "positive": int(r.positive), "negative": int(r.negative),
+                          "other": int(r.other), "disposed": int(r.disposed),
+                          "success": suc, "efficiencyRate": eff, "connPct": cp})
 
     # ── Hour aggregation (sorted by clock) ──────────────────────
     # Filter out junk hour values (non-time-format strings)
@@ -1045,6 +1114,8 @@ def write_dashboard_json(csv_file: str, json_file: str):
         connected=("Connected_calls",      "sum"),
         positive =("Positive disposition", "sum"),
         negative =("Negative disposition", "sum"),
+        other    =("Other disposition",    "sum"),
+        disposed =("Disposed calls",       "sum"),
     ).reset_index()
     hg["_sort"] = hg["Hour"].apply(hour_sort_key)
     hg = hg.sort_values("_sort")
@@ -1055,9 +1126,14 @@ def write_dashboard_json(csv_file: str, json_file: str):
             h_label = dt.strftime("%I:%M %p").lstrip("0") or "12:00 AM"
         except Exception:
             h_label = str(r["Hour"])
+        cp  = round(r.connected / r.total * 100, 2) if r.total else 0
         suc = cap100(r.positive, r.negative, r.connected)
+        eff = round(r.disposed / r.connected * 100, 2) if r.connected else 0
         hour_data.append({"h": h_label, "total": int(r.total),
-                          "connected": int(r.connected), "success": suc})
+                          "connected": int(r.connected), "positive": int(r.positive),
+                          "negative": int(r.negative), "other": int(r.other),
+                          "disposed": int(r.disposed), "success": suc,
+                          "efficiencyRate": eff, "connPct": cp})
 
     # ── Per-company date & hour data ────────────────────────────
     comp_date_data = {}

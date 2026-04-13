@@ -193,6 +193,7 @@ body {
 .pill.red { background: rgba(239,68,68,0.12); color: #DC2626; }
 .pill.blue { background: rgba(59,130,246,0.12); color: #2563EB; }
 .pill.orange { background: rgba(245,158,11,0.12); color: #D97706; }
+.pill.grey { background: rgba(107,114,128,0.12); color: #6B7280; }
 .pill.yellow { background: rgba(245,158,11,0.12); color: #D97706; }
 .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 .bar-label { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #11344D; width: 80px; flex-shrink: 0; text-align: right; }
@@ -298,7 +299,7 @@ body {
   <div class="charts-grid">
     <div class="chart-card">
       <div class="chart-title">Total Calls by Company</div>
-      <div class="chart-sub" id="compTotalSub">Volume distribution across all 20 client companies</div>
+      <div class="chart-sub" id="compTotalSub">Volume distribution across all  client companies</div>
       <div class="chart-wrap"><canvas id="compTotalChart"></canvas></div>
     </div>
     <div class="chart-card">
@@ -334,8 +335,8 @@ body {
         <thead>
           <tr>
             <th>#</th><th>Company</th><th>Total Calls</th><th>Connected</th>
-            <th>Connect %</th><th>Positive</th><th>Negative</th>
-            <th>Success Rate</th><th>Duration (hrs)</th><th>MHT (s)</th><th>Listen Count</th>
+            <th>Connect %</th><th>Positive</th><th>Negative</th><th>Other</th>
+            <th>Success Rate</th><th>Efficiency Rate</th><th>Duration (hrs)</th><th>MHT (s)</th><th>Listen Count</th>
           </tr>
         </thead>
         <tbody id="companyTableBody"></tbody>
@@ -389,7 +390,7 @@ body {
       <div class="chart-sub">Full breakdown per use case</div>
       <table class="data-table">
         <thead>
-          <tr><th>Use Case</th><th>Total Calls</th><th>Connected</th><th>Connect %</th><th>Success Rate</th></tr>
+          <tr><th>Use Case</th><th>Total Calls</th><th>Connected</th><th>Connect %</th><th>Positive</th><th>Negative</th><th>Other</th><th>Success Rate</th><th>Efficiency Rate</th></tr>
         </thead>
         <tbody id="usecaseTableBody"></tbody>
       </table>
@@ -415,7 +416,7 @@ body {
       <div class="chart-sub">Full breakdown per language</div>
       <table class="data-table">
         <thead>
-          <tr><th>Language</th><th>Total Calls</th><th>Connected</th><th>Connect %</th><th>Success Rate</th></tr>
+          <tr><th>Language</th><th>Total Calls</th><th>Connected</th><th>Connect %</th><th>Positive</th><th>Negative</th><th>Other</th><th>Success Rate</th><th>Efficiency Rate</th></tr>
         </thead>
         <tbody id="languageTableBody"></tbody>
       </table>
@@ -581,6 +582,12 @@ async function loadDashboard() {
         <div class="kpi-label">Listen Count</div>
         <div class="kpi-value">${fmtNum(k.listen_count)}</div>
         <div class="kpi-sub">${(k.listen_count||0).toLocaleString('en-IN')} bot engagements</div>
+      </div>
+      <div class="kpi-card c3">
+        <div class="kpi-label">Efficiency Rate</div>
+        <div class="kpi-value">${k.efficiency_rate||0}%</div>
+        <div class="kpi-sub">Any disposition / Connected</div>
+        <span class="kpi-badge up">${fmtNum(k.disposed||0)} disposed calls</span>
       </div>`;
 
     // Populate per-company dropdowns and sidebar company list from live data
@@ -858,7 +865,9 @@ function buildCompany(){
       <td><span class="pill blue">${d.connPct}%</span></td>
       <td><span class="pill green">${fmtNum(d.positive)}</span></td>
       <td><span class="pill red">${fmtNum(d.negative)}</span></td>
+      <td><span class="pill grey">${fmtNum(d.other||0)}</span></td>
       <td><span class="pill ${s}">${d.success.toFixed(1)}%</span></td>
+      <td><span class="pill blue">${(d.efficiencyRate||0).toFixed(1)}%</span></td>
       <td><span class="pill yellow">${d.durationH.toLocaleString()} h</span></td>
       <td>${fmtTime(d.mht)}</td>
       <td>${fmtNum(d.listen)}</td>
@@ -933,14 +942,17 @@ function buildUseCase(){
   const tbody = document.getElementById('usecaseTableBody');
   usecaseData.forEach((d,i)=>{
     const c = MULTI[i % MULTI.length];
-    const pct = d.total>0?(d.connected/d.total*100).toFixed(1):'0.0';
     const s = d.success>35?'green':d.success>20?'blue':'red';
     tbody.innerHTML += `<tr>
       <td><b style="color:${c}">${d.name}</b></td>
       <td><span class="pill blue">${fmtNum(d.total)}</span></td>
       <td><span class="pill blue">${fmtNum(d.connected)}</span></td>
-      <td><span class="pill blue">${pct}%</span></td>
+      <td><span class="pill blue">${d.connPct||0}%</span></td>
+      <td><span class="pill green">${fmtNum(d.positive||0)}</span></td>
+      <td><span class="pill red">${fmtNum(d.negative||0)}</span></td>
+      <td><span class="pill grey">${fmtNum(d.other||0)}</span></td>
       <td><span class="pill ${s}">${d.success.toFixed(1)}%</span></td>
+      <td><span class="pill blue">${(d.efficiencyRate||0).toFixed(1)}%</span></td>
     </tr>`;
   });
 }
@@ -962,14 +974,17 @@ function buildLanguage(){
   const tbody = document.getElementById('languageTableBody');
   languageData.forEach((d,i)=>{
     const c = MULTI[i % MULTI.length];
-    const pct = d.total>0?(d.connected/d.total*100).toFixed(1):'0.0';
     const s = d.success>30?'green':d.success>10?'blue':'red';
     tbody.innerHTML += `<tr>
       <td><b style="color:${c}">${d.name}</b></td>
       <td><span class="pill blue">${fmtNum(d.total)}</span></td>
       <td><span class="pill blue">${fmtNum(d.connected)}</span></td>
-      <td><span class="pill blue">${pct}%</span></td>
+      <td><span class="pill blue">${d.connPct||0}%</span></td>
+      <td><span class="pill green">${fmtNum(d.positive||0)}</span></td>
+      <td><span class="pill red">${fmtNum(d.negative||0)}</span></td>
+      <td><span class="pill grey">${fmtNum(d.other||0)}</span></td>
       <td><span class="pill ${s}">${d.success.toFixed(1)}%</span></td>
+      <td><span class="pill blue">${(d.efficiencyRate||0).toFixed(1)}%</span></td>
     </tr>`;
   });
 }
