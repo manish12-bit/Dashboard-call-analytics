@@ -81,7 +81,7 @@ OUTPUT_FILE     = "session_analytics_realtime.csv"
 # How many hours to look back for executions on every incremental run.
 # Catches executions that were missed due to transient errors or that were
 # created just before/after a checkpoint boundary.
-LOOKBACK_HOURS = 48
+LOOKBACK_HOURS = 72
 
 CSV_HEADER = [
     "Company name", "State", "Use case wise", "Language", "Region",
@@ -428,7 +428,7 @@ def get_execution_ids(db, done_ids: set, is_first_run: bool) -> list:
 
 # Max execution_ids per aggregation batch (incremental runs only).
 # First run always uses a single full-collection scan (no chunking).
-EXEC_CHUNK_SIZE = 50
+EXEC_CHUNK_SIZE = 100
 
 # Aggregation pipeline template (match stage is injected per chunk)
 _AGG_STAGES = [
@@ -508,25 +508,27 @@ def _merge_agg_result(rows: dict, results: list, db_name: str):
             normalize_usecase(g.get("use_case") or ""),
             g.get("campaign") or "UNKNOWN",
         )
+        disp  = doc.get("disposed", 0)
+        other = max(0, disp - doc["success"] - doc["failure"])   # disposed but NOT success/failure code
         if key in rows:
             r = rows[key]
             r["total"]        += tot
             r["connected"]    += doc["connected"]
-            r["disposed"]     += doc.get("disposed", 0)
+            r["disposed"]     += disp
             r["duration_sec"] += doc["dur_sec"]
             r["success"]      += doc["success"]
             r["failure"]      += doc["failure"]
-            r["other"]        += max(0, tot - doc["success"] - doc["failure"])
+            r["other"]        += other
             r["listen"]       += doc["success"]
         else:
             rows[key] = {
                 "total":        tot,
                 "connected":    doc["connected"],
-                "disposed":     doc.get("disposed", 0),
+                "disposed":     disp,
                 "duration_sec": doc["dur_sec"],
                 "success":      doc["success"],
                 "failure":      doc["failure"],
-                "other":        max(0, tot - doc["success"] - doc["failure"]),
+                "other":        other,
                 "listen":       doc["success"],
             }
 
@@ -670,13 +672,6 @@ def _process_db_cursor(db_name: str, collection, match_filter: dict) -> dict:
         use_case = normalize_usecase(str(row_data.get("CAMPAIGN_FLAG") or ""))
         campaign = str(row_data.get("CAMPAIGN_NAME") or "UNKNOWN").strip()
 
-        if disposition in SUCCESS_DISPOSITIONS:
-            disp_type = "success"
-        elif disposition in FAILURE_DISPOSITIONS:
-            disp_type = "failure"
-        else:
-            disp_type = "other"
-
         key = (db_name, date_label, hour_label, state, region, language, use_case, campaign)
         agg = rows[key]
         agg["total"]        += 1
@@ -685,13 +680,14 @@ def _process_db_cursor(db_name: str, collection, match_filter: dict) -> dict:
             agg["connected"] += 1
         if disposition:
             agg["disposed"] += 1
-        if disp_type == "success":
-            agg["success"] += 1
-            agg["listen"]  += 1
-        elif disp_type == "failure":
-            agg["failure"] += 1
-        else:
-            agg["other"]   += 1
+            if disposition in SUCCESS_DISPOSITIONS:
+                agg["success"] += 1
+                agg["listen"]  += 1
+            elif disposition in FAILURE_DISPOSITIONS:
+                agg["failure"] += 1
+            else:
+                # disposed with a code not in success or failure sets
+                agg["other"] += 1
 
     print(f"  [{db_name}] Processed {count:,} sessions -> {len(rows):,} rows (cursor fallback)")
     return dict(rows)
@@ -853,6 +849,15 @@ def run_pipeline():
     all_rows = {}
     now_utc  = datetime.now(timezone.utc).replace(tzinfo=None)   # single timestamp for this run
 
+    # ── If ALL DBs are first-run (checkpoint deleted), wipe old CSV so we
+    # don't merge wrong historical values with fresh recalculated data.
+    global_first_run = not checkpoints or all(
+        checkpoints.get(db) is None for db in db_names
+    )
+    if global_first_run and os.path.exists(OUTPUT_FILE):
+        print(f"  [pipeline] Full reset detected — deleting old {OUTPUT_FILE} to avoid bad merge")
+        os.remove(OUTPUT_FILE)
+
     # ── Worker: process one DB (each thread gets its own MongoClient) ──
     def process_one(db_name: str):
         entry        = checkpoints.get(db_name)          # None on first run
@@ -865,7 +870,14 @@ def run_pipeline():
             last_time = datetime.fromisoformat(entry["last_time"])
             done_ids  = set(entry.get("done_ids") or [])
             print(f"  [{db_name}] Incremental — lookback {LOOKBACK_HOURS}h | {len(done_ids)} IDs already processed")
-        _client = MongoClient(MONGO_URI)
+        _client = MongoClient(
+            MONGO_URI,
+            serverSelectionTimeoutMS=15_000,
+            connectTimeoutMS=15_000,
+            socketTimeoutMS=120_000,
+            retryReads=True,
+            retryWrites=True,
+        )
         try:
             rows, new_exec_ids = process_db(db_name, _client[db_name], done_ids, last_time, is_first_run)
             return db_name, rows, new_exec_ids, is_first_run, None
@@ -875,7 +887,7 @@ def run_pipeline():
             _client.close()
 
     # ── Run all DBs in parallel ────────────────────────────────────────
-    MAX_WORKERS = 10
+    MAX_WORKERS = min(20, len(db_names))
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(process_one, name): name for name in db_names}
         for future in as_completed(futures):
@@ -949,11 +961,11 @@ def write_dashboard_json(csv_file: str, json_file: str):
                 pass
         return None
 
-    def cap100(pos, neg, conn):
-        """Success rate = (positive + negative) / connected, capped at 100."""
+    def effective_rate(pos, conn):
+        """Effective rate = positive dispositions (PTP/PAID/etc.) / connected, capped at 100."""
         if not conn:
             return 0.0
-        return min(100.0, round((pos + neg) / conn * 100, 2))
+        return min(100.0, round(pos / conn * 100, 2))
 
     # ── Normalise columns before groupby ─────────────────────────
     df["Language"] = df["Language"].fillna("unknown").astype(str).str.lower().str.strip()
@@ -968,6 +980,7 @@ def write_dashboard_json(csv_file: str, json_file: str):
     connected   = int(df["Connected_calls"].sum())
     positive    = int(df["Positive disposition"].sum())
     negative    = int(df["Negative disposition"].sum())
+    other_disp  = int(df["Other disposition"].sum()) if "Other disposition" in df.columns else 0
     disposed    = int(df["Disposed calls"].sum()) if "Disposed calls" in df.columns else positive + negative
     listen      = int(df["Listen Count"].sum())
     dur_sec_all = float(df["Total_duration_seconds"].sum())
@@ -986,6 +999,7 @@ def write_dashboard_json(csv_file: str, json_file: str):
         "total_hours":     round(dur_hrs, 1),
         "positive":        positive,
         "negative":        negative,
+        "other":           other_disp,
         "disposed":        disposed,
         "efficiency_rate": efficiency_rate,
         "listen_count":    positive + negative,
@@ -1010,8 +1024,8 @@ def write_dashboard_json(csv_file: str, json_file: str):
     company_data = []
     for _, r in cg.iterrows():
         cp  = round(r.connected / r.total * 100, 2) if r.total else 0
-        suc = cap100(r.positive, r.negative, r.connected)
-        eff = round(r.disposed / r.connected * 100, 2) if r.connected else 0
+        suc = effective_rate(r.positive, r.connected)
+        eff = min(100.0, round(r.disposed / r.connected * 100, 2)) if r.connected else 0
         mht = round(r.dur_sec / r.connected, 1) if r.connected else 0
         company_data.append({
             "name": r["Company name"], "total": int(r.total),
@@ -1035,8 +1049,8 @@ def write_dashboard_json(csv_file: str, json_file: str):
     region_data = []
     for _, r in rg.iterrows():
         cp  = round(r.connected / r.total * 100, 2) if r.total else 0
-        suc = cap100(r.positive, r.negative, r.connected)
-        eff = round(r.disposed / r.connected * 100, 2) if r.connected else 0
+        suc = effective_rate(r.positive, r.connected)
+        eff = min(100.0, round(r.disposed / r.connected * 100, 2)) if r.connected else 0
         region_data.append({"name": r["Region"], "total": int(r.total),
                              "connected": int(r.connected), "positive": int(r.positive),
                              "negative": int(r.negative), "other": int(r.other),
@@ -1055,8 +1069,8 @@ def write_dashboard_json(csv_file: str, json_file: str):
     usecase_data = []
     for _, r in ug.iterrows():
         cp  = round(r.connected / r.total * 100, 2) if r.total else 0
-        suc = cap100(r.positive, r.negative, r.connected)
-        eff = round(r.disposed / r.connected * 100, 2) if r.connected else 0
+        suc = effective_rate(r.positive, r.connected)
+        eff = min(100.0, round(r.disposed / r.connected * 100, 2)) if r.connected else 0
         usecase_data.append({"name": r["Use case wise"], "total": int(r.total),
                               "connected": int(r.connected), "positive": int(r.positive),
                               "negative": int(r.negative), "other": int(r.other),
@@ -1064,6 +1078,9 @@ def write_dashboard_json(csv_file: str, json_file: str):
                               "efficiencyRate": eff, "connPct": cp})
 
     # ── Language aggregation (grouped on lowercased column) ───────
+    # NOTE: language is only detected for connected calls, so total ≈ connected
+    # per language row. connPct is shown as share of all connected calls instead
+    # of connected/total (which would always be ~100% and is misleading).
     lg = df[df["Language"].notna() & (df["Language"] != "unknown")].groupby("Language").agg(
         total    =("Total_calls",         "sum"),
         connected=("Connected_calls",      "sum"),
@@ -1074,9 +1091,10 @@ def write_dashboard_json(csv_file: str, json_file: str):
     ).reset_index()
     language_data = []
     for _, r in lg.iterrows():
-        cp  = round(r.connected / r.total * 100, 2) if r.total else 0
-        suc = cap100(r.positive, r.negative, r.connected)
-        eff = round(r.disposed / r.connected * 100, 2) if r.connected else 0
+        # Share of all connected calls for this language (meaningful metric)
+        cp  = round(r.connected / connected * 100, 2) if connected else 0
+        suc = effective_rate(r.positive, r.connected)
+        eff = min(100.0, round(r.disposed / r.connected * 100, 2)) if r.connected else 0
         language_data.append({"name": r["Language"].title(), "total": int(r.total),
                                "connected": int(r.connected), "positive": int(r.positive),
                                "negative": int(r.negative), "other": int(r.other),
@@ -1098,8 +1116,8 @@ def write_dashboard_json(csv_file: str, json_file: str):
     date_data = []
     for _, r in dg.iterrows():
         cp  = round(r.connected / r.total * 100, 2) if r.total else 0
-        suc = cap100(r.positive, r.negative, r.connected)
-        eff = round(r.disposed / r.connected * 100, 2) if r.connected else 0
+        suc = effective_rate(r.positive, r.connected)
+        eff = min(100.0, round(r.disposed / r.connected * 100, 2)) if r.connected else 0
         date_data.append({"d": r["_dt"].strftime("%d %b %Y"),
                           "total": int(r.total), "connected": int(r.connected),
                           "positive": int(r.positive), "negative": int(r.negative),
@@ -1127,8 +1145,8 @@ def write_dashboard_json(csv_file: str, json_file: str):
         except Exception:
             h_label = str(r["Hour"])
         cp  = round(r.connected / r.total * 100, 2) if r.total else 0
-        suc = cap100(r.positive, r.negative, r.connected)
-        eff = round(r.disposed / r.connected * 100, 2) if r.connected else 0
+        suc = effective_rate(r.positive, r.connected)
+        eff = min(100.0, round(r.disposed / r.connected * 100, 2)) if r.connected else 0
         hour_data.append({"h": h_label, "total": int(r.total),
                           "connected": int(r.connected), "positive": int(r.positive),
                           "negative": int(r.negative), "other": int(r.other),

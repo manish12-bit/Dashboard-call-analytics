@@ -303,7 +303,7 @@ body {
       <div class="chart-wrap"><canvas id="compTotalChart"></canvas></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title">Success Rate by Company (%)</div>
+      <div class="chart-title">Effective Rate by Company (%)</div>
       <div class="chart-sub">Positive dispositions as % of connected calls</div>
       <div class="chart-wrap"><canvas id="compSuccessChart"></canvas></div>
     </div>
@@ -336,7 +336,7 @@ body {
           <tr>
             <th>#</th><th>Company</th><th>Total Calls</th><th>Connected</th>
             <th>Connect %</th><th>Positive</th><th>Negative</th><th>Other</th>
-            <th>Success Rate</th><th>Efficiency Rate</th><th>Duration (hrs)</th><th>MHT (s)</th><th>Listen Count</th>
+            <th>Effective Rate</th><th>Efficiency Rate</th><th>Duration (hrs)</th><th>MHT (s)</th><th>Listen Count</th>
           </tr>
         </thead>
         <tbody id="companyTableBody"></tbody>
@@ -381,7 +381,7 @@ body {
       <div class="chart-wrap"><canvas id="ucTotalChart"></canvas></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title">Success Rate by Use Case (%)</div>
+      <div class="chart-title">Effective Rate by Use Case (%)</div>
       <div class="chart-sub">Campaign effectiveness comparison</div>
       <div class="chart-wrap"><canvas id="ucSuccessChart"></canvas></div>
     </div>
@@ -390,7 +390,7 @@ body {
       <div class="chart-sub">Full breakdown per use case</div>
       <table class="data-table">
         <thead>
-          <tr><th>Use Case</th><th>Total Calls</th><th>Connected</th><th>Connect %</th><th>Positive</th><th>Negative</th><th>Other</th><th>Success Rate</th><th>Efficiency Rate</th></tr>
+          <tr><th>Use Case</th><th>Total Calls</th><th>Connected</th><th>Connect %</th><th>Positive</th><th>Negative</th><th>Other</th><th>Effective Rate</th><th>Efficiency Rate</th></tr>
         </thead>
         <tbody id="usecaseTableBody"></tbody>
       </table>
@@ -402,21 +402,21 @@ body {
 <div id="panel-language" class="panel">
   <div class="charts-grid">
     <div class="chart-card">
-      <div class="chart-title">Total Calls by Language</div>
-      <div class="chart-sub">Call volume distribution across 7 languages</div>
+      <div class="chart-title">Connected Calls by Language</div>
+      <div class="chart-sub">Connected call volume distribution across languages</div>
       <div class="chart-wrap" style="height:340px"><canvas id="langPieChart"></canvas></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title">Success Rate by Language (%)</div>
+      <div class="chart-title">Effective Rate by Language (%)</div>
       <div class="chart-sub">Campaign effectiveness per language</div>
       <div class="chart-wrap"><canvas id="langSuccessChart"></canvas></div>
     </div>
     <div class="chart-card full">
       <div class="chart-title">Language Performance Table</div>
-      <div class="chart-sub">Full breakdown per language</div>
+      <div class="chart-sub">Full breakdown per language · "% of All Connected" = share of total connected calls</div>
       <table class="data-table">
         <thead>
-          <tr><th>Language</th><th>Total Calls</th><th>Connected</th><th>Connect %</th><th>Positive</th><th>Negative</th><th>Other</th><th>Success Rate</th><th>Efficiency Rate</th></tr>
+          <tr><th>Language</th><th>Total Calls</th><th>Connected</th><th>% of All Connected</th><th>Positive</th><th>Negative</th><th>Other</th><th>Effective Rate</th></tr>
         </thead>
         <tbody id="languageTableBody"></tbody>
       </table>
@@ -459,7 +459,7 @@ body {
   <!-- Row 2: full width -->
   <div class="charts-grid single">
     <div class="chart-card full">
-      <div class="chart-title">Daily Success Rate Trend (%)</div>
+      <div class="chart-title">Daily Effective Rate Trend (%)</div>
       <div class="chart-sub" id="dateSuccSub">Day-wise success rate for all campaign dates</div>
       <div class="chart-wrap" style="height:360px"><canvas id="dateSuccessChart"></canvas></div>
     </div>
@@ -488,7 +488,7 @@ body {
   <!-- Row 2: full width -->
   <div class="charts-grid single">
     <div class="chart-card full">
-      <div class="chart-title">Success Rate by Hour (%)</div>
+      <div class="chart-title">Effective Rate by Hour (%)</div>
       <div class="chart-sub">Campaign success rate distribution by hour of day</div>
       <div class="chart-wrap" style="height:320px"><canvas id="hourSuccessChart"></canvas></div>
     </div>
@@ -557,9 +557,14 @@ async function loadDashboard() {
         <span class="kpi-badge up">${k.connect_rate}% Connect Rate</span>
       </div>
       <div class="kpi-card c3">
-        <div class="kpi-label">Avg Success Rate</div>
+        <div class="kpi-label">Efficiency Rate</div>
+        <div class="kpi-value">${k.efficiency_rate||0}%</div>
+        <span class="kpi-badge up">${fmtNum(k.disposed||0)} disposed calls</span>
+      </div>
+      <div class="kpi-card c3">
+        <div class="kpi-label">Effective Rate</div>
         <div class="kpi-value">${posOfConn}%</div>
-        <div class="kpi-sub">Positive / Connected</div>
+         <span class="kpi-badge up">Positive</span>
       </div>
       <div class="kpi-card c4">
         <div class="kpi-label">Total Duration</div>
@@ -570,24 +575,23 @@ async function loadDashboard() {
         <div class="kpi-label">Positive Dispositions</div>
         <div class="kpi-value">${fmtNum(k.positive)}</div>
         <div class="kpi-sub">${(k.positive||0).toLocaleString('en-IN')} positive outcomes</div>
-        <span class="kpi-badge up">${posOfConn}% of connected</span>
+        <span class="kpi-badge up">${posOfConn}% effective rate</span>
       </div>
       <div class="kpi-card c5">
         <div class="kpi-label">Negative Dispositions</div>
         <div class="kpi-value">${fmtNum(k.negative)}</div>
-        <div class="kpi-sub">${(k.negative||0).toLocaleString('en-IN')} negative outcomes</div>
+        <div class="kpi-sub">${(k.negative||0).toLocaleString('en-IN')} positive outcomes</div>
         <span class="kpi-badge down">${negOfConn}% of connected</span>
+      </div>
+      <div class="kpi-card c3">
+        <div class="kpi-label">Other Dispositions</div>
+        <div class="kpi-value">${fmtNum(k.other||0)}</div>
+        <span class="kpi-badge up">${k.connected_calls ? ((k.other||0)/k.connected_calls*100).toFixed(1) : 0}% of connected</span>
       </div>
       <div class="kpi-card c1">
         <div class="kpi-label">Listen Count</div>
         <div class="kpi-value">${fmtNum(k.listen_count)}</div>
         <div class="kpi-sub">${(k.listen_count||0).toLocaleString('en-IN')} bot engagements</div>
-      </div>
-      <div class="kpi-card c3">
-        <div class="kpi-label">Efficiency Rate</div>
-        <div class="kpi-value">${k.efficiency_rate||0}%</div>
-        <div class="kpi-sub">Any disposition / Connected</div>
-        <span class="kpi-badge up">${fmtNum(k.disposed||0)} disposed calls</span>
       </div>`;
 
     // Populate per-company dropdowns and sidebar company list from live data
@@ -791,7 +795,7 @@ function buildCompany(){
     type:'bar',
     data:{
       labels,
-      datasets:[{label:'Success Rate %',data:companyData.map(d=>d.success),
+      datasets:[{label:'Effective Rate %',data:companyData.map(d=>d.success),
         backgroundColor:companyData.map(d=>d.success>40?COLORS.teal+'BB':d.success>20?COLORS.blue+'BB':COLORS.orange+'BB'),
         borderColor:companyData.map(d=>d.success>40?COLORS.teal:d.success>20?COLORS.blue:COLORS.orange),
         borderWidth:2,borderRadius:6}]
@@ -900,7 +904,7 @@ function buildRegion(){
       datasets:[
         {label:'Total Calls',data:regionData.map(d=>d.total),backgroundColor:COLORS.blue+'88',borderColor:COLORS.blue,borderWidth:2,borderRadius:6,yAxisID:'y'},
         {label:'Connected Calls',data:regionData.map(d=>d.connected),backgroundColor:COLORS.teal+'88',borderColor:COLORS.teal,borderWidth:2,borderRadius:6,yAxisID:'y'},
-        {label:'Success Rate %',data:regionData.map(d=>d.success),backgroundColor:COLORS.orange+'BB',borderColor:COLORS.orange,borderWidth:2,borderRadius:6,type:'line',yAxisID:'y2',tension:0.3,fill:false,pointRadius:6,pointBackgroundColor:COLORS.orange},
+        {label:'Effective Rate %',data:regionData.map(d=>d.success),backgroundColor:COLORS.orange+'BB',borderColor:COLORS.orange,borderWidth:2,borderRadius:6,type:'line',yAxisID:'y2',tension:0.3,fill:false,pointRadius:6,pointBackgroundColor:COLORS.orange},
       ]
     },
     options:{...chartDefaults,scales:{
@@ -932,7 +936,7 @@ function buildUseCase(){
   });
   new Chart(document.getElementById('ucSuccessChart'),{
     type:'bar',
-    data:{labels,datasets:[{label:'Success Rate %',data:usecaseData.map(d=>d.success),
+    data:{labels,datasets:[{label:'Effective Rate %',data:usecaseData.map(d=>d.success),
       backgroundColor:usecaseData.map(d=>d.success>35?COLORS.teal+'BB':COLORS.blue+'BB'),
       borderColor:usecaseData.map(d=>d.success>35?COLORS.teal:COLORS.blue),
       borderWidth:2,borderRadius:6}]},
@@ -966,7 +970,7 @@ function buildLanguage(){
   });
   new Chart(document.getElementById('langSuccessChart'),{
     type:'bar',
-    data:{labels,datasets:[{label:'Success Rate %',data:languageData.map(d=>d.success),
+    data:{labels,datasets:[{label:'Effective Rate %',data:languageData.map(d=>d.success),
       backgroundColor:MULTI.map(c=>c+'99'),borderColor:MULTI,borderWidth:2,borderRadius:6}]},
     options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
       scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{...chartDefaults.scales.y.ticks,callback:v=>v+'%'}}}}
@@ -984,7 +988,6 @@ function buildLanguage(){
       <td><span class="pill red">${fmtNum(d.negative||0)}</span></td>
       <td><span class="pill grey">${fmtNum(d.other||0)}</span></td>
       <td><span class="pill ${s}">${d.success.toFixed(1)}%</span></td>
-      <td><span class="pill blue">${(d.efficiencyRate||0).toFixed(1)}%</span></td>
     </tr>`;
   });
 }
@@ -1010,7 +1013,7 @@ function buildDate(filtered){
   dateSuccInst = new Chart(document.getElementById('dateSuccessChart'),{
     type:'line',
     data:{labels,datasets:[
-      {label:'Success Rate %',data:src.map(d=>d.success),borderColor:COLORS.orange,backgroundColor:COLORS.orange+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2}
+      {label:'Effective Rate %',data:src.map(d=>d.success),borderColor:COLORS.orange,backgroundColor:COLORS.orange+'22',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2}
     ]},
     options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},scales:{x:xOpts,y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#11344D'}}}}
   });
@@ -1071,7 +1074,7 @@ function buildHour(){
     type:'line',
     data:{
       labels,
-      datasets:[{label:'Success Rate %',data:hourData.map(d=>d.success),
+      datasets:[{label:'Effective Rate %',data:hourData.map(d=>d.success),
         borderColor:COLORS.yellow,backgroundColor:COLORS.yellow+'22',fill:true,tension:0.4,
         pointRadius:4,pointBackgroundColor:COLORS.yellow,borderWidth:2}]
     },
