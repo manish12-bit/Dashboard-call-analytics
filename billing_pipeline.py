@@ -73,6 +73,24 @@ def today_ist() -> date:
     return (datetime.now(tz=None) + timedelta(hours=5, minutes=30)).date()
 
 
+def billing_reference_date() -> date:
+    """
+    Reference date used for billing period windows.
+
+    The DB is updated with billing data at ~19:00 IST every day.
+    If the pipeline runs before 19:00 IST (e.g. the nightly job is
+    delayed past midnight IST by GitHub Actions), today_ist() would
+    return tomorrow's date while the DB still has no data for it —
+    causing the 'today' KPI to show Nil until the next nightly run.
+
+    Rule: before 19:00 IST, treat yesterday as 'today' for billing.
+    """
+    ist_now = datetime.now(tz=None) + timedelta(hours=5, minutes=30)
+    if ist_now.hour < 19:          # DB hasn't received today's data yet
+        return (ist_now - timedelta(days=1)).date()
+    return ist_now.date()
+
+
 def week_range(d: date):
     monday = d - timedelta(days=d.weekday())
     return monday, monday + timedelta(days=6)
@@ -310,10 +328,12 @@ def run_billing_pipeline():
     log.info("Billing Pipeline START  (incremental mode)")
     log.info("=" * 55)
 
-    today   = today_ist()
+    today   = billing_reference_date()
     periods = compute_periods(today)
 
-    log.info("Reference date (IST): %s", today)
+    log.info("Reference date (IST): %s  [IST now: %s]",
+             today,
+             (datetime.now(tz=None) + timedelta(hours=5, minutes=30)).strftime("%H:%M"))
     for name, (s, e) in periods.items():
         log.info("  %-28s  %s  →  %s", name, s, e)
 
