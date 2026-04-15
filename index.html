@@ -225,6 +225,168 @@ body {
   .charts-grid { grid-template-columns: 1fr; }
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ══════════════════════════════════════════════════════════
+   BILLING PANEL  — complete styles
+   ══════════════════════════════════════════════════════════ */
+
+/* header bar */
+.b-header {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px; margin-bottom: 22px;
+}
+.b-title { font-size: 20px; font-weight: 800; color: var(--navy2); letter-spacing: -0.3px; }
+.b-updated { font-size: 11px; color: #64748B; display: flex; align-items: center; gap: 6px; }
+.b-fy-row {
+  display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 22px;
+}
+.b-fy-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.b-fy-chip.curr { background: #EEF2FF; color: #4338CA; border: 1px solid #C7D2FE; }
+.b-fy-chip.prev { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
+.b-fy-chip.dot {
+  width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0;
+}
+
+/* view toggle */
+.b-view-row {
+  display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; align-items: center;
+}
+.b-view-label { font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.7px; margin-right: 4px; }
+.b-tab {
+  padding: 7px 20px; border-radius: 8px; border: 1px solid #E2E8F0;
+  background: #F8FAFC; color: #64748B; font-size: 12px;
+  font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: all 0.15s;
+}
+.b-tab.active { background: #001940; color: #fff; border-color: #001940; box-shadow: 0 2px 8px rgba(0,25,64,0.25); }
+.b-tab:hover:not(.active) { background: #EEF2FF; color: #4338CA; border-color: #C7D2FE; }
+
+/* KPI summary grid — 2 rows of 4 */
+.b-kpi-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 14px; margin-bottom: 24px;
+}
+@media(max-width:1100px){ .b-kpi-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:600px){  .b-kpi-grid { grid-template-columns: 1fr; } }
+
+.b-kpi {
+  background: #FFFFFF; border: 1px solid #E8EDF5;
+  border-radius: var(--radius); padding: 20px 22px;
+  position: relative; overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.b-kpi:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.b-kpi-period {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8px; color: #64748B; margin-bottom: 6px;
+}
+.b-kpi-val {
+  font-size: 26px; font-weight: 800; color: var(--navy2); line-height: 1;
+  margin-bottom: 6px; letter-spacing: -0.5px;
+}
+.b-kpi-breakdown {
+  font-size: 11px; color: #64748B; display: flex; flex-direction: column; gap: 2px;
+}
+.b-kpi-breakdown span { display: flex; align-items: center; gap: 4px; }
+.b-kpi-breakdown .dot-call { width: 6px; height: 6px; border-radius: 50%; background: #6366F1; flex-shrink: 0; }
+.b-kpi-breakdown .dot-sms  { width: 6px; height: 6px; border-radius: 50%; background: #10B981; flex-shrink: 0; }
+.b-kpi-vs {
+  margin-top: 8px; font-size: 11px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px; border-radius: 4px;
+}
+.b-kpi-vs.up   { background: rgba(16,185,129,0.12); color: #059669; }
+.b-kpi-vs.down { background: rgba(244,63,94,0.12);  color: #DC2626; }
+.b-kpi-vs.flat { background: rgba(100,116,139,0.10); color: #64748B; }
+
+/* table area */
+.b-table-card {
+  background: #fff; border: 1px solid #E8EDF5; border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden; margin-bottom: 16px;
+}
+.b-table-wrap { overflow-x: auto; }
+.b-table {
+  width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 1140px;
+}
+
+/* group header row */
+.b-table .grp-hdr th {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px;
+  padding: 7px 12px; text-align: center; border-bottom: none;
+}
+.b-table .grp-hdr .g-short { background: #F0FDF4; color: #166534; }
+.b-table .grp-hdr .g-month { background: #EFF6FF; color: #1D4ED8; }
+.b-table .grp-hdr .g-year  { background: #FEF3C7; color: #92400E; }
+.b-table .grp-hdr .g-blank { background: #F8FAFC; }
+
+/* column header row */
+.b-table .col-hdr th {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; padding: 9px 12px; text-align: right;
+  border-bottom: 2px solid #E2E8F0; white-space: nowrap; background: #F8FAFC;
+}
+.b-table .col-hdr th:first-child {
+  text-align: left; min-width: 140px; position: sticky; left: 0;
+  background: #F8FAFC; z-index: 3; border-right: 2px solid #E2E8F0;
+}
+.b-table .col-hdr .sub {
+  display: block; font-size: 9px; font-weight: 400; color: #94A3B8;
+  text-transform: none; letter-spacing: 0; margin-top: 2px;
+}
+
+/* data rows */
+.b-table tbody tr:hover td { background: rgba(99,102,241,0.04) !important; }
+.b-table td {
+  padding: 10px 12px; border-bottom: 1px solid #F1F5F9;
+  text-align: right; color: #11344D; font-variant-numeric: tabular-nums;
+}
+.b-table td:first-child {
+  text-align: left; font-weight: 600; color: #001940;
+  position: sticky; left: 0; background: #fff; z-index: 1;
+  border-right: 2px solid #F1F5F9;
+}
+.b-table tr:last-child td { border-bottom: none; }
+.b-table .company-name-cell {
+  display: flex; align-items: center; gap: 8px;
+}
+.b-table .co-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+
+/* amount cells */
+.amt-high   { color: #166534; font-weight: 700; }
+.amt-mid    { color: #1D4ED8; font-weight: 600; }
+.amt-low    { color: #64748B; }
+.amt-nil    { color: #CBD5E1; font-size: 11px; }
+
+/* sub-amount (calls/sms count) */
+.b-sub { display: block; font-size: 10px; color: #94A3B8; margin-top: 1px; }
+
+/* footer totals */
+.b-table tfoot td {
+  font-weight: 800; background: #001940; color: #fff;
+  border-top: 3px solid #001940; padding: 11px 12px;
+}
+.b-table tfoot td:first-child {
+  background: #001940; color: #fff; border-right: 2px solid rgba(255,255,255,0.1);
+}
+
+/* info bar */
+.b-info {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 10px 14px; background: #FFFBEB;
+  border: 1px solid #FDE68A; border-radius: var(--radius-sm);
+  font-size: 11px; color: #78350F; line-height: 1.6;
+}
+
+.b-loading {
+  text-align: center; padding: 80px 20px; color: #94A3B8; font-size: 14px;
+}
 </style>
 </head>
 <body>
@@ -248,6 +410,12 @@ body {
     <button class="nav-item" data-label="Language Wise" onclick="switchTab('language',this)"><span class="nav-icon">🗣️</span><span class="nav-label"> Language Wise</span></button>
     <button class="nav-item" data-label="Date Wise" onclick="switchTab('date',this)"><span class="nav-icon">📅</span><span class="nav-label"> Date Wise</span></button>
     <button class="nav-item" data-label="Hour Wise" onclick="switchTab('hour',this)"><span class="nav-icon">🕐</span><span class="nav-label"> Hour Wise</span></button>
+  </div>
+
+  <!-- Billing -->
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Finance</div>
+    <button class="nav-item" data-label="Billing" onclick="switchTab('billing',this)"><span class="nav-icon">💰</span><span class="nav-label"> Billing</span></button>
   </div>
 
   <!-- Collapse toggle at bottom -->
@@ -500,6 +668,92 @@ body {
   </div>
 </div>
 
+<!-- ===== PANEL: BILLING ===== -->
+<div id="panel-billing" class="panel">
+
+  <!-- Header -->
+  <div class="b-header">
+    <div>
+      <div class="b-title">💰 Billing Dashboard</div>
+    </div>
+    <div class="b-updated" id="bUpdated">Loading...</div>
+  </div>
+
+  <!-- Fiscal year chips -->
+  <div class="b-fy-row">
+    <span style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:0.7px;">Fiscal Year:</span>
+    <span class="b-fy-chip curr" id="bFyCurr">Loading...</span>
+    <span class="b-fy-chip prev" id="bFyPrev">Loading...</span>
+  </div>
+
+  <!-- KPI summary grid (8 cards) -->
+  <div class="b-kpi-grid" id="bKpiGrid">
+    <div class="b-kpi">
+      <div class="b-kpi-period">Today</div>
+      <div class="b-kpi-val" id="bkpi-today">—</div>
+      <div class="b-kpi-breakdown" id="bkpi-today-sub"></div>
+    </div>
+    <div class="b-kpi">
+      <div class="b-kpi-period">This Week</div>
+      <div class="b-kpi-val" id="bkpi-week">—</div>
+      <div class="b-kpi-breakdown" id="bkpi-week-sub"></div>
+    </div>
+    <div class="b-kpi">
+      <div class="b-kpi-period">Last Week</div>
+      <div class="b-kpi-val" id="bkpi-lweek">—</div>
+      <div class="b-kpi-breakdown" id="bkpi-lweek-sub"></div>
+    </div>
+    <div class="b-kpi">
+      <div class="b-kpi-period">Current Month</div>
+      <div class="b-kpi-val" id="bkpi-month">—</div>
+      <div class="b-kpi-breakdown" id="bkpi-month-sub"></div>
+      <div class="b-kpi-vs flat" id="bkpi-month-vs"></div>
+    </div>
+    <div class="b-kpi">
+      <div class="b-kpi-period">Last Month MTD</div>
+      <div class="b-kpi-val" id="bkpi-lm-mtd">—</div>
+      <div class="b-kpi-breakdown" id="bkpi-lm-mtd-sub"></div>
+    </div>
+    <div class="b-kpi">
+      <div class="b-kpi-period">Last Month Total</div>
+      <div class="b-kpi-val" id="bkpi-lm-total">—</div>
+      <div class="b-kpi-breakdown" id="bkpi-lm-total-sub"></div>
+    </div>
+    <div class="b-kpi">
+      <div class="b-kpi-period">This Year (Fiscal)</div>
+      <div class="b-kpi-val" id="bkpi-year">—</div>
+      <div class="b-kpi-breakdown" id="bkpi-year-sub"></div>
+      <div class="b-kpi-vs flat" id="bkpi-year-vs"></div>
+    </div>
+    <div class="b-kpi">
+      <div class="b-kpi-period">Last Year (Fiscal)</div>
+      <div class="b-kpi-val" id="bkpi-lastyear">—</div>
+      <div class="b-kpi-breakdown" id="bkpi-lastyear-sub"></div>
+    </div>
+  </div>
+
+  <!-- View toggle: Call / SMS only -->
+  <div class="b-view-row">
+    <span class="b-view-label">View:</span>
+    <button class="b-tab active" onclick="switchBillingView('call',this)">📞 Call Billing</button>
+    <button class="b-tab" onclick="switchBillingView('sms',this)">💬 SMS Billing</button>
+  </div>
+
+  <!-- Company billing table -->
+  <div class="b-table-card">
+    <div class="b-table-wrap" id="bTableWrap">
+      <div class="b-loading" id="bNoData">Loading billing data...</div>
+    </div>
+  </div>
+
+  <!-- Info note -->
+  <div class="b-info" id="bInfoNote" style="display:none;">
+    <span>ℹ️</span>
+    <span id="bInfoText"></span>
+  </div>
+
+</div>
+
 </div><!-- /main -->
 </div><!-- /page-wrap -->
 
@@ -514,6 +768,10 @@ let dateData     = [];
 let hourData     = [];
 let compDateData = {};
 let compHourData = {};
+
+// ===================== BILLING DATA (fetched from billing_data.json) =====================
+let billingData       = null;
+let billingViewMode   = 'call';  // 'call' | 'sms'
 
 // ===================== LOAD DASHBOARD =====================
 async function loadDashboard() {
@@ -1104,9 +1362,277 @@ function switchTab(name, btn){
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
   document.getElementById('panel-'+name).classList.add('active');
   if(btn) btn.classList.add('active');
-  // Update topbar title
-  const titles = {company:'Company Wise',region:'Region Wise',usecase:'Use Case Wise',language:'Language Wise',date:'Date Wise',hour:'Hour Wise'};
-  document.getElementById('topbarTitle').textContent = (titles[name] || name) + ' — Analytics';
+  const titles = {
+    company:'Company Wise', region:'Region Wise', usecase:'Use Case Wise',
+    language:'Language Wise', date:'Date Wise', hour:'Hour Wise', billing:'Billing'
+  };
+  document.getElementById('topbarTitle').textContent =
+    name === 'billing' ? 'Billing Dashboard' : (titles[name] || name) + ' — Analytics';
+  // Hide the call-analytics KPI strip on billing panel; show it everywhere else
+  document.getElementById('kpiGrid').style.display = name === 'billing' ? 'none' : '';
+  if(name === 'billing' && !billingData) loadBilling();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  BILLING — data loader, formatters, renderers
+// ═══════════════════════════════════════════════════════════
+
+async function loadBilling(){
+  try {
+    const res = await fetch('billing_data.json?t=' + Date.now());
+    if(!res.ok) throw new Error('billing_data.json not found — run billing_pipeline.py first');
+    billingData = await res.json();
+    renderBilling();
+  } catch(e) {
+    document.getElementById('bNoData').innerHTML =
+      '<div style="color:#F43F5E;padding:60px 20px;text-align:center;font-size:14px;">⚠️ ' + e.message + '</div>';
+  }
+}
+
+// ── Formatters ──────────────────────────────────────────────
+
+// Indian number format: Cr / L / K
+function inr(v, forceZero){
+  if(v == null) v = 0;
+  const n = Number(v);
+  if(n === 0) return forceZero ? '₹0' : '<span class="amt-nil">Nil</span>';
+  if(n >= 10000000) return '<span class="amt-high">₹' + (n/10000000).toFixed(2) + ' Cr</span>';
+  if(n >= 100000)   return '<span class="amt-mid">₹'  + (n/100000).toFixed(2)   + ' L</span>';
+  if(n >= 1000)     return '<span class="amt-low">₹'  + (n/1000).toFixed(1)     + ' K</span>';
+  return '<span class="amt-low">₹' + n.toFixed(0) + '</span>';
+}
+
+// Plain text INR (for footer)
+function inrTxt(v){
+  const n = Number(v) || 0;
+  if(n === 0) return 'Nil';
+  if(n >= 10000000) return '₹' + (n/10000000).toFixed(2) + ' Cr';
+  if(n >= 100000)   return '₹' + (n/100000).toFixed(2)   + ' L';
+  if(n >= 1000)     return '₹' + (n/1000).toFixed(1)     + ' K';
+  return '₹' + n.toFixed(0);
+}
+
+function cntTxt(v, unit){
+  const n = Number(v) || 0;
+  if(n === 0) return '';
+  const s = n >= 1000000 ? (n/1000000).toFixed(1)+'M' : n >= 1000 ? (n/1000).toFixed(1)+'K' : String(n);
+  return s + ' ' + (unit||'');
+}
+
+// % change badge html
+function vsHtml(curr, prev){
+  if(!prev || prev === 0) return '';
+  const pct = ((curr - prev) / prev * 100).toFixed(1);
+  if(pct > 0)  return `<div class="b-kpi-vs up">▲ ${pct}% vs LM</div>`;
+  if(pct < 0)  return `<div class="b-kpi-vs down">▼ ${Math.abs(pct)}% vs LM</div>`;
+  return `<div class="b-kpi-vs flat">= same as LM</div>`;
+}
+
+// Company dot colors
+const CO_COLORS = ['#6366F1','#10B981','#F59E0B','#F43F5E','#3B82F6','#8B5CF6',
+  '#EC4899','#14B8A6','#EF4444','#84CC16','#06B6D4','#A855F7',
+  '#F97316','#22C55E','#EAB308','#0EA5E9','#D946EF','#64748B','#2563EB','#059669'];
+
+// ── Render billing panel ─────────────────────────────────────
+
+function switchBillingView(mode, btn){
+  billingViewMode = mode;
+  document.querySelectorAll('.b-tab').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  if(billingData) renderBillingTable();
+}
+
+function renderBilling(){
+  if(!billingData) return;
+  const d   = billingData;
+  const tot = d.totals || {};
+  const fy  = d.fiscal_year || {};
+  const pm  = d.period_meta || {};
+
+  // Header — updated time
+  document.getElementById('bUpdated').innerHTML =
+    '🕐 Updated: ' + (d.last_updated || '—');
+
+  // Fiscal year chips
+  document.getElementById('bFyCurr').textContent = 'This Year: ' + (fy.this_year_label || '—');
+  document.getElementById('bFyPrev').textContent = 'Last Year: ' + (fy.last_year_label || '—');
+
+  // ── KPI cards ──────────────────────────────────────────────
+  // totals structure: {call_cost, call_calls, sms_cost, sms_count}
+  // combined = call_cost + sms_cost
+  function totalCost(t){ return (Number(t.call_cost)||0) + (Number(t.sms_cost)||0); }
+
+  function fillKpi(idVal, idSub, periodKey, extraIdVs){
+    const t  = tot[periodKey] || {};
+    const combined = totalCost(t);
+    const el = document.getElementById(idVal);
+    if(el) el.innerHTML = inr(combined);
+    const es = document.getElementById(idSub);
+    if(es){
+      const callStr = cntTxt(t.call_calls, 'calls');
+      const smsStr  = cntTxt(t.sms_count,  'sms');
+      es.innerHTML  =
+        (callStr ? `<span><span class="dot-call"></span>${callStr}</span>` : '') +
+        (smsStr  ? `<span><span class="dot-sms"></span>${smsStr}</span>`  : '');
+    }
+    if(extraIdVs){
+      const ev = document.getElementById(extraIdVs);
+      if(ev) ev.innerHTML = '';
+    }
+  }
+
+  fillKpi('bkpi-today',    'bkpi-today-sub',     'today');
+  fillKpi('bkpi-week',     'bkpi-week-sub',      'this_week');
+  fillKpi('bkpi-lweek',    'bkpi-lweek-sub',     'last_week');
+  fillKpi('bkpi-month',    'bkpi-month-sub',     'current_month', 'bkpi-month-vs');
+  fillKpi('bkpi-lm-mtd',   'bkpi-lm-mtd-sub',   'last_month_same_date');
+  fillKpi('bkpi-lm-total', 'bkpi-lm-total-sub', 'last_month_total');
+  fillKpi('bkpi-year',     'bkpi-year-sub',      'this_year', 'bkpi-year-vs');
+  fillKpi('bkpi-lastyear', 'bkpi-lastyear-sub', 'last_year');
+
+  // vs comparisons (current month vs last month MTD)
+  const cm  = totalCost(tot.current_month        || {});
+  const lm  = totalCost(tot.last_month_same_date || {});
+  const ev  = document.getElementById('bkpi-month-vs');
+  if(ev) ev.innerHTML = vsHtml(cm, lm);
+
+  const ty  = totalCost(tot.this_year  || {});
+  const ly  = totalCost(tot.last_year  || {});
+  const eyv = document.getElementById('bkpi-year-vs');
+  if(eyv) eyv.innerHTML = vsHtml(ty, ly);
+
+  // Info note
+  const note = document.getElementById('bInfoNote');
+  const noteT = document.getElementById('bInfoText');
+  if(note && noteT){
+    const ref = d.reference_date || '';
+    noteT.innerHTML =
+      `Reference date: <strong>${ref}</strong> &nbsp;|&nbsp; ` +
+      `<strong>This Year</strong> = ${fy.this_year_label||'—'} (fiscal May–Apr) &nbsp;|&nbsp; ` +
+      `<strong>Last Year</strong> = ${fy.last_year_label||'—'}`;
+    note.style.display = 'flex';
+  }
+
+  renderBillingTable();
+}
+
+function renderBillingTable(){
+  if(!billingData) return;
+  const companies = billingData.companies || [];
+  const pm        = billingData.period_meta || {};
+  const fy        = billingData.fiscal_year || {};
+  const mode      = billingViewMode;
+
+  function pSub(key){ const p = pm[key]; return p ? p.start + (p.end !== p.start ? '→'+p.end : '') : ''; }
+
+  // Column definitions with period groups
+  // group: 0=short-term, 1=monthly, 2=annual
+  const COLS = [
+    { key:'today',                label:'Today',             sub: pSub('today'),               grp:0 },
+    { key:'this_week',            label:'This Week',         sub: pSub('this_week'),            grp:0 },
+    { key:'last_week',            label:'Last Week',         sub: pSub('last_week'),            grp:0 },
+    { key:'current_month',        label:'Current Month',     sub: pSub('current_month'),        grp:1 },
+    { key:'last_month_same_date', label:'Last Month MTD',    sub: pSub('last_month_same_date'), grp:1 },
+    { key:'last_month_total',     label:'Last Month Total',  sub: pSub('last_month_total'),     grp:1 },
+    { key:'last_month_same_day',  label:'Same Day Last Mo',  sub: pSub('last_month_same_day'),  grp:1 },
+    { key:'this_year',            label:'This Year',         sub: fy.this_year_label||'',       grp:2 },
+    { key:'last_year',            label:'Last Year',         sub: fy.last_year_label||'',       grp:2 },
+  ];
+  const grpShort = COLS.filter(c=>c.grp===0).length;
+  const grpMonth = COLS.filter(c=>c.grp===1).length;
+  const grpYear  = COLS.filter(c=>c.grp===2).length;
+
+  // Pre-compute max values per column for heatmap intensity
+  const colMax = {};
+  COLS.forEach(c => {
+    colMax[c.key] = 0;
+    companies.forEach(comp => {
+      const v = mode === 'call'
+        ? Number(((comp.call||{})[c.key]||{}).cost) || 0
+        : Number(((comp.sms||{})[c.key]||{}).cost)  || 0;
+      if(v > colMax[c.key]) colMax[c.key] = v;
+    });
+  });
+
+  // Cell background intensity based on value
+  function cellBg(v, maxV){
+    if(!v || !maxV) return '';
+    const pct = Math.min(v / maxV, 1);
+    const alpha = (0.05 + pct * 0.18).toFixed(3);
+    return `background:rgba(99,102,241,${alpha});`;
+  }
+
+  // Build group header row
+  let grpRow  = `<tr class="grp-hdr"><th class="g-blank"></th>`;
+  grpRow += `<th class="g-short" colspan="${grpShort}">Short Term</th>`;
+  grpRow += `<th class="g-month" colspan="${grpMonth}">Monthly Comparison</th>`;
+  grpRow += `<th class="g-year"  colspan="${grpYear}">Annual (Fiscal)</th>`;
+  grpRow += '</tr>';
+
+  // Build column header row
+  let colRow = `<tr class="col-hdr"><th>Client</th>`;
+  COLS.forEach(col => {
+    const cls = col.grp===0 ? 'g-short' : col.grp===1 ? 'g-month' : 'g-year';
+    colRow += `<th class="${cls}">${col.label}<span class="sub">${col.sub}</span></th>`;
+  });
+  colRow += '</tr>';
+
+  const thead = `<thead>${grpRow}${colRow}</thead>`;
+
+  // Mode sub-label
+  const modeLabel = mode==='call' ? '(₹ Cost / Calls)' : mode==='sms' ? '(₹ Cost / SMS)' : '(₹ Call + SMS)';
+
+  // Build body rows
+  let footVals = {};
+  let footCalls = {};
+  let footSms   = {};
+  COLS.forEach(c => { footVals[c.key]=0; footCalls[c.key]=0; footSms[c.key]=0; });
+
+  let rows = '';
+  companies.forEach((comp, idx) => {
+    const dotColor = CO_COLORS[idx % CO_COLORS.length];
+    rows += '<tr>';
+    rows += `<td><div class="company-name-cell"><span class="co-dot" style="background:${dotColor}"></span>${comp.name}</div></td>`;
+    COLS.forEach(col => {
+      let v = 0, cnt = 0, unit = '';
+      if(mode === 'call'){
+        const cc = (comp.call||{})[col.key] || {};
+        v   = Number(cc.cost)  || 0;
+        cnt = Number(cc.calls) || 0;
+        unit = 'calls';
+        footVals[col.key]  += v;
+        footCalls[col.key] += cnt;
+      } else {
+        const ss = (comp.sms||{})[col.key] || {};
+        v   = Number(ss.cost)      || 0;
+        cnt = Number(ss.sms_count) || 0;
+        unit = 'sms';
+        footVals[col.key] += v;
+        footSms[col.key]  += cnt;
+      }
+      const bg  = cellBg(v, colMax[col.key]);
+      const sub = cnt ? `<span class="b-sub">${cntTxt(cnt, unit)}</span>` : '';
+      rows += `<td style="${bg}">${inr(v)}${sub}</td>`;
+    });
+    rows += '</tr>';
+  });
+
+  // Also add zero-rows companies as collapsed? No - just skip them.
+
+  const tbody = `<tbody>${rows}</tbody>`;
+
+  // Footer totals
+  let fRow = `<tfoot><tr><td>TOTAL ${modeLabel}</td>`;
+  COLS.forEach(col => {
+    let sub2 = '';
+    if(mode==='call' && footCalls[col.key])   sub2 = `<span class="b-sub" style="color:#94A3B8;">${cntTxt(footCalls[col.key],'calls')}</span>`;
+    if(mode==='sms'  && footSms[col.key])     sub2 = `<span class="b-sub" style="color:#94A3B8;">${cntTxt(footSms[col.key],'sms')}</span>`;
+    fRow += `<td>${inrTxt(footVals[col.key])}${sub2}</td>`;
+  });
+  fRow += '</tr></tfoot>';
+
+  const html = `<table class="b-table">${thead}${tbody}${fRow}</table>`;
+  document.getElementById('bTableWrap').innerHTML = html;
 }
 
 // ===================== SIDEBAR COLLAPSE =====================

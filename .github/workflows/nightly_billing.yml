@@ -1,0 +1,39 @@
+name: Nightly Billing Pipeline
+
+on:
+  schedule:
+    - cron: '30 16 * * *'   # 16:30 UTC = 22:00 IST every night
+  workflow_dispatch:          # allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  run-billing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pymongo
+
+      - name: Run billing pipeline
+        run: python billing_pipeline.py
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+
+      - name: Commit updated billing data
+        run: |
+          git config user.email "pipeline-bot@github.com"
+          git config user.name "Pipeline Bot"
+          git add billing_data.json billing_checkpoint.json billing_daily_cache.json
+          git commit -m "chore: billing update $(date '+%Y-%m-%d %H:%M UTC')" || echo "No changes to commit"
+          git pull --rebase origin main
+          git push
