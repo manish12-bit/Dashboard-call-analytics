@@ -736,6 +736,9 @@ body {
   </div>
 
   <!-- KPI summary grid (8 cards) -->
+  <div style="font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:6px;">
+    KPIs for: <span id="bKpiCompLabel" style="color:#6366F1;">All Companies</span>
+  </div>
   <div class="b-kpi-grid" id="bKpiGrid">
     <div class="b-kpi">
       <div class="b-kpi-period">Today</div>
@@ -771,7 +774,6 @@ body {
       <div class="b-kpi-period">This Year (Fiscal)</div>
       <div class="b-kpi-val" id="bkpi-year">—</div>
       <div class="b-kpi-breakdown" id="bkpi-year-sub"></div>
-      <div class="b-kpi-vs flat" id="bkpi-year-vs"></div>
     </div>
     <div class="b-kpi">
       <div class="b-kpi-period">Last Year (Fiscal)</div>
@@ -1530,6 +1532,85 @@ const CO_COLORS = ['#6366F1','#10B981','#F59E0B','#F43F5E','#3B82F6','#8B5CF6',
   '#EC4899','#14B8A6','#EF4444','#84CC16','#06B6D4','#A855F7',
   '#F97316','#22C55E','#EAB308','#0EA5E9','#D946EF','#64748B','#2563EB','#059669'];
 
+// ── Billing KPI helpers (outer scope so renderBillingTable can call them) ──
+
+function bTotalCost(t){ return (Number(t.call_cost)||0) + (Number(t.sms_cost)||0); }
+
+function bFillKpi(idVal, idSub, periodKey, extraIdVs, src){
+  const t  = (src || {})[periodKey] || {};
+  const combined = bTotalCost(t);
+  const el = document.getElementById(idVal);
+  if(el) el.innerHTML = inr(combined);
+  const es = document.getElementById(idSub);
+  if(es){
+    const callStr = cntTxt(t.call_calls, 'calls');
+    const smsStr  = cntTxt(t.sms_count,  'sms');
+    es.innerHTML  =
+      (callStr ? `<span><span class="dot-call"></span>${callStr}</span>` : '') +
+      (smsStr  ? `<span><span class="dot-sms"></span>${smsStr}</span>`  : '');
+  }
+  if(extraIdVs){
+    const ev = document.getElementById(extraIdVs);
+    if(ev) ev.innerHTML = '';
+  }
+}
+
+function buildBillingKpiSrc(){
+  if(!billingData) return {};
+  const d   = billingData;
+  const tot = d.totals || {};
+  if(billingCompFilter === 'all') return tot;
+  const comp = (d.companies || []).find(c => c.db === billingCompFilter);
+  if(!comp) return tot;
+  const result = {};
+  const KEYS = ['today','this_week','last_week','current_month','last_month_same_date',
+                'last_month_total','last_month_same_day','rolling_12m','this_year','last_year'];
+  KEYS.forEach(k => {
+    const cl = (comp.call || {})[k] || {};
+    const sm = (comp.sms  || {})[k] || {};
+    result[k] = {
+      call_cost:  (Number(cl.cost)      || 0),
+      call_calls: (Number(cl.calls)     || 0),
+      sms_cost:   (Number(sm.cost)      || 0),
+      sms_count:  (Number(sm.sms_count) || 0),
+    };
+  });
+  return result;
+}
+
+function refreshBillingKpis(){
+  if(!billingData) return;
+  const kpiSrc = buildBillingKpiSrc();
+
+  bFillKpi('bkpi-today',    'bkpi-today-sub',      'today',                null,            kpiSrc);
+  bFillKpi('bkpi-week',     'bkpi-week-sub',        'this_week',            null,            kpiSrc);
+  bFillKpi('bkpi-lweek',    'bkpi-lweek-sub',       'last_week',            null,            kpiSrc);
+  bFillKpi('bkpi-month',    'bkpi-month-sub',        'current_month',        'bkpi-month-vs', kpiSrc);
+  bFillKpi('bkpi-lm-mtd',   'bkpi-lm-mtd-sub',      'last_month_same_date', null,            kpiSrc);
+  bFillKpi('bkpi-lm-total', 'bkpi-lm-total-sub',    'last_month_total',     null,            kpiSrc);
+  bFillKpi('bkpi-year',     'bkpi-year-sub',         'this_year',            'bkpi-year-vs',  kpiSrc);
+  bFillKpi('bkpi-lastyear', 'bkpi-lastyear-sub',     'last_year',            null,            kpiSrc);
+
+  // vs comparisons
+  const cm  = bTotalCost(kpiSrc.current_month        || {});
+  const lm  = bTotalCost(kpiSrc.last_month_same_date || {});
+  const evM = document.getElementById('bkpi-month-vs');
+  if(evM) evM.innerHTML = vsHtml(cm, lm);
+
+  const ty  = bTotalCost(kpiSrc.this_year || {});
+  const ly  = bTotalCost(kpiSrc.last_year || {});
+  const evY = document.getElementById('bkpi-year-vs');
+  if(evY) evY.innerHTML = vsHtml(ty, ly);
+
+  // Update company label in KPI grid header
+  const compLabel = document.getElementById('bKpiCompLabel');
+  if(compLabel){
+    compLabel.textContent = billingCompFilter === 'all'
+      ? 'All Companies'
+      : ((billingData.companies||[]).find(c=>c.db===billingCompFilter)||{}).name || billingCompFilter;
+  }
+}
+
 // ── Render billing panel ─────────────────────────────────────
 
 function switchBillingView(mode, btn){
@@ -1541,10 +1622,9 @@ function switchBillingView(mode, btn){
 
 function renderBilling(){
   if(!billingData) return;
-  const d   = billingData;
-  const tot = d.totals || {};
-  const fy  = d.fiscal_year || {};
-  const pm  = d.period_meta || {};
+  const d  = billingData;
+  const fy = d.fiscal_year || {};
+  const pm = d.period_meta || {};
 
   // Header — updated time
   document.getElementById('bUpdated').innerHTML =
@@ -1553,52 +1633,6 @@ function renderBilling(){
   // Fiscal year chips
   document.getElementById('bFyCurr').textContent = 'This Year: ' + (fy.this_year_label || '—');
   document.getElementById('bFyPrev').textContent = 'Last Year: ' + (fy.last_year_label || '—');
-
-  // ── KPI cards ──────────────────────────────────────────────
-  // totals structure: {call_cost, call_calls, sms_cost, sms_count}
-  // combined = call_cost + sms_cost
-  function totalCost(t){ return (Number(t.call_cost)||0) + (Number(t.sms_cost)||0); }
-
-  function fillKpi(idVal, idSub, periodKey, extraIdVs){
-    const t  = tot[periodKey] || {};
-    const combined = totalCost(t);
-    const el = document.getElementById(idVal);
-    if(el) el.innerHTML = inr(combined);
-    const es = document.getElementById(idSub);
-    if(es){
-      const callStr = cntTxt(t.call_calls, 'calls');
-      const smsStr  = cntTxt(t.sms_count,  'sms');
-      es.innerHTML  =
-        (callStr ? `<span><span class="dot-call"></span>${callStr}</span>` : '') +
-        (smsStr  ? `<span><span class="dot-sms"></span>${smsStr}</span>`  : '');
-    }
-    if(extraIdVs){
-      const ev = document.getElementById(extraIdVs);
-      if(ev) ev.innerHTML = '';
-    }
-  }
-
-  fillKpi('bkpi-today',    'bkpi-today-sub',     'today');
-  fillKpi('bkpi-week',     'bkpi-week-sub',      'this_week');
-  fillKpi('bkpi-lweek',    'bkpi-lweek-sub',     'last_week');
-  fillKpi('bkpi-month',    'bkpi-month-sub',     'current_month', 'bkpi-month-vs');
-  fillKpi('bkpi-lm-mtd',   'bkpi-lm-mtd-sub',   'last_month_same_date');
-  fillKpi('bkpi-lm-total', 'bkpi-lm-total-sub', 'last_month_total');
-  fillKpi('bkpi-year',     'bkpi-year-sub',      'this_year',  'bkpi-year-vs');
-  fillKpi('bkpi-lastyear', 'bkpi-lastyear-sub',  'last_year');
-
-  // vs comparisons
-  // Card 4: current month vs last month same-date
-  const cm  = totalCost(tot.current_month        || {});
-  const lm  = totalCost(tot.last_month_same_date || {});
-  const ev  = document.getElementById('bkpi-month-vs');
-  if(ev) ev.innerHTML = vsHtml(cm, lm);
-
-  // Card 7: this year (FY YTD) vs last year (FY full)
-  const ty  = totalCost(tot.this_year  || {});
-  const ly  = totalCost(tot.last_year  || {});
-  const eyv = document.getElementById('bkpi-year-vs');
-  if(eyv) eyv.innerHTML = vsHtml(ty, ly);
 
   // Info note
   const fyThis = pm.this_year || {};
@@ -1614,11 +1648,15 @@ function renderBilling(){
     note.style.display = 'flex';
   }
 
+  // KPI cards + table (table also re-runs KPI refresh for filter changes)
   renderBillingTable();
 }
 
 function renderBillingTable(){
   if(!billingData) return;
+
+  // Always refresh KPI cards first (responds to company filter changes)
+  refreshBillingKpis();
 
   // Apply company filter
   let companies = billingData.companies || [];
