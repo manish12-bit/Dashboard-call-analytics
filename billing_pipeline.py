@@ -352,20 +352,32 @@ def run_billing_pipeline():
         db_call  = db_entry.get("call", {})
         db_sms   = db_entry.get("sms",  {})
 
-        # Last processed dates
-        cp_entry       = cp.get(db_name, {})
-        last_call_str  = cp_entry.get("call_last_date")
-        last_sms_str   = cp_entry.get("sms_last_date")
-        last_call_date = date.fromisoformat(last_call_str) if last_call_str else None
-        last_sms_date  = date.fromisoformat(last_sms_str)  if last_sms_str  else None
+        cp_entry = cp.get(db_name, {})
 
-        # If cache was wiped (empty) but checkpoint still exists, do a full re-fetch
-        if not db_call:
-            last_call_date = None
-        if not db_sms:
-            last_sms_date = None
+        # Derive last-processed date FROM THE CACHE ITSELF (not from checkpoint file).
+        # The checkpoint file can be overwritten by git operations; the daily cache
+        # is the authoritative record of what has actually been stored.
+        def _cache_max_date(daily: dict) -> date | None:
+            dates = []
+            for k, v in daily.items():
+                try:
+                    if v.get("calls", 0) > 0 or v.get("cost", 0) > 0 or v.get("sms_count", 0) > 0:
+                        dates.append(date.fromisoformat(k))
+                except (ValueError, AttributeError):
+                    pass
+            return max(dates) if dates else None
 
-        # Re-fetch last 3 days to catch late-arriving billing data
+        last_call_date = _cache_max_date(db_call)
+        last_sms_date  = _cache_max_date(db_sms)
+
+        log.info("  [%s] cache spans call=%s sms=%s",
+                 db_name,
+                 last_call_date.isoformat() if last_call_date else "none (full fetch)",
+                 last_sms_date.isoformat()  if last_sms_date  else "none (full fetch)")
+
+        # Re-fetch last 3 days to catch late-arriving billing data.
+        # When cache is empty (first run / cache deleted), last_*_date is None
+        # → query becomes {} → fetches ALL historical docs from MongoDB.
         refetch_call = (last_call_date - timedelta(days=3)) if last_call_date else None
         refetch_sms  = (last_sms_date  - timedelta(days=3)) if last_sms_date  else None
 
@@ -386,27 +398,24 @@ def run_billing_pipeline():
                     pass
 
         try:
-            # Fetch docs with 3-day re-check overlap for late-arriving data
+            # Fetch docs (full history when cache empty, incremental otherwise)
             call_docs = fetch_new_call_docs(db_name, client, refetch_call)
             sms_docs  = fetch_new_sms_docs(db_name, client, refetch_sms)
 
-            # Merge into cache
+            # Merge into cache — accumulates old + new data
             db_call, new_call_latest = merge_call_docs(db_call, call_docs)
             db_sms,  new_sms_latest  = merge_sms_docs(db_sms,  sms_docs)
 
             # Update cache entry
             cache[db_name] = {"call": db_call, "sms": db_sms}
 
-            # Update checkpoint with latest dates seen
+            # Update checkpoint metadata (informational; fetch range is cache-derived)
             new_cp = dict(cp_entry)
             if new_call_latest:
-                # Keep whichever is newer: existing checkpoint or new docs
-                existing_call = date.fromisoformat(last_call_str) if last_call_str else None
-                best_call     = max(new_call_latest, existing_call) if existing_call else new_call_latest
+                best_call = max(new_call_latest, last_call_date) if last_call_date else new_call_latest
                 new_cp["call_last_date"] = best_call.isoformat()
             if new_sms_latest:
-                existing_sms = date.fromisoformat(last_sms_str) if last_sms_str else None
-                best_sms     = max(new_sms_latest, existing_sms) if existing_sms else new_sms_latest
+                best_sms = max(new_sms_latest, last_sms_date) if last_sms_date else new_sms_latest
                 new_cp["sms_last_date"] = best_sms.isoformat()
             new_cp["last_run"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
             new_cp["call_days_cached"] = len(db_call)
