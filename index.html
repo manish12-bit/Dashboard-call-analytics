@@ -482,7 +482,7 @@ body {
     <div class="topbar-right">
       <div class="header-badge" id="compBadge">Loading...</div>
       <div class="topbar-updated" id="lastUpdated">Fetching data...</div>
-      <button class="topbar-refresh-btn" onclick="window.location.reload()" title="Reload entire page with latest data">↻ Refresh Page</button>
+      <button class="topbar-refresh-btn" onclick="smartRefresh()" title="Reload current panel data">↻ Refresh</button>
     </div>
   </div>
 
@@ -1774,6 +1774,16 @@ function renderBillingTable(){
 function refreshAll(){
   loadDashboard();
   if(billingData) loadBilling();
+}
+
+function smartRefresh(){
+  // Only reload data for the currently visible panel
+  const billingVisible = document.getElementById('panel-billing').classList.contains('active');
+  if(billingVisible){
+    loadBilling();
+  } else {
+    loadDashboard();
+  }
 }
 
 function resetBillingFilters(){
