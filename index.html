@@ -287,8 +287,9 @@ body {
 }
 .b-kpi-val {
   font-size: 26px; font-weight: 800; color: var(--navy2); line-height: 1;
-  margin-bottom: 6px; letter-spacing: -0.5px;
+  margin-bottom: 6px; letter-spacing: -0.5px; transition: opacity 0.2s;
 }
+.b-kpi-val.refreshing { opacity: 0.35; }
 .b-kpi-breakdown {
   font-size: 11px; color: #64748B; display: flex; flex-direction: column; gap: 2px;
 }
@@ -1466,9 +1467,12 @@ function switchTab(name, btn){
 // ═══════════════════════════════════════════════════════════
 
 async function loadBilling(){
+  // Dim KPI cards while loading (keep old values visible but faded)
+  document.querySelectorAll('.b-kpi-val').forEach(el => el.classList.add('refreshing'));
+
   try {
     const res = await fetch('billing_data.json?t=' + Date.now());
-    if(!res.ok) throw new Error('billing_data.json not found — run billing_pipeline.py first');
+    if(!res.ok) throw new Error('billing_data.json not found (HTTP ' + res.status + ')');
     billingData      = await res.json();
     billingDailyData = billingData.daily_data || null;
 
@@ -1482,9 +1486,16 @@ async function loadBilling(){
     }
 
     renderBilling();
+
+    // Remove dim after render — brief flash shows data refreshed
+    document.querySelectorAll('.b-kpi-val').forEach(el => el.classList.remove('refreshing'));
+
   } catch(e) {
-    document.getElementById('bNoData').innerHTML =
-      '<div style="color:#F43F5E;padding:60px 20px;text-align:center;font-size:14px;">⚠️ ' + e.message + '</div>';
+    // Remove dim and show error in table area (bNoData may not exist after first render)
+    document.querySelectorAll('.b-kpi-val').forEach(el => el.classList.remove('refreshing'));
+    const errHtml = '<div style="color:#F43F5E;padding:40px 20px;text-align:center;font-size:14px;">⚠️ ' + e.message + '</div>';
+    const wrap = document.getElementById('bTableWrap');
+    if(wrap) wrap.innerHTML = errHtml;
   }
 }
 
@@ -1819,8 +1830,9 @@ function refreshAll(){
 }
 
 function smartRefresh(){
-  // Only reload data for the currently visible panel
-  const billingVisible = document.getElementById('panel-billing').classList.contains('active');
+  // Reload data for the currently visible panel
+  const billingPanel = document.getElementById('panel-billing');
+  const billingVisible = billingPanel && billingPanel.classList.contains('active');
   if(billingVisible){
     loadBilling();
   } else {
