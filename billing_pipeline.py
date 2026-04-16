@@ -97,10 +97,10 @@ def week_range(d: date):
 
 
 def fiscal_year_of(d: date):
-    """Fiscal year May 1 – April 30."""
-    if d.month >= 5:
-        return date(d.year, 5, 1), date(d.year + 1, 4, 30)
-    return date(d.year - 1, 5, 1), date(d.year, 4, 30)
+    """Fiscal year April 1 – March 31."""
+    if d.month >= 4:
+        return date(d.year, 4, 1), date(d.year + 1, 3, 31)
+    return date(d.year - 1, 4, 1), date(d.year, 3, 31)
 
 
 def compute_periods(today: date) -> dict:
@@ -359,10 +359,30 @@ def run_billing_pipeline():
         last_call_date = date.fromisoformat(last_call_str) if last_call_str else None
         last_sms_date  = date.fromisoformat(last_sms_str)  if last_sms_str  else None
 
+        # Re-fetch last 3 days to catch late-arriving billing data
+        refetch_call = (last_call_date - timedelta(days=3)) if last_call_date else None
+        refetch_sms  = (last_sms_date  - timedelta(days=3)) if last_sms_date  else None
+
+        # Clear re-fetch overlap from cache before re-merge (prevents double-counting)
+        if refetch_call:
+            for k in list(db_call.keys()):
+                try:
+                    if date.fromisoformat(k) > refetch_call:
+                        del db_call[k]
+                except ValueError:
+                    pass
+        if refetch_sms:
+            for k in list(db_sms.keys()):
+                try:
+                    if date.fromisoformat(k) > refetch_sms:
+                        del db_sms[k]
+                except ValueError:
+                    pass
+
         try:
-            # Fetch only NEW docs
-            call_docs = fetch_new_call_docs(db_name, client, last_call_date)
-            sms_docs  = fetch_new_sms_docs(db_name, client, last_sms_date)
+            # Fetch docs with 3-day re-check overlap for late-arriving data
+            call_docs = fetch_new_call_docs(db_name, client, refetch_call)
+            sms_docs  = fetch_new_sms_docs(db_name, client, refetch_sms)
 
             # Merge into cache
             db_call, new_call_latest = merge_call_docs(db_call, call_docs)
@@ -427,21 +447,34 @@ def run_billing_pipeline():
     # Build output JSON
     totals   = compute_totals(companies, periods)
     fy_start, fy_end = fiscal_year_of(today)
-    pfy_end  = date(fy_end.year - 1, 4, 30)
-    pfy_start = date(fy_start.year - 1, 5, 1)
 
     period_meta = {k: {"start": str(v[0]), "end": str(v[1])} for k, v in periods.items()}
+
+    # Build daily_data (last 2 fiscal years) for date-range filtering in the dashboard
+    data_cutoff_iso = date(fy_start.year - 1, 4, 1).isoformat()
+    daily_data_out = {}
+    for comp in companies:
+        db = comp["db"]
+        db_entry = cache.get(db, {"call": {}, "sms": {}})
+        raw_call = db_entry.get("call", {})
+        raw_sms  = db_entry.get("sms",  {})
+        daily_data_out[db] = {
+            "name": COMPANY_MAP[db],
+            "call": {k: v for k, v in raw_call.items() if k >= data_cutoff_iso},
+            "sms":  {k: v for k, v in raw_sms.items()  if k >= data_cutoff_iso},
+        }
 
     output = {
         "last_updated":   datetime.now().strftime("%Y-%m-%d %H:%M UTC"),
         "reference_date": str(today),
         "fiscal_year": {
-            "this_year_label": f"May {fy_start.year} – Apr {fy_end.year}",
-            "last_year_label": f"May {pfy_start.year} – Apr {pfy_end.year}",
+            "this_year_label": f"Apr {fy_start.year} – Mar {fy_end.year}",
+            "last_year_label": f"Apr {fy_start.year - 1} – Mar {fy_start.year}",
         },
         "period_meta":  period_meta,
         "totals":       totals,
         "companies":    companies,
+        "daily_data":   daily_data_out,
     }
 
     save_json(OUTPUT_JSON, output)

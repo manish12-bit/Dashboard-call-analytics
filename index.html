@@ -387,6 +387,54 @@ body {
 .b-loading {
   text-align: center; padding: 80px 20px; color: #94A3B8; font-size: 14px;
 }
+
+/* ── Billing Filter Bar ── */
+.b-filter-bar {
+  display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+  margin-bottom: 18px; padding: 12px 16px;
+  background: #F8FAFC; border: 1px solid #E8EDF5; border-radius: var(--radius);
+}
+.b-filter-group { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.b-filter-label {
+  font-size: 11px; font-weight: 700; color: #64748B;
+  text-transform: uppercase; letter-spacing: 0.7px; white-space: nowrap;
+}
+.b-filter-sep { width: 1px; height: 24px; background: #E2E8F0; flex-shrink: 0; margin: 0 2px; }
+.b-qbtn {
+  padding: 5px 11px; border-radius: 6px; border: 1px solid #E2E8F0;
+  background: #fff; color: #64748B; font-size: 11px; font-weight: 600;
+  cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.15s;
+}
+.b-qbtn.active { background: #001940; color: #fff; border-color: #001940; }
+.b-qbtn:hover:not(.active) { background: #EEF2FF; color: #4338CA; border-color: #C7D2FE; }
+.b-export-btn {
+  padding: 6px 14px; border-radius: 6px; border: 1px solid #10B981;
+  background: #F0FDF4; color: #065F46; font-size: 11px; font-weight: 700;
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  display: flex; align-items: center; gap: 5px; transition: all 0.15s;
+}
+.b-export-btn:hover { background: #10B981; color: #fff; }
+.b-refresh-btn {
+  padding: 6px 14px; border-radius: 6px; border: 1px solid #6366F1;
+  background: #EEF2FF; color: #4338CA; font-size: 11px; font-weight: 700;
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  display: flex; align-items: center; gap: 5px; transition: all 0.15s;
+}
+.b-refresh-btn:hover { background: #6366F1; color: #fff; }
+.topbar-refresh-btn {
+  padding: 5px 12px; border-radius: 6px; border: 1px solid #E2E8F0;
+  background: #F8FAFC; color: #64748B; font-size: 12px; font-weight: 600;
+  cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.15s;
+}
+.topbar-refresh-btn:hover { background: #EEF2FF; color: #4338CA; border-color: #C7D2FE; }
+/* Custom-range summary banner */
+.b-custom-banner {
+  background: #FFFBEB; border: 1px solid #FDE68A; border-radius: var(--radius-sm);
+  padding: 10px 16px; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  font-size: 12px; color: #78350F; font-weight: 600;
+}
+.b-col-highlight { background: rgba(99,102,241,0.07) !important; }
 </style>
 </head>
 <body>
@@ -434,6 +482,7 @@ body {
     <div class="topbar-right">
       <div class="header-badge" id="compBadge">Loading...</div>
       <div class="topbar-updated" id="lastUpdated">Fetching data...</div>
+      <button class="topbar-refresh-btn" onclick="refreshAll()" title="Reload all data">↻ Refresh</button>
     </div>
   </div>
 
@@ -724,7 +773,45 @@ body {
       <div class="b-kpi-breakdown" id="bkpi-year-sub"></div>
       <div class="b-kpi-vs flat" id="bkpi-year-vs"></div>
     </div>
+    <div class="b-kpi">
+      <div class="b-kpi-period">Last Year (Fiscal)</div>
+      <div class="b-kpi-val" id="bkpi-lastyear">—</div>
+      <div class="b-kpi-breakdown" id="bkpi-lastyear-sub"></div>
+    </div>
   </div>
+
+  <!-- Company + Date Filter Bar -->
+  <div class="b-filter-bar" id="bFilterBar">
+    <div class="b-filter-group">
+      <span class="b-filter-label">Company:</span>
+      <select id="bCompanySelect" class="comp-select" onchange="onBillingCompanyChange()" style="min-width:140px;font-size:12px;">
+        <option value="all">All Companies</option>
+      </select>
+    </div>
+    <div class="b-filter-sep"></div>
+    <div class="b-filter-group">
+      <span class="b-filter-label">Period:</span>
+      <button class="b-qbtn active" id="bfAll"    onclick="setBillingQuickFilter('all',this)">All</button>
+      <button class="b-qbtn" id="bfToday"         onclick="setBillingQuickFilter('today',this)">Today</button>
+      <button class="b-qbtn" id="bfLM"            onclick="setBillingQuickFilter('last_month',this)">Last Month</button>
+      <button class="b-qbtn" id="bfTY"            onclick="setBillingQuickFilter('this_year',this)">This Year</button>
+      <button class="b-qbtn" id="bfLY"            onclick="setBillingQuickFilter('last_year',this)">Last Year</button>
+    </div>
+    <div class="b-filter-sep"></div>
+    <div class="b-filter-group">
+      <span class="b-filter-label">From:</span>
+      <input type="date" id="bFromDate" class="comp-select" style="font-size:12px;padding:5px 8px" onchange="setBillingQuickFilter('custom',null)">
+      <span class="b-filter-label">To:</span>
+      <input type="date" id="bToDate"   class="comp-select" style="font-size:12px;padding:5px 8px" onchange="setBillingQuickFilter('custom',null)">
+    </div>
+    <div style="margin-left:auto;display:flex;gap:8px;">
+      <button class="b-refresh-btn" onclick="loadBilling()">↻ Refresh</button>
+      <button class="b-export-btn"  onclick="exportBillingReport()">⬇ Export CSV</button>
+    </div>
+  </div>
+
+  <!-- Custom range summary banner (shown when date filter active) -->
+  <div class="b-custom-banner" id="bCustomBanner" style="display:none;"></div>
 
   <!-- View toggle: Call / SMS only -->
   <div class="b-view-row">
@@ -764,8 +851,13 @@ let compDateData = {};
 let compHourData = {};
 
 // ===================== BILLING DATA (fetched from billing_data.json) =====================
-let billingData       = null;
-let billingViewMode   = 'call';  // 'call' | 'sms'
+let billingData        = null;
+let billingDailyData   = null;   // daily_data from billing_data.json
+let billingViewMode    = 'call'; // 'call' | 'sms'
+let billingCompFilter  = 'all';  // 'all' or db_name
+let billingQuickFilter = 'all';  // 'all','today','last_month','this_year','last_year','custom'
+let billingCustomFrom  = null;   // ISO date string or null
+let billingCustomTo    = null;   // ISO date string or null
 
 // ===================== LOAD DASHBOARD =====================
 async function loadDashboard() {
@@ -1375,7 +1467,18 @@ async function loadBilling(){
   try {
     const res = await fetch('billing_data.json?t=' + Date.now());
     if(!res.ok) throw new Error('billing_data.json not found — run billing_pipeline.py first');
-    billingData = await res.json();
+    billingData      = await res.json();
+    billingDailyData = billingData.daily_data || null;
+
+    // Populate company selector
+    const sel = document.getElementById('bCompanySelect');
+    if(sel){
+      const comps = billingData.companies || [];
+      const curVal = sel.value;
+      sel.innerHTML = '<option value="all">All Companies</option>' +
+        comps.map(c => `<option value="${c.db}"${c.db===curVal?' selected':''}>${c.name}</option>`).join('');
+    }
+
     renderBilling();
   } catch(e) {
     document.getElementById('bNoData').innerHTML =
@@ -1512,12 +1615,45 @@ function renderBilling(){
 
 function renderBillingTable(){
   if(!billingData) return;
-  const companies = billingData.companies || [];
+
+  // Apply company filter
+  let companies = billingData.companies || [];
+  if(billingCompFilter !== 'all'){
+    companies = companies.filter(c => c.db === billingCompFilter);
+  }
+
+  // Show/hide custom range banner
+  const banner = document.getElementById('bCustomBanner');
+  if(banner){
+    const range = getActiveDateRange();
+    if(range && billingQuickFilter !== 'all'){
+      const fromLbl = range[0] || '…';
+      const toLbl   = range[1] || '…';
+      const filterName = {
+        today:'Today', last_month:'Last Month',
+        this_year:'This Year', last_year:'Last Year', custom:'Custom Range'
+      }[billingQuickFilter] || billingQuickFilter;
+      const compName = billingCompFilter === 'all' ? 'All Companies'
+        : (billingData.companies.find(c=>c.db===billingCompFilter)||{}).name || billingCompFilter;
+      banner.style.display = 'flex';
+      banner.innerHTML = `<span>📅</span><span>Filter: <strong>${filterName}</strong> &nbsp;·&nbsp; ${fromLbl} → ${toLbl} &nbsp;·&nbsp; Company: <strong>${compName}</strong></span>`;
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+
   const pm        = billingData.period_meta || {};
   const fy        = billingData.fiscal_year || {};
   const mode      = billingViewMode;
 
   function pSub(key){ const p = pm[key]; return p ? p.start + (p.end !== p.start ? '→'+p.end : '') : ''; }
+
+  // Map quick filter to column key for highlighting
+  const filterColMap = {
+    today:'today', last_month:'last_month_total',
+    this_year:'this_year', last_year:'last_year'
+  };
+  const highlightCol = filterColMap[billingQuickFilter] || null;
 
   // Column definitions with period groups
   // group: 0=short-term, 1=monthly, 2=annual
@@ -1566,8 +1702,9 @@ function renderBillingTable(){
   // Build column header row
   let colRow = `<tr class="col-hdr"><th>Client</th>`;
   COLS.forEach(col => {
-    const cls = col.grp===0 ? 'g-short' : col.grp===1 ? 'g-month' : 'g-year';
-    colRow += `<th class="${cls}">${col.label}<span class="sub">${col.sub}</span></th>`;
+    const grpCls = col.grp===0 ? 'g-short' : col.grp===1 ? 'g-month' : 'g-year';
+    const hlCls  = col.key === highlightCol ? ' b-col-highlight' : '';
+    colRow += `<th class="${grpCls}${hlCls}">${col.label}<span class="sub">${col.sub}</span></th>`;
   });
   colRow += '</tr>';
 
@@ -1605,8 +1742,9 @@ function renderBillingTable(){
         footSms[col.key]  += cnt;
       }
       const bg  = cellBg(v, colMax[col.key]);
+      const hlStyle = col.key === highlightCol ? 'outline:2px solid #6366F133;' : '';
       const sub = cnt ? `<span class="b-sub">${cntTxt(cnt, unit)}</span>` : '';
-      rows += `<td style="${bg}">${inr(v)}${sub}</td>`;
+      rows += `<td style="${bg}${hlStyle}">${inr(v)}${sub}</td>`;
     });
     rows += '</tr>';
   });
@@ -1627,6 +1765,238 @@ function renderBillingTable(){
 
   const html = `<table class="b-table">${thead}${tbody}${fRow}</table>`;
   document.getElementById('bTableWrap').innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════════
+//  BILLING — filter helpers, export, refresh
+// ═══════════════════════════════════════════════════════════
+
+function refreshAll(){
+  loadDashboard();
+  if(billingData) loadBilling();
+}
+
+function onBillingCompanyChange(){
+  billingCompFilter = document.getElementById('bCompanySelect').value;
+  renderBillingTable();
+}
+
+function setBillingQuickFilter(mode, btn){
+  // Update quick-filter button active states
+  document.querySelectorAll('#bFilterBar .b-qbtn').forEach(b => b.classList.remove('active'));
+
+  if(mode === 'custom'){
+    billingCustomFrom = document.getElementById('bFromDate').value || null;
+    billingCustomTo   = document.getElementById('bToDate').value   || null;
+    if(!billingCustomFrom && !billingCustomTo){
+      // empty date pickers → treat as 'all'
+      mode = 'all';
+      const allBtn = document.getElementById('bfAll');
+      if(allBtn) allBtn.classList.add('active');
+    } else {
+      // no dedicated button for custom → keep all inactive
+    }
+  } else {
+    if(btn) btn.classList.add('active');
+    // Clear date pickers when switching to a quick filter
+    if(mode !== 'custom'){
+      document.getElementById('bFromDate').value = '';
+      document.getElementById('bToDate').value   = '';
+      billingCustomFrom = null;
+      billingCustomTo   = null;
+    }
+  }
+
+  billingQuickFilter = mode;
+  renderBillingTable();
+}
+
+function getActiveDateRange(){
+  // Returns [fromISO, toISO] or null (= show all pre-computed periods)
+  if(!billingData) return null;
+  const pm  = billingData.period_meta || {};
+  const get = key => pm[key] ? [pm[key].start, pm[key].end] : null;
+
+  if(billingQuickFilter === 'all')        return null;
+  if(billingQuickFilter === 'today')      return get('today');
+  if(billingQuickFilter === 'last_month') return get('last_month_total');
+  if(billingQuickFilter === 'this_year')  return get('this_year');
+  if(billingQuickFilter === 'last_year')  return get('last_year');
+  if(billingQuickFilter === 'custom')
+    return (billingCustomFrom || billingCustomTo)
+      ? [billingCustomFrom || '2000-01-01', billingCustomTo || '9999-12-31']
+      : null;
+  return null;
+}
+
+function computeFromDaily(dbName, fromISO, toISO, mode){
+  // Compute call or sms totals from daily_data for a custom date range
+  const dd = billingDailyData;
+  if(!dd || !dd[dbName]) return { cost: 0, count: 0, duration_sec: 0 };
+  const src = mode === 'call' ? (dd[dbName].call || {}) : (dd[dbName].sms || {});
+  let cost = 0, count = 0, durSec = 0;
+  Object.entries(src).forEach(([dateStr, data]) => {
+    if(fromISO && dateStr < fromISO) return;
+    if(toISO   && dateStr > toISO)   return;
+    cost   += Number(data.cost)   || 0;
+    count  += mode === 'call' ? (Number(data.calls)     || 0)
+                               : (Number(data.sms_count) || 0);
+    durSec += Number(data.duration_sec) || 0;
+  });
+  return { cost: Math.round(cost * 100) / 100, count, duration_sec: durSec };
+}
+
+function exportBillingReport(){
+  if(!billingData) { alert('Billing data not loaded yet.'); return; }
+
+  const allCompanies = billingData.companies || [];
+  const pm  = billingData.period_meta || {};
+  const fy  = billingData.fiscal_year || {};
+  const mode = billingViewMode;
+  const range = getActiveDateRange();
+
+  // Filter companies
+  const comps = billingCompFilter === 'all' ? allCompanies
+    : allCompanies.filter(c => c.db === billingCompFilter);
+
+  const rows = [];
+
+  // ── Header ──
+  const PERIODS = [
+    {key:'today',               label:'Today'},
+    {key:'this_week',           label:'This Week'},
+    {key:'last_week',           label:'Last Week'},
+    {key:'current_month',       label:'Current Month'},
+    {key:'last_month_same_date',label:'Last Month MTD'},
+    {key:'last_month_total',    label:'Last Month Total'},
+    {key:'last_month_same_day', label:'Same Day Last Mo'},
+    {key:'this_year',           label:`This Year (${fy.this_year_label||''})`},
+    {key:'last_year',           label:`Last Year (${fy.last_year_label||''})`},
+  ];
+
+  rows.push(['Billing Export — ' + (billingData.last_updated || '')]);
+  rows.push(['Fiscal Year:', fy.this_year_label || '', 'Last Year:', fy.last_year_label || '']);
+  rows.push(['View:', mode === 'call' ? 'Call Billing' : 'SMS Billing']);
+  rows.push(['Company Filter:', billingCompFilter === 'all' ? 'All Companies'
+    : (allCompanies.find(c=>c.db===billingCompFilter)||{}).name || billingCompFilter]);
+  if(range) rows.push(['Date Range:', range[0]||'', '→', range[1]||'']);
+  rows.push([]);
+
+  // ── Summary table (all standard periods) ──
+  rows.push(['=== SUMMARY BY PERIOD ===']);
+  const summaryHeader = ['Company', ...PERIODS.map(p=>p.label + ' Cost (₹)'), ...PERIODS.map(p=>p.label + (mode==='call'?' Calls':' SMS'))];
+  rows.push(summaryHeader);
+
+  comps.forEach(c => {
+    const src = mode === 'call' ? (c.call || {}) : (c.sms || {});
+    const costs  = PERIODS.map(p => (Number((src[p.key]||{}).cost)||0).toFixed(2));
+    const counts = PERIODS.map(p => mode==='call'
+      ? (Number((src[p.key]||{}).calls)||0)
+      : (Number((src[p.key]||{}).sms_count)||0));
+    rows.push([c.name, ...costs, ...counts]);
+  });
+
+  // Totals row
+  const totals = billingData.totals || {};
+  const tCosts  = PERIODS.map(p => (Number((totals[p.key]||{})[mode==='call'?'call_cost':'sms_cost'])||0).toFixed(2));
+  const tCounts = PERIODS.map(p => mode==='call'
+    ? (Number((totals[p.key]||{}).call_calls)||0)
+    : (Number((totals[p.key]||{}).sms_count)||0));
+  rows.push(['TOTAL', ...tCosts, ...tCounts]);
+  rows.push([]);
+
+  // ── Daily breakdown (if daily_data available) ──
+  if(billingDailyData){
+    rows.push(['=== DAILY BREAKDOWN ===']);
+    rows.push(['Company', 'Date', 'Calls', 'Call Cost (₹)', 'Call Duration (hrs)', 'SMS Count', 'SMS Cost (₹)', 'Total Cost (₹)']);
+
+    const fromISO = range ? range[0] : null;
+    const toISO   = range ? range[1] : null;
+
+    comps.forEach(c => {
+      const dd = billingDailyData[c.db];
+      if(!dd) return;
+      const allDates = new Set([
+        ...Object.keys(dd.call || {}),
+        ...Object.keys(dd.sms  || {}),
+      ]);
+      [...allDates].sort().forEach(dateStr => {
+        if(fromISO && dateStr < fromISO) return;
+        if(toISO   && dateStr > toISO)   return;
+        const callD = (dd.call||{})[dateStr] || {};
+        const smsD  = (dd.sms ||{})[dateStr] || {};
+        const callCost = Number(callD.cost)||0;
+        const smsCost  = Number(smsD.cost) ||0;
+        rows.push([
+          c.name, dateStr,
+          callD.calls || 0,
+          callCost.toFixed(2),
+          ((callD.duration_sec||0)/3600).toFixed(2),
+          smsD.sms_count || 0,
+          smsCost.toFixed(2),
+          (callCost + smsCost).toFixed(2),
+        ]);
+      });
+    });
+    rows.push([]);
+  }
+
+  // ── Monthly rollup ──
+  if(billingDailyData){
+    rows.push(['=== MONTHLY ROLLUP ===']);
+    rows.push(['Company', 'Year-Month', 'Calls', 'Call Cost (₹)', 'SMS Count', 'SMS Cost (₹)', 'Total Cost (₹)']);
+
+    const fromISO = range ? range[0] : null;
+    const toISO   = range ? range[1] : null;
+
+    comps.forEach(c => {
+      const dd = billingDailyData[c.db];
+      if(!dd) return;
+      const monthly = {};
+      const allDates = new Set([...Object.keys(dd.call||{}), ...Object.keys(dd.sms||{})]);
+      [...allDates].sort().forEach(dateStr => {
+        if(fromISO && dateStr < fromISO) return;
+        if(toISO   && dateStr > toISO)   return;
+        const ym = dateStr.slice(0,7);
+        if(!monthly[ym]) monthly[ym] = {calls:0, callCost:0, smsCount:0, smsCost:0};
+        const callD = (dd.call||{})[dateStr]||{};
+        const smsD  = (dd.sms ||{})[dateStr]||{};
+        monthly[ym].calls    += Number(callD.calls)     ||0;
+        monthly[ym].callCost += Number(callD.cost)      ||0;
+        monthly[ym].smsCount += Number(smsD.sms_count)  ||0;
+        monthly[ym].smsCost  += Number(smsD.cost)       ||0;
+      });
+      Object.entries(monthly).sort().forEach(([ym, m]) => {
+        rows.push([
+          c.name, ym,
+          m.calls, m.callCost.toFixed(2),
+          m.smsCount, m.smsCost.toFixed(2),
+          (m.callCost + m.smsCost).toFixed(2),
+        ]);
+      });
+    });
+  }
+
+  // Convert to CSV
+  const csv = rows.map(row =>
+    row.map(cell => {
+      const s = String(cell).replace(/"/g, '""');
+      return (s.includes(',') || s.includes('"') || s.includes('\n')) ? `"${s}"` : s;
+    }).join(',')
+  ).join('\n');
+
+  const blob = new Blob(['\ufeff' + csv], {type:'text/csv;charset=utf-8;'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url;
+  const ts = new Date().toISOString().slice(0,10);
+  const compSlug = billingCompFilter === 'all' ? 'all'
+    : (allCompanies.find(c=>c.db===billingCompFilter)||{}).name||billingCompFilter;
+  a.download = `billing_${mode}_${compSlug}_${billingQuickFilter}_${ts}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
 // ===================== SIDEBAR COLLAPSE =====================
