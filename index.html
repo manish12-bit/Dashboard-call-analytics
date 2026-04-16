@@ -508,6 +508,14 @@ body {
 
 <!-- ===== PANEL: COMPANY ===== -->
 <div id="panel-company" class="panel active">
+  <!-- Company filter row -->
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px;align-items:center;background:#F8FAFC;border:1px solid #E8EDF5;border-radius:10px;padding:12px 16px;">
+    <span style="font-size:12px;color:#11344D;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;">Filter by Company:</span>
+    <select class="comp-select" id="compWiseSelect" onchange="buildCompany()" style="min-width:200px;">
+      <option value="all">All Companies</option>
+    </select>
+    <button onclick="document.getElementById('compWiseSelect').value='all';buildCompany();" style="padding:5px 14px;font-size:12px;font-weight:600;color:#6366F1;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;">Reset</button>
+  </div>
   <!-- Company count row -->
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;align-items:center;">
     <span style="font-size:12px;color:var(--text-dim);font-weight:600;margin-right:4px;" id="compPanelLabel">ALL 20 COMPANIES:</span>
@@ -566,6 +574,14 @@ body {
 
 <!-- ===== PANEL: REGION ===== -->
 <div id="panel-region" class="panel">
+  <!-- Region filter row -->
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px;align-items:center;background:#F8FAFC;border:1px solid #E8EDF5;border-radius:10px;padding:12px 16px;">
+    <span style="font-size:12px;color:#11344D;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;">Filter by Region:</span>
+    <select class="comp-select" id="regionWiseSelect" onchange="buildRegion()" style="min-width:180px;">
+      <option value="all">All Regions</option>
+    </select>
+    <button onclick="document.getElementById('regionWiseSelect').value='all';buildRegion();" style="padding:5px 14px;font-size:12px;font-weight:600;color:#6366F1;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;">Reset</button>
+  </div>
   <div class="charts-grid">
     <div class="chart-card">
       <div class="chart-title">Total Calls by Region</div>
@@ -592,6 +608,14 @@ body {
 
 <!-- ===== PANEL: USE CASE ===== -->
 <div id="panel-usecase" class="panel">
+  <!-- Use Case filter row -->
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px;align-items:center;background:#F8FAFC;border:1px solid #E8EDF5;border-radius:10px;padding:12px 16px;">
+    <span style="font-size:12px;color:#11344D;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;">Filter by Use Case:</span>
+    <select class="comp-select" id="usecaseWiseSelect" onchange="buildUseCase()" style="min-width:200px;">
+      <option value="all">All Use Cases</option>
+    </select>
+    <button onclick="document.getElementById('usecaseWiseSelect').value='all';buildUseCase();" style="padding:5px 14px;font-size:12px;font-weight:600;color:#6366F1;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;">Reset</button>
+  </div>
   <div class="charts-grid">
     <div class="chart-card">
       <div class="chart-title">Volume by Use Case</div>
@@ -618,6 +642,14 @@ body {
 
 <!-- ===== PANEL: LANGUAGE ===== -->
 <div id="panel-language" class="panel">
+  <!-- Language filter row -->
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px;align-items:center;background:#F8FAFC;border:1px solid #E8EDF5;border-radius:10px;padding:12px 16px;">
+    <span style="font-size:12px;color:#11344D;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;">Filter by Language:</span>
+    <select class="comp-select" id="languageWiseSelect" onchange="buildLanguage()" style="min-width:180px;">
+      <option value="all">All Languages</option>
+    </select>
+    <button onclick="document.getElementById('languageWiseSelect').value='all';buildLanguage();" style="padding:5px 14px;font-size:12px;font-weight:600;color:#6366F1;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;">Reset</button>
+  </div>
   <div class="charts-grid">
     <div class="chart-card">
       <div class="chart-title">Connected Calls by Language</div>
@@ -956,6 +988,12 @@ async function loadDashboard() {
       if (el) el.innerHTML = '';
     });
 
+    // Populate filter dropdowns for wise panels
+    populateWiseSelect('compWiseSelect',    companyData.map(d=>d.name));
+    populateWiseSelect('regionWiseSelect',  regionData.map(d=>d.name));
+    populateWiseSelect('usecaseWiseSelect', usecaseData.map(d=>d.name));
+    populateWiseSelect('languageWiseSelect',languageData.map(d=>d.name));
+
     // Rebuild all charts from fresh data
     buildCompany();
     buildRegion();
@@ -987,6 +1025,20 @@ function populateSelect(id, options) {
     `<option value="${o}"${o === current ? ' selected' : ''}>${o}</option>`
   ).join('');
   if (!options.includes(current) && options.length) sel.value = options[0];
+}
+
+// Populate a "wise" filter select (keeps "All" as first option, resets to "all")
+function populateWiseSelect(id, names) {
+  const sel = document.getElementById(id);
+  if (!sel) return;
+  // Remove all options after the first ("All ..." option)
+  while (sel.options.length > 1) sel.remove(1);
+  names.forEach(name => {
+    const o = document.createElement('option');
+    o.value = name; o.text = name;
+    sel.appendChild(o);
+  });
+  sel.value = 'all';
 }
 
 // ===================== COLOR PALETTES =====================
@@ -1112,12 +1164,17 @@ function updateCompHourChart(){
 
 // ===================== BUILD CHARTS =====================
 function buildCompany(){
-  const labels = companyData.map(d=>d.name);
+  // Filter support
+  const filterVal = document.getElementById('compWiseSelect')?.value || 'all';
+  const cd = filterVal === 'all' ? companyData : companyData.filter(d => d.name === filterVal);
+  const labels = cd.map(d=>d.name);
 
   // Company count badges — each company gets its own color
   const badgesDiv = document.getElementById('compCountBadges');
-  companyData.forEach((d,i)=>{
-    const c = MULTI[i % MULTI.length];
+  badgesDiv.innerHTML = '';
+  cd.forEach((d,i)=>{
+    const origIdx = companyData.indexOf(d);
+    const c = MULTI[origIdx % MULTI.length];
     const span = document.createElement('span');
     span.className = 'count-badge';
     span.style.cssText = `background:${c}18;border-color:${c}55;color:${c};`;
@@ -1125,13 +1182,20 @@ function buildCompany(){
     badgesDiv.appendChild(span);
   });
 
+  // Destroy existing charts before redrawing
+  ['compTotalChart','compSuccessChart','compConnectChart','compDurationChart','compMHTChart','compDispChart'].forEach(id=>{
+    Chart.getChart(id)?.destroy();
+  });
+
+  const bColors = cd.map(d=>{ const i=companyData.indexOf(d); return MULTI[i%MULTI.length]; });
+
   // Total calls
   new Chart(document.getElementById('compTotalChart'),{
     type:'bar',
     data:{
       labels,
-      datasets:[{label:'Total Calls',data:companyData.map(d=>d.total),
-        backgroundColor:MULTI.map(c=>c+'99'),borderColor:MULTI,borderWidth:2,borderRadius:6}]
+      datasets:[{label:'Total Calls',data:cd.map(d=>d.total),
+        backgroundColor:bColors.map(c=>c+'99'),borderColor:bColors,borderWidth:2,borderRadius:6}]
     },
     options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
       scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{...chartDefaults.scales.y.ticks,callback:v=>fmtNum(v)}}}}
@@ -1142,9 +1206,9 @@ function buildCompany(){
     type:'bar',
     data:{
       labels,
-      datasets:[{label:'Effective Rate %',data:companyData.map(d=>d.success),
-        backgroundColor:companyData.map(d=>d.success>40?COLORS.teal+'BB':d.success>20?COLORS.blue+'BB':COLORS.orange+'BB'),
-        borderColor:companyData.map(d=>d.success>40?COLORS.teal:d.success>20?COLORS.blue:COLORS.orange),
+      datasets:[{label:'Effective Rate %',data:cd.map(d=>d.success),
+        backgroundColor:cd.map(d=>d.success>40?COLORS.teal+'BB':d.success>20?COLORS.blue+'BB':COLORS.orange+'BB'),
+        borderColor:cd.map(d=>d.success>40?COLORS.teal:d.success>20?COLORS.blue:COLORS.orange),
         borderWidth:2,borderRadius:6}]
     },
     options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
@@ -1156,7 +1220,7 @@ function buildCompany(){
     type:'bar',
     data:{
       labels,
-      datasets:[{label:'Connect Rate %',data:companyData.map(d=>d.connPct),
+      datasets:[{label:'Connect Rate %',data:cd.map(d=>d.connPct),
         backgroundColor:COLORS.cyan+'99',borderColor:COLORS.cyan,borderWidth:2,borderRadius:6}]
     },
     options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
@@ -1168,8 +1232,8 @@ function buildCompany(){
     type:'bar',
     data:{
       labels,
-      datasets:[{label:'Total Hours',data:companyData.map(d=>d.durationH),
-        backgroundColor:MULTI.map(c=>c+'88'),borderColor:MULTI,borderWidth:2,borderRadius:6}]
+      datasets:[{label:'Total Hours',data:cd.map(d=>d.durationH),
+        backgroundColor:bColors.map(c=>c+'88'),borderColor:bColors,borderWidth:2,borderRadius:6}]
     },
     options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
       scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{...chartDefaults.scales.y.ticks,callback:v=>v.toLocaleString()+' hr'}}}}
@@ -1180,7 +1244,7 @@ function buildCompany(){
     type:'bar',
     data:{
       labels,
-      datasets:[{label:'Mean Handle Time (s)',data:companyData.map(d=>d.mht),
+      datasets:[{label:'Mean Handle Time (s)',data:cd.map(d=>d.mht),
         backgroundColor:COLORS.yellow+'99',borderColor:COLORS.yellow,borderWidth:2,borderRadius:6}]
     },
     options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
@@ -1193,8 +1257,8 @@ function buildCompany(){
     data:{
       labels,
       datasets:[
-        {label:'Positive',data:companyData.map(d=>d.positive),backgroundColor:COLORS.teal+'99',borderColor:COLORS.teal,borderWidth:2,borderRadius:4},
-        {label:'Negative',data:companyData.map(d=>d.negative),backgroundColor:COLORS.red+'99',borderColor:COLORS.red,borderWidth:2,borderRadius:4},
+        {label:'Positive',data:cd.map(d=>d.positive),backgroundColor:COLORS.teal+'99',borderColor:COLORS.teal,borderWidth:2,borderRadius:4},
+        {label:'Negative',data:cd.map(d=>d.negative),backgroundColor:COLORS.red+'99',borderColor:COLORS.red,borderWidth:2,borderRadius:4},
       ]
     },
     options:{...chartDefaults,scales:{
@@ -1205,11 +1269,13 @@ function buildCompany(){
 
   // Table
   const tbody = document.getElementById('companyTableBody');
-  companyData.forEach((d,i)=>{
-    const c = MULTI[i % MULTI.length];
+  tbody.innerHTML = '';
+  cd.forEach((d,i)=>{
+    const origIdx = companyData.indexOf(d);
+    const c = MULTI[origIdx % MULTI.length];
     const s = d.success>40?'green':d.success>20?'blue':'red';
     tbody.innerHTML += `<tr>
-      <td><span style="color:${c};font-weight:700;">${i+1}</span></td>
+      <td><span style="color:${c};font-weight:700;">${origIdx+1}</span></td>
       <td><b style="color:${c}">${d.name}</b></td>
       <td>${fmtNum(d.total)}</td>
       <td>${fmtNum(d.connected)}</td>
@@ -1231,17 +1297,24 @@ function buildCompany(){
 }
 
 function buildRegion(){
-  const labels = regionData.map(d=>d.name);
-  const rColors = ['#6366F1','#10B981','#F97316','#06B6D4'];
+  // Filter support
+  const filterVal = document.getElementById('regionWiseSelect')?.value || 'all';
+  const rd = filterVal === 'all' ? regionData : regionData.filter(d => d.name === filterVal);
+  const labels = rd.map(d=>d.name);
+  const allRColors = ['#6366F1','#10B981','#F97316','#06B6D4'];
+  const rColors = rd.map(d=>{ const i=regionData.indexOf(d); return allRColors[i%allRColors.length]; });
+
+  // Destroy existing charts before redrawing
+  ['regionPieChart','regionConnChart','regionBarChart'].forEach(id=>{ Chart.getChart(id)?.destroy(); });
 
   new Chart(document.getElementById('regionPieChart'),{
     type:'doughnut',
-    data:{labels,datasets:[{data:regionData.map(d=>d.total),backgroundColor:rColors,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
+    data:{labels,datasets:[{data:rd.map(d=>d.total),backgroundColor:rColors,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
     options:{...pieDefaults,cutout:'58%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#11344D',font:{family:'Inter',size:12,weight:'600'},padding:20,usePointStyle:true}}}}
   });
   new Chart(document.getElementById('regionConnChart'),{
     type:'doughnut',
-    data:{labels,datasets:[{data:regionData.map(d=>d.connected),backgroundColor:rColors,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
+    data:{labels,datasets:[{data:rd.map(d=>d.connected),backgroundColor:rColors,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
     options:{...pieDefaults,cutout:'58%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#11344D',font:{family:'Inter',size:12,weight:'600'},padding:20,usePointStyle:true}}}}
   });
   new Chart(document.getElementById('regionBarChart'),{
@@ -1249,9 +1322,9 @@ function buildRegion(){
     data:{
       labels,
       datasets:[
-        {label:'Total Calls',data:regionData.map(d=>d.total),backgroundColor:COLORS.blue+'88',borderColor:COLORS.blue,borderWidth:2,borderRadius:6,yAxisID:'y'},
-        {label:'Connected Calls',data:regionData.map(d=>d.connected),backgroundColor:COLORS.teal+'88',borderColor:COLORS.teal,borderWidth:2,borderRadius:6,yAxisID:'y'},
-        {label:'Effective Rate %',data:regionData.map(d=>d.success),backgroundColor:COLORS.orange+'BB',borderColor:COLORS.orange,borderWidth:2,borderRadius:6,type:'line',yAxisID:'y2',tension:0.3,fill:false,pointRadius:6,pointBackgroundColor:COLORS.orange},
+        {label:'Total Calls',data:rd.map(d=>d.total),backgroundColor:COLORS.blue+'88',borderColor:COLORS.blue,borderWidth:2,borderRadius:6,yAxisID:'y'},
+        {label:'Connected Calls',data:rd.map(d=>d.connected),backgroundColor:COLORS.teal+'88',borderColor:COLORS.teal,borderWidth:2,borderRadius:6,yAxisID:'y'},
+        {label:'Effective Rate %',data:rd.map(d=>d.success),backgroundColor:COLORS.orange+'BB',borderColor:COLORS.orange,borderWidth:2,borderRadius:6,type:'line',yAxisID:'y2',tension:0.3,fill:false,pointRadius:6,pointBackgroundColor:COLORS.orange},
       ]
     },
     options:{...chartDefaults,scales:{
@@ -1261,38 +1334,50 @@ function buildRegion(){
     }}
   });
 
-  const maxTotal = Math.max(...regionData.map(d=>d.total));
+  const maxTotal = rd.length ? Math.max(...rd.map(d=>d.total)) : 1;
   const mDiv = document.getElementById('regionMeters');
-  regionData.forEach((d,i)=>{
+  mDiv.innerHTML = '';
+  rd.forEach((d,i)=>{
+    const origIdx = regionData.indexOf(d);
     const pct = d.connPct;
     mDiv.innerHTML += `<div class="bar-row">
       <div class="bar-label">${d.name}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${(d.total/maxTotal*100).toFixed(0)}%;background:${MULTI[i]}"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(d.total/maxTotal*100).toFixed(0)}%;background:${MULTI[origIdx%MULTI.length]}"></div></div>
       <div class="bar-val">${pct}% conn</div>
     </div>`;
   });
 }
 
 function buildUseCase(){
-  const labels = usecaseData.map(d=>d.name);
+  // Filter support
+  const filterVal = document.getElementById('usecaseWiseSelect')?.value || 'all';
+  const ud = filterVal === 'all' ? usecaseData : usecaseData.filter(d => d.name === filterVal);
+  const labels = ud.map(d=>d.name);
+  const ucColors = ud.map(d=>{ const i=usecaseData.indexOf(d); return MULTI[i%MULTI.length]; });
+
+  // Destroy existing charts before redrawing
+  ['ucTotalChart','ucSuccessChart'].forEach(id=>{ Chart.getChart(id)?.destroy(); });
+
   new Chart(document.getElementById('ucTotalChart'),{
     type:'bar',
-    data:{labels,datasets:[{label:'Total Calls',data:usecaseData.map(d=>d.total),backgroundColor:MULTI.map(c=>c+'99'),borderColor:MULTI,borderWidth:2,borderRadius:6}]},
+    data:{labels,datasets:[{label:'Total Calls',data:ud.map(d=>d.total),backgroundColor:ucColors.map(c=>c+'99'),borderColor:ucColors,borderWidth:2,borderRadius:6}]},
     options:{...chartDefaults,indexAxis:'y',plugins:{...chartDefaults.plugins,legend:{display:false}},
       scales:{x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,callback:v=>fmtNum(v)}},y:{...chartDefaults.scales.y}}}
   });
   new Chart(document.getElementById('ucSuccessChart'),{
     type:'bar',
-    data:{labels,datasets:[{label:'Effective Rate %',data:usecaseData.map(d=>d.success),
-      backgroundColor:usecaseData.map(d=>d.success>35?COLORS.teal+'BB':COLORS.blue+'BB'),
-      borderColor:usecaseData.map(d=>d.success>35?COLORS.teal:COLORS.blue),
+    data:{labels,datasets:[{label:'Effective Rate %',data:ud.map(d=>d.success),
+      backgroundColor:ud.map(d=>d.success>35?COLORS.teal+'BB':COLORS.blue+'BB'),
+      borderColor:ud.map(d=>d.success>35?COLORS.teal:COLORS.blue),
       borderWidth:2,borderRadius:6}]},
     options:{...chartDefaults,indexAxis:'y',plugins:{...chartDefaults.plugins,legend:{display:false}},
       scales:{x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,callback:v=>v+'%'}},y:{...chartDefaults.scales.y}}}
   });
   const tbody = document.getElementById('usecaseTableBody');
-  usecaseData.forEach((d,i)=>{
-    const c = MULTI[i % MULTI.length];
+  tbody.innerHTML = '';
+  ud.forEach((d,i)=>{
+    const origIdx = usecaseData.indexOf(d);
+    const c = MULTI[origIdx % MULTI.length];
     const s = d.success>35?'green':d.success>20?'blue':'red';
     tbody.innerHTML += `<tr>
       <td><b style="color:${c}">${d.name}</b></td>
@@ -1309,22 +1394,32 @@ function buildUseCase(){
 }
 
 function buildLanguage(){
-  const labels = languageData.map(d=>d.name);
+  // Filter support
+  const filterVal = document.getElementById('languageWiseSelect')?.value || 'all';
+  const ld = filterVal === 'all' ? languageData : languageData.filter(d => d.name === filterVal);
+  const labels = ld.map(d=>d.name);
+  const lColors = ld.map(d=>{ const i=languageData.indexOf(d); return MULTI[i%MULTI.length]; });
+
+  // Destroy existing charts before redrawing
+  ['langPieChart','langSuccessChart'].forEach(id=>{ Chart.getChart(id)?.destroy(); });
+
   new Chart(document.getElementById('langPieChart'),{
     type:'doughnut',
-    data:{labels,datasets:[{data:languageData.map(d=>d.total),backgroundColor:MULTI,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
+    data:{labels,datasets:[{data:ld.map(d=>d.total),backgroundColor:lColors,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
     options:{...pieDefaults,cutout:'55%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#11344D',font:{family:'Inter',size:11,weight:'600'},padding:14,usePointStyle:true}}}}
   });
   new Chart(document.getElementById('langSuccessChart'),{
     type:'bar',
-    data:{labels,datasets:[{label:'Effective Rate %',data:languageData.map(d=>d.success),
-      backgroundColor:MULTI.map(c=>c+'99'),borderColor:MULTI,borderWidth:2,borderRadius:6}]},
+    data:{labels,datasets:[{label:'Effective Rate %',data:ld.map(d=>d.success),
+      backgroundColor:lColors.map(c=>c+'99'),borderColor:lColors,borderWidth:2,borderRadius:6}]},
     options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
       scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{...chartDefaults.scales.y.ticks,callback:v=>v+'%'}}}}
   });
   const tbody = document.getElementById('languageTableBody');
-  languageData.forEach((d,i)=>{
-    const c = MULTI[i % MULTI.length];
+  tbody.innerHTML = '';
+  ld.forEach((d,i)=>{
+    const origIdx = languageData.indexOf(d);
+    const c = MULTI[origIdx % MULTI.length];
     const s = d.success>30?'green':d.success>10?'blue':'red';
     tbody.innerHTML += `<tr>
       <td><b style="color:${c}">${d.name}</b></td>
