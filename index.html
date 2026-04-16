@@ -768,7 +768,7 @@ body {
       <div class="b-kpi-breakdown" id="bkpi-lm-total-sub"></div>
     </div>
     <div class="b-kpi">
-      <div class="b-kpi-period">Last 12 Months</div>
+      <div class="b-kpi-period">This Year (Fiscal)</div>
       <div class="b-kpi-val" id="bkpi-year">—</div>
       <div class="b-kpi-breakdown" id="bkpi-year-sub"></div>
       <div class="b-kpi-vs flat" id="bkpi-year-vs"></div>
@@ -1584,7 +1584,7 @@ function renderBilling(){
   fillKpi('bkpi-month',    'bkpi-month-sub',     'current_month', 'bkpi-month-vs');
   fillKpi('bkpi-lm-mtd',   'bkpi-lm-mtd-sub',   'last_month_same_date');
   fillKpi('bkpi-lm-total', 'bkpi-lm-total-sub', 'last_month_total');
-  fillKpi('bkpi-year',     'bkpi-year-sub',      'rolling_12m',  'bkpi-year-vs');
+  fillKpi('bkpi-year',     'bkpi-year-sub',      'this_year',  'bkpi-year-vs');
   fillKpi('bkpi-lastyear', 'bkpi-lastyear-sub',  'last_year');
 
   // vs comparisons
@@ -1594,23 +1594,23 @@ function renderBilling(){
   const ev  = document.getElementById('bkpi-month-vs');
   if(ev) ev.innerHTML = vsHtml(cm, lm);
 
-  // Card 7: last 12 months vs previous 12 months (= last_year as proxy)
-  const r12 = totalCost(tot.rolling_12m || {});
-  const ly  = totalCost(tot.last_year   || {});
+  // Card 7: this year (FY YTD) vs last year (FY full)
+  const ty  = totalCost(tot.this_year  || {});
+  const ly  = totalCost(tot.last_year  || {});
   const eyv = document.getElementById('bkpi-year-vs');
-  if(eyv) eyv.innerHTML = vsHtml(r12, ly);
+  if(eyv) eyv.innerHTML = vsHtml(ty, ly);
 
   // Info note
-  const r12m = pm.rolling_12m || {};
+  const fyThis = pm.this_year || {};
+  const fyLast = pm.last_year || {};
   const note = document.getElementById('bInfoNote');
   const noteT = document.getElementById('bInfoText');
   if(note && noteT){
     const ref = d.reference_date || '';
     noteT.innerHTML =
       `Reference date: <strong>${ref}</strong> &nbsp;|&nbsp; ` +
-      `<strong>Last 12 Months</strong>: ${r12m.start||'—'} → ${r12m.end||'—'} &nbsp;|&nbsp; ` +
-      `<strong>This Year (FY)</strong> = ${fy.this_year_label||'—'} (Apr–Mar) &nbsp;|&nbsp; ` +
-      `<strong>Last Year (FY)</strong> = ${fy.last_year_label||'—'}`;
+      `<strong>This Year (FY)</strong>: ${fyThis.start||'—'} → ${fyThis.end||'—'} (${fy.this_year_label||'Apr–Mar'}) &nbsp;|&nbsp; ` +
+      `<strong>Last Year (FY)</strong>: ${fyLast.start||'—'} → ${fyLast.end||'—'} (${fy.last_year_label||'Apr–Mar'})`;
     note.style.display = 'flex';
   }
 
