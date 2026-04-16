@@ -116,6 +116,11 @@ def compute_periods(today: date) -> dict:
     fy_start, fy_end   = fiscal_year_of(today)
     pfy_start = date(fy_start.year - 1, fy_start.month, fy_start.day)
     pfy_end   = date(fy_end.year - 1,   fy_end.month,   fy_end.day)
+    # Rolling 12 months: same date last year → today (always distinct from current_month)
+    try:
+        r12m_start = today.replace(year=today.year - 1)
+    except ValueError:              # Feb 29 in a leap year
+        r12m_start = date(today.year - 1, today.month, 28)
     return {
         "today":                 (today,        today),
         "this_week":             (w_start,      today),
@@ -124,6 +129,7 @@ def compute_periods(today: date) -> dict:
         "last_month_same_date":  (lm_start,     lm_same_date),
         "last_month_total":      (lm_start,     lm_end),
         "last_month_same_day":   (lm_same_day,  lm_same_day),
+        "rolling_12m":           (r12m_start,   today),
         "this_year":             (fy_start,     today),
         "last_year":             (pfy_start,    pfy_end),
     }
