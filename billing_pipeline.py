@@ -359,6 +359,12 @@ def run_billing_pipeline():
         last_call_date = date.fromisoformat(last_call_str) if last_call_str else None
         last_sms_date  = date.fromisoformat(last_sms_str)  if last_sms_str  else None
 
+        # If cache was wiped (empty) but checkpoint still exists, do a full re-fetch
+        if not db_call:
+            last_call_date = None
+        if not db_sms:
+            last_sms_date = None
+
         # Re-fetch last 3 days to catch late-arriving billing data
         refetch_call = (last_call_date - timedelta(days=3)) if last_call_date else None
         refetch_sms  = (last_sms_date  - timedelta(days=3)) if last_sms_date  else None

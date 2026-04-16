@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>📊 Call Analytics Dashboard</title>
+<title> Call Analytics Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
@@ -482,7 +482,7 @@ body {
     <div class="topbar-right">
       <div class="header-badge" id="compBadge">Loading...</div>
       <div class="topbar-updated" id="lastUpdated">Fetching data...</div>
-      <button class="topbar-refresh-btn" onclick="refreshAll()" title="Reload all data">↻ Refresh</button>
+      <button class="topbar-refresh-btn" onclick="window.location.reload()" title="Reload entire page with latest data">↻ Refresh Page</button>
     </div>
   </div>
 
@@ -805,7 +805,7 @@ body {
       <input type="date" id="bToDate"   class="comp-select" style="font-size:12px;padding:5px 8px" onchange="setBillingQuickFilter('custom',null)">
     </div>
     <div style="margin-left:auto;display:flex;gap:8px;">
-      <button class="b-refresh-btn" onclick="loadBilling()">↻ Refresh</button>
+      <button class="b-refresh-btn" onclick="resetBillingFilters()" title="Clear all filters, select All Companies">↺ Reset</button>
       <button class="b-export-btn"  onclick="exportBillingReport()">⬇ Export CSV</button>
     </div>
   </div>
@@ -1774,6 +1774,32 @@ function renderBillingTable(){
 function refreshAll(){
   loadDashboard();
   if(billingData) loadBilling();
+}
+
+function resetBillingFilters(){
+  // Reset company selector to "All Companies"
+  billingCompFilter = 'all';
+  const sel = document.getElementById('bCompanySelect');
+  if(sel) sel.value = 'all';
+
+  // Reset quick filter to "All"
+  billingQuickFilter = 'all';
+  billingCustomFrom  = null;
+  billingCustomTo    = null;
+
+  // Clear date pickers
+  const f = document.getElementById('bFromDate');
+  const t = document.getElementById('bToDate');
+  if(f) f.value = '';
+  if(t) t.value = '';
+
+  // Reset quick-filter button active states
+  document.querySelectorAll('#bFilterBar .b-qbtn').forEach(b => b.classList.remove('active'));
+  const allBtn = document.getElementById('bfAll');
+  if(allBtn) allBtn.classList.add('active');
+
+  // Re-render table with all filters cleared
+  renderBillingTable();
 }
 
 function onBillingCompanyChange(){
