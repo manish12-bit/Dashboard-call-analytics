@@ -432,6 +432,16 @@ def run_billing_pipeline():
             call_periods = {p: sum_call_period(db_call, s, e) for p, (s, e) in periods.items()}
             sms_periods  = {p: sum_sms_period(db_sms,  s, e) for p, (s, e) in periods.items()}
 
+            # Opus: last_year data was not stored with duration_sec in MongoDB.
+            # If the calculated last_year drops below the known floor, keep the static values.
+            if db_name == "opus":
+                OPUS_LAST_YEAR_FLOOR = {"calls": 219053, "cost": 97595.55, "duration_sec": 0}
+                ly = call_periods.get("last_year", {})
+                if ly.get("calls", 0) < OPUS_LAST_YEAR_FLOOR["calls"] or ly.get("cost", 0.0) < OPUS_LAST_YEAR_FLOOR["cost"]:
+                    call_periods["last_year"] = OPUS_LAST_YEAR_FLOOR
+                    log.info("  [opus] last_year floored to static minimum (calls=%d cost=%.2f)",
+                             OPUS_LAST_YEAR_FLOOR["calls"], OPUS_LAST_YEAR_FLOOR["cost"])
+
             # Latest data dates
             call_dates = sorted(date.fromisoformat(k) for k in db_call if db_call[k].get("calls", 0) > 0 or db_call[k].get("cost", 0) > 0)
             sms_dates  = sorted(date.fromisoformat(k) for k in db_sms  if db_sms[k].get("sms_count", 0) > 0 or db_sms[k].get("cost", 0) > 0)
@@ -452,6 +462,11 @@ def run_billing_pipeline():
             # Still add the company with whatever is in cache
             call_periods = {p: sum_call_period(db_call, s, e) for p, (s, e) in periods.items()}
             sms_periods  = {p: sum_sms_period(db_sms,  s, e) for p, (s, e) in periods.items()}
+            if db_name == "opus":
+                OPUS_LAST_YEAR_FLOOR = {"calls": 219053, "cost": 97595.55, "duration_sec": 0}
+                ly = call_periods.get("last_year", {})
+                if ly.get("calls", 0) < OPUS_LAST_YEAR_FLOOR["calls"] or ly.get("cost", 0.0) < OPUS_LAST_YEAR_FLOOR["cost"]:
+                    call_periods["last_year"] = OPUS_LAST_YEAR_FLOOR
             companies.append({
                 "name":  COMPANY_MAP[db_name], "db": db_name,
                 "call":  call_periods, "sms": sms_periods,
