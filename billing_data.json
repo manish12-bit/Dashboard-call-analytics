@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-17 15:58 UTC",
+  "last_updated": "2026-04-17 16:59 UTC",
   "reference_date": "2026-04-17",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
@@ -1785,9 +1785,9 @@
           "sms_units": 1
         }
       },
-      "latest_call_date": "2026-12-16",
+      "latest_call_date": "2026-01-06",
       "latest_sms_date": "2025-12-16",
-      "call_days_cached": 8,
+      "call_days_cached": 7,
       "sms_days_cached": 62
     },
     {
@@ -6144,11 +6144,6 @@
         "2026-01-06": {
           "calls": 3455,
           "cost": 1617.3,
-          "duration_sec": 0
-        },
-        "2026-12-16": {
-          "calls": 30060,
-          "cost": 11254.95,
           "duration_sec": 0
         }
       },
