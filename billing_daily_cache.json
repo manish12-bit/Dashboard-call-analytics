@@ -3774,9 +3774,14 @@
         "duration_sec": 0
       },
       "2026-01-06": {
-        "calls": 3455,
-        "cost": 1617.3,
-        "duration_sec": 0
+        "calls": 2531,
+        "cost": 22198.65,
+        "duration_sec": 15970
+      },
+      "2026-01-27": {
+        "calls": 1004,
+        "cost": 8870.55,
+        "duration_sec": 8978
       }
     },
     "sms": {
