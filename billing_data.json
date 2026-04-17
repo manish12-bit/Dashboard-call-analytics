@@ -1728,8 +1728,8 @@
           "duration_sec": 0
         },
         "last_year": {
-          "calls": 208406,
-          "cost": 1860007.65,
+          "calls": 219053,
+          "cost": 97595.55,
           "duration_sec": 1403597
         }
       },
@@ -6080,53 +6080,63 @@
     },
     "opus": {
       "name": "Opus",
-      "call": {
-        "2025-12-12": {
-          "calls": 111,
-          "cost": 562.35,
-          "duration_sec": 4436
-        },
-        "2025-12-11": {
-          "calls": 2,
-          "cost": 11.85,
-          "duration_sec": 8
-        },
-        "2025-12-16": {
-          "calls": 30070,
-          "cost": 275797.65,
-          "duration_sec": 158384
-        },
-        "2025-12-20": {
-          "calls": 81656,
-          "cost": 721784.85,
-          "duration_sec": 700292
-        },
-        "2025-12-22": {
-          "calls": 24559,
-          "cost": 219613.5,
-          "duration_sec": 121007
-        },
-        "2026-01-06": {
-          "calls": 2531,
-          "cost": 22198.65,
-          "duration_sec": 15970
-        },
-        "2025-12-23": {
-          "calls": 38207,
-          "cost": 337601.1,
-          "duration_sec": 263449
-        },
-        "2025-12-25": {
-          "calls": 30266,
-          "cost": 273567.15,
-          "duration_sec": 131073
-        },
-        "2026-01-27": {
-          "calls": 1004,
-          "cost": 8870.55,
-          "duration_sec": 8978
-        }
+    "call": {
+      "2025-11-18": {
+        "calls": 10774,
+        "cost": 2694.6,
+        "duration_sec": ""
       },
+      "2025-12-11": {
+        "calls": 1,
+        "cost": 1.35,
+        "duration_sec": ""
+      },
+      "2025-12-12": {
+        "calls": 92,
+        "cost": 218.7,
+        "duration_sec": ""
+      },
+      "2025-12-16": {
+        "calls": 8,
+        "cost": 12.15,
+        "duration_sec": ""
+      },
+      "2025-12-20": {
+        "calls": 81667,
+        "cost": 43486.2,
+        "duration_sec": ""
+      },
+      "2025-12-23": {
+        "calls": 32727,
+        "cost": 16761.6,
+        "duration_sec": ""
+      },
+      "2026-01-06": {
+        "calls": 3455,
+        "cost": 1617.3,
+        "duration_sec": ""
+      },
+      "2026-12-16": {
+        "calls": 30060,
+        "cost": 11254.95,
+        "duration_sec": ""
+      },
+      "2026-12-19": {
+        "calls": 2,
+        "cost": 2.7,
+        "duration_sec": ""
+      },
+      "2026-12-22": {
+        "calls": 30047,
+        "cost": 10843.2,
+        "duration_sec": ""
+      },
+      "2026-12-25": {
+        "calls": 30220,
+        "cost": 10702.8,
+        "duration_sec": ""
+      }
+    },
       "sms": {
         "2025-12-01": {
           "cost": 0.0,
