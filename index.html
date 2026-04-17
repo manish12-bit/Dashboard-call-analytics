@@ -1870,13 +1870,19 @@ function renderBillingTable(){
   let footSms   = {};
   COLS.forEach(c => { footVals[c.key]=0; footCalls[c.key]=0; footSms[c.key]=0; });
 
-  // Sort: nil/null/empty client names always go to the bottom
-  const isNilClient = name => !name || name.toLowerCase() === 'nil' || name.trim() === '';
+  // Sort: by Last Year cost descending; rows with all zero/nil go to bottom
+  const hasAnyValue = comp => COLS.some(col => {
+    if(mode === 'call') return Number(((comp.call||{})[col.key]||{}).cost) > 0;
+    return Number(((comp.sms||{})[col.key]||{}).cost) > 0;
+  });
+  const getLastYear = comp => mode === 'call'
+    ? Number(((comp.call||{}).last_year||{}).cost) || 0
+    : Number(((comp.sms||{}).last_year||{}).cost)  || 0;
   companies = [...companies].sort((a, b) => {
-    const aN = isNilClient(a.name), bN = isNilClient(b.name);
-    if(aN && !bN) return 1;
-    if(!aN && bN) return -1;
-    return 0;
+    const aHas = hasAnyValue(a), bHas = hasAnyValue(b);
+    if(aHas && !bHas) return -1;
+    if(!aHas && bHas) return 1;
+    return getLastYear(b) - getLastYear(a);
   });
 
   let rows = '';
