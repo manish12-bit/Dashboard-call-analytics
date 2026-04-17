@@ -310,7 +310,7 @@ body {
   background: #fff; border: 1px solid #E8EDF5; border-radius: var(--radius);
   box-shadow: var(--shadow); overflow: hidden; margin-bottom: 16px;
 }
-.b-table-wrap { overflow-x: auto; }
+.b-table-wrap { overflow-x: auto; overflow-y: auto; max-height: 65vh; }
 .b-table {
   width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 1140px;
 }
@@ -319,21 +319,24 @@ body {
 .b-table .grp-hdr th {
   font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px;
   padding: 7px 12px; text-align: center; border-bottom: none;
+  position: sticky; top: 0; z-index: 4;
 }
 .b-table .grp-hdr .g-short { background: #F0FDF4; color: #166534; }
 .b-table .grp-hdr .g-month { background: #EFF6FF; color: #1D4ED8; }
 .b-table .grp-hdr .g-year  { background: #FEF3C7; color: #92400E; }
 .b-table .grp-hdr .g-blank { background: #F8FAFC; }
+.b-table .grp-hdr th:first-child { position: sticky; top: 0; left: 0; z-index: 6; background: #F8FAFC; }
 
 /* column header row */
 .b-table .col-hdr th {
   font-size: 10px; font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.5px; padding: 9px 12px; text-align: right;
   border-bottom: 2px solid #E2E8F0; white-space: nowrap; background: #F8FAFC;
+  position: sticky; top: 28px; z-index: 4;
 }
 .b-table .col-hdr th:first-child {
-  text-align: left; min-width: 140px; position: sticky; left: 0;
-  background: #F8FAFC; z-index: 3; border-right: 2px solid #E2E8F0;
+  text-align: left; min-width: 140px; position: sticky; top: 28px; left: 0;
+  background: #F8FAFC; z-index: 6; border-right: 2px solid #E2E8F0;
 }
 .b-table .col-hdr .sub {
   display: block; font-size: 9px; font-weight: 400; color: #94A3B8;
