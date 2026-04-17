@@ -456,23 +456,1260 @@
     }
   },
   "cred": {
-    "call": {},
-    "sms": {}
+    "call": {
+      "2026-03-06": {
+        "calls": 6678,
+        "cost": 608.85,
+        "duration_sec": 9619
+      },
+      "2026-03-07": {
+        "calls": 6327,
+        "cost": 677.7,
+        "duration_sec": 9490
+      },
+      "2026-03-17": {
+        "calls": 14928,
+        "cost": 1930.5,
+        "duration_sec": 31024
+      },
+      "2026-03-04": {
+        "calls": 5305,
+        "cost": 787.05,
+        "duration_sec": 12168
+      },
+      "2026-03-11": {
+        "calls": 10029,
+        "cost": 1552.5,
+        "duration_sec": 24942
+      },
+      "2026-03-14": {
+        "calls": 2213,
+        "cost": 319.95,
+        "duration_sec": 5015
+      },
+      "2026-03-15": {
+        "calls": 13188,
+        "cost": 2046.6,
+        "duration_sec": 32368
+      },
+      "2026-03-16": {
+        "calls": 2845,
+        "cost": 356.4,
+        "duration_sec": 5537
+      },
+      "2026-03-25": {
+        "calls": 11513,
+        "cost": 1464.75,
+        "duration_sec": 22997
+      },
+      "2026-04-08": {
+        "calls": 3770,
+        "cost": 333.45,
+        "duration_sec": 4933
+      },
+      "2026-04-13": {
+        "calls": 2164,
+        "cost": 241.65,
+        "duration_sec": 3932
+      },
+      "2026-04-14": {
+        "calls": 3781,
+        "cost": 372.6,
+        "duration_sec": 6565
+      }
+    },
+    "sms": {
+      "2026-04-14": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-15": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-16": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-25": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-27": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-17": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-18": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-19": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-20": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-26": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-29": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-01": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-02": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-03": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-04": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-05": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-06": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-07": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-08": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-09": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-10": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-11": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-12": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-13": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-21": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-22": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-23": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-24": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-28": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-30": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-03": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-21": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-23": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-24": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-26": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-28": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-22": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-27": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-29": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-30": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-31": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-01": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-02": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-04": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-05": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-18": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-06": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-07": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-08": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-16": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-25": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-09": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-10": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-17": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-11": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-12": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-13": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-14": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-20": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-15": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-19": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      }
+    }
   },
   "dbs_mintek": {
-    "call": {},
+    "call": {
+      "2025-08-29": {
+        "calls": 13,
+        "cost": 32.5,
+        "duration_sec": 593
+      },
+      "2025-08-30": {
+        "calls": 22,
+        "cost": 57.5,
+        "duration_sec": 1154
+      },
+      "2025-09-01": {
+        "calls": 3,
+        "cost": 10.75,
+        "duration_sec": 245
+      },
+      "2025-09-02": {
+        "calls": 8,
+        "cost": 15.5,
+        "duration_sec": 313
+      },
+      "2025-09-03": {
+        "calls": 17,
+        "cost": 47.75,
+        "duration_sec": 923
+      },
+      "2025-09-05": {
+        "calls": 24,
+        "cost": 50.5,
+        "duration_sec": 940
+      },
+      "2025-09-08": {
+        "calls": 3,
+        "cost": 10.5,
+        "duration_sec": 205
+      },
+      "2025-09-10": {
+        "calls": 21,
+        "cost": 45.5,
+        "duration_sec": 878
+      },
+      "2025-09-11": {
+        "calls": 16,
+        "cost": 46.75,
+        "duration_sec": 966
+      },
+      "2025-09-12": {
+        "calls": 5,
+        "cost": 14.75,
+        "duration_sec": 310
+      },
+      "2025-09-14": {
+        "calls": 33,
+        "cost": 101.25,
+        "duration_sec": 1995
+      },
+      "2025-09-22": {
+        "calls": 20,
+        "cost": 83.25,
+        "duration_sec": 1790
+      },
+      "2025-09-15": {
+        "calls": 30,
+        "cost": 68.0,
+        "duration_sec": 1295
+      },
+      "2025-09-16": {
+        "calls": 106,
+        "cost": 294.75,
+        "duration_sec": 5691
+      },
+      "2025-09-17": {
+        "calls": 68,
+        "cost": 255.75,
+        "duration_sec": 5227
+      },
+      "2025-09-18": {
+        "calls": 41,
+        "cost": 150.0,
+        "duration_sec": 3038
+      },
+      "2025-09-19": {
+        "calls": 11,
+        "cost": 47.75,
+        "duration_sec": 1064
+      },
+      "2025-09-20": {
+        "calls": 19,
+        "cost": 64.5,
+        "duration_sec": 1314
+      },
+      "2025-09-24": {
+        "calls": 48,
+        "cost": 227.75,
+        "duration_sec": 4843
+      },
+      "2025-09-25": {
+        "calls": 1,
+        "cost": 5.0,
+        "duration_sec": 102
+      },
+      "2025-10-25": {
+        "calls": 29,
+        "cost": 77.5,
+        "duration_sec": 1413
+      },
+      "2025-09-26": {
+        "calls": 3,
+        "cost": 11.5,
+        "duration_sec": 246
+      },
+      "2025-12-03": {
+        "calls": 4881,
+        "cost": 1129.25,
+        "duration_sec": 22779
+      },
+      "2025-10-03": {
+        "calls": 22,
+        "cost": 87.75,
+        "duration_sec": 1788
+      },
+      "2025-10-04": {
+        "calls": 15,
+        "cost": 53.25,
+        "duration_sec": 1071
+      },
+      "2025-10-07": {
+        "calls": 4,
+        "cost": 6.5,
+        "duration_sec": 113
+      },
+      "2025-10-28": {
+        "calls": 14,
+        "cost": 48.75,
+        "duration_sec": 1016
+      },
+      "2025-10-29": {
+        "calls": 48,
+        "cost": 137.0,
+        "duration_sec": 2881
+      },
+      "2025-11-05": {
+        "calls": 2,
+        "cost": 2.25,
+        "duration_sec": 26
+      },
+      "2025-10-08": {
+        "calls": 35,
+        "cost": 86.75,
+        "duration_sec": 1587
+      },
+      "2025-10-09": {
+        "calls": 55,
+        "cost": 53.75,
+        "duration_sec": 1048
+      },
+      "2025-10-15": {
+        "calls": 46,
+        "cost": 167.5,
+        "duration_sec": 3398
+      },
+      "2025-10-16": {
+        "calls": 41,
+        "cost": 106.25,
+        "duration_sec": 2128
+      },
+      "2025-10-30": {
+        "calls": 24,
+        "cost": 123.5,
+        "duration_sec": 2624
+      },
+      "2025-10-31": {
+        "calls": 4,
+        "cost": 16.25,
+        "duration_sec": 337
+      },
+      "2025-11-06": {
+        "calls": 5,
+        "cost": 0.0,
+        "duration_sec": 0
+      },
+      "2025-11-03": {
+        "calls": 1,
+        "cost": 0.0,
+        "duration_sec": 0
+      },
+      "2025-11-08": {
+        "calls": 16,
+        "cost": 45.75,
+        "duration_sec": 956
+      },
+      "2025-11-25": {
+        "calls": 8003,
+        "cost": 16152.25,
+        "duration_sec": 349800
+      },
+      "2025-11-29": {
+        "calls": 4997,
+        "cost": 4456.0,
+        "duration_sec": 88837
+      },
+      "2025-12-02": {
+        "calls": 3,
+        "cost": 13.0,
+        "duration_sec": 252
+      },
+      "2025-12-08": {
+        "calls": 1,
+        "cost": 5.0,
+        "duration_sec": 104
+      },
+      "2025-12-05": {
+        "calls": 36179,
+        "cost": 15944.75,
+        "duration_sec": 307312
+      },
+      "2026-01-07": {
+        "calls": 21328,
+        "cost": 7567.5,
+        "duration_sec": 157939
+      },
+      "2026-01-08": {
+        "calls": 9724,
+        "cost": 2263.0,
+        "duration_sec": 47731
+      },
+      "2026-01-16": {
+        "calls": 5190,
+        "cost": 2505.0,
+        "duration_sec": 51161
+      },
+      "2026-01-17": {
+        "calls": 1760,
+        "cost": 1224.5,
+        "duration_sec": 24586
+      }
+    },
     "sms": {}
   },
   "dubai_expats": {
-    "call": {},
-    "sms": {}
+    "call": {
+      "2026-01-20": {
+        "calls": 341,
+        "cost": 301.75,
+        "duration_sec": 3756
+      },
+      "2026-01-21": {
+        "calls": 1227,
+        "cost": 884.0,
+        "duration_sec": 9507
+      },
+      "2026-01-22": {
+        "calls": 1465,
+        "cost": 1093.25,
+        "duration_sec": 11795
+      },
+      "2026-01-23": {
+        "calls": 510,
+        "cost": 472.25,
+        "duration_sec": 5416
+      },
+      "2026-01-24": {
+        "calls": 100,
+        "cost": 88.75,
+        "duration_sec": 986
+      },
+      "2026-01-27": {
+        "calls": 1936,
+        "cost": 1872.75,
+        "duration_sec": 23894
+      },
+      "2026-01-28": {
+        "calls": 441,
+        "cost": 424.75,
+        "duration_sec": 5523
+      },
+      "2026-01-29": {
+        "calls": 270,
+        "cost": 312.25,
+        "duration_sec": 4099
+      },
+      "2026-02-05": {
+        "calls": 20,
+        "cost": 29.75,
+        "duration_sec": 399
+      },
+      "2026-02-06": {
+        "calls": 1510,
+        "cost": 1194.25,
+        "duration_sec": 12206
+      },
+      "2026-02-09": {
+        "calls": 2,
+        "cost": 0.0,
+        "duration_sec": 0
+      },
+      "2026-02-10": {
+        "calls": 3849,
+        "cost": 1235.25,
+        "duration_sec": 15151
+      },
+      "2026-02-12": {
+        "calls": 485,
+        "cost": 424.75,
+        "duration_sec": 5536
+      },
+      "2026-02-16": {
+        "calls": 13,
+        "cost": 72.75,
+        "duration_sec": 1234
+      },
+      "2026-02-20": {
+        "calls": 4368,
+        "cost": 1176.5,
+        "duration_sec": 14693
+      },
+      "2026-02-21": {
+        "calls": 36,
+        "cost": 156.25,
+        "duration_sec": 2126
+      },
+      "2026-02-25": {
+        "calls": 76,
+        "cost": 232.0,
+        "duration_sec": 2989
+      },
+      "2026-02-26": {
+        "calls": 68,
+        "cost": 224.5,
+        "duration_sec": 2899
+      },
+      "2026-02-28": {
+        "calls": 7,
+        "cost": 27.0,
+        "duration_sec": 361
+      },
+      "2026-03-02": {
+        "calls": 4,
+        "cost": 12.25,
+        "duration_sec": 136
+      },
+      "2026-04-07": {
+        "calls": 495,
+        "cost": 413.0,
+        "duration_sec": 5445
+      },
+      "2026-04-08": {
+        "calls": 2259,
+        "cost": 1306.5,
+        "duration_sec": 16549
+      }
+    },
+    "sms": {
+      "2026-04-01": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-02": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-03": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-04": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-05": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-06": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-07": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-08": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-09": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-10": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-11": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-12": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-13": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-14": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-03": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-27": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-15": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-16": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-17": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-23": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-16": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-21": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-18": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-19": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-20": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-05": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-21": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-22": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-24": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-25": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-26": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-27": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-28": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-29": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-30": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-01": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-06": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-09": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-10": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-12": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-02": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-04": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-07": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-17": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-23": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-08": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-11": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-18": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-13": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-22": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-14": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-15": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-17": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-19": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-20": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-23": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-24": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-28": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-30": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-25": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-26": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-29": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-31": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-02": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-07": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-09": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-11": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-03": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-05": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-10": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-13": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-22": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-06": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-16": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-25": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-28": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-08": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-14": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-15": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-01": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-04": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-12": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-18": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-19": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-20": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-24": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-21": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-26": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-27": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      }
+    }
   },
   "ecofy": {
-    "call": {},
+    "call": {
+      "2025-10-01": {
+        "calls": 4,
+        "cost": 14.4,
+        "duration_sec": 191
+      },
+      "2025-10-02": {
+        "calls": 1,
+        "cost": 1.6,
+        "duration_sec": 6
+      },
+      "2025-10-05": {
+        "calls": 1,
+        "cost": 1.6,
+        "duration_sec": 15
+      },
+      "2025-10-06": {
+        "calls": 1,
+        "cost": 1.6,
+        "duration_sec": 4
+      },
+      "2025-10-07": {
+        "calls": 2,
+        "cost": 3.2,
+        "duration_sec": 41
+      },
+      "2025-12-25": {
+        "calls": 22891,
+        "cost": 200636.1,
+        "duration_sec": 264734
+      }
+    },
     "sms": {}
   },
   "hdfc": {
-    "call": {},
+    "call": {
+      "2025-11-21": {
+        "calls": 10,
+        "cost": 3.0,
+        "duration_sec": 56
+      },
+      "2025-11-22": {
+        "calls": 86,
+        "cost": 119.5,
+        "duration_sec": 2485
+      },
+      "2025-11-24": {
+        "calls": 9,
+        "cost": 0.0,
+        "duration_sec": 0
+      },
+      "2025-11-25": {
+        "calls": 5,
+        "cost": 0.0,
+        "duration_sec": 0
+      },
+      "2025-11-26": {
+        "calls": 9,
+        "cost": 0.0,
+        "duration_sec": 0
+      },
+      "2025-11-28": {
+        "calls": 13,
+        "cost": 0.0,
+        "duration_sec": 0
+      },
+      "2025-12-01": {
+        "calls": 6,
+        "cost": 0.0,
+        "duration_sec": 0
+      },
+      "2025-12-03": {
+        "calls": 61,
+        "cost": 76.25,
+        "duration_sec": 1553
+      },
+      "2025-12-04": {
+        "calls": 4,
+        "cost": 0.0,
+        "duration_sec": 0
+      }
+    },
     "sms": {}
   },
   "housing": {
@@ -1073,6 +2310,11 @@
         "calls": 44355,
         "cost": 26633.25,
         "duration_sec": 476694
+      },
+      "2026-04-16": {
+        "calls": 39703,
+        "cost": 22452.25,
+        "duration_sec": 403225
       }
     },
     "sms": {
@@ -1689,8 +2931,625 @@
     }
   },
   "mktg_micro_fi": {
-    "call": {},
-    "sms": {}
+    "call": {
+      "2026-03-27": {
+        "calls": 222745,
+        "cost": 275343.5,
+        "duration_sec": 4940855
+      },
+      "2026-03-28": {
+        "calls": 265515,
+        "cost": 278534.5,
+        "duration_sec": 5056991
+      },
+      "2026-03-29": {
+        "calls": 20322,
+        "cost": 19239.25,
+        "duration_sec": 351779
+      }
+    },
+    "sms": {
+      "2026-04-01": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-02": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-03": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-04": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-06": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-08": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-14": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-16": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-19": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-28": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-15": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-11": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-23": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-02": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-17": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-05": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-07": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-17": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-18": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-20": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-23": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-09": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-26": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-29": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-04": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-10": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-11": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-13": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-21": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-25": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-03": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-06": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-22": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-09": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-07": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-17": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-12": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-07": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-10": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-12": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-20": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-03": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-24": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-27": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-30": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-24": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-05": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-25": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-01": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-04": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-14": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-22": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-26": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-10": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-24": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-02": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-05": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-22": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-08": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-19": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-13": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-27": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-13": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-15": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-11": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-28": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-16": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-23": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-12": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-22": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-31": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-18": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-20": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-01": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-17": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-21": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-03": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-06": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-25": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-16": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-18": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-01": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-09": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-19": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-21": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-02": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-13": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-19": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-04": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-15": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-05": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-21": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-08": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-14": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-02-26": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-27": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-29": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-30": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-07": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-11": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-20": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-25": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-24": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-06": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-08": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-16": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-09": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-10": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-12": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-14": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-15": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-18": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-23": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-26": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-01-28": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-27": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-28": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-29": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-30": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-03-31": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      }
+    }
   },
   "multify": {
     "call": {
@@ -1769,6 +3628,11 @@
         "cost": 219613.5,
         "duration_sec": 121007
       },
+      "2026-01-06": {
+        "calls": 2531,
+        "cost": 22198.65,
+        "duration_sec": 15970
+      },
       "2025-12-23": {
         "calls": 38207,
         "cost": 337601.1,
@@ -1778,6 +3642,11 @@
         "calls": 30266,
         "cost": 273567.15,
         "duration_sec": 131073
+      },
+      "2026-01-27": {
+        "calls": 1004,
+        "cost": 8870.55,
+        "duration_sec": 8978
       }
     },
     "sms": {
