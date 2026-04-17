@@ -1870,6 +1870,15 @@ function renderBillingTable(){
   let footSms   = {};
   COLS.forEach(c => { footVals[c.key]=0; footCalls[c.key]=0; footSms[c.key]=0; });
 
+  // Sort: nil/null/empty client names always go to the bottom
+  const isNilClient = name => !name || name.toLowerCase() === 'nil' || name.trim() === '';
+  companies = [...companies].sort((a, b) => {
+    const aN = isNilClient(a.name), bN = isNilClient(b.name);
+    if(aN && !bN) return 1;
+    if(!aN && bN) return -1;
+    return 0;
+  });
+
   let rows = '';
   companies.forEach((comp, idx) => {
     const dotColor = CO_COLORS[idx % CO_COLORS.length];
