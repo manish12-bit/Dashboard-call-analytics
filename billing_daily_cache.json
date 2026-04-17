@@ -3782,11 +3782,6 @@
         "calls": 30060,
         "cost": 11254.95,
         "duration_sec": 0
-      },
-      "2026-12-19": {
-        "calls": 2,
-        "cost": 2.7,
-        "duration_sec": 0
       }
     },
     "sms": {
