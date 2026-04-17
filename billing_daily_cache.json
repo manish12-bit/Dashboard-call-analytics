@@ -2667,15 +2667,15 @@
         "cost": 131960.5,
         "duration_sec": 2373858
       },
-      "2026-04-14": {
-        "calls": 506948,
-        "cost": 243187.0,
-        "duration_sec": 4379867
-      },
       "2026-04-13": {
         "calls": 158662,
         "cost": 78632.75,
         "duration_sec": 1415647
+      },
+      "2026-04-14": {
+        "calls": 506948,
+        "cost": 243187.0,
+        "duration_sec": 4379867
       },
       "2026-04-15": {
         "calls": 166088,
@@ -3824,6 +3824,26 @@
         "sms_count": 0,
         "sms_units": 0
       },
+      "2026-04-17": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-18": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-19": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-20": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
       "2026-04-21": {
         "cost": 0.0,
         "sms_count": 0,
@@ -3834,27 +3854,7 @@
         "sms_count": 0,
         "sms_units": 0
       },
-      "2026-04-17": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2026-04-20": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
       "2026-04-23": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2026-04-26": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2026-04-18": {
         "cost": 0.0,
         "sms_count": 0,
         "sms_units": 0
@@ -3869,6 +3869,11 @@
         "sms_count": 0,
         "sms_units": 0
       },
+      "2026-04-26": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
       "2026-04-27": {
         "cost": 0.0,
         "sms_count": 0,
@@ -3879,17 +3884,12 @@
         "sms_count": 0,
         "sms_units": 0
       },
-      "2026-04-30": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2026-04-19": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
       "2026-04-29": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-30": {
         "cost": 0.0,
         "sms_count": 0,
         "sms_units": 0
