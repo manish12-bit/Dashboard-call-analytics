@@ -3787,11 +3787,6 @@
         "calls": 2,
         "cost": 2.7,
         "duration_sec": 0
-      },
-      "2026-12-22": {
-        "calls": 30047,
-        "cost": 10843.2,
-        "duration_sec": 0
       }
     },
     "sms": {
