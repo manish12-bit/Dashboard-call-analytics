@@ -327,6 +327,26 @@ def compute_totals(companies: list, periods: dict) -> dict:
     return totals
 
 
+# ─── Opus last_year floor ──────────────────────────────────────────────────────
+
+_OPUS_LAST_YEAR_FLOOR = {"calls": 219053, "cost": 97595.55, "duration_sec": 0}
+
+def _apply_opus_last_year_floor(call_periods: dict):
+    """
+    Opus historical last_year data lacks duration_sec in MongoDB.
+    Use whichever is higher — calculated or floor — so the value never decreases.
+    When new billing arrives with higher calls/cost, the dynamic value wins.
+    """
+    ly = call_periods.get("last_year", {})
+    floored = {
+        "calls":        max(ly.get("calls", 0),        _OPUS_LAST_YEAR_FLOOR["calls"]),
+        "cost":         max(ly.get("cost",  0.0),       _OPUS_LAST_YEAR_FLOOR["cost"]),
+        "duration_sec": max(ly.get("duration_sec", 0), _OPUS_LAST_YEAR_FLOOR["duration_sec"]),
+    }
+    floored["cost"] = round(floored["cost"], 2)
+    call_periods["last_year"] = floored
+
+
 # ─── Main pipeline ─────────────────────────────────────────────────────────────
 
 def run_billing_pipeline():
@@ -432,15 +452,10 @@ def run_billing_pipeline():
             call_periods = {p: sum_call_period(db_call, s, e) for p, (s, e) in periods.items()}
             sms_periods  = {p: sum_sms_period(db_sms,  s, e) for p, (s, e) in periods.items()}
 
-            # Opus: last_year data was not stored with duration_sec in MongoDB.
-            # If the calculated last_year drops below the known floor, keep the static values.
+            # Opus: last_year historical data lacks total_duration_seconds.
+            # Always keep the higher of calculated vs floor so the value never decreases.
             if db_name == "opus":
-                OPUS_LAST_YEAR_FLOOR = {"calls": 219053, "cost": 97595.55, "duration_sec": 0}
-                ly = call_periods.get("last_year", {})
-                if ly.get("calls", 0) < OPUS_LAST_YEAR_FLOOR["calls"] or ly.get("cost", 0.0) < OPUS_LAST_YEAR_FLOOR["cost"]:
-                    call_periods["last_year"] = OPUS_LAST_YEAR_FLOOR
-                    log.info("  [opus] last_year floored to static minimum (calls=%d cost=%.2f)",
-                             OPUS_LAST_YEAR_FLOOR["calls"], OPUS_LAST_YEAR_FLOOR["cost"])
+                _apply_opus_last_year_floor(call_periods)
 
             # Latest data dates
             call_dates = sorted(date.fromisoformat(k) for k in db_call if db_call[k].get("calls", 0) > 0 or db_call[k].get("cost", 0) > 0)
@@ -463,10 +478,7 @@ def run_billing_pipeline():
             call_periods = {p: sum_call_period(db_call, s, e) for p, (s, e) in periods.items()}
             sms_periods  = {p: sum_sms_period(db_sms,  s, e) for p, (s, e) in periods.items()}
             if db_name == "opus":
-                OPUS_LAST_YEAR_FLOOR = {"calls": 219053, "cost": 97595.55, "duration_sec": 0}
-                ly = call_periods.get("last_year", {})
-                if ly.get("calls", 0) < OPUS_LAST_YEAR_FLOOR["calls"] or ly.get("cost", 0.0) < OPUS_LAST_YEAR_FLOOR["cost"]:
-                    call_periods["last_year"] = OPUS_LAST_YEAR_FLOOR
+                _apply_opus_last_year_floor(call_periods)
             companies.append({
                 "name":  COMPANY_MAP[db_name], "db": db_name,
                 "call":  call_periods, "sms": sms_periods,
