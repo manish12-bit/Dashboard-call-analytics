@@ -1,18 +1,18 @@
 {
-  "last_updated": "2026-04-19 12:56 UTC",
-  "reference_date": "2026-04-18",
+  "last_updated": "2026-04-19 13:59 UTC",
+  "reference_date": "2026-04-19",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
     "last_year_label": "Apr 2025 \u2013 Mar 2026"
   },
   "period_meta": {
     "today": {
-      "start": "2026-04-18",
-      "end": "2026-04-18"
+      "start": "2026-04-19",
+      "end": "2026-04-19"
     },
     "this_week": {
       "start": "2026-04-13",
-      "end": "2026-04-18"
+      "end": "2026-04-19"
     },
     "last_week": {
       "start": "2026-04-06",
@@ -20,27 +20,27 @@
     },
     "current_month": {
       "start": "2026-04-01",
-      "end": "2026-04-18"
+      "end": "2026-04-19"
     },
     "last_month_same_date": {
       "start": "2026-03-01",
-      "end": "2026-03-18"
+      "end": "2026-03-19"
     },
     "last_month_total": {
       "start": "2026-03-01",
       "end": "2026-03-31"
     },
     "last_month_same_day": {
-      "start": "2026-03-18",
-      "end": "2026-03-18"
+      "start": "2026-03-19",
+      "end": "2026-03-19"
     },
     "rolling_12m": {
-      "start": "2025-04-18",
-      "end": "2026-04-18"
+      "start": "2025-04-19",
+      "end": "2026-04-19"
     },
     "this_year": {
       "start": "2026-04-01",
-      "end": "2026-04-18"
+      "end": "2026-04-19"
     },
     "last_year": {
       "start": "2025-04-01",
@@ -85,8 +85,8 @@
       "sms_count": 1537053
     },
     "last_month_same_day": {
-      "call_cost": 6628.75,
-      "call_calls": 4642,
+      "call_cost": 0.0,
+      "call_calls": 0,
       "sms_cost": 0.0,
       "sms_count": 0
     },
@@ -2273,9 +2273,9 @@
           "duration_sec": 699156
         },
         "last_month_same_day": {
-          "calls": 4642,
-          "cost": 6628.75,
-          "duration_sec": 37204
+          "calls": 0,
+          "cost": 0.0,
+          "duration_sec": 0
         },
         "rolling_12m": {
           "calls": 156910,
