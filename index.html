@@ -815,37 +815,35 @@ body {
       <div class="chart-sub">% of connected calls that got a disposition (Positive + Negative)</div>
       <div class="chart-wrap" style="height:320px;"><canvas id="listenRegionChart"></canvas></div>
     </div>
+  </div>
+
+  <!-- ── SECTION 3: Connection Rate (left) | Region Summary Table (right) ── -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
     <div class="chart-card">
       <div class="chart-title">Connection Rate by Region</div>
       <div class="chart-sub">Connected calls as % of total dials</div>
       <div style="margin-top:12px;" id="regionMeters"></div>
     </div>
-  </div>
-
-  <!-- ── SECTION 3: Region Summary Table ── -->
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-    <div style="width:4px;height:20px;background:#F59E0B;border-radius:2px;"></div>
-    <span style="font-size:13px;font-weight:700;color:#11344D;text-transform:uppercase;letter-spacing:0.7px;">Region Summary Table</span>
-  </div>
-  <div class="chart-card">
-    <div class="chart-title">Full Region Breakdown — Calls, Connections & Listen Rate</div>
-    <div class="chart-sub">All key metrics per region in one view</div>
-    <div style="overflow-x:auto;margin-top:14px;">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Region</th>
-            <th>Total Calls</th>
-            <th>Connected</th>
-            <th>Connect %</th>
-            <th>Positive</th>
-            <th>Negative</th>
-            <th>Listen Count</th>
-            <th>Listen Rate</th>
-          </tr>
-        </thead>
-        <tbody id="listenRegionTable"></tbody>
-      </table>
+    <div class="chart-card">
+      <div class="chart-title">Region Summary Table</div>
+      <div class="chart-sub">Full breakdown — calls, connections & listen rate per region</div>
+      <div style="overflow-x:auto;overflow-y:auto;max-height:320px;margin-top:14px;scrollbar-width:thin;scrollbar-color:#CBD5E1 transparent;">
+        <table class="data-table" style="min-width:600px;">
+          <thead style="position:sticky;top:0;z-index:2;">
+            <tr>
+              <th>Region</th>
+              <th>Total Calls</th>
+              <th>Connected</th>
+              <th>Connect %</th>
+              <th>Positive</th>
+              <th>Negative</th>
+              <th>Listen Count</th>
+              <th>Listen Rate</th>
+            </tr>
+          </thead>
+          <tbody id="listenRegionTable"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -1029,14 +1027,14 @@ body {
       <div class="chart-wrap" style="height:280px"><canvas id="compHourChart"></canvas></div>
     </div>
   </div>
-  <!-- Row 2: full width -->
-  <div class="charts-grid single">
-    <div class="chart-card full">
+  <!-- Row 2: Effective Rate left | Best Calling Hours right -->
+  <div class="charts-grid">
+    <div class="chart-card">
       <div class="chart-title">Effective Rate by Hour (%)</div>
       <div class="chart-sub">Campaign success rate distribution by hour of day</div>
       <div class="chart-wrap" style="height:320px"><canvas id="hourSuccessChart"></canvas></div>
     </div>
-    <div class="chart-card full">
+    <div class="chart-card">
       <div class="chart-title">Best Calling Hours</div>
       <div class="chart-sub">Top performing hours by success rate (filtered: significant volume)</div>
       <div style="margin-top:16px;" id="bestHoursMeters"></div>
@@ -1657,10 +1655,11 @@ function buildCompany(){
     });
   })();
 
-  // Grouped bar: Positive vs Negative — scrollable canvas
+  // Grouped bar: Positive vs Negative — sorted by positive descending
   (()=>{
+    const dispSorted = [...cd].sort((a,b)=>(b.positive||0)-(a.positive||0));
     const BAR_W = 70;
-    const canvasW = Math.max(labels.length * BAR_W, 400);
+    const canvasW = Math.max(dispSorted.length * BAR_W, 400);
     const dispWrap = document.getElementById('compDispWrap');
     const dispCanvas = document.getElementById('compDispChart');
     dispWrap.style.width = canvasW + 'px';
@@ -1670,11 +1669,11 @@ function buildCompany(){
     new Chart(dispCanvas,{
       type:'bar',
       data:{
-        labels,
+        labels: dispSorted.map(d=>d.name),
         datasets:[
-          { label:'Positive', data:cd.map(d=>d.positive||0),
+          { label:'Positive', data:dispSorted.map(d=>d.positive||0),
             backgroundColor:COLORS.teal+'99', borderColor:COLORS.teal, borderWidth:2, borderRadius:6 },
-          { label:'Negative', data:cd.map(d=>d.negative||0),
+          { label:'Negative', data:dispSorted.map(d=>d.negative||0),
             backgroundColor:COLORS.red+'99',  borderColor:COLORS.red,  borderWidth:2, borderRadius:6 },
         ]
       },
