@@ -793,9 +793,9 @@ body {
       <div class="chart-wrap" style="height:300px;"><canvas id="regionPieChart"></canvas></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title">Connected Calls by Region</div>
-      <div class="chart-sub">Answered call volume per region</div>
-      <div class="chart-wrap" style="height:300px;"><canvas id="regionConnChart"></canvas></div>
+      <div class="chart-title">Listen Rate by Region</div>
+      <div class="chart-sub">% of connected calls that got a disposition (Positive + Negative)</div>
+      <div class="chart-wrap" style="height:300px;"><canvas id="listenRegionChart"></canvas></div>
     </div>
   </div>
 
@@ -811,9 +811,9 @@ body {
       <div class="chart-wrap" style="height:320px;"><canvas id="regionBarChart"></canvas></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title">Listen Rate by Region</div>
-      <div class="chart-sub">% of connected calls that got a disposition (Positive + Negative)</div>
-      <div class="chart-wrap" style="height:320px;"><canvas id="listenRegionChart"></canvas></div>
+      <div class="chart-title">Connected Calls by Region</div>
+      <div class="chart-sub">Answered call volume per region</div>
+      <div class="chart-wrap" style="height:320px;"><canvas id="regionConnChart"></canvas></div>
     </div>
   </div>
 
@@ -1626,32 +1626,38 @@ function buildCompany(){
       scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{...chartDefaults.scales.y.ticks,callback:v=>v.toLocaleString()+' hr'}}}}
   });
 
-  // MHT — scrollable canvas
+  // MHT — area chart sorted desc (reveals call duration pattern across companies)
   (()=>{
+    const mhtSorted = [...cd].sort((a,b)=>(b.mht||0)-(a.mht||0));
     const BAR_W = 60;
-    const canvasW = Math.max(labels.length * BAR_W, 400);
+    const canvasW = Math.max(mhtSorted.length * BAR_W, 400);
     const mhtWrap = document.getElementById('compMHTWrap');
     const mhtCanvas = document.getElementById('compMHTChart');
     mhtWrap.style.width = canvasW + 'px';
     mhtCanvas.style.width = canvasW + 'px';
     mhtCanvas.style.height = '260px';
     Chart.getChart(mhtCanvas)?.destroy();
+    const mCtx = mhtCanvas.getContext('2d');
+    const mGrad = mCtx.createLinearGradient(0,0,0,260);
+    mGrad.addColorStop(0,'rgba(245,158,11,0.45)');
+    mGrad.addColorStop(1,'rgba(245,158,11,0.02)');
+    const mPtColors = mhtSorted.map(d=>{ const i=companyData.indexOf(d); return MULTI[i%MULTI.length]; });
     new Chart(mhtCanvas,{
-      type:'bar',
+      type:'line',
       data:{
-        labels,
-        datasets:[{label:'Mean Handle Time (s)',data:cd.map(d=>d.mht),
-          backgroundColor:COLORS.yellow+'99',borderColor:COLORS.yellow,borderWidth:2,borderRadius:6}]
+        labels:mhtSorted.map(d=>d.name),
+        datasets:[{label:'Mean Handle Time (s)',data:mhtSorted.map(d=>d.mht||0),
+          borderColor:COLORS.yellow,backgroundColor:mGrad,
+          fill:true,tension:0.42,borderWidth:2.5,
+          pointRadius:5,pointBackgroundColor:mPtColors,
+          pointBorderColor:'#fff',pointBorderWidth:2,pointHoverRadius:7}]
       },
-      options:{
-        ...chartDefaults,
-        maintainAspectRatio:false,
+      options:{...chartDefaults,maintainAspectRatio:false,
         plugins:{...chartDefaults.plugins,legend:{display:false}},
         scales:{
           x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,maxRotation:45,font:{size:11}}},
           y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'s',color:'#11344D'}},
-        }
-      }
+        }}
     });
   })();
 
@@ -1777,16 +1783,26 @@ function buildRegion(){
   const lr = (pos,neg,conn) => conn ? +((pos+neg)/conn*100).toFixed(1) : 0;
   Chart.getChart('listenRegionChart')?.destroy();
   const lrRColors = ['#6366F1','#10B981','#F97316','#06B6D4'];
-  new Chart(document.getElementById('listenRegionChart'),{
-    type:'bar',
-    data:{
-      labels: regionData.map(d=>d.name),
-      datasets:[{ label:'Listen Rate %', data:regionData.map(d=>lr(d.positive,d.negative,d.connected)),
-        backgroundColor:lrRColors.map(c=>c+'AA'), borderColor:lrRColors, borderWidth:2, borderRadius:6 }]
-    },
-    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
-      scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#11344D'},max:100}}}
-  });
+  (()=>{
+    const lrCanvas = document.getElementById('listenRegionChart');
+    const lrCtx = lrCanvas.getContext('2d');
+    const gradPurple = lrCtx.createLinearGradient(0,0,0,320);
+    gradPurple.addColorStop(0,'rgba(99,102,241,0.45)');
+    gradPurple.addColorStop(1,'rgba(99,102,241,0.03)');
+    new Chart(lrCanvas,{
+      type:'line',
+      data:{
+        labels: regionData.map(d=>d.name),
+        datasets:[{ label:'Listen Rate %', data:regionData.map(d=>lr(d.positive,d.negative,d.connected)),
+          borderColor:'#6366F1', backgroundColor:gradPurple,
+          fill:true, tension:0.42, borderWidth:2.5,
+          pointRadius:6, pointBackgroundColor:'#fff', pointBorderColor:'#6366F1',
+          pointBorderWidth:2, pointHoverRadius:8 }]
+      },
+      options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
+        scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#11344D'},max:100}}}
+    });
+  })();
   const rTbody = document.getElementById('listenRegionTable');
   if(rTbody){
     rTbody.innerHTML = '';
@@ -1889,19 +1905,30 @@ function buildUseCase(){
     });
   })();
 
-  // Listen Rate — scrollable bar (matches MHT bar style in company panel)
+  // Listen Rate — area chart sorted desc (reveals engagement distribution curve across use cases)
   (()=>{
+    const lrSorted = [...ud].sort((a,b)=>lr(b)-lr(a));
     const BAR_W = 60;
-    const canvasW = Math.max(labels.length * BAR_W, 400);
+    const canvasW = Math.max(lrSorted.length * BAR_W, 400);
     const wrap = document.getElementById('ucListenWrap');
     const canvas = document.getElementById('ucListenChart');
     wrap.style.width = canvasW + 'px';
     canvas.style.width = canvasW + 'px';
     canvas.style.height = '260px';
+    const ctx = canvas.getContext('2d');
+    const grad = ctx.createLinearGradient(0,0,0,260);
+    grad.addColorStop(0,'rgba(16,185,129,0.42)');
+    grad.addColorStop(1,'rgba(16,185,129,0.02)');
+    const ptColors = lrSorted.map(d=>{ const i=usecaseData.indexOf(d); return MULTI[i%MULTI.length]; });
     new Chart(canvas,{
-      type:'bar',
-      data:{labels,datasets:[{label:'Listen Rate %',data:ud.map(d=>lr(d)),
-        backgroundColor:COLORS.teal+'99',borderColor:COLORS.teal,borderWidth:2,borderRadius:6}]},
+      type:'line',
+      data:{labels:lrSorted.map(d=>d.name),datasets:[{
+        label:'Listen Rate %',data:lrSorted.map(d=>lr(d)),
+        borderColor:COLORS.teal,backgroundColor:grad,
+        fill:true,tension:0.42,borderWidth:2.5,
+        pointRadius:5,pointBackgroundColor:ptColors,
+        pointBorderColor:'#fff',pointBorderWidth:2,pointHoverRadius:7,
+      }]},
       options:{...chartDefaults,maintainAspectRatio:false,
         plugins:{...chartDefaults.plugins,legend:{display:false},
           tooltip:{callbacks:{label:ctx=>`Listen Rate: ${ctx.raw}%`}}},
@@ -1974,22 +2001,35 @@ function buildLanguage(){
     data:{labels,datasets:[{data:ld.map(d=>d.total),backgroundColor:lColors,borderColor:'#fff',borderWidth:3,hoverOffset:10}]},
     options:{...pieDefaults,cutout:'55%',plugins:{...pieDefaults.plugins,legend:{display:true,position:'bottom',labels:{color:'#11344D',font:{family:'Inter',size:11,weight:'600'},padding:14,usePointStyle:true}}}}
   });
+  // Effective Rate by Language — area chart sorted desc (reveals performance distribution curve)
   (()=>{
+    const lSorted = [...ld].sort((a,b)=>b.success-a.success);
     const BAR_W = 60;
-    const canvasW = Math.max(labels.length * BAR_W, 400);
+    const canvasW = Math.max(lSorted.length * BAR_W, 400);
     const wrap = document.getElementById('langSuccessWrap');
     const canvas = document.getElementById('langSuccessChart');
     wrap.style.width = canvasW + 'px';
     canvas.style.width = canvasW + 'px';
     canvas.style.height = '300px';
+    const ctx = canvas.getContext('2d');
+    const grad = ctx.createLinearGradient(0,0,0,300);
+    grad.addColorStop(0,'rgba(99,102,241,0.40)');
+    grad.addColorStop(1,'rgba(99,102,241,0.02)');
+    const ptColors = genColors(lSorted.length);
     new Chart(canvas,{
-      type:'bar',
-      data:{labels,datasets:[{label:'Effective Rate %',data:ld.map(d=>d.success),
-        backgroundColor:lColors.map(c=>c+'99'),borderColor:lColors,borderWidth:2,borderRadius:6}]},
-      options:{...chartDefaults,maintainAspectRatio:false,plugins:{...chartDefaults.plugins,legend:{display:false}},
+      type:'line',
+      data:{labels:lSorted.map(d=>d.name),datasets:[{
+        label:'Effective Rate %',data:lSorted.map(d=>d.success),
+        borderColor:'#6366F1',backgroundColor:grad,
+        fill:true,tension:0.42,borderWidth:2.5,
+        pointRadius:5,pointBackgroundColor:ptColors,
+        pointBorderColor:'#fff',pointBorderWidth:2,pointHoverRadius:7,
+      }]},
+      options:{...chartDefaults,maintainAspectRatio:false,
+        plugins:{...chartDefaults.plugins,legend:{display:false}},
         scales:{
           x:{...chartDefaults.scales.x,ticks:{...chartDefaults.scales.x.ticks,maxRotation:45,font:{size:11}}},
-          y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#11344D'}},
+          y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#11344D'},suggestedMin:0},
         }}
     });
   })();
@@ -2084,34 +2124,54 @@ function buildHour(){
   // Filter: only hours with total > 100 for main chart visibility
   const labels = hourData.map(d=>d.h);
 
-  new Chart(document.getElementById('hourBarChart'),{
-    type:'bar',
-    data:{
-      labels,
-      datasets:[
-        {label:'Total Calls',data:hourData.map(d=>d.total),backgroundColor:COLORS.blue+'88',borderColor:COLORS.blue,borderWidth:2,borderRadius:6},
-        {label:'Connected Calls',data:hourData.map(d=>d.connected),backgroundColor:COLORS.teal+'BB',borderColor:COLORS.teal,borderWidth:2,borderRadius:6},
-      ]
-    },
-    options:{...chartDefaults,scales:{
-      x:{...chartDefaults.scales.x},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#11344D'}},
-    }}
-  });
+  // Call Volume by Hour — stacked area chart (hours are time-sequential)
+  (()=>{
+    const hCanvas = document.getElementById('hourBarChart');
+    const hCtx = hCanvas.getContext('2d');
+    const gradBlue = hCtx.createLinearGradient(0,0,0,340);
+    gradBlue.addColorStop(0, COLORS.blue+'66');
+    gradBlue.addColorStop(1, COLORS.blue+'08');
+    const gradTeal = hCtx.createLinearGradient(0,0,0,340);
+    gradTeal.addColorStop(0, COLORS.teal+'99');
+    gradTeal.addColorStop(1, COLORS.teal+'10');
+    new Chart(hCanvas,{
+      type:'line',
+      data:{labels,datasets:[
+        {label:'Total Calls',data:hourData.map(d=>d.total),
+          borderColor:COLORS.blue,backgroundColor:gradBlue,
+          fill:true,tension:0.42,borderWidth:2.5,
+          pointRadius:4,pointBackgroundColor:'#fff',pointBorderColor:COLORS.blue,pointBorderWidth:2,pointHoverRadius:6},
+        {label:'Connected Calls',data:hourData.map(d=>d.connected),
+          borderColor:COLORS.teal,backgroundColor:gradTeal,
+          fill:true,tension:0.42,borderWidth:2.5,
+          pointRadius:4,pointBackgroundColor:'#fff',pointBorderColor:COLORS.teal,pointBorderWidth:2,pointHoverRadius:6},
+      ]},
+      options:{...chartDefaults,scales:{
+        x:{...chartDefaults.scales.x},
+        y:{...chartDefaults.scales.y,ticks:{callback:v=>fmtNum(v),color:'#11344D'}},
+      }}
+    });
+  })();
 
-  new Chart(document.getElementById('hourSuccessChart'),{
-    type:'line',
-    data:{
-      labels,
-      datasets:[{label:'Effective Rate %',data:hourData.map(d=>d.success),
-        borderColor:COLORS.yellow,backgroundColor:COLORS.yellow+'22',fill:true,tension:0.4,
-        pointRadius:4,pointBackgroundColor:COLORS.yellow,borderWidth:2}]
-    },
-    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},scales:{
-      x:{...chartDefaults.scales.x},
-      y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#11344D'}},
-    }}
-  });
+  // Effective Rate by Hour — area chart with gradient
+  (()=>{
+    const sCanvas = document.getElementById('hourSuccessChart');
+    const sCtx = sCanvas.getContext('2d');
+    const gradYellow = sCtx.createLinearGradient(0,0,0,320);
+    gradYellow.addColorStop(0, COLORS.yellow+'55');
+    gradYellow.addColorStop(1, COLORS.yellow+'05');
+    new Chart(sCanvas,{
+      type:'line',
+      data:{labels,datasets:[{label:'Effective Rate %',data:hourData.map(d=>d.success),
+        borderColor:COLORS.yellow,backgroundColor:gradYellow,fill:true,tension:0.42,
+        borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#fff',
+        pointBorderColor:COLORS.yellow,pointBorderWidth:2,pointHoverRadius:6}]},
+      options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},scales:{
+        x:{...chartDefaults.scales.x},
+        y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#11344D'}},
+      }}
+    });
+  })();
 
   // Best hours — filter significant volume
   const significant = hourData.filter(d=>d.total>10000);
