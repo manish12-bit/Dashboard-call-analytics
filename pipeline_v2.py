@@ -519,7 +519,7 @@ def _merge_agg_result(rows: dict, results: list, db_name: str):
             r["success"]      += doc["success"]
             r["failure"]      += doc["failure"]
             r["other"]        += other
-            r["listen"]       += doc["success"]
+            r["listen"]       += doc["success"] + doc["failure"]
         else:
             rows[key] = {
                 "total":        tot,
@@ -529,7 +529,7 @@ def _merge_agg_result(rows: dict, results: list, db_name: str):
                 "success":      doc["success"],
                 "failure":      doc["failure"],
                 "other":        other,
-                "listen":       doc["success"],
+                "listen":       doc["success"] + doc["failure"],
             }
 
 
@@ -685,6 +685,7 @@ def _process_db_cursor(db_name: str, collection, match_filter: dict) -> dict:
                 agg["listen"]  += 1
             elif disposition in FAILURE_DISPOSITIONS:
                 agg["failure"] += 1
+                agg["listen"]  += 1
             else:
                 # disposed with a code not in success or failure sets
                 agg["other"] += 1

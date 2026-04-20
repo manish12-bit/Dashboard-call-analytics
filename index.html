@@ -36,131 +36,177 @@ body {
   color: var(--text);
   min-height: 100vh;
 }
-/* ── Sidebar ── */
+/* ── Sidebar (icon-only dock) ── */
 .sidebar {
-  width: 280px; min-height: 100vh;
+  width: 60px; min-height: 100vh;
   background: #001940;
   position: fixed; left: 0; top: 0; bottom: 0;
-  display: flex; flex-direction: column;
-  z-index: 200; overflow-y: auto;
-  border-right: 1px solid #9E9E9E;
+  display: flex; flex-direction: column; align-items: center;
+  z-index: 200; overflow: visible;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  transition: width 0.22s ease;
 }
+.sidebar.expanded { width: 220px; align-items: flex-start; }
 .sidebar-logo {
-  padding: 18px 16px 16px;
-  border-bottom: 1px solid #9E9E9E;
-  display: flex; align-items: center; gap: 10px;
+  padding: 14px 0; width: 100%;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
 }
-.logo-img { height: 36px; width: auto; object-fit: contain; }
-.sidebar-brand { font-size: 14px; font-weight: 700; color: #fff; line-height: 1.2; }
-.sidebar-brand-sub { font-size: 10px; color: #7B8188; }
-.sidebar-section { padding: 10px 8px 4px; }
-.sidebar-section-label {
-  font-size: 10px; font-weight: 600; color: #4A5B75;
+.sidebar.expanded .sidebar-logo { padding: 14px 14px; justify-content: flex-start; gap: 10px; }
+.logo-img { height: 30px; width: auto; object-fit: contain; border-radius: 6px; }
+.sidebar-brand { font-size: 13px; font-weight: 700; color: #fff; line-height: 1.2; display: none; }
+.sidebar-brand-sub { font-size: 10px; color: #7B8188; display: none; }
+.sidebar.expanded .sidebar-brand,
+.sidebar.expanded .sidebar-brand-sub { display: block; }
+.sidebar-section { padding: 8px 6px 4px; width: 100%; }
+.sidebar-section-label { display: none; }
+.sidebar.expanded .sidebar-section-label {
+  display: block; font-size: 10px; font-weight: 600; color: #4A5B75;
   text-transform: uppercase; letter-spacing: 0.8px;
   padding: 0 8px; margin-bottom: 4px;
 }
 .nav-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 12px; color: #7B8188;
-  border-radius: 8px; cursor: pointer;
-  font-size: 13px; font-weight: 400;
-  transition: all 0.15s; margin-bottom: 2px;
-  border: none; background: transparent; width: 100%; text-align: left;
+  display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; margin: 2px auto;
+  color: #7B8188; border-radius: 10px; cursor: pointer;
+  font-size: 18px; font-weight: 400;
+  transition: all 0.15s;
+  border: none; background: transparent;
   font-family: 'Inter', sans-serif;
-  justify-content: flex-start;
+  position: relative;
 }
-.nav-item:hover { background: rgba(255,255,255,0.06); color: #E5E5E5; }
-.nav-item.active {
-  background: #506078;
-  color: #E5E5E5; font-weight: 500;
+.sidebar.expanded .nav-item {
+  width: calc(100% - 12px); height: 40px; margin: 2px 6px;
+  justify-content: flex-start; padding: 0 10px; gap: 10px; font-size: 15px;
 }
-.nav-icon { font-size: 15px; width: 22px; text-align: center; flex-shrink: 0; }
-.sidebar-divider { border: none; border-top: 1px solid rgba(158,158,158,0.3); margin: 8px 12px; }
-.sidebar-footer {
-  margin-top: auto; padding: 12px 8px;
-  border-top: 1px solid rgba(158,158,158,0.2);
+.nav-item:hover { background: rgba(255,255,255,0.08); color: #E5E5E5; }
+.nav-item.active { background: #6366F1; color: #fff; }
+.nav-label { display: none; font-size: 13px; font-weight: 500; }
+.sidebar.expanded .nav-label { display: block; }
+.nav-icon {
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; width: 20px; height: 20px; color: #7B8188;
 }
+.nav-item:hover .nav-icon { color: #E5E5E5; }
+.nav-item.active .nav-icon { color: #fff; }
+/* Tooltip on hover (icon-only mode) */
+.nav-item:not(.sidebar.expanded .nav-item):hover::after {
+  content: attr(data-label);
+  position: absolute; left: 54px; top: 50%; transform: translateY(-50%);
+  background: #001940; color: #E5E5E5; font-size: 12px; font-weight: 500;
+  padding: 5px 10px; border-radius: 6px; white-space: nowrap;
+  border: 1px solid rgba(255,255,255,0.12); z-index: 300;
+  pointer-events: none;
+}
+.sidebar-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 6px 8px; width: calc(100% - 16px); }
+.sidebar-footer { margin-top: auto; padding: 10px 0; width: 100%; display: flex; justify-content: center; }
 .sidebar-toggle {
-  width: 100%; padding: 9px; background: rgba(255,255,255,0.05);
+  width: 36px; height: 36px; background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
-  color: #7B8188; cursor: pointer; font-size: 13px;
+  color: #7B8188; cursor: pointer; font-size: 14px;
   font-family: 'Inter', sans-serif; transition: all 0.15s;
   display: flex; align-items: center; justify-content: center;
 }
-.sidebar-toggle:hover { background: rgba(255,255,255,0.1); color: #E5E5E5; }
-
-/* ── Collapsed sidebar ── */
-.sidebar { transition: width 0.22s ease; }
+.sidebar-toggle:hover { background: rgba(255,255,255,0.12); color: #E5E5E5; }
 .page-wrap { transition: margin-left 0.22s ease; }
-.sidebar.collapsed { width: 60px; }
-.page-wrap.collapsed { margin-left: 60px; }
-.sidebar.collapsed .sidebar-brand,
-.sidebar.collapsed .sidebar-brand-sub,
-.sidebar.collapsed .sidebar-section-label,
-.sidebar.collapsed .nav-label { display: none; }
-.sidebar.collapsed .sidebar-logo { justify-content: center; padding: 14px 8px; }
-.sidebar.collapsed .logo-img { height: 28px; }
-.sidebar.collapsed .sidebar-section { padding: 8px 6px 4px; }
-.sidebar.collapsed .nav-item {
-  justify-content: center; padding: 10px 6px;
-  position: relative;
-}
-.sidebar.collapsed .nav-item:hover::after {
-  content: attr(data-label);
-  position: absolute; left: 64px; top: 50%; transform: translateY(-50%);
-  background: #001940; color: #E5E5E5; font-size: 12px; font-weight: 500;
-  padding: 5px 10px; border-radius: 6px; white-space: nowrap;
-  border: 1px solid #9E9E9E; z-index: 300;
-  pointer-events: none;
-}
 
 /* ── Top bar ── */
 .topbar {
-  background: #FFFFFF; border-bottom: 1px solid #E8EDF5;
-  padding: 0 28px; height: 56px;
+  background: #fff; border-bottom: 1px solid #E8EDF5;
+  padding: 0 20px 0 16px; height: 56px;
   display: flex; align-items: center; justify-content: space-between;
   position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 1px 0 #E8EDF5;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
-.topbar-title { font-size: 16px; font-weight: 700; color: #11344D; letter-spacing: -0.2px; }
-.topbar-right { display: flex; align-items: center; gap: 16px; }
+.topbar-left { display: flex; align-items: center; gap: 12px; }
+.topbar-title { font-size: 15px; font-weight: 700; color: #11344D; letter-spacing: -0.2px; }
+.topbar-right { display: flex; align-items: center; gap: 10px; }
 .header-badge {
   display: inline-flex; align-items: center; gap: 6px;
   background: #EEF2FF; border: 1px solid #C7D2FE;
-  color: #4338CA; font-size: 12px; font-weight: 600;
-  padding: 5px 14px; border-radius: 20px; letter-spacing: 0.2px;
+  color: #4338CA; font-size: 11px; font-weight: 600;
+  padding: 5px 12px; border-radius: 20px; letter-spacing: 0.2px;
+  cursor: pointer; transition: background 0.15s;
 }
+.header-badge:hover { background: #E0E7FF; }
 .header-badge::before {
-  content: ''; width: 7px; height: 7px; border-radius: 50%;
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
   background: #6366F1; display: inline-block;
 }
 .topbar-updated {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 11px; color: #2E5A7A; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; color: #64748B; font-weight: 500;
   background: #F8FAFC; border: 1px solid #E8EDF5;
-  padding: 5px 12px; border-radius: 20px;
+  padding: 4px 10px; border-radius: 20px;
 }
-.topbar-updated::before {
-  content: '🕐'; font-size: 11px;
+/* Notification + refresh buttons */
+.topbar-icon-btn {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: #F8FAFC; border: 1px solid #E8EDF5;
+  color: #506078; font-size: 15px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; position: relative;
 }
+.topbar-icon-btn:hover { background: #EEF2FF; color: #6366F1; border-color: #C7D2FE; }
+.notif-dot {
+  position: absolute; top: 5px; right: 5px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #F43F5E; border: 1.5px solid #fff;
+  pointer-events: none;
+}
+/* User avatar */
+.topbar-user {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 10px 4px 4px; border-radius: 20px;
+  background: #F8FAFC; border: 1px solid #E8EDF5;
+  cursor: pointer; transition: background 0.15s;
+}
+.topbar-user:hover { background: #EEF2FF; border-color: #C7D2FE; }
+.user-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, #6366F1, #10B981);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.user-info { display: flex; flex-direction: column; }
+.user-name { font-size: 12px; font-weight: 600; color: #11344D; line-height: 1.2; }
+.user-role { font-size: 10px; color: #64748B; }
 
 /* ── Main content ── */
-.page-wrap { margin-left: 280px; min-height: 100vh; display: flex; flex-direction: column; }
-.main { padding: 24px 28px 40px; flex: 1; }
-.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+.page-wrap { margin-left: 60px; min-height: 100vh; display: flex; flex-direction: column; }
+.main { padding: 20px 24px 80px; flex: 1; }
+/* KPI horizontal scroll strip */
+.kpi-scroll-wrap {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 24px;
+}
+.kpi-scroll {
+  display: flex; gap: 12px; overflow-x: auto; flex: 1;
+  scrollbar-width: none; scroll-behavior: smooth;
+}
+.kpi-scroll::-webkit-scrollbar { display: none; }
+.kpi-arrow {
+  width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%;
+  background: #F1F5F9; border: 1px solid #E2E8F0;
+  cursor: pointer; font-size: 14px; color: #506078;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; user-select: none;
+}
+.kpi-arrow:hover { background: #6366F1; color: #fff; border-color: #6366F1; }
+.kpi-grid { display: flex; gap: 12px; }
 .kpi-card {
   background: #FFFFFF; border: 1px solid #E8EDF5;
-  border-radius: var(--radius); padding: 20px 22px;
+  border-radius: var(--radius); padding: 16px 18px;
+  min-width: 190px; flex-shrink: 0;
   position: relative; overflow: hidden;
   transition: box-shadow 0.2s, transform 0.2s;
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
-.kpi-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
-.kpi-icon { font-size: 20px; margin-bottom: 10px; display: block; }
-.kpi-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
-.kpi-value { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 4px; }
-.kpi-sub { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text-dim); }
-.kpi-badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-top: 6px; }
+.kpi-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.09); transform: translateY(-2px); }
+.kpi-icon { font-size: 18px; margin-bottom: 8px; display: block; }
+.kpi-label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 5px; }
+.kpi-value { font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 4px; }
+.kpi-sub { font-family: 'Inter', sans-serif; font-size: 10px; color: var(--text-dim); }
+.kpi-badge { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-top: 5px; }
 .kpi-badge.up { background: rgba(16,185,129,0.12); color: var(--accent2); }
 .kpi-badge.down { background: rgba(239,68,68,0.12); color: var(--negative); }
 .tabs-bar { display: none; }
@@ -218,12 +264,62 @@ body {
   margin: 3px; border-width: 1px; border-style: solid;
 }
 .count-badge .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+/* ── Bottom tab navigation ── */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 60px; right: 0;
+  background: #fff; border-top: 1px solid #E8EDF5;
+  display: flex; align-items: stretch; z-index: 150;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.07);
+  height: 50px;
+}
+.bottom-tab {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  gap: 6px; font-size: 12px; font-weight: 500; color: #64748B;
+  cursor: pointer; border: none; background: transparent;
+  font-family: 'Inter', sans-serif;
+  border-right: 1px solid #F1F5F9;
+  transition: all 0.15s; position: relative;
+  padding: 0 4px;
+}
+.bottom-tab:last-child { border-right: none; }
+.bottom-tab:hover { background: #F8FAFC; color: #6366F1; }
+.bottom-tab.active {
+  color: #6366F1; background: #EEF2FF;
+  font-weight: 600;
+}
+.bottom-tab.active::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: #6366F1; border-radius: 0 0 3px 3px;
+}
+.bottom-tab-icon { font-size: 15px; flex-shrink: 0; }
+.bottom-tab-label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Card header controls */
+.card-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 2px;
+}
+.card-controls { display: flex; gap: 4px; flex-shrink: 0; margin-left: 8px; }
+.card-btn {
+  width: 26px; height: 26px; background: none; border: none;
+  cursor: pointer; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: #94A3B8; font-size: 13px; transition: all 0.15s;
+  font-family: 'Inter', sans-serif;
+}
+.card-btn:hover { background: #F1F5F9; color: #475569; }
+/* Fullscreen card overlay */
+.card-fullscreen {
+  position: fixed; inset: 0; z-index: 500;
+  background: #fff; padding: 28px; overflow: auto;
+  animation: fadeIn 0.2s ease;
+}
+.card-fullscreen .chart-wrap { height: 70vh !important; }
 @media (max-width: 900px) {
-  .sidebar { width: 0; overflow: hidden; }
+  .sidebar { display: none; }
   .page-wrap { margin-left: 0; }
-  .main { padding: 16px; }
+  .bottom-nav { left: 0; }
+  .main { padding: 14px; }
   .charts-grid { grid-template-columns: 1fr; }
-  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -443,8 +539,8 @@ body {
 </head>
 <body>
 
-<!-- ===== LEFT SIDEBAR ===== -->
-<nav class="sidebar">
+<!-- ===== LEFT SIDEBAR (icon dock) ===== -->
+<nav class="sidebar" id="sidebar">
   <div class="sidebar-logo">
     <img src="download.png" alt="Wordworksai" class="logo-img"/>
     <div>
@@ -452,51 +548,113 @@ body {
       <div class="sidebar-brand-sub">Call Analytics</div>
     </div>
   </div>
-
-  <!-- Views -->
-  <div class="sidebar-section">
-    <div class="sidebar-section-label">Views</div>
-    <button class="nav-item active" data-label="Company Wise" onclick="switchTab('company',this)"><span class="nav-icon">🏢</span><span class="nav-label"> Company Wise</span></button>
-    <button class="nav-item" data-label="Region Wise" onclick="switchTab('region',this)"><span class="nav-icon">🗺️</span><span class="nav-label"> Region Wise</span></button>
-    <button class="nav-item" data-label="Use Case Wise" onclick="switchTab('usecase',this)"><span class="nav-icon">⚙️</span><span class="nav-label"> Use Case Wise</span></button>
-    <button class="nav-item" data-label="Language Wise" onclick="switchTab('language',this)"><span class="nav-icon">🗣️</span><span class="nav-label"> Language Wise</span></button>
-    <button class="nav-item" data-label="Date Wise" onclick="switchTab('date',this)"><span class="nav-icon">📅</span><span class="nav-label"> Date Wise</span></button>
-    <button class="nav-item" data-label="Hour Wise" onclick="switchTab('hour',this)"><span class="nav-icon">🕐</span><span class="nav-label"> Hour Wise</span></button>
-  </div>
-
-  <!-- Billing -->
-  <div class="sidebar-section">
-    <div class="sidebar-section-label">Finance</div>
-    <button class="nav-item" data-label="Billing" onclick="switchTab('billing',this)"><span class="nav-icon">💰</span><span class="nav-label"> Billing</span></button>
-  </div>
-
-  <!-- Collapse toggle at bottom -->
-  <div class="sidebar-footer">
-    <button class="sidebar-toggle" onclick="toggleSidebar()" id="sidebarToggle" title="Collapse sidebar">
-      <span id="toggleIcon">◀</span>
+  <div class="sidebar-section" style="margin-top:8px;">
+    <button class="nav-item active" data-label="Company Wise" onclick="switchTab('company',this)">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 22V12h6v10"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01"/></svg></span>
+      <span class="nav-label">Company</span>
+    </button>
+    <button class="nav-item" data-label="Region Wise" onclick="switchTab('region',this)">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+      <span class="nav-label">Region</span>
+    </button>
+    <button class="nav-item" data-label="Use Case Wise" onclick="switchTab('usecase',this)">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
+      <span class="nav-label">Use Case</span>
+    </button>
+    <button class="nav-item" data-label="Language Wise" onclick="switchTab('language',this)">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+      <span class="nav-label">Language</span>
+    </button>
+    <button class="nav-item" data-label="Date Wise" onclick="switchTab('date',this)">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      <span class="nav-label">Date</span>
+    </button>
+    <button class="nav-item" data-label="Hour Wise" onclick="switchTab('hour',this)">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+      <span class="nav-label">Hour</span>
+    </button>
+    <button class="nav-item" data-label="Listen Rate" onclick="switchTab('listen',this)">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+      <span class="nav-label">Listen Rate</span>
+    </button>
+    <hr class="sidebar-divider"/>
+    <button class="nav-item" data-label="Billing" onclick="switchTab('billing',this)">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
+      <span class="nav-label">Billing</span>
     </button>
   </div>
+  <div class="sidebar-footer">
+    <button class="sidebar-toggle" onclick="toggleSidebar()" id="sidebarToggle" title="Expand sidebar">
+      <span id="toggleIcon">☰</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== BOTTOM NAVIGATION ===== -->
+<nav class="bottom-nav" id="bottomNav">
+  <button class="bottom-tab active" onclick="switchTab('company',this)" data-tab="company">
+    <span class="bottom-tab-label">Company Wise</span>
+  </button>
+  <button class="bottom-tab" onclick="switchTab('region',this)" data-tab="region">
+    <span class="bottom-tab-label">Region Analytics</span>
+  </button>
+  <button class="bottom-tab" onclick="switchTab('usecase',this)" data-tab="usecase">
+    <span class="bottom-tab-label">Use Case Analytics</span>
+  </button>
+  <button class="bottom-tab" onclick="switchTab('language',this)" data-tab="language">
+    <span class="bottom-tab-label">Language Analytics</span>
+  </button>
+  <button class="bottom-tab" onclick="switchTab('date',this)" data-tab="date">
+    <span class="bottom-tab-label">Date Wise</span>
+  </button>
+  <button class="bottom-tab" onclick="switchTab('hour',this)" data-tab="hour">
+    <span class="bottom-tab-label">Hour Wise</span>
+  </button>
+  <button class="bottom-tab" onclick="switchTab('listen',this)" data-tab="listen">
+    <span class="bottom-tab-label">Listen Rate</span>
+  </button>
+  <button class="bottom-tab" onclick="switchTab('billing',this)" data-tab="billing">
+    <span class="bottom-tab-label">Billing Dashboard</span>
+  </button>
 </nav>
 
 <!-- ===== MAIN CONTENT ===== -->
 <div class="page-wrap">
   <!-- Top bar -->
   <div class="topbar">
-    <div class="topbar-title" id="topbarTitle">AI-Call Analytics Dashboard</div>
+    <div class="topbar-left">
+      <div class="topbar-title" id="topbarTitle">Reporting &amp; Analytics Insights</div>
+      <div class="topbar-updated" id="lastUpdated">Fetching data...</div>
+    </div>
     <div class="topbar-right">
       <div class="header-badge" id="compBadge">Loading...</div>
-      <div class="topbar-updated" id="lastUpdated">Fetching data...</div>
-      <button class="topbar-refresh-btn" onclick="smartRefresh()" title="Reload current panel data">↻ Refresh</button>
+      <button class="topbar-icon-btn" onclick="smartRefresh()" title="Refresh data" style="font-size:16px;font-weight:700;">&#8635;</button>
+      <div class="topbar-icon-btn" title="Notifications" style="font-size:16px;">
+        &#9741;<span class="notif-dot"></span>
+      </div>
+      <div class="topbar-user">
+        <div class="user-avatar" id="userAvatarInitials">SR</div>
+        <div class="user-info">
+          <div class="user-name">Admin User</div>
+          <div class="user-role">Campaign Manager</div>
+        </div>
+      </div>
     </div>
   </div>
 
 <div class="main">
 
-<!-- KPI STRIP — built dynamically by JS -->
-<div class="kpi-grid" id="kpiGrid">
-  <div class="kpi-card c1" style="grid-column:1/-1;text-align:center;padding:40px;">
-    <div style="font-size:14px;color:var(--text-dim);">Loading dashboard data...</div>
+<!-- KPI STRIP — horizontally scrollable -->
+<div class="kpi-scroll-wrap" id="kpiScrollWrap">
+  <div class="kpi-arrow" onclick="document.getElementById('kpiScroll').scrollBy({left:-220,behavior:'smooth'})">&#8249;</div>
+  <div class="kpi-scroll" id="kpiScroll">
+    <div class="kpi-grid" id="kpiGrid">
+      <div class="kpi-card c1" style="min-width:260px;text-align:center;padding:36px 20px;">
+        <div style="font-size:13px;color:var(--text-dim);">Loading dashboard data...</div>
+      </div>
+    </div>
   </div>
+  <div class="kpi-arrow" onclick="document.getElementById('kpiScroll').scrollBy({left:220,behavior:'smooth'})">&#8250;</div>
 </div>
 
 <!-- TABS -->
@@ -507,6 +665,7 @@ body {
   <button class="tab-btn" onclick="switchTab('language',this)">🗣️ Language Wise</button>
   <button class="tab-btn" onclick="switchTab('date',this)">📅 Date Wise</button>
   <button class="tab-btn" onclick="switchTab('hour',this)">🕐 Hour Wise</button>
+  <button class="tab-btn" onclick="switchTab('listen',this)">👂 Listen Rate</button>
 </div>
 
 <!-- ===== PANEL: COMPANY ===== -->
@@ -565,7 +724,7 @@ body {
           <tr>
             <th>#</th><th>Company</th><th>Total Calls</th><th>Connected</th>
             <th>Connect %</th><th>Positive</th><th>Negative</th><th>Other</th>
-            <th>Effective Rate</th><th>Efficiency Rate</th><th>Duration (hrs)</th><th>MHT (s)</th><th>Listen Count</th>
+            <th>Effective Rate</th><th>Efficiency Rate</th><th>Duration (hrs)</th><th>MHT (s)</th><th>Listen Count</th><th>Listen Rate</th>
           </tr>
         </thead>
         <tbody id="companyTableBody"></tbody>
@@ -635,7 +794,7 @@ body {
       <div class="chart-sub">Full breakdown per use case</div>
       <table class="data-table">
         <thead>
-          <tr><th>Use Case</th><th>Total Calls</th><th>Connected</th><th>Connect %</th><th>Positive</th><th>Negative</th><th>Other</th><th>Effective Rate</th><th>Efficiency Rate</th></tr>
+          <tr><th>Use Case</th><th>Total Calls</th><th>Connected</th><th>Connect %</th><th>Positive</th><th>Negative</th><th>Other</th><th>Effective Rate</th><th>Efficiency Rate</th><th>Listen Count</th><th>Listen Rate</th></tr>
         </thead>
         <tbody id="usecaseTableBody"></tbody>
       </table>
@@ -750,6 +909,79 @@ body {
       <div class="chart-sub">Top performing hours by success rate (filtered: significant volume)</div>
       <div style="margin-top:16px;" id="bestHoursMeters"></div>
     </div>
+  </div>
+</div>
+
+<!-- ===== PANEL: LISTEN RATE ===== -->
+<div id="panel-listen" class="panel">
+  <div style="margin-bottom:20px;">
+    <div style="font-size:18px;font-weight:700;color:#001940;margin-bottom:4px;">👂 Listen Rate Analysis</div>
+    <div style="font-size:13px;color:#506078;">How many customers listen / engage with the bot — broken down by Region, Client, Use Case, and Language. Listen = Positive + Negative disposition received.</div>
+  </div>
+
+  <!-- Summary KPI strip -->
+  <div id="listenKpiStrip" style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;"></div>
+
+  <!-- Chart: Listen Rate by dimension -->
+  <div class="charts-grid" style="margin-bottom:24px;">
+    <div class="chart-card">
+      <div class="chart-title">Listen Rate by Region</div>
+      <div class="chart-sub">% of connected calls that received a disposition</div>
+      <div class="chart-wrap"><canvas id="listenRegionChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Listen Rate by Use Case</div>
+      <div class="chart-sub">Engagement rate per campaign/bucket type</div>
+      <div class="chart-wrap"><canvas id="listenUsecaseChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Table: Region wise -->
+  <div class="chart-card full" style="margin-bottom:20px;">
+    <div class="chart-title">Region Wise — Listen Rate</div>
+    <div class="chart-sub">Connected calls, listen count (pos + neg), and listen rate per region</div>
+    <table class="data-table">
+      <thead>
+        <tr><th>Region</th><th>Total Calls</th><th>Connected</th><th>Positive</th><th>Negative</th><th>Listen Count</th><th>Listen Rate</th></tr>
+      </thead>
+      <tbody id="listenRegionTable"></tbody>
+    </table>
+  </div>
+
+  <!-- Table: Client wise -->
+  <div class="chart-card full" style="margin-bottom:20px;">
+    <div class="chart-title">Client Wise — Listen Rate</div>
+    <div class="chart-sub">Listen engagement per company/client</div>
+    <table class="data-table">
+      <thead>
+        <tr><th>#</th><th>Client</th><th>Total Calls</th><th>Connected</th><th>Positive</th><th>Negative</th><th>Listen Count</th><th>Listen Rate</th></tr>
+      </thead>
+      <tbody id="listenClientTable"></tbody>
+    </table>
+  </div>
+
+  <!-- Table: Use Case wise -->
+  <div class="chart-card full" style="margin-bottom:20px;">
+    <div class="chart-title">Use Case / Line of Business Wise — Listen Rate</div>
+    <div class="chart-sub">Engagement rate per campaign bucket and use case</div>
+    <table class="data-table">
+      <thead>
+        <tr><th>#</th><th>Use Case</th><th>Total Calls</th><th>Connected</th><th>Positive</th><th>Negative</th><th>Listen Count</th><th>Listen Rate</th></tr>
+      </thead>
+      <tbody id="listenUsecaseTable"></tbody>
+    </table>
+  </div>
+
+  <!-- Table: Language wise -->
+  <div class="chart-card full" style="margin-bottom:20px;">
+    <div class="chart-title">Language Wise — Listen Rate</div>
+    <div class="chart-sub">Engagement rate by language detected during call</div>
+    <table class="data-table">
+      <thead>
+        <tr><th>#</th><th>Language</th><th>Total Calls</th><th>Connected</th><th>Positive</th><th>Negative</th><th>Listen Count</th><th>Listen Rate</th></tr>
+      </thead>
+      <tbody id="listenLanguageTable"></tbody>
+    </table>
   </div>
 </div>
 
@@ -923,6 +1155,7 @@ async function loadDashboard() {
 
     // KPI grid
     const k = data.kpis || {};
+    window._kpis = k;
     const posOfConn = k.connected_calls ? (k.positive / k.connected_calls * 100).toFixed(1) : 0;
     const negOfConn = k.connected_calls ? (k.negative / k.connected_calls * 100).toFixed(1) : 0;
     const compNames = companyData.map(d => d.name).join(', ');
@@ -1290,7 +1523,8 @@ function buildCompany(){
       <td><span class="pill blue">${(d.efficiencyRate||0).toFixed(1)}%</span></td>
       <td><span class="pill yellow">${d.durationH.toLocaleString()} h</span></td>
       <td>${fmtTime(d.mht)}</td>
-      <td>${fmtNum(d.listen)}</td>
+      <td>${fmtNum(d.positive + d.negative)}</td>
+      <td><span class="pill ${d.connected?(d.positive+d.negative)/d.connected>=0.5?'green':'blue':'red'}">${d.connected?((d.positive+d.negative)/d.connected*100).toFixed(1):0}%</span></td>
     </tr>`;
   });
 
@@ -1392,6 +1626,8 @@ function buildUseCase(){
       <td><span class="pill grey">${fmtNum(d.other||0)}</span></td>
       <td><span class="pill ${s}">${d.success.toFixed(1)}%</span></td>
       <td><span class="pill blue">${(d.efficiencyRate||0).toFixed(1)}%</span></td>
+      <td><b>${fmtNum((d.positive||0)+(d.negative||0))}</b></td>
+      <td><span class="pill ${d.connected?((d.positive+d.negative)/d.connected>=0.5?'green':'blue'):'red'}">${d.connected?(((d.positive||0)+(d.negative||0))/d.connected*100).toFixed(1):0}%</span></td>
     </tr>`;
   });
 }
@@ -1547,17 +1783,176 @@ function buildHour(){
 function switchTab(name, btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.bottom-tab').forEach(b=>b.classList.remove('active'));
   document.getElementById('panel-'+name).classList.add('active');
   if(btn) btn.classList.add('active');
+  // Sync bottom nav
+  document.querySelectorAll('.bottom-tab[data-tab="'+name+'"]').forEach(b=>b.classList.add('active'));
+  // Sync sidebar nav items
+  document.querySelectorAll('.nav-item[data-label]').forEach(b=>{
+    const lbl = b.getAttribute('data-label')||'';
+    const tabMap = {company:'Company Wise',region:'Region Wise',usecase:'Use Case Wise',
+      language:'Language Wise',date:'Date Wise',hour:'Hour Wise',listen:'Listen Rate',billing:'Billing'};
+    if(lbl === (tabMap[name]||'')) b.classList.add('active');
+  });
   const titles = {
     company:'Company Wise', region:'Region Wise', usecase:'Use Case Wise',
-    language:'Language Wise', date:'Date Wise', hour:'Hour Wise', billing:'Billing'
+    language:'Language Wise', date:'Date Wise', hour:'Hour Wise',
+    billing:'Billing', listen:'Listen Rate'
   };
-  document.getElementById('topbarTitle').textContent =
-    name === 'billing' ? 'Billing Dashboard' : (titles[name] || name) + ' — Analytics';
-  // Hide the call-analytics KPI strip on billing panel; show it everywhere else
-  document.getElementById('kpiGrid').style.display = name === 'billing' ? 'none' : '';
+  document.getElementById('topbarTitle').textContent = titles[name]
+    ? 'Reporting & Analytics — ' + titles[name]
+    : 'Reporting & Analytics Insights';
+  // Hide KPI strip on billing
+  const kpiWrap = document.getElementById('kpiScrollWrap');
+  if(kpiWrap) kpiWrap.style.display = name === 'billing' ? 'none' : '';
   if(name === 'billing' && !billingData) loadBilling();
+  if(name === 'listen') buildListenRate();
+  setTimeout(injectCardControls, 200);
+}
+
+function buildListenRate(){
+  const lr = (pos, neg, conn) => conn ? Math.min(100, +((pos+neg)/conn*100).toFixed(2)) : 0;
+  const pill = (val, cls) => `<span class="pill ${cls}">${val}</span>`;
+
+  // ── KPI strip ──
+  const totalListen = (window._kpis?.listen_count || 0);
+  const totalConn   = (window._kpis?.connected_calls || 0);
+  const overallLR   = totalConn ? ((totalListen/totalConn)*100).toFixed(1) : '0.0';
+  document.getElementById('listenKpiStrip').innerHTML = `
+    <div style="background:#EEF2FF;border:1px solid #C7D2FE;border-radius:10px;padding:14px 20px;min-width:160px;">
+      <div style="font-size:11px;font-weight:600;color:#6366F1;text-transform:uppercase;letter-spacing:0.6px;">Overall Listen Rate</div>
+      <div style="font-size:28px;font-weight:700;color:#001940;margin-top:4px;">${overallLR}%</div>
+      <div style="font-size:11px;color:#506078;margin-top:2px;">${fmtNum(totalListen)} of ${fmtNum(totalConn)} connected</div>
+    </div>
+    <div style="background:#F0FDF4;border:1px solid #A7F3D0;border-radius:10px;padding:14px 20px;min-width:160px;">
+      <div style="font-size:11px;font-weight:600;color:#10B981;text-transform:uppercase;letter-spacing:0.6px;">Listen Count</div>
+      <div style="font-size:28px;font-weight:700;color:#001940;margin-top:4px;">${fmtNum(totalListen)}</div>
+      <div style="font-size:11px;color:#506078;margin-top:2px;">Positive + Negative dispositions</div>
+    </div>
+    <div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:14px 20px;min-width:160px;">
+      <div style="font-size:11px;font-weight:600;color:#F59E0B;text-transform:uppercase;letter-spacing:0.6px;">Connected Calls</div>
+      <div style="font-size:28px;font-weight:700;color:#001940;margin-top:4px;">${fmtNum(totalConn)}</div>
+      <div style="font-size:11px;color:#506078;margin-top:2px;">Base for listen rate calc</div>
+    </div>`;
+
+  // ── Region chart + table ──
+  ['listenRegionChart'].forEach(id=>Chart.getChart(id)?.destroy());
+  const rColors = ['#6366F1','#10B981','#F97316','#06B6D4'];
+  const rdRates = regionData.map(d => lr(d.positive, d.negative, d.connected));
+  new Chart(document.getElementById('listenRegionChart'),{
+    type:'bar',
+    data:{
+      labels: regionData.map(d=>d.name),
+      datasets:[{
+        label:'Listen Rate %',
+        data: rdRates,
+        backgroundColor: rColors.map(c=>c+'AA'),
+        borderColor: rColors,
+        borderWidth:2, borderRadius:6
+      }]
+    },
+    options:{...chartDefaults,plugins:{...chartDefaults.plugins,legend:{display:false}},
+      scales:{...chartDefaults.scales,y:{...chartDefaults.scales.y,ticks:{callback:v=>v+'%',color:'#11344D'}}}}
+  });
+
+  const rTbody = document.getElementById('listenRegionTable');
+  rTbody.innerHTML = '';
+  regionData.forEach((d,i)=>{
+    const lc = d.positive + d.negative;
+    const rate = lr(d.positive, d.negative, d.connected);
+    const cls = rate>=60?'green':rate>=45?'blue':'red';
+    rTbody.innerHTML += `<tr>
+      <td><b style="color:${rColors[i%rColors.length]}">${d.name}</b></td>
+      <td>${fmtNum(d.total)}</td>
+      <td>${fmtNum(d.connected)}</td>
+      <td><span class="pill green">${fmtNum(d.positive)}</span></td>
+      <td><span class="pill red">${fmtNum(d.negative)}</span></td>
+      <td><b>${fmtNum(lc)}</b></td>
+      <td><span class="pill ${cls}">${rate}%</span></td>
+    </tr>`;
+  });
+
+  // ── Use Case chart + table ──
+  ['listenUsecaseChart'].forEach(id=>Chart.getChart(id)?.destroy());
+  const udSorted = [...usecaseData].sort((a,b)=>lr(b.positive,b.negative,b.connected)-lr(a.positive,a.negative,a.connected));
+  const ucColors = udSorted.map((_,i)=>MULTI[i%MULTI.length]);
+  new Chart(document.getElementById('listenUsecaseChart'),{
+    type:'bar',
+    data:{
+      labels: udSorted.map(d=>d.name),
+      datasets:[{
+        label:'Listen Rate %',
+        data: udSorted.map(d=>lr(d.positive,d.negative,d.connected)),
+        backgroundColor: ucColors.map(c=>c+'AA'),
+        borderColor: ucColors,
+        borderWidth:2, borderRadius:6
+      }]
+    },
+    options:{...chartDefaults,indexAxis:'y',plugins:{...chartDefaults.plugins,legend:{display:false}},
+      scales:{x:{...chartDefaults.scales.x,ticks:{callback:v=>v+'%',color:'#11344D'}},y:{...chartDefaults.scales.y}}}
+  });
+
+  const ucTbody = document.getElementById('listenUsecaseTable');
+  ucTbody.innerHTML = '';
+  udSorted.forEach((d,i)=>{
+    const lc = d.positive + d.negative;
+    const rate = lr(d.positive, d.negative, d.connected);
+    const c = MULTI[i%MULTI.length];
+    const cls = rate>=60?'green':rate>=40?'blue':'red';
+    ucTbody.innerHTML += `<tr>
+      <td><span style="color:${c};font-weight:700;">${i+1}</span></td>
+      <td><b style="color:${c}">${d.name}</b></td>
+      <td>${fmtNum(d.total)}</td>
+      <td>${fmtNum(d.connected)}</td>
+      <td><span class="pill green">${fmtNum(d.positive)}</span></td>
+      <td><span class="pill red">${fmtNum(d.negative)}</span></td>
+      <td><b>${fmtNum(lc)}</b></td>
+      <td><span class="pill ${cls}">${rate}%</span></td>
+    </tr>`;
+  });
+
+  // ── Client table ──
+  const cdSorted = [...companyData].sort((a,b)=>lr(b.positive,b.negative,b.connected)-lr(a.positive,a.negative,a.connected));
+  const cTbody = document.getElementById('listenClientTable');
+  cTbody.innerHTML = '';
+  cdSorted.forEach((d,i)=>{
+    const lc = d.positive + d.negative;
+    const rate = lr(d.positive, d.negative, d.connected);
+    const c = MULTI[i%MULTI.length];
+    const cls = rate>=50?'green':rate>=25?'blue':'red';
+    cTbody.innerHTML += `<tr>
+      <td><span style="color:${c};font-weight:700;">${i+1}</span></td>
+      <td><b style="color:${c}">${d.name}</b></td>
+      <td>${fmtNum(d.total)}</td>
+      <td>${fmtNum(d.connected)}</td>
+      <td><span class="pill green">${fmtNum(d.positive)}</span></td>
+      <td><span class="pill red">${fmtNum(d.negative)}</span></td>
+      <td><b>${fmtNum(lc)}</b></td>
+      <td><span class="pill ${cls}">${rate}%</span></td>
+    </tr>`;
+  });
+
+  // ── Language table ──
+  const ldSorted = [...languageData].sort((a,b)=>lr(b.positive,b.negative,b.connected)-lr(a.positive,a.negative,a.connected));
+  const lTbody = document.getElementById('listenLanguageTable');
+  lTbody.innerHTML = '';
+  ldSorted.forEach((d,i)=>{
+    const lc = d.positive + d.negative;
+    const rate = lr(d.positive, d.negative, d.connected);
+    const c = MULTI[i%MULTI.length];
+    const cls = rate>=60?'green':rate>=40?'blue':'red';
+    lTbody.innerHTML += `<tr>
+      <td><span style="color:${c};font-weight:700;">${i+1}</span></td>
+      <td><b style="color:${c}">${d.name}</b></td>
+      <td>${fmtNum(d.total)}</td>
+      <td>${fmtNum(d.connected)}</td>
+      <td><span class="pill green">${fmtNum(d.positive)}</span></td>
+      <td><span class="pill red">${fmtNum(d.negative)}</span></td>
+      <td><b>${fmtNum(lc)}</b></td>
+      <td><span class="pill ${cls}">${rate}%</span></td>
+    </tr>`;
+  });
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -2202,20 +2597,59 @@ function exportBillingReport(){
   URL.revokeObjectURL(url);
 }
 
-// ===================== SIDEBAR COLLAPSE =====================
+// ===================== SIDEBAR EXPAND/COLLAPSE =====================
 function toggleSidebar(){
-  const sidebar = document.querySelector('.sidebar');
-  const wrap = document.querySelector('.page-wrap');
-  const icon = document.getElementById('toggleIcon');
-  sidebar.classList.toggle('collapsed');
-  wrap.classList.toggle('collapsed');
-  icon.textContent = sidebar.classList.contains('collapsed') ? '▶' : '◀';
+  const sidebar = document.getElementById('sidebar');
+  const wrap    = document.querySelector('.page-wrap');
+  const bottomNav = document.getElementById('bottomNav');
+  const icon    = document.getElementById('toggleIcon');
+  const expanded = sidebar.classList.toggle('expanded');
+  // Shift main content when sidebar expands
+  wrap.style.marginLeft    = expanded ? '220px' : '60px';
+  if(bottomNav) bottomNav.style.left = expanded ? '220px' : '60px';
+  icon.textContent = expanded ? '✕' : '☰';
+}
+
+// ===================== CARD CONTROLS (expand + options) =====================
+function injectCardControls(){
+  document.querySelectorAll('.chart-card').forEach(card => {
+    if(card.querySelector('.card-controls')) return; // already injected
+    const titleEl = card.querySelector('.chart-title');
+    if(!titleEl) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'card-header';
+    titleEl.parentNode.insertBefore(wrap, titleEl);
+    wrap.appendChild(titleEl);
+    const controls = document.createElement('div');
+    controls.className = 'card-controls';
+    controls.innerHTML = `
+      <button class="card-btn" title="Expand" onclick="expandCard(this)">⤢</button>
+      <button class="card-btn" title="More options">⋯</button>`;
+    wrap.appendChild(controls);
+  });
+}
+
+function expandCard(btn){
+  const card = btn.closest('.chart-card');
+  if(card.classList.contains('card-fullscreen')){
+    card.classList.remove('card-fullscreen');
+    btn.textContent = '⤢';
+    document.body.style.overflow = '';
+  } else {
+    card.classList.add('card-fullscreen');
+    btn.textContent = '✕';
+    document.body.style.overflow = 'hidden';
+    // Redraw any chart inside
+    card.querySelectorAll('canvas').forEach(c=>{ const inst=Chart.getChart(c); if(inst) inst.resize(); });
+  }
 }
 
 // ===================== INIT — load live data, then auto-refresh every hour =====================
 window.onload = function(){
   loadDashboard();
-  setInterval(loadDashboard, 60 * 60 * 1000);  // re-fetch every 60 minutes
+  setInterval(loadDashboard, 60 * 60 * 1000);
+  // Inject card controls after brief delay so panels render first
+  setTimeout(injectCardControls, 1800);
 };
 </script>
 </body>
