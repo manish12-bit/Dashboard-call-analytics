@@ -1792,8 +1792,8 @@ function buildRegion(){
     new Chart(lrCanvas,{
       type:'line',
       data:{
-        labels: regionData.map(d=>d.name),
-        datasets:[{ label:'Listen Rate %', data:regionData.map(d=>lr(d.positive,d.negative,d.connected)),
+        labels: rd.map(d=>d.name),
+        datasets:[{ label:'Listen Rate %', data:rd.map(d=>lr(d.positive,d.negative,d.connected)),
           borderColor:'#6366F1', backgroundColor:gradPurple,
           fill:true, tension:0.42, borderWidth:2.5,
           pointRadius:6, pointBackgroundColor:'#fff', pointBorderColor:'#6366F1',
@@ -1806,13 +1806,14 @@ function buildRegion(){
   const rTbody = document.getElementById('listenRegionTable');
   if(rTbody){
     rTbody.innerHTML = '';
-    regionData.forEach((d,i)=>{
+    rd.forEach((d,i)=>{
       const lc = d.positive + d.negative;
       const rate = lr(d.positive, d.negative, d.connected);
       const lrCls = rate>=60?'green':rate>=45?'blue':'red';
       const connCls = d.connPct>=40?'green':d.connPct>=25?'blue':'red';
+      const origIdx = regionData.indexOf(d);
       rTbody.innerHTML += `<tr>
-        <td><b style="color:${lrRColors[i%lrRColors.length]}">${d.name}</b></td>
+        <td><b style="color:${lrRColors[origIdx%lrRColors.length]}">${d.name}</b></td>
         <td>${fmtNum(d.total)}</td>
         <td>${fmtNum(d.connected)}</td>
         <td><span class="pill ${connCls}">${d.connPct||0}%</span></td>
@@ -2037,7 +2038,7 @@ function buildLanguage(){
   // Listen Rate by Language chart
   const lr = (pos,neg,conn) => conn ? +((pos+neg)/conn*100).toFixed(1) : 0;
   Chart.getChart('langListenChart')?.destroy();
-  const ldSorted = [...languageData].sort((a,b)=>lr(b.positive,b.negative,b.connected)-lr(a.positive,a.negative,a.connected));
+  const ldSorted = [...ld].sort((a,b)=>lr(b.positive,b.negative,b.connected)-lr(a.positive,a.negative,a.connected));
   const langLColors = genColors(ldSorted.length);
   (()=>{
     const ROW_H = 36;
