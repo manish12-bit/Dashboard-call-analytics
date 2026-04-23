@@ -545,6 +545,104 @@ body {
   font-size: 12px; color: #78350F; font-weight: 600;
 }
 .b-col-highlight { background: rgba(99,102,241,0.07) !important; }
+
+/* ── Report Download Section ── */
+.b-rpt-section {
+  margin-top: 28px; background: #fff;
+  border: 1px solid #E8EDF5; border-radius: var(--radius);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05); overflow: hidden;
+}
+.b-rpt-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px 12px; border-bottom: 1px solid #F1F5F9;
+}
+.b-rpt-title {
+  font-size: 13px; font-weight: 800; color: var(--navy2); letter-spacing: -0.1px;
+}
+.b-rpt-subtitle {
+  font-size: 11px; color: #64748B; margin-top: 2px; font-weight: 500;
+  transition: color 0.2s;
+}
+.b-rpt-subtitle.active { color: #4338CA; font-weight: 600; }
+.b-rpt-filters {
+  display: flex; align-items: flex-end; gap: 0; flex-wrap: wrap; padding: 16px 20px 12px;
+}
+.b-rpt-group {
+  display: flex; flex-direction: column; gap: 5px; padding: 0 16px 0 0;
+}
+.b-rpt-group:first-child { padding-left: 0; }
+.b-rpt-glabel {
+  font-size: 9px; font-weight: 700; color: #94A3B8;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.b-rpt-divider {
+  width: 1px; height: 44px; background: #E8EDF5;
+  align-self: flex-end; margin: 0 16px 0 0; flex-shrink: 0;
+}
+.b-rpt-pill-strip {
+  display: flex; background: #F1F5F9; border-radius: 8px;
+  padding: 3px; gap: 2px;
+}
+.b-rpt-pill {
+  padding: 5px 11px; border-radius: 6px; border: none;
+  background: transparent; color: #64748B; font-size: 11px;
+  font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: all 0.15s; white-space: nowrap;
+}
+.b-rpt-pill.active {
+  background: #fff; color: #001940;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12); font-weight: 700;
+}
+.b-rpt-pill:hover:not(.active) { background: #E2E8F0; color: #334155; }
+.b-rpt-date-row { display: flex; align-items: center; gap: 6px; }
+.b-rpt-date-row input[type=date] {
+  border: 1px solid #E2E8F0; border-radius: 6px; padding: 5px 8px;
+  font-size: 11px; font-family: 'Inter', sans-serif; color: #334155;
+  background: #fff; cursor: pointer; outline: none;
+}
+.b-rpt-date-row input[type=date]:focus { border-color: #6366F1; box-shadow: 0 0 0 2px rgba(99,102,241,0.15); }
+.b-rpt-date-arrow { font-size: 11px; color: #94A3B8; }
+.b-rpt-actions {
+  margin-left: auto; display: flex; gap: 8px; align-items: flex-end; padding-bottom: 0;
+}
+.b-rpt-refresh-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 7px 14px; border-radius: 8px;
+  border: 1px solid #E2E8F0; background: #F8FAFC;
+  color: #64748B; font-size: 11px; font-weight: 700;
+  cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s;
+}
+.b-rpt-refresh-btn:hover { background: #EEF2FF; color: #4338CA; border-color: #C7D2FE; }
+.b-rpt-refresh-btn.spin { color: #6366F1; }
+.b-rpt-dl-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 7px 16px; border-radius: 8px;
+  border: 1px solid #10B981; background: #F0FDF4;
+  color: #065F46; font-size: 11px; font-weight: 700;
+  cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s;
+}
+.b-rpt-dl-btn:hover { background: #10B981; color: #fff; border-color: #10B981; }
+.b-rpt-dl-btn.success { background: #059669; color: #fff; border-color: #059669; }
+/* Active filter chips row */
+.b-rpt-chips {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  padding: 0 20px 12px; min-height: 0;
+}
+.b-rpt-chips:empty { padding: 0; }
+.b-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 8px 3px 10px; border-radius: 20px;
+  font-size: 10px; font-weight: 700; cursor: pointer;
+  transition: all 0.15s; white-space: nowrap;
+}
+.b-chip.company { background: #EEF2FF; color: #4338CA; border: 1px solid #C7D2FE; }
+.b-chip.period  { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
+.b-chip.dates   { background: #FFFBEB; color: #92400E; border: 1px solid #FDE68A; }
+.b-chip-x { font-size: 11px; opacity: 0.6; margin-left: 1px; line-height: 1; }
+.b-chip:hover .b-chip-x { opacity: 1; }
+.b-chip.company:hover { background: #C7D2FE; }
+.b-chip.period:hover  { background: #BBF7D0; }
+.b-chip.dates:hover   { background: #FDE68A; }
 </style>
 </head>
 <body>
@@ -1108,44 +1206,18 @@ body {
     </div>
   </div>
 
-  <!-- Company + Date Filter Bar -->
-  <div class="b-filter-bar" id="bFilterBar">
-    <div class="b-filter-group">
-      <span class="b-filter-label">Company:</span>
-      <select id="bCompanySelect" class="comp-select" onchange="onBillingCompanyChange()" style="min-width:140px;font-size:12px;">
-        <option value="all">All Companies</option>
-      </select>
-    </div>
-    <div class="b-filter-sep"></div>
-    <div class="b-filter-group">
-      <span class="b-filter-label">Period:</span>
-      <button class="b-qbtn active" id="bfAll"    onclick="setBillingQuickFilter('all',this)">All</button>
-      <button class="b-qbtn" id="bfToday"         onclick="setBillingQuickFilter('today',this)">Today</button>
-      <button class="b-qbtn" id="bfLM"            onclick="setBillingQuickFilter('last_month',this)">Last Month</button>
-      <button class="b-qbtn" id="bfTY"            onclick="setBillingQuickFilter('this_year',this)">This Year</button>
-      <button class="b-qbtn" id="bfLY"            onclick="setBillingQuickFilter('last_year',this)">Last Year</button>
-    </div>
-    <div class="b-filter-sep"></div>
-    <div class="b-filter-group">
-      <span class="b-filter-label">From:</span>
-      <input type="date" id="bFromDate" class="comp-select" style="font-size:12px;padding:5px 8px" onchange="setBillingQuickFilter('custom',null)">
-      <span class="b-filter-label">To:</span>
-      <input type="date" id="bToDate"   class="comp-select" style="font-size:12px;padding:5px 8px" onchange="setBillingQuickFilter('custom',null)">
-    </div>
-    <div style="margin-left:auto;display:flex;gap:8px;">
-      <button class="b-refresh-btn" onclick="resetBillingFilters()" title="Clear all filters, select All Companies">↺ Reset</button>
-      <button class="b-export-btn"  onclick="exportBillingReport()">⬇ Export CSV</button>
-    </div>
-  </div>
-
-  <!-- Custom range summary banner (shown when date filter active) -->
-  <div class="b-custom-banner" id="bCustomBanner" style="display:none;"></div>
-
-  <!-- View toggle: Call / SMS only -->
+  <!-- View toggle + inline company selector -->
   <div class="b-view-row">
     <span class="b-view-label">View:</span>
     <button class="b-tab active" onclick="switchBillingView('call',this)">📞 Call Billing</button>
     <button class="b-tab" onclick="switchBillingView('sms',this)">💬 SMS Billing</button>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:6px;">
+      <span style="font-size:11px;font-weight:600;color:#94A3B8;">Company:</span>
+      <select id="bCompanySelect" class="comp-select" onchange="onBillingCompanyChange()" style="min-width:130px;font-size:11px;padding:4px 8px;">
+        <option value="all">All Companies</option>
+      </select>
+      <button class="b-refresh-btn" onclick="resetBillingFilters()" title="Reset" style="padding:4px 10px;font-size:11px;">↺</button>
+    </div>
   </div>
 
   <!-- Company billing table -->
@@ -1159,6 +1231,66 @@ body {
   <div class="b-info" id="bInfoNote" style="display:none;">
     <span>ℹ️</span>
     <span id="bInfoText"></span>
+  </div>
+
+  <!-- ── Report Download Section ── -->
+  <div class="b-rpt-section">
+
+    <!-- Header -->
+    <div class="b-rpt-head">
+      <div>
+        <div class="b-rpt-title">Download Billing Report</div>
+        <div class="b-rpt-subtitle" id="rptSubtitle">Showing all companies · All time</div>
+      </div>
+    </div>
+
+    <!-- Filter controls -->
+    <div class="b-rpt-filters">
+
+      <!-- Company -->
+      <div class="b-rpt-group">
+        <span class="b-rpt-glabel">Company</span>
+        <select id="rptCompanySelect" class="comp-select" onchange="updateRptUI()" style="min-width:140px;font-size:11px;padding:5px 8px;">
+          <option value="all">All Companies</option>
+        </select>
+      </div>
+
+      <div class="b-rpt-divider"></div>
+
+      <!-- Period -->
+      <div class="b-rpt-group">
+        <span class="b-rpt-glabel">Period</span>
+        <div class="b-rpt-pill-strip">
+          <button class="b-rpt-pill active" id="rptfAll"   onclick="setRptFilter('all',this)">All</button>
+          <button class="b-rpt-pill" id="rptfToday"        onclick="setRptFilter('today',this)">Today</button>
+          <button class="b-rpt-pill" id="rptfLM"           onclick="setRptFilter('last_month',this)">Last Month</button>
+          <button class="b-rpt-pill" id="rptfTY"           onclick="setRptFilter('this_year',this)">This Year</button>
+          <button class="b-rpt-pill" id="rptfLY"           onclick="setRptFilter('last_year',this)">Last Year</button>
+        </div>
+      </div>
+
+      <div class="b-rpt-divider"></div>
+
+      <!-- Date Range -->
+      <div class="b-rpt-group">
+        <span class="b-rpt-glabel">Date Range</span>
+        <div class="b-rpt-date-row">
+          <input type="date" id="rptFromDate" onchange="setRptFilter('custom',null)">
+          <span class="b-rpt-date-arrow">→</span>
+          <input type="date" id="rptToDate"   onchange="setRptFilter('custom',null)">
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="b-rpt-actions">
+        <button class="b-rpt-refresh-btn" id="rptRefreshBtn" onclick="resetRptFilters()">↺ Refresh</button>
+        <button class="b-rpt-dl-btn"      id="rptDlBtn"      onclick="exportRptReport()">⬇ Download</button>
+      </div>
+    </div>
+
+    <!-- Active filter chips -->
+    <div class="b-rpt-chips" id="rptChips"></div>
+
   </div>
 
 </div>
@@ -2243,6 +2375,7 @@ async function loadBilling(){
     }
 
     renderBilling();
+    initRptCompanySelect();
 
     // Remove dim after render — brief flash shows data refreshed
     document.querySelectorAll('.b-kpi-val').forEach(el => el.classList.remove('refreshing'));
@@ -2859,6 +2992,191 @@ function exportBillingReport(){
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+}
+
+// ===================== REPORT DOWNLOAD BAR =====================
+let rptQuickFilter = 'all';
+let rptCustomFrom  = null;
+let rptCustomTo    = null;
+
+function initRptCompanySelect(){
+  const sel = document.getElementById('rptCompanySelect');
+  if(!sel || !billingData) return;
+  const companies = billingData.companies || [];
+  sel.innerHTML = '<option value="all">All Companies</option>'
+    + companies.map(c=>`<option value="${c.db}">${c.name}</option>`).join('');
+  updateRptUI();
+}
+
+function setRptFilter(mode, btn){
+  rptQuickFilter = mode;
+  if(mode !== 'custom'){
+    document.getElementById('rptFromDate').value = '';
+    document.getElementById('rptToDate').value   = '';
+    rptCustomFrom = null; rptCustomTo = null;
+  } else {
+    rptCustomFrom = document.getElementById('rptFromDate').value || null;
+    rptCustomTo   = document.getElementById('rptToDate').value   || null;
+  }
+  document.querySelectorAll('#panel-billing .b-rpt-pill').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  else document.getElementById('rptfAll').classList.add('active');
+  updateRptUI();
+}
+
+function resetRptFilters(){
+  rptQuickFilter = 'all';
+  rptCustomFrom  = null; rptCustomTo = null;
+  document.getElementById('rptCompanySelect').value = 'all';
+  document.getElementById('rptFromDate').value = '';
+  document.getElementById('rptToDate').value   = '';
+  document.querySelectorAll('#panel-billing .b-rpt-pill').forEach(b=>b.classList.remove('active'));
+  document.getElementById('rptfAll').classList.add('active');
+  // Refresh button spin feedback
+  const btn = document.getElementById('rptRefreshBtn');
+  if(btn){ btn.classList.add('spin'); btn.textContent = '↻ Reset'; setTimeout(()=>{ btn.classList.remove('spin'); btn.textContent = '↺ Refresh'; }, 600); }
+  updateRptUI();
+}
+
+function updateRptUI(){
+  if(!billingData) return;
+  const allCompanies = billingData.companies || [];
+  const compVal  = document.getElementById('rptCompanySelect').value;
+  const compName = compVal === 'all' ? 'all companies'
+    : (allCompanies.find(c=>c.db===compVal)||{}).name || compVal;
+
+  const periodLabels = {all:'All time',today:'Today',last_month:'Last month',this_year:'This year',last_year:'Last year',custom:'Custom range'};
+  const periodLabel  = periodLabels[rptQuickFilter] || rptQuickFilter;
+  const range = getRptDateRange();
+
+  // Smart subtitle
+  const sub = document.getElementById('rptSubtitle');
+  if(sub){
+    const isFiltered = compVal !== 'all' || rptQuickFilter !== 'all';
+    sub.textContent = `Showing ${compName} · ${rptQuickFilter==='custom'&&range?range[0]+' → '+range[1]:periodLabel}`;
+    sub.classList.toggle('active', isFiltered);
+  }
+
+  // Chips
+  const chips = document.getElementById('rptChips');
+  if(!chips) return;
+  let html = '';
+  if(compVal !== 'all')
+    html += `<span class="b-chip company" onclick="document.getElementById('rptCompanySelect').value='all';updateRptUI()">${compName}<span class="b-chip-x">×</span></span>`;
+  if(rptQuickFilter !== 'all' && rptQuickFilter !== 'custom')
+    html += `<span class="b-chip period" onclick="setRptFilter('all',document.getElementById('rptfAll'))">${periodLabel}<span class="b-chip-x">×</span></span>`;
+  if(rptQuickFilter === 'custom' && range)
+    html += `<span class="b-chip dates" onclick="setRptFilter('all',document.getElementById('rptfAll'))">${range[0]} → ${range[1]}<span class="b-chip-x">×</span></span>`;
+  chips.innerHTML = html;
+}
+
+function getRptDateRange(){
+  if(rptQuickFilter === 'custom' && rptCustomFrom && rptCustomTo) return [rptCustomFrom, rptCustomTo];
+  if(!billingData) return null;
+  const pm = billingData.period_meta || {};
+  const map = {today:'today',last_month:'last_month_total',this_year:'this_year',last_year:'last_year'};
+  const key = map[rptQuickFilter];
+  if(key && pm[key]) return [pm[key].start, pm[key].end];
+  return null;
+}
+
+function exportRptReport(){
+  if(!billingData){ alert('Billing data not loaded yet.'); return; }
+
+  const allCompanies = billingData.companies || [];
+  const fy   = billingData.fiscal_year || {};
+  const mode = billingViewMode;
+  const compVal  = document.getElementById('rptCompanySelect').value;
+  const comps    = compVal === 'all' ? allCompanies : allCompanies.filter(c=>c.db===compVal);
+  const compName = compVal === 'all' ? 'All Companies'
+    : (allCompanies.find(c=>c.db===compVal)||{}).name || compVal;
+  const range = getRptDateRange();
+
+  // Download button feedback
+  const dlBtn = document.getElementById('rptDlBtn');
+  if(dlBtn){ dlBtn.classList.add('success'); dlBtn.textContent = '✓ Downloaded'; setTimeout(()=>{ dlBtn.classList.remove('success'); dlBtn.textContent = '⬇ Download'; }, 2000); }
+
+  const PERIODS = [
+    {key:'today',               label:'Today'},
+    {key:'this_week',           label:'This Week'},
+    {key:'last_week',           label:'Last Week'},
+    {key:'current_month',       label:'Current Month'},
+    {key:'last_month_same_date',label:'Last Month MTD'},
+    {key:'last_month_total',    label:'Last Month Total'},
+    {key:'last_month_same_day', label:'Same Day Last Mo'},
+    {key:'this_year',           label:`This Year (${fy.this_year_label||''})`},
+    {key:'last_year',           label:`Last Year (${fy.last_year_label||''})`},
+  ];
+
+  const rows = [];
+  rows.push(['Billing Report — ' + (billingData.last_updated||'')]);
+  rows.push(['View:', mode==='call'?'Call Billing':'SMS Billing']);
+  rows.push(['Company:', compName]);
+  if(range) rows.push(['Date Range:', range[0], '→', range[1]]);
+  else      rows.push(['Period:', rptQuickFilter]);
+  rows.push(['Fiscal Year:', fy.this_year_label||'', '|', fy.last_year_label||'']);
+  rows.push([]);
+
+  rows.push(['=== PERIOD SUMMARY ===']);
+  rows.push(['Company', ...PERIODS.map(p=>p.label+' Cost (₹)'), ...PERIODS.map(p=>p.label+(mode==='call'?' Calls':' SMS'))]);
+  comps.forEach(c=>{
+    const src = mode==='call'?(c.call||{}):(c.sms||{});
+    rows.push([c.name,
+      ...PERIODS.map(p=>(Number((src[p.key]||{}).cost)||0).toFixed(2)),
+      ...PERIODS.map(p=>mode==='call'?(Number((src[p.key]||{}).calls)||0):(Number((src[p.key]||{}).sms_count)||0))
+    ]);
+  });
+  const totals = billingData.totals||{};
+  rows.push(['TOTAL',
+    ...PERIODS.map(p=>(Number((totals[p.key]||{})[mode==='call'?'call_cost':'sms_cost'])||0).toFixed(2)),
+    ...PERIODS.map(p=>mode==='call'?(Number((totals[p.key]||{}).call_calls)||0):(Number((totals[p.key]||{}).sms_count)||0))
+  ]);
+  rows.push([]);
+
+  if(billingDailyData){
+    rows.push(['=== DAILY BREAKDOWN ===']);
+    rows.push(['Company','Date','Calls','Call Cost (₹)','Call Duration (hrs)','SMS Count','SMS Cost (₹)','Total Cost (₹)']);
+    const fromISO=range?range[0]:null, toISO=range?range[1]:null;
+    comps.forEach(c=>{
+      const dd=billingDailyData[c.db]; if(!dd) return;
+      const allDates=new Set([...Object.keys(dd.call||{}),...Object.keys(dd.sms||{})]);
+      [...allDates].sort().forEach(d=>{
+        if(fromISO&&d<fromISO) return; if(toISO&&d>toISO) return;
+        const cd=(dd.call||{})[d]||{}, sd=(dd.sms||{})[d]||{};
+        const cc=Number(cd.cost)||0, sc=Number(sd.cost)||0;
+        rows.push([c.name,d,cd.calls||0,cc.toFixed(2),((cd.duration_sec||0)/3600).toFixed(2),sd.sms_count||0,sc.toFixed(2),(cc+sc).toFixed(2)]);
+      });
+    });
+    rows.push([]);
+
+    rows.push(['=== MONTHLY ROLLUP ===']);
+    rows.push(['Company','Year-Month','Calls','Call Cost (₹)','SMS Count','SMS Cost (₹)','Total Cost (₹)']);
+    comps.forEach(c=>{
+      const dd=billingDailyData[c.db]; if(!dd) return;
+      const monthly={};
+      const allDates=new Set([...Object.keys(dd.call||{}),...Object.keys(dd.sms||{})]);
+      [...allDates].sort().forEach(d=>{
+        if(fromISO&&d<fromISO) return; if(toISO&&d>toISO) return;
+        const ym=d.slice(0,7);
+        if(!monthly[ym]) monthly[ym]={calls:0,callCost:0,smsCount:0,smsCost:0};
+        const cd=(dd.call||{})[d]||{}, sd=(dd.sms||{})[d]||{};
+        monthly[ym].calls+=Number(cd.calls)||0; monthly[ym].callCost+=Number(cd.cost)||0;
+        monthly[ym].smsCount+=Number(sd.sms_count)||0; monthly[ym].smsCost+=Number(sd.cost)||0;
+      });
+      Object.entries(monthly).sort().forEach(([ym,m])=>{
+        rows.push([c.name,ym,m.calls,m.callCost.toFixed(2),m.smsCount,m.smsCost.toFixed(2),(m.callCost+m.smsCost).toFixed(2)]);
+      });
+    });
+  }
+
+  const csv = rows.map(r=>r.map(cell=>{const s=String(cell).replace(/"/g,'""');return(s.includes(',')||s.includes('"')||s.includes('\n'))?`"${s}"`:s;}).join(',')).join('\n');
+  const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob), a=document.createElement('a');
+  a.href=url;
+  const ts=new Date().toISOString().slice(0,10);
+  const slug=compVal==='all'?'all':compName;
+  a.download=`report_${mode}_${slug}_${rptQuickFilter}_${ts}.csv`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
 }
 
 // ===================== SIDEBAR EXPAND/COLLAPSE =====================
