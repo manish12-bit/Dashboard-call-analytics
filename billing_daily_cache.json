@@ -35,21 +35,6 @@
         "calls": 489,
         "cost": 329.25,
         "duration_sec": 6336
-      },
-      "2025-11-27": {
-        "calls": 1200,
-        "cost": 671.25,
-        "duration_sec": 12558
-      },
-      "2025-11-28": {
-        "calls": 1613,
-        "cost": 784.25,
-        "duration_sec": 16143
-      },
-      "2025-11-29": {
-        "calls": 1440,
-        "cost": 570.5,
-        "duration_sec": 11213
       }
     },
     "sms": {}
