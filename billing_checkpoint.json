@@ -1,79 +1,79 @@
 {
   "agrim": {
     "call_last_date": "2025-11-29",
-    "last_run": "2026-04-24T21:45:47",
+    "last_run": "2026-04-24T22:37:44",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "bajaj": {
     "call_last_date": "2026-04-09",
     "sms_last_date": "2026-04-30",
-    "last_run": "2026-04-24T21:46:17",
+    "last_run": "2026-04-24T22:38:14",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "cred": {
-    "last_run": "2026-04-24T21:46:47",
+    "last_run": "2026-04-24T22:38:44",
     "call_days_cached": 0,
     "sms_days_cached": 61,
     "call_last_date": "2026-04-14",
     "sms_last_date": "2026-04-30"
   },
   "dbs_mintek": {
-    "last_run": "2026-04-24T21:47:17",
-    "call_days_cached": 30,
+    "last_run": "2026-04-24T22:39:15",
+    "call_days_cached": 29,
     "sms_days_cached": 0,
     "call_last_date": "2026-01-17"
   },
   "dubai_expats": {
-    "last_run": "2026-04-24T21:47:47",
-    "call_days_cached": 2,
+    "last_run": "2026-04-24T22:39:45",
+    "call_days_cached": 0,
     "sms_days_cached": 89,
     "call_last_date": "2026-04-08",
     "sms_last_date": "2026-04-30"
   },
   "ecofy": {
-    "last_run": "2026-04-24T21:48:17",
+    "last_run": "2026-04-24T22:40:15",
     "call_days_cached": 0,
     "sms_days_cached": 0,
     "call_last_date": "2025-12-25"
   },
   "hdfc": {
-    "last_run": "2026-04-24T21:48:47",
+    "last_run": "2026-04-24T22:40:45",
     "call_days_cached": 0,
     "sms_days_cached": 0,
     "call_last_date": "2025-12-04"
   },
   "housing": {
-    "last_run": "2026-04-24T21:49:17",
+    "last_run": "2026-04-24T22:41:15",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "inprime": {
-    "last_run": "2026-04-24T21:49:47",
+    "last_run": "2026-04-24T22:41:45",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "it_cart": {
-    "last_run": "2026-04-24T21:50:17",
+    "last_run": "2026-04-24T22:42:15",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "kissht": {
     "call_last_date": "2026-03-31",
-    "last_run": "2026-04-24T21:50:47",
+    "last_run": "2026-04-24T22:42:45",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "micro_fi": {
     "call_last_date": "2026-04-21",
     "sms_last_date": "2026-04-30",
-    "last_run": "2026-04-24T21:51:17",
-    "call_days_cached": 85,
+    "last_run": "2026-04-24T22:43:15",
+    "call_days_cached": 84,
     "sms_days_cached": 8
   },
   "mktg_micro_fi": {
-    "last_run": "2026-04-24T21:51:47",
+    "last_run": "2026-04-24T22:43:45",
     "call_days_cached": 0,
     "sms_days_cached": 120,
     "call_last_date": "2026-03-29",
@@ -81,44 +81,44 @@
   },
   "multify": {
     "call_last_date": "2026-01-27",
-    "last_run": "2026-04-24T21:52:17",
+    "last_run": "2026-04-24T22:44:15",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "opus": {
     "call_last_date": "2026-01-27",
     "sms_last_date": "2026-01-31",
-    "last_run": "2026-04-24T21:52:47",
+    "last_run": "2026-04-24T22:44:45",
     "call_days_cached": 0,
     "sms_days_cached": 13
   },
   "salesbot_datasheets": {
-    "last_run": "2026-04-24T21:53:17",
+    "last_run": "2026-04-24T22:45:15",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "shubham_housing": {
-    "last_run": "2026-04-24T21:53:47",
+    "last_run": "2026-04-24T22:45:45",
     "call_days_cached": 0,
     "sms_days_cached": 92,
     "sms_last_date": "2026-08-31"
   },
   "smart_dial": {
-    "last_run": "2026-04-24T21:54:17",
+    "last_run": "2026-04-24T22:46:15",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "tatacapital": {
     "call_last_date": "2026-04-22",
     "sms_last_date": "2026-04-30",
-    "last_run": "2026-04-24T21:54:47",
-    "call_days_cached": 125,
-    "sms_days_cached": 190
+    "last_run": "2026-04-24T22:46:45",
+    "call_days_cached": 123,
+    "sms_days_cached": 187
   },
   "ugro": {
     "call_last_date": "2026-04-21",
-    "last_run": "2026-04-24T21:55:17",
-    "call_days_cached": 18,
+    "last_run": "2026-04-24T22:47:15",
+    "call_days_cached": 15,
     "sms_days_cached": 0
   }
 }
