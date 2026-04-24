@@ -1,79 +1,79 @@
 {
   "agrim": {
     "call_last_date": "2025-11-29",
-    "last_run": "2026-04-24T19:52:02",
+    "last_run": "2026-04-24T20:44:22",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "bajaj": {
     "call_last_date": "2026-04-09",
     "sms_last_date": "2026-04-30",
-    "last_run": "2026-04-24T19:52:32",
-    "call_days_cached": 2,
+    "last_run": "2026-04-24T20:44:52",
+    "call_days_cached": 1,
     "sms_days_cached": 0
   },
   "cred": {
-    "last_run": "2026-04-24T19:53:03",
+    "last_run": "2026-04-24T20:45:22",
     "call_days_cached": 0,
     "sms_days_cached": 61,
     "call_last_date": "2026-04-14",
     "sms_last_date": "2026-04-30"
   },
   "dbs_mintek": {
-    "last_run": "2026-04-24T19:53:33",
-    "call_days_cached": 35,
+    "last_run": "2026-04-24T20:45:52",
+    "call_days_cached": 33,
     "sms_days_cached": 0,
     "call_last_date": "2026-01-17"
   },
   "dubai_expats": {
-    "last_run": "2026-04-24T19:54:03",
-    "call_days_cached": 8,
+    "last_run": "2026-04-24T20:46:22",
+    "call_days_cached": 5,
     "sms_days_cached": 89,
     "call_last_date": "2026-04-08",
     "sms_last_date": "2026-04-30"
   },
   "ecofy": {
-    "last_run": "2026-04-24T19:54:33",
+    "last_run": "2026-04-24T20:46:52",
     "call_days_cached": 0,
     "sms_days_cached": 0,
     "call_last_date": "2025-12-25"
   },
   "hdfc": {
-    "last_run": "2026-04-24T19:55:03",
+    "last_run": "2026-04-24T20:47:22",
     "call_days_cached": 0,
     "sms_days_cached": 0,
     "call_last_date": "2025-12-04"
   },
   "housing": {
-    "last_run": "2026-04-24T19:55:33",
+    "last_run": "2026-04-24T20:47:52",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "inprime": {
-    "last_run": "2026-04-24T19:56:03",
+    "last_run": "2026-04-24T20:48:22",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "it_cart": {
-    "last_run": "2026-04-24T19:56:33",
+    "last_run": "2026-04-24T20:48:52",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "kissht": {
     "call_last_date": "2026-03-31",
-    "last_run": "2026-04-24T19:57:03",
+    "last_run": "2026-04-24T20:49:22",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "micro_fi": {
     "call_last_date": "2026-04-21",
     "sms_last_date": "2026-04-30",
-    "last_run": "2026-04-24T19:57:33",
-    "call_days_cached": 90,
+    "last_run": "2026-04-24T20:49:52",
+    "call_days_cached": 87,
     "sms_days_cached": 8
   },
   "mktg_micro_fi": {
-    "last_run": "2026-04-24T19:58:03",
+    "last_run": "2026-04-24T20:50:22",
     "call_days_cached": 0,
     "sms_days_cached": 120,
     "call_last_date": "2026-03-29",
@@ -81,44 +81,44 @@
   },
   "multify": {
     "call_last_date": "2026-01-27",
-    "last_run": "2026-04-24T19:58:33",
+    "last_run": "2026-04-24T20:50:53",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "opus": {
     "call_last_date": "2026-01-27",
     "sms_last_date": "2026-01-31",
-    "last_run": "2026-04-24T19:59:03",
+    "last_run": "2026-04-24T20:51:23",
     "call_days_cached": 0,
     "sms_days_cached": 13
   },
   "salesbot_datasheets": {
-    "last_run": "2026-04-24T19:59:33",
+    "last_run": "2026-04-24T20:51:53",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "shubham_housing": {
-    "last_run": "2026-04-24T20:00:03",
+    "last_run": "2026-04-24T20:52:23",
     "call_days_cached": 0,
     "sms_days_cached": 92,
     "sms_last_date": "2026-08-31"
   },
   "smart_dial": {
-    "last_run": "2026-04-24T20:00:33",
+    "last_run": "2026-04-24T20:52:53",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "tatacapital": {
     "call_last_date": "2026-04-22",
     "sms_last_date": "2026-04-30",
-    "last_run": "2026-04-24T20:01:03",
-    "call_days_cached": 130,
-    "sms_days_cached": 199
+    "last_run": "2026-04-24T20:53:23",
+    "call_days_cached": 127,
+    "sms_days_cached": 193
   },
   "ugro": {
     "call_last_date": "2026-04-21",
-    "last_run": "2026-04-24T20:01:33",
-    "call_days_cached": 22,
+    "last_run": "2026-04-24T20:53:53",
+    "call_days_cached": 20,
     "sms_days_cached": 0
   }
 }
