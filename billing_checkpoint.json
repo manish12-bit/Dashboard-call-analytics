@@ -1,79 +1,79 @@
 {
   "agrim": {
     "call_last_date": "2025-11-29",
-    "last_run": "2026-04-25T17:36:58",
+    "last_run": "2026-04-25T18:48:32",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "bajaj": {
     "call_last_date": "2026-04-09",
     "sms_last_date": "2026-04-30",
-    "last_run": "2026-04-25T17:37:28",
+    "last_run": "2026-04-25T18:49:02",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "cred": {
-    "last_run": "2026-04-25T17:37:58",
+    "last_run": "2026-04-25T18:49:32",
     "call_days_cached": 0,
     "sms_days_cached": 61,
     "call_last_date": "2026-04-14",
     "sms_last_date": "2026-04-30"
   },
   "dbs_mintek": {
-    "last_run": "2026-04-25T17:38:28",
+    "last_run": "2026-04-25T18:50:02",
     "call_days_cached": 0,
     "sms_days_cached": 0,
     "call_last_date": "2026-01-17"
   },
   "dubai_expats": {
-    "last_run": "2026-04-25T17:38:58",
+    "last_run": "2026-04-25T18:50:32",
     "call_days_cached": 0,
     "sms_days_cached": 89,
     "call_last_date": "2026-04-08",
     "sms_last_date": "2026-04-30"
   },
   "ecofy": {
-    "last_run": "2026-04-25T17:39:28",
+    "last_run": "2026-04-25T18:51:02",
     "call_days_cached": 0,
     "sms_days_cached": 0,
     "call_last_date": "2025-12-25"
   },
   "hdfc": {
-    "last_run": "2026-04-25T17:39:58",
+    "last_run": "2026-04-25T18:51:32",
     "call_days_cached": 0,
     "sms_days_cached": 0,
     "call_last_date": "2025-12-04"
   },
   "housing": {
-    "last_run": "2026-04-25T17:40:28",
+    "last_run": "2026-04-25T18:52:02",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "inprime": {
-    "last_run": "2026-04-25T17:40:58",
+    "last_run": "2026-04-25T18:52:32",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "it_cart": {
-    "last_run": "2026-04-25T17:41:28",
+    "last_run": "2026-04-25T18:53:02",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "kissht": {
     "call_last_date": "2026-03-31",
-    "last_run": "2026-04-25T17:41:58",
+    "last_run": "2026-04-25T18:53:32",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "micro_fi": {
     "call_last_date": "2026-04-21",
     "sms_last_date": "2026-04-30",
-    "last_run": "2026-04-25T17:42:28",
-    "call_days_cached": 46,
+    "last_run": "2026-04-25T18:54:02",
+    "call_days_cached": 43,
     "sms_days_cached": 8
   },
   "mktg_micro_fi": {
-    "last_run": "2026-04-25T17:42:58",
+    "last_run": "2026-04-25T18:54:32",
     "call_days_cached": 0,
     "sms_days_cached": 120,
     "call_last_date": "2026-03-29",
@@ -81,43 +81,43 @@
   },
   "multify": {
     "call_last_date": "2026-01-27",
-    "last_run": "2026-04-25T17:43:28",
+    "last_run": "2026-04-25T18:55:02",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "opus": {
     "call_last_date": "2026-01-27",
     "sms_last_date": "2026-01-31",
-    "last_run": "2026-04-25T17:43:58",
+    "last_run": "2026-04-25T18:55:32",
     "call_days_cached": 0,
     "sms_days_cached": 13
   },
   "salesbot_datasheets": {
-    "last_run": "2026-04-25T17:44:28",
+    "last_run": "2026-04-25T18:56:02",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "shubham_housing": {
-    "last_run": "2026-04-25T17:44:58",
+    "last_run": "2026-04-25T18:56:32",
     "call_days_cached": 0,
     "sms_days_cached": 92,
     "sms_last_date": "2026-08-31"
   },
   "smart_dial": {
-    "last_run": "2026-04-25T17:45:28",
+    "last_run": "2026-04-25T18:57:02",
     "call_days_cached": 0,
     "sms_days_cached": 0
   },
   "tatacapital": {
     "call_last_date": "2026-04-22",
     "sms_last_date": "2026-04-30",
-    "last_run": "2026-04-25T17:45:59",
-    "call_days_cached": 90,
-    "sms_days_cached": 129
+    "last_run": "2026-04-25T18:57:32",
+    "call_days_cached": 87,
+    "sms_days_cached": 126
   },
   "ugro": {
     "call_last_date": "2026-04-21",
-    "last_run": "2026-04-25T17:46:29",
+    "last_run": "2026-04-25T18:58:02",
     "call_days_cached": 0,
     "sms_days_cached": 0
   }
