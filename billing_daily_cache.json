@@ -2009,11 +2009,6 @@
         "cost": 137.0,
         "duration_sec": 2803
       },
-      "2025-10-15": {
-        "calls": 96,
-        "cost": 34.0,
-        "duration_sec": 575
-      },
       "2025-07-05": {
         "calls": 12814,
         "cost": 12755.5,
@@ -2118,16 +2113,6 @@
         "calls": 76,
         "cost": 0.0,
         "duration_sec": 0
-      },
-      "2025-10-14": {
-        "calls": 57,
-        "cost": 0.0,
-        "duration_sec": 0
-      },
-      "2025-10-16": {
-        "calls": 12108,
-        "cost": 8903.75,
-        "duration_sec": 155991
       }
     },
     "sms": {

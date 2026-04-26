@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-26 22:46 UTC",
+  "last_updated": "2026-04-26 23:47 UTC",
   "reference_date": "2026-04-26",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
@@ -91,8 +91,8 @@
       "sms_count": 0
     },
     "rolling_12m": {
-      "call_cost": 245446.5,
-      "call_calls": 437482,
+      "call_cost": 236508.75,
+      "call_calls": 425221,
       "sms_cost": 0.0,
       "sms_count": 0
     },
@@ -103,8 +103,8 @@
       "sms_count": 0
     },
     "last_year": {
-      "call_cost": 343042.05,
-      "call_calls": 656535,
+      "call_cost": 334104.3,
+      "call_calls": 644274,
       "sms_cost": 0.0,
       "sms_count": 0
     }
@@ -2166,9 +2166,9 @@
           "duration_sec": 0
         },
         "rolling_12m": {
-          "calls": 437482,
-          "cost": 245446.5,
-          "duration_sec": 4463304
+          "calls": 425221,
+          "cost": 236508.75,
+          "duration_sec": 4306738
         },
         "this_year": {
           "calls": 0,
@@ -2176,9 +2176,9 @@
           "duration_sec": 0
         },
         "last_year": {
-          "calls": 437482,
-          "cost": 245446.5,
-          "duration_sec": 4463304
+          "calls": 425221,
+          "cost": 236508.75,
+          "duration_sec": 4306738
         }
       },
       "sms": {
@@ -2233,9 +2233,9 @@
           "sms_units": 0
         }
       },
-      "latest_call_date": "2025-10-16",
+      "latest_call_date": "2025-10-13",
       "latest_sms_date": null,
-      "call_days_cached": 27,
+      "call_days_cached": 24,
       "sms_days_cached": 32
     },
     {
@@ -4381,11 +4381,6 @@
           "cost": 137.0,
           "duration_sec": 2803
         },
-        "2025-10-15": {
-          "calls": 96,
-          "cost": 34.0,
-          "duration_sec": 575
-        },
         "2025-07-05": {
           "calls": 12814,
           "cost": 12755.5,
@@ -4490,16 +4485,6 @@
           "calls": 76,
           "cost": 0.0,
           "duration_sec": 0
-        },
-        "2025-10-14": {
-          "calls": 57,
-          "cost": 0.0,
-          "duration_sec": 0
-        },
-        "2025-10-16": {
-          "calls": 12108,
-          "cost": 8903.75,
-          "duration_sec": 155991
         }
       },
       "sms": {
