@@ -2128,21 +2128,6 @@
         "calls": 12108,
         "cost": 8903.75,
         "duration_sec": 155991
-      },
-      "2025-10-17": {
-        "calls": 125,
-        "cost": 0.0,
-        "duration_sec": 0
-      },
-      "2025-10-18": {
-        "calls": 38,
-        "cost": 0.0,
-        "duration_sec": 0
-      },
-      "2025-10-19": {
-        "calls": 26,
-        "cost": 0.0,
-        "duration_sec": 0
       }
     },
     "sms": {
