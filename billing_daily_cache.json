@@ -832,11 +832,6 @@
         "cost": 46575.75,
         "duration_sec": 858999
       },
-      "2025-12-15": {
-        "calls": 22813,
-        "cost": 18173.5,
-        "duration_sec": 329911
-      },
       "2025-12-02": {
         "calls": 12506,
         "cost": 18001.75,
@@ -851,11 +846,6 @@
         "calls": 24876,
         "cost": 18250.75,
         "duration_sec": 334166
-      },
-      "2025-12-16": {
-        "calls": 7140,
-        "cost": 6096.5,
-        "duration_sec": 111689
       },
       "2025-12-03": {
         "calls": 50048,
@@ -2100,11 +2090,6 @@
         "cost": 124598.25,
         "duration_sec": 2179704
       },
-      "2025-11-27": {
-        "calls": 164565,
-        "cost": 64551.5,
-        "duration_sec": 1145802
-      },
       "2025-08-06": {
         "calls": 6,
         "cost": 1.5,
@@ -2229,16 +2214,6 @@
         "calls": 128621,
         "cost": 64589.5,
         "duration_sec": 1153136
-      },
-      "2025-11-28": {
-        "calls": 161276,
-        "cost": 77080.75,
-        "duration_sec": 1350096
-      },
-      "2025-11-29": {
-        "calls": 152789,
-        "cost": 60534.0,
-        "duration_sec": 1062233
       },
       "2025-10-24": {
         "calls": 63,
@@ -2376,11 +2351,6 @@
         "cost": 0.0,
         "sms_count": 0,
         "sms_units": 0
-      },
-      "2025-11-11": {
-        "cost": 329.76,
-        "sms_count": 2748,
-        "sms_units": 2748
       },
       "2025-09-13": {
         "cost": 0.0,
@@ -2718,71 +2688,6 @@
         "sms_units": 10812
       },
       "2025-11-08": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-09": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-10": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-13": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-14": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-15": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-16": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-17": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-18": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-19": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-20": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-21": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-22": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2025-11-23": {
         "cost": 0.0,
         "sms_count": 0,
         "sms_units": 0
