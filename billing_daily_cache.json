@@ -1,1 +1,82 @@
-{}
+{
+  "agrim": {
+    "call": {},
+    "sms": {}
+  },
+  "bajaj": {
+    "call": {},
+    "sms": {}
+  },
+  "cred": {
+    "call": {},
+    "sms": {}
+  },
+  "dbs_mintek": {
+    "call": {},
+    "sms": {}
+  },
+  "dubai_expats": {
+    "call": {},
+    "sms": {}
+  },
+  "ecofy": {
+    "call": {},
+    "sms": {}
+  },
+  "hdfc": {
+    "call": {},
+    "sms": {}
+  },
+  "housing": {
+    "call": {},
+    "sms": {}
+  },
+  "inprime": {
+    "call": {},
+    "sms": {}
+  },
+  "it_cart": {
+    "call": {},
+    "sms": {}
+  },
+  "kissht": {
+    "call": {},
+    "sms": {}
+  },
+  "micro_fi": {
+    "call": {},
+    "sms": {}
+  },
+  "mktg_micro_fi": {
+    "call": {},
+    "sms": {}
+  },
+  "multify": {
+    "call": {},
+    "sms": {}
+  },
+  "opus": {
+    "call": {},
+    "sms": {}
+  },
+  "salesbot_datasheets": {
+    "call": {},
+    "sms": {}
+  },
+  "shubham_housing": {
+    "call": {},
+    "sms": {}
+  },
+  "smart_dial": {
+    "call": {},
+    "sms": {}
+  },
+  "tatacapital": {
+    "call": {},
+    "sms": {}
+  },
+  "ugro": {
+    "call": {},
+    "sms": {}
+  }
+}
