@@ -770,14 +770,26 @@ body {
 
 <!-- ===== PANEL: COMPANY ===== -->
 <div id="panel-company" class="panel active">
-  <!-- Company filter row -->
-  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px;align-items:center;background:#F8FAFC;border:1px solid #E8EDF5;border-radius:10px;padding:12px 16px;">
-    <span style="font-size:12px;color:#11344D;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;">Filter by Company:</span>
-    <select class="comp-select" id="compWiseSelect" onchange="buildCompany()" style="min-width:200px;">
+  <!-- Company + Date filter row -->
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px;align-items:center;background:#F8FAFC;border:1px solid #E8EDF5;border-radius:10px;padding:12px 16px;">
+    <span style="font-size:12px;color:#11344D;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;">Company:</span>
+    <select class="comp-select" id="compWiseSelect" onchange="buildCompany()" style="min-width:180px;">
       <option value="all">All Companies</option>
     </select>
-    <button onclick="document.getElementById('compWiseSelect').value='all';buildCompany();" style="padding:5px 14px;font-size:12px;font-weight:600;color:#6366F1;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;">Reset</button>
+    <div style="width:1px;height:24px;background:#E2E8F0;flex-shrink:0;"></div>
+    <span style="font-size:12px;color:#11344D;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;">Date Range:</span>
+    <input type="date" id="compDateFrom" class="comp-select" style="padding:5px 10px;font-size:12px;" onchange="buildCompany()">
+    <span style="font-size:11px;color:#94A3B8;">→</span>
+    <input type="date" id="compDateTo" class="comp-select" style="padding:5px 10px;font-size:12px;" onchange="buildCompany()">
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <button onclick="setCompQuickDate('thismonth')" style="padding:4px 10px;font-size:11px;font-weight:600;color:#6366F1;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;">This Month</button>
+      <button onclick="setCompQuickDate('lastmonth')" style="padding:4px 10px;font-size:11px;font-weight:600;color:#10B981;background:#D1FAE5;border:1px solid #6EE7B7;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;">Last Month</button>
+      <button onclick="setCompQuickDate('last7')" style="padding:4px 10px;font-size:11px;font-weight:600;color:#F97316;background:#FFF7ED;border:1px solid #FED7AA;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;">Last 7 Days</button>
+      <button onclick="setCompQuickDate('clear')" style="padding:4px 10px;font-size:11px;font-weight:600;color:#64748B;background:#F1F5F9;border:1px solid #CBD5E1;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;">All Time</button>
+    </div>
   </div>
+  <!-- Active filter label -->
+  <div id="compFilterLabel" style="display:none;margin-bottom:10px;padding:6px 14px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;font-size:12px;color:#92400E;font-weight:600;"></div>
   <!-- Company count row -->
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;align-items:center;">
     <span style="font-size:12px;color:var(--text-dim);font-weight:600;margin-right:4px;" id="compPanelLabel">ALL 20 COMPANIES:</span>
@@ -1602,19 +1614,107 @@ function updateCompHourChart(){
   });
 }
 
+// ===================== COMPANY DATE FILTER HELPERS =====================
+function setCompQuickDate(mode) {
+  const fromEl = document.getElementById('compDateFrom');
+  const toEl   = document.getElementById('compDateTo');
+  const now    = new Date();
+  const pad    = n => String(n).padStart(2,'0');
+  const iso    = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  if (mode === 'thismonth') {
+    fromEl.value = iso(new Date(now.getFullYear(), now.getMonth(), 1));
+    toEl.value   = iso(now);
+  } else if (mode === 'lastmonth') {
+    const lm = new Date(now.getFullYear(), now.getMonth()-1, 1);
+    const lme= new Date(now.getFullYear(), now.getMonth(), 0);
+    fromEl.value = iso(lm); toEl.value = iso(lme);
+  } else if (mode === 'last7') {
+    const d7 = new Date(now); d7.setDate(now.getDate()-6);
+    fromEl.value = iso(d7); toEl.value = iso(now);
+  } else {
+    fromEl.value = ''; toEl.value = '';
+  }
+  buildCompany();
+}
+
+// Parse "DD Mon YYYY" (e.g. "08 Oct 2025") → ISO string "YYYY-MM-DD"
+const _MONTH_IDX = {Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
+function parseDashDate(str) {
+  const p = str.trim().split(' ');
+  if (p.length !== 3) return null;
+  const mon = _MONTH_IDX[p[1]]; if (!mon) return null;
+  return `${p[2]}-${String(mon).padStart(2,'0')}-${p[0]}`;
+}
+
+// Aggregate compDateData per company for a date range → returns array in same shape as companyData
+function buildCompanyFromRange(fromISO, toISO) {
+  const result = [];
+  for (const [dbName, entries] of Object.entries(compDateData)) {
+    const rows = entries.filter(e => {
+      const d = parseDashDate(e.d); return d && d >= fromISO && d <= toISO;
+    });
+    if (!rows.length) continue;
+    const total     = rows.reduce((s,r) => s + (r.total||0), 0);
+    const connected = rows.reduce((s,r) => s + (r.connected||0), 0);
+    const positive  = rows.reduce((s,r) => s + (r.positive||0), 0);
+    const negative  = rows.reduce((s,r) => s + (r.negative||0), 0);
+    const durationH = rows.reduce((s,r) => s + (r.durationH||0), 0);
+    const other     = rows.reduce((s,r) => s + (r.other||0), 0);
+    const disposed  = rows.reduce((s,r) => s + (r.disposed||0), 0);
+    const connPct   = total ? +(connected/total*100).toFixed(1) : 0;
+    const success   = connected ? +(positive/connected*100).toFixed(1) : 0;
+    const effRate   = disposed ? +(disposed/connected*100).toFixed(1) : 0;
+    // Try to find the canonical name from companyData
+    const base = companyData.find(c => c.name.toLowerCase().replace(/\s+/g,'_') === dbName
+                                    || c.name === dbName);
+    result.push({
+      name: base ? base.name : dbName,
+      total, connected, positive, negative, other, disposed,
+      durationH: +durationH.toFixed(1),
+      connPct, success,
+      efficiencyRate: effRate,
+      mht: connected ? +(durationH*3600/connected).toFixed(0) : 0,
+      listen: positive + negative,
+    });
+  }
+  return result;
+}
+
 // ===================== BUILD CHARTS =====================
 function buildCompany(){
-  // Filter support
+  // Date range filter
+  const fromISO = document.getElementById('compDateFrom')?.value || '';
+  const toISO   = document.getElementById('compDateTo')?.value   || '';
+  const hasDateFilter = fromISO && toISO;
+
+  // Show/hide active filter label
+  const filterLbl = document.getElementById('compFilterLabel');
+  if (hasDateFilter) {
+    filterLbl.style.display = 'block';
+    filterLbl.textContent = `📅 Showing: ${fromISO} → ${toISO}  (date-filtered from compDateData)`;
+  } else {
+    filterLbl.style.display = 'none';
+  }
+
+  // Company filter
   const filterVal = document.getElementById('compWiseSelect')?.value || 'all';
-  const cd = filterVal === 'all' ? companyData : companyData.filter(d => d.name === filterVal);
+
+  // Base dataset: date-filtered aggregation OR all-time companyData
+  const baseData = hasDateFilter ? buildCompanyFromRange(fromISO, toISO) : companyData;
+  const cd = filterVal === 'all' ? baseData : baseData.filter(d => d.name === filterVal);
   const labels = cd.map(d=>d.name);
+
+  // Stable color index — look up by name in companyData (falls back to loop index)
+  const colorIdx = d => {
+    const i = companyData.findIndex(c => c.name === d.name);
+    return i >= 0 ? i : cd.indexOf(d);
+  };
 
   // Company count badges — each company gets its own color
   const badgesDiv = document.getElementById('compCountBadges');
   badgesDiv.innerHTML = '';
   cd.forEach((d,i)=>{
-    const origIdx = companyData.indexOf(d);
-    const c = MULTI[origIdx % MULTI.length];
+    const c = MULTI[colorIdx(d) % MULTI.length];
     const span = document.createElement('span');
     span.className = 'count-badge';
     span.style.cssText = `background:${c}18;border-color:${c}55;color:${c};`;
@@ -1627,7 +1727,7 @@ function buildCompany(){
     Chart.getChart(id)?.destroy();
   });
 
-  const bColors = cd.map(d=>{ const i=companyData.indexOf(d); return MULTI[i%MULTI.length]; });
+  const bColors = cd.map(d => MULTI[colorIdx(d) % MULTI.length]);
 
   // Bar: total calls per company (sorted descending) — scrollable canvas
   (()=>{
@@ -1773,7 +1873,7 @@ function buildCompany(){
     const mGrad = mCtx.createLinearGradient(0,0,0,260);
     mGrad.addColorStop(0,'rgba(245,158,11,0.45)');
     mGrad.addColorStop(1,'rgba(245,158,11,0.02)');
-    const mPtColors = mhtSorted.map(d=>{ const i=companyData.indexOf(d); return MULTI[i%MULTI.length]; });
+    const mPtColors = mhtSorted.map(d => MULTI[colorIdx(d) % MULTI.length]);
     new Chart(mhtCanvas,{
       type:'line',
       data:{
@@ -1833,13 +1933,13 @@ function buildCompany(){
   const tbody = document.getElementById('companyTableBody');
   tbody.innerHTML = '';
   cd.forEach((d,i)=>{
-    const origIdx = companyData.indexOf(d);
-    const c = MULTI[origIdx % MULTI.length];
+    const ci = colorIdx(d);
+    const c = MULTI[ci % MULTI.length];
     const s = d.success>40?'green':d.success>20?'blue':'red';
     const listenCount = (d.positive||0) + (d.negative||0);
     const listenRate  = d.connected ? (listenCount/d.connected*100).toFixed(1) : 0;
     tbody.innerHTML += `<tr>
-      <td><span style="color:${c};font-weight:700;">${origIdx+1}</span></td>
+      <td><span style="color:${c};font-weight:700;">${i+1}</span></td>
       <td><b style="color:${c}">${d.name}</b></td>
       <td>${fmtNum(d.total)}</td>
       <td>${fmtNum(d.connected)}</td>
