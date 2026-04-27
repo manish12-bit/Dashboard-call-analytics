@@ -2098,21 +2098,6 @@
         "calls": 429,
         "cost": 0.0,
         "duration_sec": 0
-      },
-      "2025-10-11": {
-        "calls": 102,
-        "cost": 0.0,
-        "duration_sec": 0
-      },
-      "2025-10-12": {
-        "calls": 73,
-        "cost": 0.0,
-        "duration_sec": 0
-      },
-      "2025-10-13": {
-        "calls": 76,
-        "cost": 0.0,
-        "duration_sec": 0
       }
     },
     "sms": {
