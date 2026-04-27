@@ -349,9 +349,9 @@ def _apply_opus_last_year_floor(call_periods: dict):
 
 # ─── Main pipeline ─────────────────────────────────────────────────────────────
 
-def run_billing_pipeline():
+def run_billing_pipeline(offline: bool = False):
     log.info("=" * 55)
-    log.info("Billing Pipeline START  (incremental mode)")
+    log.info("Billing Pipeline START  (%s)", "OFFLINE — cache only" if offline else "incremental mode")
     log.info("=" * 55)
 
     today   = billing_reference_date()
@@ -367,7 +367,7 @@ def run_billing_pipeline():
     cp    = load_json(CHECKPOINT_FILE)
     cache = load_json(DAILY_CACHE_FILE)
 
-    client    = get_client()
+    client    = None if offline else get_client()
     companies = []
 
     for db_name in INCLUDE_DBS:
@@ -401,34 +401,58 @@ def run_billing_pipeline():
                  last_call_date.isoformat() if last_call_date else "none (full fetch)",
                  last_sms_date.isoformat()  if last_sms_date  else "none (full fetch)")
 
-        # Re-fetch last 3 days to catch late-arriving billing data.
-        # When cache is empty (first run / cache deleted), last_*_date is None
-        # → query becomes {} → fetches ALL historical docs from MongoDB.
-        refetch_call = (last_call_date - timedelta(days=3)) if last_call_date else None
-        refetch_sms  = (last_sms_date  - timedelta(days=3)) if last_sms_date  else None
+        if offline:
+            # In offline mode, skip all MongoDB fetches — use existing cache as-is.
+            call_docs, sms_docs = [], []
+        else:
+            try:
+                # Re-fetch last 3 days to catch late-arriving billing data.
+                # When cache is empty (first run / cache deleted), last_*_date is None
+                # → query becomes {} → fetches ALL historical docs from MongoDB.
+                refetch_call = (last_call_date - timedelta(days=3)) if last_call_date else None
+                refetch_sms  = (last_sms_date  - timedelta(days=3)) if last_sms_date  else None
 
-        # Clear re-fetch overlap from cache before re-merge (prevents double-counting)
-        if refetch_call:
-            for k in list(db_call.keys()):
-                try:
-                    if date.fromisoformat(k) > refetch_call:
-                        del db_call[k]
-                except ValueError:
-                    pass
-        if refetch_sms:
-            for k in list(db_sms.keys()):
-                try:
-                    if date.fromisoformat(k) > refetch_sms:
-                        del db_sms[k]
-                except ValueError:
-                    pass
+                # Save entries being cleared so they can be restored if MongoDB fails.
+                removed_call: dict = {}
+                removed_sms:  dict = {}
+                if refetch_call:
+                    for k in list(db_call.keys()):
+                        try:
+                            if date.fromisoformat(k) > refetch_call:
+                                removed_call[k] = db_call.pop(k)
+                        except ValueError:
+                            pass
+                if refetch_sms:
+                    for k in list(db_sms.keys()):
+                        try:
+                            if date.fromisoformat(k) > refetch_sms:
+                                removed_sms[k] = db_sms.pop(k)
+                        except ValueError:
+                            pass
+
+                # Fetch docs (full history when cache empty, incremental otherwise)
+                call_docs = fetch_new_call_docs(db_name, client, refetch_call)
+                sms_docs  = fetch_new_sms_docs(db_name, client, refetch_sms)
+
+                # Guard: if MongoDB returned 0 docs but we had cleared entries, it almost
+                # certainly means a connection timeout — restore to prevent permanent loss.
+                if not call_docs and removed_call:
+                    log.warning("  [%s] MongoDB returned 0 call docs but %d entries were cleared "
+                                "— restoring (probable connection failure)", db_name, len(removed_call))
+                    db_call.update(removed_call)
+                    call_docs = []
+                if not sms_docs and removed_sms:
+                    log.warning("  [%s] MongoDB returned 0 sms docs but %d entries were cleared "
+                                "— restoring (probable connection failure)", db_name, len(removed_sms))
+                    db_sms.update(removed_sms)
+                    sms_docs = []
+
+            except Exception as exc:
+                log.error("[%s] MongoDB fetch failed: %s — using existing cache", db_name, exc)
+                call_docs, sms_docs = [], []
 
         try:
-            # Fetch docs (full history when cache empty, incremental otherwise)
-            call_docs = fetch_new_call_docs(db_name, client, refetch_call)
-            sms_docs  = fetch_new_sms_docs(db_name, client, refetch_sms)
-
-            # Merge into cache — accumulates old + new data
+            # Merge new docs into cache (no-op when call_docs/sms_docs are empty)
             db_call, new_call_latest = merge_call_docs(db_call, call_docs)
             db_sms,  new_sms_latest  = merge_sms_docs(db_sms,  sms_docs)
 
@@ -448,16 +472,13 @@ def run_billing_pipeline():
             new_cp["sms_days_cached"]  = len(db_sms)
             cp[db_name] = new_cp
 
-            # Build period aggregates from the FULL cache (old + new)
+            # Build period aggregates from the FULL cache
             call_periods = {p: sum_call_period(db_call, s, e) for p, (s, e) in periods.items()}
             sms_periods  = {p: sum_sms_period(db_sms,  s, e) for p, (s, e) in periods.items()}
 
-            # Opus: last_year historical data lacks total_duration_seconds.
-            # Always keep the higher of calculated vs floor so the value never decreases.
             if db_name == "opus":
                 _apply_opus_last_year_floor(call_periods)
 
-            # Latest data dates
             call_dates = sorted(date.fromisoformat(k) for k in db_call if db_call[k].get("calls", 0) > 0 or db_call[k].get("cost", 0) > 0)
             sms_dates  = sorted(date.fromisoformat(k) for k in db_sms  if db_sms[k].get("sms_count", 0) > 0 or db_sms[k].get("cost", 0) > 0)
 
@@ -473,8 +494,7 @@ def run_billing_pipeline():
             })
 
         except Exception as exc:
-            log.error("[%s] Failed: %s", db_name, exc)
-            # Still add the company with whatever is in cache
+            log.error("[%s] Aggregation failed: %s", db_name, exc)
             call_periods = {p: sum_call_period(db_call, s, e) for p, (s, e) in periods.items()}
             sms_periods  = {p: sum_sms_period(db_sms,  s, e) for p, (s, e) in periods.items()}
             if db_name == "opus":
@@ -486,7 +506,8 @@ def run_billing_pipeline():
                 "call_days_cached": len(db_call), "sms_days_cached": len(db_sms),
             })
 
-    client.close()
+    if client is not None:
+        client.close()
 
     # Save updated cache & checkpoint
     save_json(DAILY_CACHE_FILE, cache)
@@ -532,4 +553,6 @@ def run_billing_pipeline():
 
 
 if __name__ == "__main__":
-    run_billing_pipeline()
+    import sys
+    offline_mode = "--offline" in sys.argv
+    run_billing_pipeline(offline=offline_mode)
