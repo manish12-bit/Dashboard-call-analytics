@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-09 11:50 UTC",
+  "last_updated": "2026-05-09 13:12 UTC",
   "reference_date": "2026-05-08",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
@@ -7699,11 +7699,6 @@
           "cost": 20405.0,
           "duration_sec": 360985
         },
-        "2026-05-06": {
-          "calls": 448922,
-          "cost": 396614.75,
-          "duration_sec": 7044193
-        },
         "2026-04-22": {
           "calls": 61772,
           "cost": 30928.5,
@@ -7713,6 +7708,11 @@
           "calls": 183626,
           "cost": 82255.5,
           "duration_sec": 1491901
+        },
+        "2026-05-06": {
+          "calls": 448922,
+          "cost": 396614.75,
+          "duration_sec": 7044193
         },
         "2026-05-07": {
           "calls": 304653,
