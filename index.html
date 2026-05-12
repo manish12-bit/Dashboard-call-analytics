@@ -1334,9 +1334,14 @@ let billingCustomTo    = null;   // ISO date string or null
 // ===================== LOAD DASHBOARD =====================
 async function loadDashboard() {
   try {
+    console.log('[Dashboard] Fetching data from dashboard_data.json...');
     const res = await fetch('dashboard_data.json?t=' + Date.now());
-    if (!res.ok) throw new Error('HTTP ' + res.status + ' — run pipeline_v2.py first');
+    console.log('[Dashboard] Fetch response status:', res.status, res.statusText);
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status} ${res.statusText} — Ensure dashboard_data.json exists and GitHub Pages is enabled`);
+    }
     const data = await res.json();
+    console.log('[Dashboard] Data loaded successfully:', data);
 
     // Assign global arrays (used by all chart builders below)
     companyData  = data.company       || [];
@@ -1447,17 +1452,29 @@ async function loadDashboard() {
     buildHour();
 
   } catch (err) {
+    console.error('[Dashboard] Load error:', err);
+    const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const devHelp = isDev 
+      ? `<br><br>💡 Local dev: Run <code>python -m http.server 8000</code> then open <code>http://localhost:8000</code>`
+      : `<br><br>💡 GitHub Pages: Verify settings at <code>Settings → Pages → Deploy from main branch</code><br>Ensure <code>.nojekyll</code> file exists (✓ added)<br>Wait 2-3 minutes for rebuild`;
+    
     document.getElementById('kpiGrid').innerHTML =
       `<div class="kpi-card c5" style="grid-column:1/-1;text-align:center;padding:40px;">
-        <div style="font-size:14px;color:var(--negative);">⚠️ ${err.message}</div>
-        <div style="font-size:12px;color:var(--text-dim);margin-top:8px;">
-          Run <code>python pipeline_v2.py</code> then serve via
-          <code>python -m http.server 8080</code> and open
-          <code>http://localhost:8080/index.html</code>
+        <div style="font-size:14px;color:var(--negative);">⚠️ Failed to Load Dashboard Data</div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:12px;line-height:1.6;">
+          <strong>Error:</strong> ${err.message}
+          <br><br>
+          <strong>Checklist:</strong>
+          <br>✓ Pipeline is running (commits hourly)
+          <br>✓ Data files exist (dashboard_data.json, billing_data.json)
+          <br>✓ .nojekyll file added (enables JSON serving)
+          <br>⚠️ Check if GitHub Pages is enabled
+          <br><br>
+          Open <strong>Browser Console (F12)</strong> to see detailed errors.
+          ${devHelp}
         </div>
       </div>`;
-    document.getElementById('lastUpdated').textContent = 'Error: ' + err.message;
-    console.error(err);
+    document.getElementById('lastUpdated').textContent = '❌ Error: ' + err.message;
   }
 }
 
