@@ -6499,22 +6499,27 @@
         "sms_count": 127902,
         "sms_units": 255804
       },
-      "2026-04-20": {
-        "cost": 34134.02,
-        "sms_count": 101325,
-        "sms_units": 266672
-      },
-      "2026-04-21": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
       "2026-04-17": {
         "cost": 0.0,
         "sms_count": 0,
         "sms_units": 0
       },
       "2026-04-19": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-18": {
+        "cost": 0.0,
+        "sms_count": 0,
+        "sms_units": 0
+      },
+      "2026-04-20": {
+        "cost": 34134.02,
+        "sms_count": 101325,
+        "sms_units": 266672
+      },
+      "2026-04-21": {
         "cost": 0.0,
         "sms_count": 0,
         "sms_units": 0
@@ -6535,11 +6540,6 @@
         "sms_units": 0
       },
       "2026-04-29": {
-        "cost": 0.0,
-        "sms_count": 0,
-        "sms_units": 0
-      },
-      "2026-04-18": {
         "cost": 0.0,
         "sms_count": 0,
         "sms_units": 0
