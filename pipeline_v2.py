@@ -55,6 +55,7 @@ INCLUDE_DBS = [
     "smart_dial",
     "tatacapital",
     "ugro",
+    "motilal",
 ]
 EXCLUDE_DBS = []    # not needed when INCLUDE_DBS is set
 
@@ -72,7 +73,7 @@ SUCCESS_DISPOSITIONS = {
 }
 FAILURE_DISPOSITIONS = {
     "RTP", "RTPF", "NC", "NR", "GREETING ONLY",
-    "HANG_UP", "DISPUTE", "JOBLESS", "DEATH", "DIF", "ME", "LB","SH","FI","FH","INFO_GIVEN_NO_RESPONSE","MINIMAL_ENGAGEMENT","EARLY_DISCONNECT"
+    "HANG_UP", "DISPUTE", "JOBLESS", "DEATH", "DIF", "ME", "LB","SH","FI","FH","INFO_GIVEN_NO_RESPONSE","MINIMAL_ENGAGEMENT","EARLY_DISCONNECT","HOSTILE","ANNOYED","WN"
 }
 
 CHECKPOINT_FILE = "checkpoint.json"
