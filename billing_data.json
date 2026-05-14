@@ -1,18 +1,18 @@
 {
-  "last_updated": "2026-05-14 11:50 UTC",
-  "reference_date": "2026-05-13",
+  "last_updated": "2026-05-14 14:04 UTC",
+  "reference_date": "2026-05-14",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
     "last_year_label": "Apr 2025 \u2013 Mar 2026"
   },
   "period_meta": {
     "today": {
-      "start": "2026-05-13",
-      "end": "2026-05-13"
+      "start": "2026-05-14",
+      "end": "2026-05-14"
     },
     "this_week": {
       "start": "2026-05-11",
-      "end": "2026-05-13"
+      "end": "2026-05-14"
     },
     "last_week": {
       "start": "2026-05-04",
@@ -20,27 +20,27 @@
     },
     "current_month": {
       "start": "2026-05-01",
-      "end": "2026-05-13"
+      "end": "2026-05-14"
     },
     "last_month_same_date": {
       "start": "2026-04-01",
-      "end": "2026-04-13"
+      "end": "2026-04-14"
     },
     "last_month_total": {
       "start": "2026-04-01",
       "end": "2026-04-30"
     },
     "last_month_same_day": {
-      "start": "2026-04-13",
-      "end": "2026-04-13"
+      "start": "2026-04-14",
+      "end": "2026-04-14"
     },
     "rolling_12m": {
-      "start": "2025-05-13",
-      "end": "2026-05-13"
+      "start": "2025-05-14",
+      "end": "2026-05-14"
     },
     "this_year": {
       "start": "2026-04-01",
-      "end": "2026-05-13"
+      "end": "2026-05-14"
     },
     "last_year": {
       "start": "2025-04-01",
@@ -73,10 +73,10 @@
       "sms_count": 0
     },
     "last_month_same_date": {
-      "call_cost": 1993891.05,
-      "call_calls": 2633985,
-      "sms_cost": 250379.26,
-      "sms_count": 937860
+      "call_cost": 2271339.9,
+      "call_calls": 3195684,
+      "sms_cost": 321736.19,
+      "sms_count": 1216598
     },
     "last_month_total": {
       "call_cost": 2725820.15,
@@ -85,10 +85,10 @@
       "sms_count": 1571920
     },
     "last_month_same_day": {
-      "call_cost": 113459.15,
-      "call_calls": 210154,
-      "sms_cost": 40277.76,
-      "sms_count": 157335
+      "call_cost": 277448.85,
+      "call_calls": 561699,
+      "sms_cost": 71356.93,
+      "sms_count": 278738
     },
     "rolling_12m": {
       "call_cost": 17976241.4,
@@ -359,9 +359,9 @@
           "duration_sec": 0
         },
         "last_month_same_date": {
-          "calls": 5934,
-          "cost": 575.1,
-          "duration_sec": 8865
+          "calls": 9715,
+          "cost": 947.7,
+          "duration_sec": 15430
         },
         "last_month_total": {
           "calls": 9715,
@@ -369,9 +369,9 @@
           "duration_sec": 15430
         },
         "last_month_same_day": {
-          "calls": 2164,
-          "cost": 241.65,
-          "duration_sec": 3932
+          "calls": 3781,
+          "cost": 372.6,
+          "duration_sec": 6565
         },
         "rolling_12m": {
           "calls": 82741,
@@ -1367,9 +1367,9 @@
           "duration_sec": 0
         },
         "last_month_same_date": {
-          "calls": 522489,
-          "cost": 284213.5,
-          "duration_sec": 5207940
+          "calls": 573459,
+          "cost": 318102.75,
+          "duration_sec": 5813358
         },
         "last_month_total": {
           "calls": 804472,
@@ -1377,9 +1377,9 @@
           "duration_sec": 8241217
         },
         "last_month_same_day": {
-          "calls": 44496,
-          "cost": 27716.0,
-          "duration_sec": 497972
+          "calls": 50970,
+          "cost": 33889.25,
+          "duration_sec": 605418
         },
         "rolling_12m": {
           "calls": 4976018,
@@ -2151,9 +2151,9 @@
           "duration_sec": 18123791
         },
         "last_month_same_date": {
-          "calls": 2076044,
-          "cost": 1674620.75,
-          "duration_sec": 29943808
+          "calls": 2582992,
+          "cost": 1917807.75,
+          "duration_sec": 34323675
         },
         "last_month_total": {
           "calls": 3221206,
@@ -2161,9 +2161,9 @@
           "duration_sec": 39762635
         },
         "last_month_same_day": {
-          "calls": 158662,
-          "cost": 78632.75,
-          "duration_sec": 1415647
+          "calls": 506948,
+          "cost": 243187.0,
+          "duration_sec": 4379867
         },
         "rolling_12m": {
           "calls": 19833000,
@@ -2203,9 +2203,9 @@
           "sms_units": 0
         },
         "last_month_same_date": {
-          "cost": 250379.26,
-          "sms_count": 937860,
-          "sms_units": 1956088
+          "cost": 321736.19,
+          "sms_count": 1216598,
+          "sms_units": 2513564
         },
         "last_month_total": {
           "cost": 428297.6,
@@ -2213,9 +2213,9 @@
           "sms_units": 3346075
         },
         "last_month_same_day": {
-          "cost": 40277.76,
-          "sms_count": 157335,
-          "sms_units": 314670
+          "cost": 71356.93,
+          "sms_count": 278738,
+          "sms_units": 557476
         },
         "rolling_12m": {
           "cost": 2194238.82,
@@ -2273,9 +2273,9 @@
           "duration_sec": 289285
         },
         "last_month_same_day": {
-          "calls": 4832,
-          "cost": 6868.75,
-          "duration_sec": 37451
+          "calls": 0,
+          "cost": 0.0,
+          "duration_sec": 0
         },
         "rolling_12m": {
           "calls": 171451,
