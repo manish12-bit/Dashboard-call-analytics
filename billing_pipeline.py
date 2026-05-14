@@ -62,6 +62,7 @@ COMPANY_MAP = {
     "smart_dial":          "Smart Dial",
     "tatacapital":         "Tata Capital",
     "ugro":                "Ugro",
+  "motilal":               "Motilal",
 }
 
 INCLUDE_DBS = list(COMPANY_MAP.keys())
