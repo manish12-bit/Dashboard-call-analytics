@@ -1,18 +1,18 @@
 {
-  "last_updated": "2026-05-17 13:14 UTC",
-  "reference_date": "2026-05-16",
+  "last_updated": "2026-05-17 14:54 UTC",
+  "reference_date": "2026-05-17",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
     "last_year_label": "Apr 2025 \u2013 Mar 2026"
   },
   "period_meta": {
     "today": {
-      "start": "2026-05-16",
-      "end": "2026-05-16"
+      "start": "2026-05-17",
+      "end": "2026-05-17"
     },
     "this_week": {
       "start": "2026-05-11",
-      "end": "2026-05-16"
+      "end": "2026-05-17"
     },
     "last_week": {
       "start": "2026-05-04",
@@ -20,27 +20,27 @@
     },
     "current_month": {
       "start": "2026-05-01",
-      "end": "2026-05-16"
+      "end": "2026-05-17"
     },
     "last_month_same_date": {
       "start": "2026-04-01",
-      "end": "2026-04-16"
+      "end": "2026-04-17"
     },
     "last_month_total": {
       "start": "2026-04-01",
       "end": "2026-04-30"
     },
     "last_month_same_day": {
-      "start": "2026-04-16",
-      "end": "2026-04-16"
+      "start": "2026-04-17",
+      "end": "2026-04-17"
     },
     "rolling_12m": {
-      "start": "2025-05-16",
-      "end": "2026-05-16"
+      "start": "2025-05-17",
+      "end": "2026-05-17"
     },
     "this_year": {
       "start": "2026-04-01",
-      "end": "2026-05-16"
+      "end": "2026-05-17"
     },
     "last_year": {
       "start": "2025-04-01",
@@ -73,8 +73,8 @@
       "sms_count": 0
     },
     "last_month_same_date": {
-      "call_cost": 2509343.15,
-      "call_calls": 3673611,
+      "call_cost": 2534518.4,
+      "call_calls": 3717491,
       "sms_cost": 385535.1,
       "sms_count": 1436890
     },
@@ -85,10 +85,10 @@
       "sms_count": 1571920
     },
     "last_month_same_day": {
-      "call_cost": 133610.75,
-      "call_calls": 267484,
-      "sms_cost": 32742.91,
-      "sms_count": 127902
+      "call_cost": 25175.25,
+      "call_calls": 43880,
+      "sms_cost": 0.0,
+      "sms_count": 0
     },
     "rolling_12m": {
       "call_cost": 17976241.4,
@@ -1367,9 +1367,9 @@
           "duration_sec": 0
         },
         "last_month_same_date": {
-          "calls": 657517,
-          "cost": 367188.25,
-          "duration_sec": 6693277
+          "calls": 700295,
+          "cost": 390748.5,
+          "duration_sec": 7116652
         },
         "last_month_total": {
           "calls": 804472,
@@ -1377,9 +1377,9 @@
           "duration_sec": 8241217
         },
         "last_month_same_day": {
-          "calls": 39703,
-          "cost": 22452.25,
-          "duration_sec": 403225
+          "calls": 42778,
+          "cost": 23560.25,
+          "duration_sec": 423375
         },
         "rolling_12m": {
           "calls": 4976018,
@@ -2161,9 +2161,9 @@
           "duration_sec": 39762635
         },
         "last_month_same_day": {
-          "calls": 226728,
-          "cost": 109534.75,
-          "duration_sec": 1979000
+          "calls": 0,
+          "cost": 0.0,
+          "duration_sec": 0
         },
         "rolling_12m": {
           "calls": 19833000,
@@ -2213,9 +2213,9 @@
           "sms_units": 3346075
         },
         "last_month_same_day": {
-          "cost": 32742.91,
-          "sms_count": 127902,
-          "sms_units": 255804
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
         },
         "rolling_12m": {
           "cost": 2194238.82,
@@ -2263,9 +2263,9 @@
           "duration_sec": 0
         },
         "last_month_same_date": {
-          "calls": 18027,
-          "cost": 27302.5,
-          "duration_sec": 187840
+          "calls": 19129,
+          "cost": 28917.5,
+          "duration_sec": 197100
         },
         "last_month_total": {
           "calls": 31515,
@@ -2273,9 +2273,9 @@
           "duration_sec": 289285
         },
         "last_month_same_day": {
-          "calls": 1053,
-          "cost": 1623.75,
-          "duration_sec": 11337
+          "calls": 1102,
+          "cost": 1615.0,
+          "duration_sec": 9260
         },
         "rolling_12m": {
           "calls": 171451,
