@@ -1,46 +1,46 @@
 {
-  "last_updated": "2026-05-25 12:27 UTC",
-  "reference_date": "2026-05-24",
+  "last_updated": "2026-05-25 15:48 UTC",
+  "reference_date": "2026-05-25",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
     "last_year_label": "Apr 2025 \u2013 Mar 2026"
   },
   "period_meta": {
     "today": {
-      "start": "2026-05-24",
-      "end": "2026-05-24"
+      "start": "2026-05-25",
+      "end": "2026-05-25"
     },
     "this_week": {
+      "start": "2026-05-25",
+      "end": "2026-05-25"
+    },
+    "last_week": {
       "start": "2026-05-18",
       "end": "2026-05-24"
     },
-    "last_week": {
-      "start": "2026-05-11",
-      "end": "2026-05-17"
-    },
     "current_month": {
       "start": "2026-05-01",
-      "end": "2026-05-24"
+      "end": "2026-05-25"
     },
     "last_month_same_date": {
       "start": "2026-04-01",
-      "end": "2026-04-24"
+      "end": "2026-04-25"
     },
     "last_month_total": {
       "start": "2026-04-01",
       "end": "2026-04-30"
     },
     "last_month_same_day": {
-      "start": "2026-04-24",
-      "end": "2026-04-24"
+      "start": "2026-04-25",
+      "end": "2026-04-25"
     },
     "rolling_12m": {
-      "start": "2025-05-24",
-      "end": "2026-05-24"
+      "start": "2025-05-25",
+      "end": "2026-05-25"
     },
     "this_year": {
       "start": "2026-04-01",
-      "end": "2026-05-24"
+      "end": "2026-05-25"
     },
     "last_year": {
       "start": "2025-04-01",
@@ -61,8 +61,8 @@
       "sms_count": 0
     },
     "last_week": {
-      "call_cost": 69878.5,
-      "call_calls": 117422,
+      "call_cost": 0.0,
+      "call_calls": 0,
       "sms_cost": 0.0,
       "sms_count": 0
     },
@@ -2141,9 +2141,9 @@
           "duration_sec": 0
         },
         "last_week": {
-          "calls": 117422,
-          "cost": 69878.5,
-          "duration_sec": 1267529
+          "calls": 0,
+          "cost": 0.0,
+          "duration_sec": 0
         },
         "current_month": {
           "calls": 1329659,
