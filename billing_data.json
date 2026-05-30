@@ -1,18 +1,18 @@
 {
-  "last_updated": "2026-05-30 13:23 UTC",
-  "reference_date": "2026-05-29",
+  "last_updated": "2026-05-30 15:04 UTC",
+  "reference_date": "2026-05-30",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
     "last_year_label": "Apr 2025 \u2013 Mar 2026"
   },
   "period_meta": {
     "today": {
-      "start": "2026-05-29",
-      "end": "2026-05-29"
+      "start": "2026-05-30",
+      "end": "2026-05-30"
     },
     "this_week": {
       "start": "2026-05-25",
-      "end": "2026-05-29"
+      "end": "2026-05-30"
     },
     "last_week": {
       "start": "2026-05-18",
@@ -20,27 +20,27 @@
     },
     "current_month": {
       "start": "2026-05-01",
-      "end": "2026-05-29"
+      "end": "2026-05-30"
     },
     "last_month_same_date": {
       "start": "2026-04-01",
-      "end": "2026-04-29"
+      "end": "2026-04-30"
     },
     "last_month_total": {
       "start": "2026-04-01",
       "end": "2026-04-30"
     },
     "last_month_same_day": {
-      "start": "2026-04-29",
-      "end": "2026-04-29"
+      "start": "2026-04-30",
+      "end": "2026-04-30"
     },
     "rolling_12m": {
-      "start": "2025-05-29",
-      "end": "2026-05-29"
+      "start": "2025-05-30",
+      "end": "2026-05-30"
     },
     "this_year": {
       "start": "2026-04-01",
-      "end": "2026-05-29"
+      "end": "2026-05-30"
     },
     "last_year": {
       "start": "2025-04-01",
@@ -9008,6 +9008,61 @@
           "sms_count": 0,
           "sms_units": 0
         },
+        "2026-04-20": {
+          "cost": 34134.02,
+          "sms_count": 101325,
+          "sms_units": 266672
+        },
+        "2026-04-21": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-04-22": {
+          "cost": 8628.48,
+          "sms_count": 33705,
+          "sms_units": 67410
+        },
+        "2026-04-25": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-04-26": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-04-29": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-04-23": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-04-24": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-04-27": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-04-28": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-04-30": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
         "2026-05-03": {
           "cost": 0.0,
           "sms_count": 0,
@@ -9119,61 +9174,6 @@
           "sms_units": 0
         },
         "2026-05-31": {
-          "cost": 0.0,
-          "sms_count": 0,
-          "sms_units": 0
-        },
-        "2026-04-20": {
-          "cost": 34134.02,
-          "sms_count": 101325,
-          "sms_units": 266672
-        },
-        "2026-04-21": {
-          "cost": 0.0,
-          "sms_count": 0,
-          "sms_units": 0
-        },
-        "2026-04-22": {
-          "cost": 8628.48,
-          "sms_count": 33705,
-          "sms_units": 67410
-        },
-        "2026-04-25": {
-          "cost": 0.0,
-          "sms_count": 0,
-          "sms_units": 0
-        },
-        "2026-04-26": {
-          "cost": 0.0,
-          "sms_count": 0,
-          "sms_units": 0
-        },
-        "2026-04-29": {
-          "cost": 0.0,
-          "sms_count": 0,
-          "sms_units": 0
-        },
-        "2026-04-23": {
-          "cost": 0.0,
-          "sms_count": 0,
-          "sms_units": 0
-        },
-        "2026-04-24": {
-          "cost": 0.0,
-          "sms_count": 0,
-          "sms_units": 0
-        },
-        "2026-04-27": {
-          "cost": 0.0,
-          "sms_count": 0,
-          "sms_units": 0
-        },
-        "2026-04-28": {
-          "cost": 0.0,
-          "sms_count": 0,
-          "sms_units": 0
-        },
-        "2026-04-30": {
           "cost": 0.0,
           "sms_count": 0,
           "sms_units": 0
