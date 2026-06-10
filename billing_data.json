@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-10 05:16 UTC",
+  "last_updated": "2026-06-10 09:54 UTC",
   "reference_date": "2026-06-09",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
@@ -49,14 +49,14 @@
   },
   "totals": {
     "today": {
-      "call_cost": 29997.75,
-      "call_calls": 38559,
+      "call_cost": 161716.25,
+      "call_calls": 256570,
       "sms_cost": 0.0,
       "sms_count": 0
     },
     "this_week": {
-      "call_cost": 307836.5,
-      "call_calls": 482210,
+      "call_cost": 439555.0,
+      "call_calls": 700221,
       "sms_cost": 0.0,
       "sms_count": 0
     },
@@ -67,8 +67,8 @@
       "sms_count": 0
     },
     "current_month": {
-      "call_cost": 1122437.25,
-      "call_calls": 1642349,
+      "call_cost": 1254155.75,
+      "call_calls": 1860360,
       "sms_cost": 0.0,
       "sms_count": 0
     },
@@ -91,14 +91,14 @@
       "sms_count": 0
     },
     "rolling_12m": {
-      "call_cost": 19098678.65,
-      "call_calls": 27952978,
+      "call_cost": 19230397.15,
+      "call_calls": 28170989,
       "sms_cost": 2207906.94,
       "sms_count": 8476925
     },
     "this_year": {
-      "call_cost": 4862813.65,
-      "call_calls": 7051460,
+      "call_cost": 4994532.15,
+      "call_calls": 7269471,
       "sms_cost": 441652.35,
       "sms_count": 1624088
     },
@@ -2131,14 +2131,14 @@
       "db": "tatacapital",
       "call": {
         "today": {
-          "calls": 38559,
-          "cost": 29997.75,
-          "duration_sec": 538643
+          "calls": 256570,
+          "cost": 161716.25,
+          "duration_sec": 2911968
         },
         "this_week": {
-          "calls": 482210,
-          "cost": 307836.5,
-          "duration_sec": 5534228
+          "calls": 700221,
+          "cost": 439555.0,
+          "duration_sec": 7907553
         },
         "last_week": {
           "calls": 1160139,
@@ -2146,9 +2146,9 @@
           "duration_sec": 14520968
         },
         "current_month": {
-          "calls": 1642349,
-          "cost": 1122437.25,
-          "duration_sec": 20055196
+          "calls": 1860360,
+          "cost": 1254155.75,
+          "duration_sec": 22428521
         },
         "last_month_same_date": {
           "calls": 1212237,
@@ -2166,14 +2166,14 @@
           "duration_sec": 877504
         },
         "rolling_12m": {
-          "calls": 21475349,
-          "cost": 13229833.0,
-          "duration_sec": 237713450
+          "calls": 21693360,
+          "cost": 13361551.5,
+          "duration_sec": 240086775
         },
         "this_year": {
-          "calls": 6193214,
-          "cost": 4355279.25,
-          "duration_sec": 77941622
+          "calls": 6411225,
+          "cost": 4486997.75,
+          "duration_sec": 80314947
         },
         "last_year": {
           "calls": 15282135,
@@ -2236,7 +2236,7 @@
       "latest_call_date": "2026-06-09",
       "latest_sms_date": "2026-05-05",
       "call_days_cached": 160,
-      "sms_days_cached": 266
+      "sms_days_cached": 290
     },
     {
       "name": "Ugro",
@@ -7856,11 +7856,6 @@
           "cost": 271102.5,
           "duration_sec": 4789622
         },
-        "2026-06-09": {
-          "calls": 38559,
-          "cost": 29997.75,
-          "duration_sec": 538643
-        },
         "2026-06-06": {
           "calls": 411534,
           "cost": 287828.75,
@@ -7875,6 +7870,11 @@
           "calls": 443651,
           "cost": 277838.75,
           "duration_sec": 4995585
+        },
+        "2026-06-09": {
+          "calls": 256570,
+          "cost": 161716.25,
+          "duration_sec": 2911968
         }
       },
       "sms": {
@@ -9204,6 +9204,126 @@
           "sms_units": 0
         },
         "2026-05-31": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-01": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-02": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-03": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-12": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-11": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-22": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-10": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-21": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-14": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-16": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-15": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-17": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-13": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-18": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-19": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-25": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-28": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-23": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-20": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-26": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-27": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-29": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-30": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-24": {
           "cost": 0.0,
           "sms_count": 0,
           "sms_units": 0
