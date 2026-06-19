@@ -1,17 +1,17 @@
 {
-  "last_updated": "2026-06-19 22:51:21 IST",
+  "last_updated": "2026-06-20 01:17:06 IST",
   "kpis": {
-    "total_calls": 29112776,
-    "connected_calls": 8709903,
-    "connect_rate": 29.92,
-    "total_hours": 96009.7,
-    "positive": 3165018,
-    "negative": 1822035,
-    "other": 3515635,
-    "disposed": 8502688,
-    "efficiency_rate": 97.62,
-    "listen_count": 4987053,
-    "listen_rate": 57.26,
+    "total_calls": 29424744,
+    "connected_calls": 8793932,
+    "connect_rate": 29.89,
+    "total_hours": 96820.5,
+    "positive": 3234668,
+    "negative": 1825956,
+    "other": 3525692,
+    "disposed": 8586316,
+    "efficiency_rate": 97.64,
+    "listen_count": 5060624,
+    "listen_rate": 57.55,
     "companies_count": 21
   },
   "company": [
@@ -302,18 +302,18 @@
     },
     {
       "name": "tatacapital",
-      "total": 21781490,
-      "connected": 6331086,
-      "positive": 2454150,
-      "negative": 1001660,
-      "other": 2689888,
-      "disposed": 6145698,
-      "success": 38.76,
-      "efficiencyRate": 97.07,
+      "total": 22093458,
+      "connected": 6415115,
+      "positive": 2523800,
+      "negative": 1005581,
+      "other": 2699945,
+      "disposed": 6229326,
+      "success": 39.34,
+      "efficiencyRate": 97.1,
       "mht": 38.0,
-      "listen": 2504426,
-      "connPct": 29.07,
-      "durationH": 66835.16
+      "listen": 2577997,
+      "connPct": 29.04,
+      "durationH": 67646.04
     },
     {
       "name": "ugro",
@@ -334,51 +334,51 @@
   "region": [
     {
       "name": "EAST",
-      "total": 6189273,
-      "connected": 1884581,
-      "positive": 769569,
-      "negative": 286194,
-      "other": 778151,
-      "disposed": 1833914,
-      "success": 40.84,
-      "efficiencyRate": 97.31,
-      "connPct": 30.45
+      "total": 6287904,
+      "connected": 1912792,
+      "positive": 793942,
+      "negative": 287649,
+      "other": 780404,
+      "disposed": 1861995,
+      "success": 41.51,
+      "efficiencyRate": 97.34,
+      "connPct": 30.42
     },
     {
       "name": "NORTH",
-      "total": 7047107,
-      "connected": 2867458,
-      "positive": 1159934,
-      "negative": 626658,
-      "other": 1028044,
-      "disposed": 2814636,
-      "success": 40.45,
-      "efficiencyRate": 98.16,
-      "connPct": 40.69
+      "total": 7131099,
+      "connected": 2890019,
+      "positive": 1178956,
+      "negative": 627815,
+      "other": 1030327,
+      "disposed": 2837098,
+      "success": 40.79,
+      "efficiencyRate": 98.17,
+      "connPct": 40.53
     },
     {
       "name": "SOUTH",
-      "total": 5441152,
-      "connected": 1992925,
-      "positive": 612246,
-      "negative": 536706,
-      "other": 810474,
-      "disposed": 1959426,
-      "success": 30.72,
-      "efficiencyRate": 98.32,
-      "connPct": 36.63
+      "total": 5511327,
+      "connected": 2012210,
+      "positive": 626453,
+      "negative": 537389,
+      "other": 814750,
+      "disposed": 1978592,
+      "success": 31.13,
+      "efficiencyRate": 98.33,
+      "connPct": 36.51
     },
     {
       "name": "WEST",
-      "total": 4412423,
-      "connected": 1192958,
-      "positive": 496088,
-      "negative": 184652,
-      "other": 473702,
-      "disposed": 1154442,
-      "success": 41.58,
-      "efficiencyRate": 96.77,
-      "connPct": 27.04
+      "total": 4471593,
+      "connected": 1206930,
+      "positive": 508136,
+      "negative": 185278,
+      "other": 474947,
+      "disposed": 1168361,
+      "success": 42.1,
+      "efficiencyRate": 96.8,
+      "connPct": 26.99
     }
   ],
   "usecase": [
@@ -456,15 +456,15 @@
     },
     {
       "name": "BKT X GEN AI BOT",
-      "total": 14488626,
-      "connected": 4378374,
-      "positive": 1899115,
-      "negative": 802403,
-      "other": 1547739,
-      "disposed": 4249257,
-      "success": 43.37,
-      "efficiencyRate": 97.05,
-      "connPct": 30.22
+      "total": 14800594,
+      "connected": 4462403,
+      "positive": 1968765,
+      "negative": 806324,
+      "other": 1557796,
+      "disposed": 4332885,
+      "success": 44.12,
+      "efficiencyRate": 97.1,
+      "connPct": 30.15
     },
     {
       "name": "BKT X MATURED CHARGES",
@@ -674,37 +674,37 @@
     },
     {
       "name": "English",
-      "total": 647861,
-      "connected": 642820,
-      "positive": 195478,
-      "negative": 243507,
+      "total": 648444,
+      "connected": 643403,
+      "positive": 196035,
+      "negative": 243533,
       "other": 208828,
-      "disposed": 647813,
-      "success": 30.41,
+      "disposed": 648396,
+      "success": 30.47,
       "efficiencyRate": 100.0,
-      "connPct": 7.38
+      "connPct": 7.32
     },
     {
       "name": "Gujarati",
-      "total": 49147,
-      "connected": 49147,
-      "positive": 41215,
-      "negative": 4319,
+      "total": 50888,
+      "connected": 50888,
+      "positive": 42864,
+      "negative": 4411,
       "other": 3613,
-      "disposed": 49147,
-      "success": 83.86,
+      "disposed": 50888,
+      "success": 84.23,
       "efficiencyRate": 100.0,
-      "connPct": 0.56
+      "connPct": 0.58
     },
     {
       "name": "Hin",
-      "total": 25,
-      "connected": 25,
-      "positive": 16,
+      "total": 26,
+      "connected": 26,
+      "positive": 17,
       "negative": 9,
       "other": 0,
-      "disposed": 25,
-      "success": 64.0,
+      "disposed": 26,
+      "success": 65.38,
       "efficiencyRate": 100.0,
       "connPct": 0.0
     },
@@ -722,15 +722,15 @@
     },
     {
       "name": "Hindi",
-      "total": 5454882,
-      "connected": 5450298,
-      "positive": 2271365,
-      "negative": 1279018,
+      "total": 5481335,
+      "connected": 5476751,
+      "positive": 2294764,
+      "negative": 1282072,
       "other": 1904058,
-      "disposed": 5454441,
-      "success": 41.67,
+      "disposed": 5480894,
+      "success": 41.9,
       "efficiencyRate": 100.0,
-      "connPct": 62.58
+      "connPct": 62.28
     },
     {
       "name": "Hindihinglish",
@@ -770,13 +770,13 @@
     },
     {
       "name": "Hindu",
-      "total": 84,
-      "connected": 84,
-      "positive": 79,
+      "total": 89,
+      "connected": 89,
+      "positive": 84,
       "negative": 5,
       "other": 0,
-      "disposed": 84,
-      "success": 94.05,
+      "disposed": 89,
+      "success": 94.38,
       "efficiencyRate": 100.0,
       "connPct": 0.0
     },
@@ -794,49 +794,61 @@
     },
     {
       "name": "Kannada",
-      "total": 198977,
-      "connected": 197758,
-      "positive": 113692,
-      "negative": 56200,
-      "other": 29085,
-      "disposed": 198977,
-      "success": 57.49,
+      "total": 202466,
+      "connected": 201247,
+      "positive": 116918,
+      "negative": 56458,
+      "other": 29090,
+      "disposed": 202466,
+      "success": 58.1,
       "efficiencyRate": 100.0,
-      "connPct": 2.27
+      "connPct": 2.29
     },
     {
       "name": "Malayalam",
-      "total": 215,
-      "connected": 215,
-      "positive": 61,
+      "total": 217,
+      "connected": 217,
+      "positive": 63,
       "negative": 84,
       "other": 70,
-      "disposed": 215,
-      "success": 28.37,
+      "disposed": 217,
+      "success": 29.03,
       "efficiencyRate": 100.0,
       "connPct": 0.0
     },
     {
       "name": "Marathi",
-      "total": 37561,
-      "connected": 37561,
-      "positive": 29071,
-      "negative": 7497,
+      "total": 38849,
+      "connected": 38849,
+      "positive": 30224,
+      "negative": 7632,
       "other": 993,
-      "disposed": 37561,
-      "success": 77.4,
+      "disposed": 38849,
+      "success": 77.8,
       "efficiencyRate": 100.0,
-      "connPct": 0.43
+      "connPct": 0.44
+    },
+    {
+      "name": "Numeric",
+      "total": 1,
+      "connected": 1,
+      "positive": 1,
+      "negative": 0,
+      "other": 0,
+      "disposed": 1,
+      "success": 100.0,
+      "efficiencyRate": 100.0,
+      "connPct": 0.0
     },
     {
       "name": "Odia",
-      "total": 4713,
-      "connected": 4713,
-      "positive": 1305,
+      "total": 4714,
+      "connected": 4714,
+      "positive": 1306,
       "negative": 985,
       "other": 2423,
-      "disposed": 4713,
-      "success": 27.69,
+      "disposed": 4714,
+      "success": 27.7,
       "efficiencyRate": 100.0,
       "connPct": 0.05
     },
@@ -866,27 +878,27 @@
     },
     {
       "name": "Tamil",
-      "total": 169674,
-      "connected": 169133,
-      "positive": 88373,
-      "negative": 45339,
-      "other": 35962,
-      "disposed": 169674,
-      "success": 52.25,
+      "total": 171833,
+      "connected": 171292,
+      "positive": 90325,
+      "negative": 45545,
+      "other": 35963,
+      "disposed": 171833,
+      "success": 52.73,
       "efficiencyRate": 100.0,
-      "connPct": 1.94
+      "connPct": 1.95
     },
     {
       "name": "Telugu",
-      "total": 414891,
-      "connected": 410155,
-      "positive": 186249,
-      "negative": 181676,
+      "total": 416395,
+      "connected": 411659,
+      "positive": 187603,
+      "negative": 181826,
       "other": 46966,
-      "disposed": 414891,
-      "success": 45.41,
+      "disposed": 416395,
+      "success": 45.57,
       "efficiencyRate": 100.0,
-      "connPct": 4.71
+      "connPct": 4.68
     },
     {
       "name": "Urdu",
@@ -4273,6 +4285,18 @@
       "success": 82.25,
       "efficiencyRate": 99.49,
       "connPct": 25.95
+    },
+    {
+      "d": "17 Jun 2026",
+      "total": 311968,
+      "connected": 84029,
+      "positive": 69650,
+      "negative": 3921,
+      "other": 10057,
+      "disposed": 83628,
+      "success": 82.89,
+      "efficiencyRate": 99.52,
+      "connPct": 26.94
     }
   ],
   "hour": [
@@ -4386,7 +4410,7 @@
     },
     {
       "h": "9:00 AM",
-      "total": 708763,
+      "total": 711759,
       "connected": 253294,
       "positive": 148585,
       "negative": 16770,
@@ -4394,7 +4418,7 @@
       "disposed": 245308,
       "success": 58.66,
       "efficiencyRate": 96.85,
-      "connPct": 35.74
+      "connPct": 35.59
     },
     {
       "h": "10:00 AM",
@@ -4410,7 +4434,7 @@
     },
     {
       "h": "11:00 AM",
-      "total": 1302849,
+      "total": 1312679,
       "connected": 430177,
       "positive": 207340,
       "negative": 53024,
@@ -4418,11 +4442,11 @@
       "disposed": 422682,
       "success": 48.2,
       "efficiencyRate": 98.26,
-      "connPct": 33.02
+      "connPct": 32.77
     },
     {
       "h": "12:00 PM",
-      "total": 2303668,
+      "total": 2312036,
       "connected": 751715,
       "positive": 292158,
       "negative": 155454,
@@ -4430,7 +4454,7 @@
       "disposed": 735324,
       "success": 38.87,
       "efficiencyRate": 97.82,
-      "connPct": 32.63
+      "connPct": 32.51
     },
     {
       "h": "1:00 PM",
@@ -4446,63 +4470,63 @@
     },
     {
       "h": "2:00 PM",
-      "total": 3075608,
-      "connected": 930056,
-      "positive": 331440,
-      "negative": 223979,
-      "other": 350348,
-      "disposed": 905767,
-      "success": 35.64,
-      "efficiencyRate": 97.39,
-      "connPct": 30.24
+      "total": 3168425,
+      "connected": 960405,
+      "positive": 356832,
+      "negative": 225569,
+      "other": 353603,
+      "disposed": 936004,
+      "success": 37.15,
+      "efficiencyRate": 97.46,
+      "connPct": 30.31
     },
     {
       "h": "3:00 PM",
-      "total": 3861194,
-      "connected": 1117877,
-      "positive": 400757,
-      "negative": 271203,
-      "other": 419166,
-      "disposed": 1091126,
-      "success": 35.85,
-      "efficiencyRate": 97.61,
-      "connPct": 28.95
+      "total": 3927226,
+      "connected": 1137631,
+      "positive": 417316,
+      "negative": 272049,
+      "other": 421386,
+      "disposed": 1110751,
+      "success": 36.68,
+      "efficiencyRate": 97.64,
+      "connPct": 28.97
     },
     {
       "h": "4:00 PM",
-      "total": 4550836,
-      "connected": 1292230,
-      "positive": 441792,
-      "negative": 276440,
-      "other": 541258,
-      "disposed": 1259490,
-      "success": 34.19,
+      "total": 4553636,
+      "connected": 1292937,
+      "positive": 442386,
+      "negative": 276464,
+      "other": 541338,
+      "disposed": 1260188,
+      "success": 34.22,
       "efficiencyRate": 97.47,
-      "connPct": 28.4
+      "connPct": 28.39
     },
     {
       "h": "5:00 PM",
-      "total": 4682085,
-      "connected": 1228171,
-      "positive": 425732,
-      "negative": 292960,
-      "other": 483497,
-      "disposed": 1202189,
-      "success": 34.66,
-      "efficiencyRate": 97.88,
-      "connPct": 26.23
+      "total": 4802290,
+      "connected": 1259349,
+      "positive": 451146,
+      "negative": 294361,
+      "other": 487726,
+      "disposed": 1233233,
+      "success": 35.82,
+      "efficiencyRate": 97.93,
+      "connPct": 26.22
     },
     {
       "h": "6:00 PM",
-      "total": 3455247,
-      "connected": 971733,
-      "positive": 305816,
-      "negative": 219405,
-      "other": 423327,
-      "disposed": 948548,
-      "success": 31.47,
-      "efficiencyRate": 97.61,
-      "connPct": 28.12
+      "total": 3464167,
+      "connected": 973774,
+      "positive": 307507,
+      "negative": 219465,
+      "other": 423600,
+      "disposed": 950572,
+      "success": 31.58,
+      "efficiencyRate": 97.62,
+      "connPct": 28.11
     },
     {
       "h": "7:00 PM",
@@ -8993,6 +9017,13 @@
         "connected": 26551,
         "positive": 21591,
         "durationH": 276.4
+      },
+      {
+        "d": "17 Jun 2026",
+        "total": 311968,
+        "connected": 84029,
+        "positive": 69650,
+        "durationH": 810.88
       }
     ],
     "ugro": [
@@ -11581,7 +11612,7 @@
       },
       {
         "h": "9:00 AM",
-        "total": 608923,
+        "total": 611919,
         "connected": 218443,
         "positive": 139126,
         "durationH": 2506.53
@@ -11595,14 +11626,14 @@
       },
       {
         "h": "11:00 AM",
-        "total": 1061365,
+        "total": 1071195,
         "connected": 349512,
         "positive": 186027,
         "durationH": 3824.22
       },
       {
         "h": "12:00 PM",
-        "total": 1807201,
+        "total": 1815569,
         "connected": 572834,
         "positive": 236136,
         "durationH": 6009.54
@@ -11616,38 +11647,38 @@
       },
       {
         "h": "2:00 PM",
-        "total": 2223372,
-        "connected": 652798,
-        "positive": 234780,
-        "durationH": 6980.52
+        "total": 2316189,
+        "connected": 683147,
+        "positive": 260172,
+        "durationH": 7276.7
       },
       {
         "h": "3:00 PM",
-        "total": 2850159,
-        "connected": 813724,
-        "positive": 300116,
-        "durationH": 8621.7
+        "total": 2916191,
+        "connected": 833478,
+        "positive": 316675,
+        "durationH": 8823.38
       },
       {
         "h": "4:00 PM",
-        "total": 3476348,
-        "connected": 960241,
-        "positive": 339331,
-        "durationH": 9901.1
+        "total": 3479148,
+        "connected": 960948,
+        "positive": 339925,
+        "durationH": 9909.16
       },
       {
         "h": "5:00 PM",
-        "total": 3463047,
-        "connected": 902136,
-        "positive": 321269,
-        "durationH": 9341.85
+        "total": 3583252,
+        "connected": 933314,
+        "positive": 346683,
+        "durationH": 9621.48
       },
       {
         "h": "6:00 PM",
-        "total": 2561976,
-        "connected": 699228,
-        "positive": 226425,
-        "durationH": 7278.13
+        "total": 2570896,
+        "connected": 701269,
+        "positive": 228116,
+        "durationH": 7303.46
       },
       {
         "h": "7:00 PM",
