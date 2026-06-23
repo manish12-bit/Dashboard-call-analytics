@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-23 15:12 UTC",
+  "last_updated": "2026-06-23 17:50 UTC",
   "reference_date": "2026-06-23",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
@@ -9303,22 +9303,27 @@
           "sms_count": 16227,
           "sms_units": 32454
         },
-        "2026-06-22": {
-          "cost": 0.0,
-          "sms_count": 0,
-          "sms_units": 0
-        },
         "2026-06-10": {
           "cost": 5338.37,
           "sms_count": 20853,
           "sms_units": 41706
         },
-        "2026-06-21": {
+        "2026-06-14": {
           "cost": 0.0,
           "sms_count": 0,
           "sms_units": 0
         },
-        "2026-06-14": {
+        "2026-06-13": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-22": {
+          "cost": 0.0,
+          "sms_count": 0,
+          "sms_units": 0
+        },
+        "2026-06-21": {
           "cost": 0.0,
           "sms_count": 0,
           "sms_units": 0
@@ -9337,11 +9342,6 @@
           "cost": 5064.7,
           "sms_count": 19784,
           "sms_units": 39568
-        },
-        "2026-06-13": {
-          "cost": 0.0,
-          "sms_count": 0,
-          "sms_units": 0
         },
         "2026-06-18": {
           "cost": 0.0,
