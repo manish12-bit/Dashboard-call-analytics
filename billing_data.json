@@ -1,46 +1,46 @@
 {
-  "last_updated": "2026-07-13 10:22 UTC",
-  "reference_date": "2026-07-12",
+  "last_updated": "2026-07-13 16:29 UTC",
+  "reference_date": "2026-07-13",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
     "last_year_label": "Apr 2025 \u2013 Mar 2026"
   },
   "period_meta": {
     "today": {
-      "start": "2026-07-12",
-      "end": "2026-07-12"
+      "start": "2026-07-13",
+      "end": "2026-07-13"
     },
     "this_week": {
+      "start": "2026-07-13",
+      "end": "2026-07-13"
+    },
+    "last_week": {
       "start": "2026-07-06",
       "end": "2026-07-12"
     },
-    "last_week": {
-      "start": "2026-06-29",
-      "end": "2026-07-05"
-    },
     "current_month": {
       "start": "2026-07-01",
-      "end": "2026-07-12"
+      "end": "2026-07-13"
     },
     "last_month_same_date": {
       "start": "2026-06-01",
-      "end": "2026-06-12"
+      "end": "2026-06-13"
     },
     "last_month_total": {
       "start": "2026-06-01",
       "end": "2026-06-30"
     },
     "last_month_same_day": {
-      "start": "2026-06-12",
-      "end": "2026-06-12"
+      "start": "2026-06-13",
+      "end": "2026-06-13"
     },
     "rolling_12m": {
-      "start": "2025-07-12",
-      "end": "2026-07-12"
+      "start": "2025-07-13",
+      "end": "2026-07-13"
     },
     "this_year": {
       "start": "2026-04-01",
-      "end": "2026-07-12"
+      "end": "2026-07-13"
     },
     "last_year": {
       "start": "2025-04-01",
@@ -55,14 +55,14 @@
       "sms_count": 0
     },
     "this_week": {
-      "call_cost": 1162271.5,
-      "call_calls": 2578797,
+      "call_cost": 0.0,
+      "call_calls": 0,
       "sms_cost": 0.0,
       "sms_count": 0
     },
     "last_week": {
-      "call_cost": 427591.75,
-      "call_calls": 595853,
+      "call_cost": 1162271.5,
+      "call_calls": 2578797,
       "sms_cost": 0.0,
       "sms_count": 0
     },
@@ -2136,14 +2136,14 @@
           "duration_sec": 0
         },
         "this_week": {
+          "calls": 0,
+          "cost": 0.0,
+          "duration_sec": 0
+        },
+        "last_week": {
           "calls": 2578797,
           "cost": 1162271.5,
           "duration_sec": 20712902
-        },
-        "last_week": {
-          "calls": 595853,
-          "cost": 427591.75,
-          "duration_sec": 7559144
         },
         "current_month": {
           "calls": 3174650,
