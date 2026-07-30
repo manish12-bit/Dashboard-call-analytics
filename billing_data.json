@@ -1,18 +1,18 @@
 {
-  "last_updated": "2026-07-30 11:49 UTC",
-  "reference_date": "2026-07-29",
+  "last_updated": "2026-07-30 13:51 UTC",
+  "reference_date": "2026-07-30",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
     "last_year_label": "Apr 2025 \u2013 Mar 2026"
   },
   "period_meta": {
     "today": {
-      "start": "2026-07-29",
-      "end": "2026-07-29"
+      "start": "2026-07-30",
+      "end": "2026-07-30"
     },
     "this_week": {
       "start": "2026-07-27",
-      "end": "2026-07-29"
+      "end": "2026-07-30"
     },
     "last_week": {
       "start": "2026-07-20",
@@ -20,27 +20,27 @@
     },
     "current_month": {
       "start": "2026-07-01",
-      "end": "2026-07-29"
+      "end": "2026-07-30"
     },
     "last_month_same_date": {
       "start": "2026-06-01",
-      "end": "2026-06-29"
+      "end": "2026-06-30"
     },
     "last_month_total": {
       "start": "2026-06-01",
       "end": "2026-06-30"
     },
     "last_month_same_day": {
-      "start": "2026-06-29",
-      "end": "2026-06-29"
+      "start": "2026-06-30",
+      "end": "2026-06-30"
     },
     "rolling_12m": {
-      "start": "2025-07-29",
-      "end": "2026-07-29"
+      "start": "2025-07-30",
+      "end": "2026-07-30"
     },
     "this_year": {
       "start": "2026-04-01",
-      "end": "2026-07-29"
+      "end": "2026-07-30"
     },
     "last_year": {
       "start": "2025-04-01",
