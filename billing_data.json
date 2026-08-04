@@ -1,18 +1,18 @@
 {
-  "last_updated": "2026-08-04 12:59 UTC",
-  "reference_date": "2026-08-03",
+  "last_updated": "2026-08-04 15:27 UTC",
+  "reference_date": "2026-08-04",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
     "last_year_label": "Apr 2025 \u2013 Mar 2026"
   },
   "period_meta": {
     "today": {
-      "start": "2026-08-03",
-      "end": "2026-08-03"
+      "start": "2026-08-04",
+      "end": "2026-08-04"
     },
     "this_week": {
       "start": "2026-08-03",
-      "end": "2026-08-03"
+      "end": "2026-08-04"
     },
     "last_week": {
       "start": "2026-07-27",
@@ -20,27 +20,27 @@
     },
     "current_month": {
       "start": "2026-08-01",
-      "end": "2026-08-03"
+      "end": "2026-08-04"
     },
     "last_month_same_date": {
       "start": "2026-07-01",
-      "end": "2026-07-03"
+      "end": "2026-07-04"
     },
     "last_month_total": {
       "start": "2026-07-01",
       "end": "2026-07-31"
     },
     "last_month_same_day": {
-      "start": "2026-07-03",
-      "end": "2026-07-03"
+      "start": "2026-07-04",
+      "end": "2026-07-04"
     },
     "rolling_12m": {
-      "start": "2025-08-03",
-      "end": "2026-08-03"
+      "start": "2025-08-04",
+      "end": "2026-08-04"
     },
     "this_year": {
       "start": "2026-04-01",
-      "end": "2026-08-03"
+      "end": "2026-08-04"
     },
     "last_year": {
       "start": "2025-04-01",
@@ -91,8 +91,8 @@
       "sms_count": 0
     },
     "rolling_12m": {
-      "call_cost": 21306802.9,
-      "call_calls": 32386985,
+      "call_cost": 21306797.9,
+      "call_calls": 32386982,
       "sms_cost": 2296265.08,
       "sms_count": 8822074
     },
@@ -2166,9 +2166,9 @@
           "duration_sec": 0
         },
         "rolling_12m": {
-          "calls": 25667698,
-          "cost": 15359206.25,
-          "duration_sec": 275668163
+          "calls": 25667695,
+          "cost": 15359201.25,
+          "duration_sec": 275668090
         },
         "this_year": {
           "calls": 10479483,
