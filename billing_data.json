@@ -1,46 +1,46 @@
 {
-  "last_updated": "2026-09-21 11:55 UTC",
-  "reference_date": "2026-09-20",
+  "last_updated": "2026-09-21 17:50 UTC",
+  "reference_date": "2026-09-21",
   "fiscal_year": {
     "this_year_label": "Apr 2026 \u2013 Mar 2027",
     "last_year_label": "Apr 2025 \u2013 Mar 2026"
   },
   "period_meta": {
     "today": {
-      "start": "2026-09-20",
-      "end": "2026-09-20"
+      "start": "2026-09-21",
+      "end": "2026-09-21"
     },
     "this_week": {
+      "start": "2026-09-21",
+      "end": "2026-09-21"
+    },
+    "last_week": {
       "start": "2026-09-14",
       "end": "2026-09-20"
     },
-    "last_week": {
-      "start": "2026-09-07",
-      "end": "2026-09-13"
-    },
     "current_month": {
       "start": "2026-09-01",
-      "end": "2026-09-20"
+      "end": "2026-09-21"
     },
     "last_month_same_date": {
       "start": "2026-08-01",
-      "end": "2026-08-20"
+      "end": "2026-08-21"
     },
     "last_month_total": {
       "start": "2026-08-01",
       "end": "2026-08-31"
     },
     "last_month_same_day": {
-      "start": "2026-08-20",
-      "end": "2026-08-20"
+      "start": "2026-08-21",
+      "end": "2026-08-21"
     },
     "rolling_12m": {
-      "start": "2025-09-20",
-      "end": "2026-09-20"
+      "start": "2025-09-21",
+      "end": "2026-09-21"
     },
     "this_year": {
       "start": "2026-04-01",
-      "end": "2026-09-20"
+      "end": "2026-09-21"
     },
     "last_year": {
       "start": "2025-04-01",
@@ -91,8 +91,8 @@
       "sms_count": 0
     },
     "rolling_12m": {
-      "call_cost": 21305546.9,
-      "call_calls": 32386555,
+      "call_cost": 21305482.4,
+      "call_calls": 32386536,
       "sms_cost": 2296265.08,
       "sms_count": 8822074
     },
@@ -486,9 +486,9 @@
           "duration_sec": 0
         },
         "rolling_12m": {
-          "calls": 92518,
-          "cost": 52665.0,
-          "duration_sec": 1079182
+          "calls": 92499,
+          "cost": 52600.5,
+          "duration_sec": 1077868
         },
         "this_year": {
           "calls": 0,
